@@ -1510,7 +1510,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 12:59 PM</span>
+        <span><strong>Snapshot</strong> · taken April 24, 2026 at 2:41 PM</span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1532,7 +1532,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 12:59 PM</div>
+      <div class="hero-eyebrow">Snapshot · April 24 · 2:41 PM</div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1543,7 +1543,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 12:59 PM</span>
+          <span class="hero-meta-value">April 24, 2026 · 2:41 PM</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -1594,7 +1594,7 @@
             Cycle · review → BA
             <span class="badge badge-pending">Pending</span>
           </div>
-          <div class="kpi-label">Average days</div>
+          <div class="kpi-label">Average business days</div>
           <div class="kpi-value">—<span class="unit">d</span></div>
           <div class="kpi-delta"><span class="kpi-delta-sub">0 of 10 BA dates set</span></div>
         </div>
@@ -1810,8 +1810,10 @@
               <div class="pipeline-label" style="color: var(--text-tertiary);">BA assigned</div>
               <div class="pipeline-sublabel">BA Assigned Date</div>
               <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
+                
                 <div class="pipeline-gap-value dim">—</div>
                 <div class="pipeline-gap-label">Pending data</div>
+                
               </div>
             </div>
           </div>
@@ -2249,7 +2251,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>10 requests · 3.3 bd review · 20% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 12:59 PM · manual refresh</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 2:41 PM · manual refresh</span>
     </footer>
 
   </div>
@@ -2315,7 +2317,7 @@
 
     // Live "age of snapshot" indicator in footer
     (function() {
-      const snapshotTime = new Date('2026-04-24T12:59:17');
+      const snapshotTime = new Date('2026-04-24T14:41:30');
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
@@ -2332,7 +2334,7 @@
         else if (diffHr < 24) ageStr = `${diffHr}h ago`;
         else ageStr = `${diffDay}d ago`;
 
-        indicator.textContent = `Snapshot · April 24, 2026 · 12:59 PM · ${ageStr}`;
+        indicator.textContent = `Snapshot · April 24, 2026 · 2:41 PM · ${ageStr}`;
       }
       updateAge();
       setInterval(updateAge, 60000);

@@ -1592,10 +1592,10 @@
         <div class="card kpi">
           <div class="card-eyebrow">
             Cycle · review → BA
-            <span class="badge badge-pending">Pending</span>
+            {% if kpi_ba_count > 0 %}<span class="badge badge-snapshot">Snapshot</span>{% else %}<span class="badge badge-pending">Pending</span>{% endif %}
           </div>
-          <div class="kpi-label">Average days</div>
-          <div class="kpi-value">—<span class="unit">d</span></div>
+          <div class="kpi-label">Average business days</div>
+          <div class="kpi-value">{{ kpi_ba_avg }}<span class="unit">{% if kpi_ba_avg != "—" %}bd{% else %}d{% endif %}</span></div>
           <div class="kpi-delta"><span class="kpi-delta-sub">{{ kpi_ba_pending_total }} BA dates set</span></div>
         </div>
       </div>
@@ -1807,11 +1807,16 @@
             </div>
             <div class="pipeline-node">
               <div class="pipeline-orb ba">④</div>
-              <div class="pipeline-label" style="color: var(--text-tertiary);">BA assigned</div>
+              <div class="pipeline-label"{% if kpi_ba_count == 0 %} style="color: var(--text-tertiary);"{% endif %}>BA assigned</div>
               <div class="pipeline-sublabel">BA Assigned Date</div>
               <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
+                {% if kpi_ba_count > 0 %}
+                <div class="pipeline-gap-value" style="color: var(--purple);">{{ kpi_ba_avg }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
+                <div class="pipeline-gap-label">{{ kpi_ba_count }} assigned</div>
+                {% else %}
                 <div class="pipeline-gap-value dim">—</div>
                 <div class="pipeline-gap-label">Pending data</div>
+                {% endif %}
               </div>
             </div>
           </div>

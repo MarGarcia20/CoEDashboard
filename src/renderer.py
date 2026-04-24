@@ -133,6 +133,8 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "kpi_backlog_total": total,
         "kpi_backlog_real_work": metrics["yield_substantive"],
         "kpi_ba_pending_total": metrics["ba_pending_total"],
+        "kpi_ba_avg": metrics["ba_avg"],
+        "kpi_ba_count": metrics["ba_count"],
         "kpi_w_current": w_current,
         "kpi_w_current_intakes": metrics["tw_intakes"],
         "kpi_w_minus1": w_minus1,

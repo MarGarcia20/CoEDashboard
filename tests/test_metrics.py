@@ -193,6 +193,50 @@ def test_donut_math(items):
     assert m["donut_it_prio_dasharray"] == round(5 / 10 * 100, 1)
 
 
+def test_ba_metrics_computed():
+    """When BA dates are set, BA cycle avg is computed in business days."""
+    from src.metrics import compute_metrics
+    from datetime import date
+    items = [
+        {
+            "gid": "1", "name": "t1", "completed": False, "completed_at": None,
+            "status_color": None, "created_on": "2026-04-01",
+            "received_date": "2026-04-15", "first_review_date": "2026-04-20",
+            "ba_assigned": "2026-04-23", "first_review_tags": ["Task Set Change"],
+            "coe_stage": "Triage", "coe_classification": None,
+            "pm_assigned": None, "priority": None,
+        },
+        {
+            "gid": "2", "name": "t2", "completed": False, "completed_at": None,
+            "status_color": None, "created_on": "2026-04-01",
+            "received_date": "2026-04-15", "first_review_date": None,
+            "ba_assigned": None, "first_review_tags": [],
+            "coe_stage": "New Request", "coe_classification": None,
+            "pm_assigned": None, "priority": None,
+        },
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 24))
+    # Mon Apr 20 → Thu Apr 23 = 3 business days
+    assert float(m["ba_avg"]) == 3.0
+    assert m["ba_count"] == 1
+    assert m["ba_pending_total"] == "1 of 2"
+
+
+def test_ba_metrics_none_when_empty():
+    from src.metrics import compute_metrics
+    from datetime import date
+    items = [{
+        "gid": "1", "name": "t", "completed": False, "completed_at": None,
+        "status_color": None, "created_on": None, "received_date": None,
+        "first_review_date": None, "ba_assigned": None,
+        "first_review_tags": [], "coe_stage": None,
+        "coe_classification": None, "pm_assigned": None, "priority": None,
+    }]
+    m = compute_metrics(items, today=date(2026, 4, 24))
+    assert m["ba_avg"] == "—"
+    assert m["ba_count"] == 0
+
+
 def test_people_type_parsed_as_names(tmp_path):
     """When PM Assigned comes as type=people, names are extracted correctly."""
     from src.asana_client import load_fixture

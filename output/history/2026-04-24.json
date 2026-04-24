@@ -1,6 +1,6 @@
 {
   "date": "2026-04-24",
-  "generated_at": "2026-04-24T12:59:17",
+  "generated_at": "2026-04-24T14:41:30",
   "metrics": {
     "total": 10,
     "open_count": 10,
@@ -16,6 +16,8 @@
     "upstream_median": "79.5",
     "priority_set_count": 6,
     "priority_unset_count": 4,
+    "ba_avg": "\u2014",
+    "ba_count": 0,
     "ba_pending_total": "0 of 10",
     "yield_substantive": 7,
     "yield_substantive_pct": "70%",

@@ -190,6 +190,20 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
     review_min = min(review_durations) if review_durations else None
     review_max = max(review_durations) if review_durations else None
 
+    # Metric 6: First Review → BA Assigned (business days)
+    ba_durations = []
+    ba_assigned_items = []
+    for i in items:
+        frd = _parse_date(i.get("first_review_date"))
+        ba = _parse_date(i.get("ba_assigned"))
+        if ba:
+            ba_assigned_items.append(i)
+        if frd and ba and ba >= frd:
+            ba_durations.append(business_days_between(frd, ba))
+
+    ba_avg = round(statistics.mean(ba_durations), 1) if ba_durations else None
+    ba_count = len(ba_assigned_items)
+
     # Metric 7: upstream lag (Created on → Received Date)
     upstream_durations = []
     for i in items:
@@ -402,7 +416,9 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "priority_unset_count": total - len(priority_set),
 
         # BA
-        "ba_pending_total": f"0 of {total}",
+        "ba_avg": str(ba_avg) if ba_avg is not None else "—",
+        "ba_count": ba_count,
+        "ba_pending_total": f"{ba_count} of {total}",
 
         # Yield
         "yield_substantive": len(substantive_items),
