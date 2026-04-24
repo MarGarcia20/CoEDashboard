@@ -2465,8 +2465,11 @@
         const res = await fetch('/api/refresh', {
           method: 'POST',
           headers: { 'X-Requested-With': 'coe-dashboard' },
+          credentials: 'same-origin',
         });
-        const data = await res.json();
+
+        let data = {};
+        try { data = await res.json(); } catch {}
 
         if (res.ok) {
           btn.classList.add('copied');
@@ -2477,14 +2480,18 @@
             btn.disabled = false;
           }, 8000);
         } else {
-          label.textContent = data.error || 'Error — try again';
+          // Show the real error so the user (or admin) can act on it.
+          const msg = data.error || `Error ${res.status}`;
+          label.textContent = msg.length > 40 ? msg.slice(0, 37) + '…' : msg;
+          console.error('Refresh failed:', res.status, data);
           btn.disabled = false;
-          setTimeout(() => { label.textContent = originalLabel; }, 4000);
+          setTimeout(() => { label.textContent = originalLabel; }, 6000);
         }
       } catch (err) {
-        label.textContent = 'Network error';
+        console.error('Refresh network error:', err);
+        label.textContent = 'Network error — retry';
         btn.disabled = false;
-        setTimeout(() => { label.textContent = originalLabel; }, 4000);
+        setTimeout(() => { label.textContent = originalLabel; }, 6000);
       }
     }
 

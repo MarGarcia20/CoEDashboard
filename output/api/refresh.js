@@ -30,22 +30,25 @@ export default async function handler(req, res) {
   // Require same-origin call from the dashboard (or ALLOWED_ORIGIN if set).
   const origin = req.headers.origin || req.headers.referer || '';
   const allowed = process.env.ALLOWED_ORIGIN;
-  if (!isAllowedOrigin(origin, allowed)) {
-    console.warn(`Rejected refresh from origin: ${origin || '(none)'}`);
-    return res.status(403).json({ error: 'Forbidden origin' });
-  }
 
-  // ── CSRF-style header check ───────────────────────────────
-  // The dashboard's fetch() always sends this. External crawlers won't.
-  if (req.headers['x-requested-with'] !== 'coe-dashboard') {
-    console.warn(`Rejected refresh — missing/invalid X-Requested-With`);
-    return res.status(403).json({ error: 'Invalid request' });
+  // Be permissive: accept if either (a) origin is a vercel.app or custom
+  // allowed domain, OR (b) the X-Requested-With header is present. This
+  // prevents honest users from being blocked while still stopping casual
+  // external abuse.
+  const originOk = isAllowedOrigin(origin, allowed);
+  const headerOk = req.headers['x-requested-with'] === 'coe-dashboard';
+
+  if (!originOk && !headerOk) {
+    console.warn(`Rejected refresh — origin: "${origin}", x-requested-with: "${req.headers['x-requested-with'] || '(none)'}"`);
+    return res.status(403).json({
+      error: 'Forbidden — please reload the dashboard and try again',
+    });
   }
 
   // ── GitHub token check ────────────────────────────────────
   const token = process.env.GITHUB_WORKFLOW_TOKEN;
   if (!token) {
-    console.error('GITHUB_WORKFLOW_TOKEN not set');
+    console.error('GITHUB_WORKFLOW_TOKEN env var not set in Vercel');
     return res.status(500).json({ error: 'Refresh not configured — contact admin' });
   }
 
