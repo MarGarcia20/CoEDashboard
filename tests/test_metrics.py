@@ -281,6 +281,43 @@ def test_pm_count_finds_maria_garcia():
     assert m["team_mar_count"] == 1
 
 
+def test_donut_segments_sum_to_total():
+    """All open items show up across donut segments."""
+    from src.metrics import compute_metrics
+    from datetime import date
+    items = [
+        {"gid": str(i), "name": "x", "completed": False, "completed_at": None,
+         "status_color": None, "created_on": None, "received_date": None,
+         "first_review_date": None, "ba_assigned": None,
+         "first_review_tags": [], "coe_stage": stage,
+         "coe_classification": None, "pm_assigned": None, "priority": None}
+        for i, stage in enumerate(["IT Prioritization"] * 4 + ["Triage"] * 8 + ["New Request"] * 4 + ["Awaiting Next Sprint"] * 5 + ["Scoping Call Scheduled"] * 2)
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 24))
+    assert m["donut_total_open"] == 23
+    assert sum(s["count"] for s in m["donut_segments"]) == 23
+    # Every stage with items should have a segment
+    stage_names = {s["name"] for s in m["donut_segments"]}
+    assert stage_names == {"IT Prioritization", "Triage", "New Request", "Awaiting Next Sprint", "Scoping Call Scheduled"}
+
+
+def test_donut_segments_sorted_desc():
+    """Biggest slice first (lands at top of circle)."""
+    from src.metrics import compute_metrics
+    from datetime import date
+    items = [
+        {"gid": str(i), "name": "x", "completed": False, "completed_at": None,
+         "status_color": None, "created_on": None, "received_date": None,
+         "first_review_date": None, "ba_assigned": None,
+         "first_review_tags": [], "coe_stage": stage,
+         "coe_classification": None, "pm_assigned": None, "priority": None}
+        for i, stage in enumerate(["A"] * 2 + ["B"] * 8 + ["C"] * 5)
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 24))
+    counts = [s["count"] for s in m["donut_segments"]]
+    assert counts == sorted(counts, reverse=True)
+
+
 def test_business_days_review_cycle(items):
     """Verify the 3.8 bd target from the brief against known data."""
     m = compute_metrics(items, today=date(2026, 4, 24))

@@ -213,6 +213,7 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
 
         # §06 Donut
         "donut_total_open": metrics["donut_total_open"],
+        "donut_segments": metrics["donut_segments"],
         "donut_it_prio": metrics["donut_it_prio"],
         "donut_triage": metrics["donut_triage"],
         "donut_new_request": metrics["donut_new_request"],

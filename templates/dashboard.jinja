@@ -2074,21 +2074,20 @@
             <div class="donut">
               <svg viewBox="0 0 42 42" width="160" height="160">
                 <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--border-strong)" stroke-width="3.5"/>
-                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="url(#gi)" stroke-width="3.5"
-                        stroke-dasharray="{{ donut_it_prio_dasharray }} 100" stroke-dashoffset="{{ donut_it_prio_dashoffset }}" transform="rotate(-90 21 21)" stroke-linecap="round"/>
-                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="url(#go)" stroke-width="3.5"
-                        stroke-dasharray="{{ donut_triage_dasharray }} 100" stroke-dashoffset="{{ donut_triage_dashoffset }}" transform="rotate(-90 21 21)" stroke-linecap="round"/>
-                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--green)" stroke-width="3.5"
-                        stroke-dasharray="{{ donut_new_request_dasharray }} 100" stroke-dashoffset="{{ donut_new_request_dashoffset }}" transform="rotate(-90 21 21)" stroke-linecap="round"/>
+                {% for seg in donut_segments %}
+                <circle cx="21" cy="21" r="15.915" fill="transparent"
+                        stroke="url(#{{ seg.gradient_id }})" stroke-width="3.5"
+                        stroke-dasharray="{{ seg.dasharray }} 100"
+                        stroke-dashoffset="{{ seg.dashoffset }}"
+                        transform="rotate(-90 21 21)" stroke-linecap="round"/>
+                {% endfor %}
                 <defs>
-                  <linearGradient id="gi" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#5e5ce6"/>
-                    <stop offset="100%" stop-color="#bf5af2"/>
+                  {% for seg in donut_segments %}
+                  <linearGradient id="{{ seg.gradient_id }}" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="{{ seg.hex_start }}"/>
+                    <stop offset="100%" stop-color="{{ seg.hex_end }}"/>
                   </linearGradient>
-                  <linearGradient id="go" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ff9f0a"/>
-                    <stop offset="100%" stop-color="#ff375f"/>
-                  </linearGradient>
+                  {% endfor %}
                 </defs>
               </svg>
               <div class="donut-center">
@@ -2097,21 +2096,13 @@
               </div>
             </div>
             <div class="legend">
+              {% for seg in donut_segments %}
               <div class="legend-row">
-                <span class="legend-dot" style="background: var(--indigo)"></span>
-                <span class="legend-name">IT Prioritization</span>
-                <span class="legend-val">{{ donut_it_prio }}</span>
+                <span class="legend-dot" style="background: {{ seg.stroke_css }}"></span>
+                <span class="legend-name">{{ seg.name }}</span>
+                <span class="legend-val">{{ seg.count }}</span>
               </div>
-              <div class="legend-row">
-                <span class="legend-dot" style="background: var(--orange)"></span>
-                <span class="legend-name">Triage</span>
-                <span class="legend-val">{{ donut_triage }}</span>
-              </div>
-              <div class="legend-row">
-                <span class="legend-dot" style="background: var(--green)"></span>
-                <span class="legend-name">New request</span>
-                <span class="legend-val">{{ donut_new_request }}</span>
-              </div>
+              {% endfor %}
             </div>
           </div>
         </div>

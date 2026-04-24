@@ -46,6 +46,21 @@ WORK_TYPE_SLUGS: dict[str, str] = {
 
 ESCALATED_STAGES = {"Escalated/rejected"}
 
+# Color palette for donut segments — assigned in priority order.
+# CSS variables that exist in the template's :root.
+STAGE_COLOR_PALETTE = [
+    {"css": "var(--indigo)", "hex_start": "#5e5ce6", "hex_end": "#bf5af2"},
+    {"css": "var(--orange)", "hex_start": "#ff9f0a", "hex_end": "#ff375f"},
+    {"css": "var(--green)",  "hex_start": "#30d158", "hex_end": "#30d158"},
+    {"css": "var(--cyan)",   "hex_start": "#64d2ff", "hex_end": "#0a84ff"},
+    {"css": "var(--purple)", "hex_start": "#bf5af2", "hex_end": "#5e5ce6"},
+    {"css": "var(--yellow)", "hex_start": "#ffd60a", "hex_end": "#ff9f0a"},
+    {"css": "var(--mint)",   "hex_start": "#63e6e2", "hex_end": "#40c8e0"},
+    {"css": "var(--pink)",   "hex_start": "#ff375f", "hex_end": "#bf5af2"},
+    {"css": "var(--red)",    "hex_start": "#ff453a", "hex_end": "#ff375f"},
+    {"css": "var(--teal)",   "hex_start": "#40c8e0", "hex_end": "#63e6e2"},
+]
+
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -375,8 +390,11 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
     ]
     pending_received_label = _fmt_day(max(pending_dates)) if pending_dates else "recently"
 
-    # Donut SVG math
+    # Donut SVG math (dynamic — every stage that has open items gets a segment)
     donut_total = len(open_items)
+    donut_segments = _build_donut_segments(stage_counts, donut_total)
+
+    # Backwards-compat keys still used by tests
     donut_it_prio_da, donut_triage_da, donut_new_req_da = _donut_dasharrays(
         donut_total, it_prio_count, triage_count, new_request_count
     )
@@ -455,6 +473,7 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
 
         # Stage donut
         "donut_total_open": donut_total,
+        "donut_segments": donut_segments,
         "donut_it_prio": it_prio_count,
         "donut_triage": triage_count,
         "donut_new_request": new_request_count,
@@ -616,6 +635,52 @@ def _period_stats(items: list[dict], start: date, end: date) -> dict:
         "gate": len(gate_items),
         "escalated": len(escalated_items),
     }
+
+
+def _build_donut_segments(stage_counts: dict, total: int) -> list[dict]:
+    """
+    Build a list of donut segments, one per stage with at least 1 open item.
+    Sorted by count desc so the biggest slice starts at the top of the circle.
+
+    Each segment: {name, count, dasharray, dashoffset, stroke (CSS), gradient_id}.
+    """
+    if total == 0:
+        return []
+
+    sorted_stages = sorted(
+        ((name, count) for name, count in stage_counts.items() if count > 0),
+        key=lambda kv: kv[1],
+        reverse=True,
+    )
+
+    segments = []
+    cumulative = 0.0
+    for idx, (name, count) in enumerate(sorted_stages):
+        pct = round(count / total * 100, 1)
+        # First segment: dashoffset = 25 (start at top). Subsequent segments offset
+        # by the cumulative percentage already placed (negative).
+        if idx == 0:
+            offset = 25.0
+        else:
+            offset = round(25.0 - cumulative, 1)
+
+        color = STAGE_COLOR_PALETTE[idx % len(STAGE_COLOR_PALETTE)]
+        gradient_id = f"donut-grad-{idx}"
+
+        segments.append({
+            "name": name,
+            "count": count,
+            "pct": pct,
+            "dasharray": pct,
+            "dashoffset": offset,
+            "stroke_css": color["css"],
+            "gradient_id": gradient_id,
+            "hex_start": color["hex_start"],
+            "hex_end": color["hex_end"],
+        })
+        cumulative += pct
+
+    return segments
 
 
 def _donut_dasharrays(total: int, it_prio: int, triage: int, new_req: int):
