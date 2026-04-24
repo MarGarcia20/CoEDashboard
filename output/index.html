@@ -1510,7 +1510,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 7:33 PM</span>
+        <span><strong>Snapshot</strong> · taken April 24, 2026 at 7:38 PM</span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1532,7 +1532,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 7:33 PM</div>
+      <div class="hero-eyebrow">Snapshot · April 24 · 7:38 PM</div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1543,7 +1543,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 7:33 PM</span>
+          <span class="hero-meta-value">April 24, 2026 · 7:38 PM</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2249,7 +2249,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>27 requests · 3.8 bd review · 15% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 7:33 PM · manual refresh</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 7:38 PM · manual refresh</span>
     </footer>
 
   </div>
@@ -2315,7 +2315,7 @@
 
     // Live "age of snapshot" indicator in footer
     (function() {
-      const snapshotTime = new Date('2026-04-24T19:33:28');
+      const snapshotTime = new Date('2026-04-24T19:38:55');
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
@@ -2332,7 +2332,7 @@
         else if (diffHr < 24) ageStr = `${diffHr}h ago`;
         else ageStr = `${diffDay}d ago`;
 
-        indicator.textContent = `Snapshot · April 24, 2026 · 7:33 PM · ${ageStr}`;
+        indicator.textContent = `Snapshot · April 24, 2026 · 7:38 PM · ${ageStr}`;
       }
       updateAge();
       setInterval(updateAge, 60000);
