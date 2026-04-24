@@ -79,11 +79,14 @@ def main():
 
     # ── Render ───────────────────────────────────────────────
     print(f"\n  Rendering template...")
-    output_path = render(metrics, today=today, verbose=True)
+    output_path = render(metrics, today=today, verbose=True, preview=args.dry_run)
 
-    # ── Archive snapshot ─────────────────────────────────────
-    print(f"\n  Archiving snapshot...")
-    save_snapshot(metrics, today, verbose=True)
+    # ── Archive snapshot (live only — preview never touches history) ─
+    if not args.dry_run:
+        print(f"\n  Archiving snapshot...")
+        save_snapshot(metrics, today, verbose=True)
+    else:
+        print(f"\n  Skipping snapshot archive (dry-run mode).")
 
     elapsed = time.time() - start
     print(f"\n{'─' * 56}")

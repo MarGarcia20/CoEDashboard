@@ -20,6 +20,7 @@ METER_PIN_POSITION = "42%"
 
 TEMPLATES_DIR = Path(__file__).parent.parent / "templates"
 OUTPUT_PATH = Path(__file__).parent.parent / "output" / "index.html"
+PREVIEW_PATH = Path(__file__).parent.parent / "output" / "preview.html"
 
 
 # ── Number helpers ────────────────────────────────────────────────────────────
@@ -262,8 +263,13 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
     return ctx
 
 
-def render(metrics: dict, today: date | None = None, verbose: bool = False) -> Path:
-    """Render the Jinja template with computed context. Returns output path."""
+def render(metrics: dict, today: date | None = None, verbose: bool = False, preview: bool = False) -> Path:
+    """
+    Render the Jinja template with computed context.
+
+    When preview=True, writes to output/preview.html (gitignored local-only file).
+    When preview=False, writes to output/index.html (what Vercel serves).
+    """
     ctx = build_context(metrics, today)
 
     env = Environment(
@@ -274,10 +280,11 @@ def render(metrics: dict, today: date | None = None, verbose: bool = False) -> P
     template = env.get_template("dashboard.jinja")
     html = template.render(**ctx)
 
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_PATH.write_text(html, encoding="utf-8")
+    target = PREVIEW_PATH if preview else OUTPUT_PATH
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(html, encoding="utf-8")
 
     if verbose:
-        print(f"  Rendered → {OUTPUT_PATH}")
+        print(f"  Rendered → {target}")
 
-    return OUTPUT_PATH
+    return target

@@ -1658,7 +1658,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 9:13 PM</span>
+        <span><strong>Snapshot</strong> · taken April 24, 2026 at 9:15 PM</span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1680,7 +1680,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 9:13 PM</div>
+      <div class="hero-eyebrow">Snapshot · April 24 · 9:15 PM</div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1691,7 +1691,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 9:13 PM</span>
+          <span class="hero-meta-value">April 24, 2026 · 9:15 PM</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2296,21 +2296,14 @@
     <!-- ══════════ §07 Sweet Spot ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">07 · Sara's success indicator<span class="tt" tabindex="0" data-tip="Sara's working definition of CoE health: moving faster than the previous state, with a clear signal for when adding another resource would demonstrably accelerate throughput. The meter tracks where the CoE sits today against that definition.">i</span></div>
+        <div class="section-num">07 · Success indicator<span class="tt" tabindex="0" data-tip="CoE health at a glance: moving faster than the previous state, with a clear signal for when adding another resource would demonstrably accelerate throughput.">i</span></div>
         <h2 class="section-title">
           When does "faster" <span class="muted">become "needs another resource"?</span>
         </h2>
       </div>
 
       <div class="hero-block">
-        <div class="hero-block-eyebrow">Sara's definition · April 21</div>
-        <h3 class="hero-block-title">
-          The CoE is working well when it moves small and medium Litify requests <em>faster than the previous state</em> — and has hit its sweet spot when <em>adding another resource would demonstrably accelerate throughput.</em>
-        </h3>
-        <p class="hero-block-body">
-          Two signals of "faster than previous state" now sit on the table: a 3.8 business-day review cycle across 19 substantive requests, and 14% closed at the gate — work that would otherwise have landed on IT. Whether we're at the sweet spot depends on the next phase: if BA assignment and delivery keep pace with review, we stay productive. If the 4 IT-Prioritization items pile up waiting, the resource case writes itself.
-        </p>
-        <div class="meter-wrap">
+        <div class="meter-wrap" style="margin-top: 0; padding-top: 0; border-top: none;">
           <div>
             <div class="meter-track">
               <div class="meter-zones">
@@ -2462,7 +2455,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>29 requests · 3.8 bd review · 14% rejected at gate · 2 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 9:13 PM · manual refresh</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 9:15 PM · manual refresh</span>
     </footer>
 
   </div>
@@ -2528,7 +2521,7 @@
 
     // Live "age of snapshot" indicator in footer
     (function() {
-      const snapshotTime = new Date('2026-04-24T21:13:16');
+      const snapshotTime = new Date('2026-04-24T21:15:44');
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
@@ -2545,7 +2538,7 @@
         else if (diffHr < 24) ageStr = `${diffHr}h ago`;
         else ageStr = `${diffDay}d ago`;
 
-        indicator.textContent = `Snapshot · April 24, 2026 · 9:13 PM · ${ageStr}`;
+        indicator.textContent = `Snapshot · April 24, 2026 · 9:15 PM · ${ageStr}`;
       }
       updateAge();
       setInterval(updateAge, 60000);
