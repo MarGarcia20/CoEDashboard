@@ -100,6 +100,57 @@ def _iso_year(d: date) -> int:
     return d.isocalendar()[0]
 
 
+def _fmt_day(d: date) -> str:
+    """e.g. 'Apr 20' — no leading zero."""
+    return d.strftime("%b %-d")
+
+
+def _fmt_month(d: date) -> str:
+    """e.g. 'April'."""
+    return d.strftime("%B")
+
+
+def _fmt_month_year(d: date) -> str:
+    """e.g. 'Oct 2025'."""
+    return d.strftime("%b %Y")
+
+
+def _fmt_long_date(d: date) -> str:
+    """e.g. 'April 15, 2026'."""
+    return d.strftime("%B %-d, %Y")
+
+
+def _iso_week_start(year: int, week: int) -> date:
+    """Monday of the given ISO week."""
+    return date.fromisocalendar(year, week, 1)
+
+
+def _iso_week_end(year: int, week: int) -> date:
+    """Sunday of the given ISO week."""
+    return date.fromisocalendar(year, week, 7)
+
+
+def _week_range_label(d: date, end_is_today: bool = False) -> str:
+    """e.g. 'Apr 20 – Today' (current week) or 'Apr 13 – Apr 19'."""
+    monday = d - timedelta(days=d.weekday())
+    sunday = monday + timedelta(days=6)
+    if end_is_today:
+        return f"{_fmt_day(monday)} – Today"
+    return f"{_fmt_day(monday)} – {_fmt_day(sunday)}"
+
+
+def _month_range_label(d: date) -> str:
+    """e.g. 'Apr 1 – Apr 30'."""
+    first = d.replace(day=1)
+    # Last day of month
+    if d.month == 12:
+        next_first = date(d.year + 1, 1, 1)
+    else:
+        next_first = date(d.year, d.month + 1, 1)
+    last = next_first - timedelta(days=1)
+    return f"{_fmt_day(first)} – {_fmt_day(last)}"
+
+
 # ── Core metrics ─────────────────────────────────────────────────────────────
 
 def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bool = False) -> dict:
@@ -245,6 +296,53 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
     # Days CoE active
     days_coe_active = (today - COE_START_DATE).days
 
+    # ── Dynamic date labels ─────────────────────────────────────────────────
+    tw_iso_year = _iso_year(today)
+    tw_iso_week = _iso_week(today)
+
+    # Flow weeks: compute Mon–Sun for each
+    def _week_mon_sun_label(offset_weeks: int) -> str:
+        anchor = today - timedelta(weeks=offset_weeks)
+        y = _iso_year(anchor)
+        w = _iso_week(anchor)
+        mon = _iso_week_start(y, w)
+        sun = _iso_week_end(y, w)
+        return f"{_fmt_day(mon)} – {_fmt_day(sun)}"
+
+    # Current week may include today in its range
+    tw_window = _week_range_label(today, end_is_today=True)
+    lw_window = _week_mon_sun_label(1)
+
+    # Month labels
+    tm_month_name = _fmt_month(today)
+    tm_window = _month_range_label(today)
+
+    last_month_anchor = month_start - timedelta(days=1)
+    lm_month_name = _fmt_month(last_month_anchor)
+    lm_window = _month_range_label(last_month_anchor)
+
+    # 6-month range label
+    six_mo_label = f"{_fmt_month_year(six_mo_start)} – {_fmt_month_year(today)}"
+
+    # Flow week labels for W-3 through W-current
+    flow_w_minus3_range = _week_mon_sun_label(3)
+    flow_w_minus2_range = _week_mon_sun_label(2)
+    flow_w_minus1_range = _week_mon_sun_label(1)
+    # Current week is special: end shows "Now"
+    mon = today - timedelta(days=today.weekday())
+    flow_w_current_range = f"{_fmt_day(mon)} – Now"
+
+    # CoE founding date display
+    coe_start_display = _fmt_long_date(COE_START_DATE)
+
+    # Most recent received date among pending items (for §05 copy)
+    pending_dates = [
+        _parse_date(i.get("received_date"))
+        for i in pending_items
+        if _parse_date(i.get("received_date"))
+    ]
+    pending_received_label = _fmt_day(max(pending_dates)) if pending_dates else "recently"
+
     # Donut SVG math
     donut_total = len(open_items)
     donut_it_prio_da, donut_triage_da, donut_new_req_da = _donut_dasharrays(
@@ -369,6 +467,21 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         # Recs
         "rec_it_prio_count": it_prio_count,
         "rec_status_color_blank": rec_status_color_blank,
+
+        # Dynamic date labels
+        "tw_window_label": tw_window,
+        "lw_window_label": lw_window,
+        "tm_month_name": tm_month_name,
+        "tm_window_label": tm_window,
+        "lm_month_name": lm_month_name,
+        "lm_window_label": lm_window,
+        "six_mo_window_label": six_mo_label,
+        "flow_w_minus3_range": flow_w_minus3_range,
+        "flow_w_minus2_range": flow_w_minus2_range,
+        "flow_w_minus1_range": flow_w_minus1_range,
+        "flow_w_current_range": flow_w_current_range,
+        "pending_received_label": pending_received_label,
+        "coe_start_display": coe_start_display,
 
         # Static
         "coe_start_date": COE_START_DATE.isoformat(),

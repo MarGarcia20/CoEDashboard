@@ -21,6 +21,7 @@ from dotenv import load_dotenv
 import os
 
 from src.asana_client import fetch_portfolio_items, load_fixture
+from src.history import save_snapshot
 from src.metrics import compute_metrics
 from src.renderer import render
 
@@ -79,6 +80,10 @@ def main():
     # ── Render ───────────────────────────────────────────────
     print(f"\n  Rendering template...")
     output_path = render(metrics, today=today, verbose=True)
+
+    # ── Archive snapshot ─────────────────────────────────────
+    print(f"\n  Archiving snapshot...")
+    save_snapshot(metrics, today, verbose=True)
 
     elapsed = time.time() - start
     print(f"\n{'─' * 56}")

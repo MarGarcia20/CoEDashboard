@@ -222,6 +222,21 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
 
         # Footer
         "footer_stats": footer_stats,
+
+        # Dynamic date labels (from metrics)
+        "tw_window_label": metrics["tw_window_label"],
+        "lw_window_label": metrics["lw_window_label"],
+        "tm_month_name": metrics["tm_month_name"],
+        "tm_window_label": metrics["tm_window_label"],
+        "lm_month_name": metrics["lm_month_name"],
+        "lm_window_label": metrics["lm_window_label"],
+        "six_mo_window_label": metrics["six_mo_window_label"],
+        "flow_w_minus3_range": metrics["flow_w_minus3_range"],
+        "flow_w_minus2_range": metrics["flow_w_minus2_range"],
+        "flow_w_minus1_range": metrics["flow_w_minus1_range"],
+        "flow_w_current_range": metrics["flow_w_current_range"],
+        "pending_received_label": metrics["pending_received_label"],
+        "coe_start_display": metrics["coe_start_display"],
     }
 
     return ctx

@@ -1510,7 +1510,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 12:18 PM</span>
+        <span><strong>Snapshot</strong> · taken April 24, 2026 at 12:59 PM</span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1532,7 +1532,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 12:18 PM</div>
+      <div class="hero-eyebrow">Snapshot · April 24 · 12:59 PM</div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1543,7 +1543,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 12:18 PM</span>
+          <span class="hero-meta-value">April 24, 2026 · 12:59 PM</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -1691,7 +1691,7 @@
               <span class="tl-stat-label">week</span>
             </div>
           </div>
-          <p class="timeline-note">All 9 received on Apr 15 — the CoE's founding day.</p>
+          <p class="timeline-note">All 9 received on April 15, 2026 — the CoE's founding day.</p>
         </div>
 
         <div class="timeline-card">
@@ -1818,7 +1818,7 @@
         </div>
 
         <p class="pipeline-note">
-          The 75.8 business-day upstream gap reflects legacy requests that existed in the EPMO portfolio before the CoE received them on April 15 — it's a seeding artifact, not a steady-state signal. The <strong style="color: var(--text);">3.3 business-day CoE review time</strong> is the actionable figure: computed across 7 substantive reviews (excluding "Already Completed" and "No Needed" trivial touches), with a tight 2–5 bd range. All measures exclude weekends.
+          The 75.8 business-day upstream gap reflects legacy requests that existed in the EPMO portfolio before the CoE received them on April 15, 2026 — it's a seeding artifact, not a steady-state signal. The <strong style="color: var(--text);">3.3 business-day CoE review time</strong> is the actionable figure: computed across 7 substantive reviews (excluding "Already Completed" and "No Needed" trivial touches), with a tight 2–5 bd range. All measures exclude weekends.
         </p>
       </div>
     </section>
@@ -2249,7 +2249,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>10 requests · 3.3 bd review · 20% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 12:18 PM · manual refresh</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 12:59 PM · manual refresh</span>
     </footer>
 
   </div>
@@ -2287,7 +2287,10 @@
       label.textContent = 'Refreshing…';
 
       try {
-        const res = await fetch('/api/refresh', { method: 'POST' });
+        const res = await fetch('/api/refresh', {
+          method: 'POST',
+          headers: { 'X-Requested-With': 'coe-dashboard' },
+        });
         const data = await res.json();
 
         if (res.ok) {
@@ -2312,7 +2315,7 @@
 
     // Live "age of snapshot" indicator in footer
     (function() {
-      const snapshotTime = new Date('2026-04-24T12:18:28');
+      const snapshotTime = new Date('2026-04-24T12:59:17');
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
@@ -2329,7 +2332,7 @@
         else if (diffHr < 24) ageStr = `${diffHr}h ago`;
         else ageStr = `${diffDay}d ago`;
 
-        indicator.textContent = `Snapshot · April 24, 2026 · 12:18 PM · ${ageStr}`;
+        indicator.textContent = `Snapshot · April 24, 2026 · 12:59 PM · ${ageStr}`;
       }
       updateAge();
       setInterval(updateAge, 60000);

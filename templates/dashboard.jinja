@@ -1636,7 +1636,7 @@
           Five windows, <span class="muted">honest about where the CoE was born.</span>
         </h2>
         <p class="section-lead">
-          The CoE received its first intake on April 15, 2026. Periods before that show zero activity — not because the firm wasn't logging requests, but because the CoE didn't yet exist to process them.
+          The CoE received its first intake on {{ coe_start_display }}. Periods before that show zero activity — not because the firm wasn't logging requests, but because the CoE didn't yet exist to process them.
         </p>
       </div>
 
@@ -1646,7 +1646,7 @@
             <span class="timeline-dot active"></span>
             This week · W{{ timeline_w_current }}
           </div>
-          <div class="timeline-window">Apr 20 – Today</div>
+          <div class="timeline-window">{{ tw_window_label }}</div>
           <div class="timeline-primary">
             <span class="timeline-value">{{ timeline_w_current_intakes }}</span>
             <span class="timeline-unit">new intakes</span>
@@ -1672,7 +1672,7 @@
             <span class="timeline-dot"></span>
             Last week · W{{ timeline_w_minus1 }}
           </div>
-          <div class="timeline-window">Apr 13 – Apr 19</div>
+          <div class="timeline-window">{{ lw_window_label }}</div>
           <div class="timeline-primary">
             <span class="timeline-value">{{ timeline_w_minus1_intakes }}</span>
             <span class="timeline-unit">intakes</span>
@@ -1691,15 +1691,15 @@
               <span class="tl-stat-label">week</span>
             </div>
           </div>
-          <p class="timeline-note">All {{ timeline_w_minus1_intakes }} received on Apr 15 — the CoE's founding day.</p>
+          <p class="timeline-note">All {{ timeline_w_minus1_intakes }} received on {{ coe_start_display }} — the CoE's founding day.</p>
         </div>
 
         <div class="timeline-card">
           <div class="timeline-eyebrow">
             <span class="timeline-dot"></span>
-            This month · April
+            This month · {{ tm_month_name }}
           </div>
-          <div class="timeline-window">Apr 1 – Apr 30</div>
+          <div class="timeline-window">{{ tm_window_label }}</div>
           <div class="timeline-primary">
             <span class="timeline-value">{{ timeline_month_intakes }}</span>
             <span class="timeline-unit">intakes</span>
@@ -1723,9 +1723,9 @@
         <div class="timeline-card timeline-empty">
           <div class="timeline-eyebrow">
             <span class="timeline-dot dim"></span>
-            Last month · March
+            Last month · {{ lm_month_name }}
           </div>
-          <div class="timeline-window">Mar 1 – Mar 31</div>
+          <div class="timeline-window">{{ lm_window_label }}</div>
           <div class="timeline-primary">
             <span class="timeline-value tl-zero">{{ timeline_lm_intakes }}</span>
             <span class="timeline-unit">intakes</span>
@@ -1738,7 +1738,7 @@
         <div class="timeline-card timeline-empty timeline-span-2">
           <div class="timeline-eyebrow">
             <span class="timeline-dot dim"></span>
-            Last 6 months · Oct 2025 – Apr 2026
+            Last 6 months · {{ six_mo_window_label }}
           </div>
           <div class="timeline-window">182-day window</div>
           <div class="timeline-primary">
@@ -1818,7 +1818,7 @@
         </div>
 
         <p class="pipeline-note">
-          The {{ pipeline_upstream_bd }} business-day upstream gap reflects legacy requests that existed in the EPMO portfolio before the CoE received them on April 15 — it's a seeding artifact, not a steady-state signal. The <strong style="color: var(--text);">{{ pipeline_review_bd }} business-day CoE review time</strong> is the actionable figure: computed across {{ kpi_review_substantive_count }} substantive reviews (excluding "Already Completed" and "No Needed" trivial touches), with a tight {{ kpi_review_range_low }}–{{ kpi_review_range_high }} bd range. All measures exclude weekends.
+          The {{ pipeline_upstream_bd }} business-day upstream gap reflects legacy requests that existed in the EPMO portfolio before the CoE received them on {{ coe_start_display }} — it's a seeding artifact, not a steady-state signal. The <strong style="color: var(--text);">{{ pipeline_review_bd }} business-day CoE review time</strong> is the actionable figure: computed across {{ kpi_review_substantive_count }} substantive reviews (excluding "Already Completed" and "No Needed" trivial touches), with a tight {{ kpi_review_range_low }}–{{ kpi_review_range_high }} bd range. All measures exclude weekends.
         </p>
       </div>
     </section>
@@ -1988,7 +1988,7 @@
             <div class="outcome-pct">{{ yield_pending_pct }}</div>
           </div>
           <p class="outcome-desc">
-            {{ yield_pending_names }} — all received Apr 22, classification in progress.
+            {{ yield_pending_names }} — all received {{ pending_received_label }}, classification in progress.
           </p>
         </div>
       </div>
@@ -2007,22 +2007,22 @@
         <div class="card panel">
           <h3 class="panel-title">Weekly intake — <em>the W{{ flow_w_minus1_label }} seeding surge</em></h3>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus3_label }}<span class="sub">Mar 30 – Apr 5</span></div>
+            <div class="bar-label">{{ flow_w_minus3_label }}<span class="sub">{{ flow_w_minus3_range }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus3_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_minus3_count }}</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus2_label }}<span class="sub">Apr 6 – Apr 12</span></div>
+            <div class="bar-label">{{ flow_w_minus2_label }}<span class="sub">{{ flow_w_minus2_range }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus2_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_minus2_count }}</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus1_label }}<span class="sub">Apr 13 – Apr 19</span></div>
+            <div class="bar-label">{{ flow_w_minus1_label }}<span class="sub">{{ flow_w_minus1_range }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus1_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_minus1_count }}</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_current_label }}<span class="sub">Apr 20 – Now</span></div>
+            <div class="bar-label">{{ flow_w_current_label }}<span class="sub">{{ flow_w_current_range }}</span></div>
             <div class="bar-track"><div class="bar-fill current" style="width: {{ flow_w_current_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_current_count }}</div>
           </div>
@@ -2287,7 +2287,10 @@
       label.textContent = 'Refreshing…';
 
       try {
-        const res = await fetch('/api/refresh', { method: 'POST' });
+        const res = await fetch('/api/refresh', {
+          method: 'POST',
+          headers: { 'X-Requested-With': 'coe-dashboard' },
+        });
         const data = await res.json();
 
         if (res.ok) {
