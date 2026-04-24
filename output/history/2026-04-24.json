@@ -1,6 +1,6 @@
 {
   "date": "2026-04-24",
-  "generated_at": "2026-04-24T21:44:54",
+  "generated_at": "2026-04-24T21:59:15",
   "metrics": {
     "total": 29,
     "open_count": 23,
@@ -59,7 +59,7 @@
         "hex_end": "#bf5af2"
       },
       {
-        "name": "Awaiting Next Sprint",
+        "name": "In Progress",
         "count": 4,
         "pct": 17.4,
         "dasharray": 17.4,
@@ -92,7 +92,7 @@
         "hex_end": "#0a84ff"
       },
       {
-        "name": "Scoping Call Scheduled",
+        "name": "Awaiting Next Sprint",
         "count": 3,
         "pct": 13.0,
         "dasharray": 13.0,
