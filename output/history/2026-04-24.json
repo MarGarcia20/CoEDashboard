@@ -1,6 +1,6 @@
 {
   "date": "2026-04-24",
-  "generated_at": "2026-04-24T21:19:06",
+  "generated_at": "2026-04-24T21:32:22",
   "metrics": {
     "total": 29,
     "open_count": 23,
@@ -12,8 +12,8 @@
     "review_min": "3",
     "review_max": "5",
     "review_substantive_count": 19,
-    "upstream_avg": "38.7",
-    "upstream_median": "32",
+    "upstream_avg": "37.0",
+    "upstream_median": "30.5",
     "priority_set_count": 11,
     "priority_unset_count": 18,
     "ba_avg": "2",
