@@ -1658,7 +1658,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 9:36 PM</span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 24, 2026 · 5:44 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1680,7 +1680,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 9:36 PM</div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 24 · 5:44 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1691,7 +1691,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 9:36 PM</span>
+          <span class="hero-meta-value" data-snapshot-time="full">April 24, 2026 · 5:44 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2455,7 +2455,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>29 requests · 3.8 bd review · 14% rejected at gate · 2 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 9:36 PM</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 5:44 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -2524,26 +2524,67 @@
       }
     }
 
-    // Live "age of snapshot" indicator in footer
+    // Localize snapshot timestamp to the viewer's timezone + keep "X ago" fresh.
+    // All <time class="snapshot-time"> elements get their text replaced with
+    // the viewer's local date/time. The footer #age-indicator also gets an
+    // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-04-24T21:36:14');
+      const snapshotTime = new Date('2026-04-24T21:44:54+00:00');
+      if (isNaN(snapshotTime.getTime())) return;
+
+      function fmtLocalDate() {
+        return snapshotTime.toLocaleDateString(undefined, {
+          month: 'long', day: 'numeric', year: 'numeric'
+        });
+      }
+      function fmtLocalTime() {
+        return snapshotTime.toLocaleTimeString(undefined, {
+          hour: 'numeric', minute: '2-digit'
+        });
+      }
+      function fmtTzAbbrev() {
+        // Short timezone name ("EDT", "CET", etc.). Fallback to offset.
+        try {
+          const parts = new Intl.DateTimeFormat(undefined, {
+            timeZoneName: 'short'
+          }).formatToParts(snapshotTime);
+          const tz = parts.find(p => p.type === 'timeZoneName');
+          return tz ? tz.value : '';
+        } catch {
+          return '';
+        }
+      }
+      const localDate = fmtLocalDate();
+      const localTime = fmtLocalTime();
+      const tz = fmtTzAbbrev();
+      const localFull = `${localDate} · ${localTime}${tz ? ' ' + tz : ''}`;
+
+      // Replace any elements marked with data-snapshot-time
+      const shortDate = snapshotTime.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+      document.querySelectorAll('[data-snapshot-time]').forEach(el => {
+        const mode = el.getAttribute('data-snapshot-time');
+        if (mode === 'full')    el.textContent = localFull;
+        if (mode === 'date')    el.textContent = localDate;
+        if (mode === 'time')    el.textContent = `${localTime}${tz ? ' ' + tz : ''}`;
+        if (mode === 'short')   el.textContent = `${shortDate} · ${localTime}${tz ? ' ' + tz : ''}`;
+        if (mode === 'eyebrow') el.textContent = `Snapshot · ${shortDate} · ${localTime}${tz ? ' ' + tz : ''}`;
+      });
+
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
-      function updateAge() {
-        const now = new Date();
-        const diffMs = now - snapshotTime;
+      function ageStr() {
+        const diffMs = Date.now() - snapshotTime.getTime();
         const diffMin = Math.floor(diffMs / 60000);
         const diffHr = Math.floor(diffMin / 60);
         const diffDay = Math.floor(diffHr / 24);
-
-        let ageStr;
-        if (diffMin < 1) ageStr = 'just now';
-        else if (diffMin < 60) ageStr = `${diffMin} min ago`;
-        else if (diffHr < 24) ageStr = `${diffHr}h ago`;
-        else ageStr = `${diffDay}d ago`;
-
-        indicator.textContent = `Snapshot · April 24, 2026 · 9:36 PM · ${ageStr}`;
+        if (diffMin < 1) return 'just now';
+        if (diffMin < 60) return `${diffMin}m ago`;
+        if (diffHr < 24) return `${diffHr}h ago`;
+        return `${diffDay}d ago`;
+      }
+      function updateAge() {
+        indicator.textContent = `Snapshot · ${localFull} · ${ageStr()}`;
       }
       updateAge();
       setInterval(updateAge, 60000);
