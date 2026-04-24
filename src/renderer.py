@@ -6,8 +6,9 @@ Handles all derived display values (spelled numbers, bar widths, etc.)
 from __future__ import annotations
 
 import os
-from datetime import date, datetime
+from datetime import date, datetime, timezone, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
@@ -53,12 +54,22 @@ def num_to_words_cap(n: int) -> str:
 
 def build_context(metrics: dict, today: date | None = None) -> dict:
     today = today or date.today()
-    now = datetime.now()
 
-    snapshot_iso = now.strftime("%Y-%m-%dT%H:%M:%S")
-    snapshot_timestamp = now.strftime("%B %-d, %Y · %-I:%M %p")
-    snapshot_eyebrow = f"Snapshot · {now.strftime('%B %-d')} · {now.strftime('%-I:%M %p')}"
-    snapshot_banner_text = f"taken {now.strftime('%B %-d, %Y')} at {now.strftime('%-I:%M %p')}"
+    # Render in UTC with explicit timezone so the JS in the browser can
+    # convert to the viewer's local timezone. Previously used datetime.now()
+    # which returned the server's clock (UTC on GitHub Actions) labeled as if
+    # it were local — causing "9:36 PM" when the user was at 4:36 PM.
+    now_utc = datetime.now(timezone.utc)
+    now_et = now_utc.astimezone(ZoneInfo("America/New_York"))
+
+    # snapshot_iso is consumed by JS new Date() — must be ISO 8601 with offset
+    snapshot_iso = now_utc.isoformat(timespec="seconds")
+
+    # Server-side fallback strings (shown on first paint before JS converts).
+    # Use ET so North American viewers see a sensible approximation.
+    snapshot_timestamp = now_et.strftime("%B %-d, %Y · %-I:%M %p ET")
+    snapshot_eyebrow = f"Snapshot · {now_et.strftime('%B %-d')} · {now_et.strftime('%-I:%M %p ET')}"
+    snapshot_banner_text = f"taken {now_et.strftime('%B %-d, %Y')} at {now_et.strftime('%-I:%M %p ET')}"
 
     total = metrics["total"]
     escalated_count = metrics["escalated_count"]
