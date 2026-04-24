@@ -1164,6 +1164,66 @@
     border-right: 1px dashed rgba(255,255,255,0.06);
   }
   .meter-zone:last-child { border-right: none; }
+  .meter-zone-tt {
+    position: relative;
+    cursor: help;
+    transition: color 0.2s var(--ease);
+  }
+  .meter-zone-tt:hover {
+    color: var(--text);
+  }
+  .meter-zone-tt::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    width: max-content;
+    max-width: 280px;
+    padding: 10px 14px;
+    background: var(--bg-elev-3);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    text-transform: none;
+    text-align: left;
+    white-space: normal;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.4);
+    z-index: 60;
+  }
+  .meter-zone-tt::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--bg-elev-3);
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    rotate: 45deg;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s var(--ease);
+    z-index: 60;
+  }
+  .meter-zone-tt:hover::after,
+  .meter-zone-tt:focus::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .meter-zone-tt:hover::before,
+  .meter-zone-tt:focus::before {
+    opacity: 1;
+  }
   .meter-pin {
     position: absolute;
     top: -4px; bottom: -4px;
@@ -2218,31 +2278,17 @@
           <div>
             <div class="meter-track">
               <div class="meter-zones">
-                <div class="meter-zone">Ramp-up</div>
-                <div class="meter-zone">Productive</div>
-                <div class="meter-zone">Sweet spot</div>
+                <div class="meter-zone meter-zone-tt" data-tip="Review cycle still settling. Fewer than 10 substantive reviews on record. No BA handoff data yet.">Ramp-up</div>
+                <div class="meter-zone meter-zone-tt" data-tip="Review cycle under 5 bd. BA assignment in motion. Delivery cadence forming but not yet consistent.">Productive</div>
+                <div class="meter-zone meter-zone-tt" data-tip="Review cycle under 5 bd, BA cycle under 5 bd, and IT-Prioritization items piling up faster than the team can scope — the data-backed signal that another resource would accelerate throughput.">Sweet spot</div>
               </div>
               <div class="meter-pin" style="left: {{ meter_pin_position }}"></div>
             </div>
+            <p style="font-size: var(--text-xs); color: var(--text-quaternary); margin-top: var(--space-3); letter-spacing: 0.02em;">Hover each zone for definition</p>
           </div>
           <div class="meter-call">
             <strong>Past ramp-up on review.</strong>
             BA throughput is the next proof point.
-          </div>
-        </div>
-
-        <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);">
-          <div>
-            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px;">Ramp-up</div>
-            <div style="font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.55;">Review cycle still settling. Fewer than 10 substantive reviews on record. No BA handoff data yet.</div>
-          </div>
-          <div>
-            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px;">Productive</div>
-            <div style="font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.55;">Review cycle under 5 bd. BA assignment in motion. Delivery cadence forming but not yet consistent.</div>
-          </div>
-          <div>
-            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px;">Sweet spot</div>
-            <div style="font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.55;">Review cycle under 5 bd, BA cycle under 5 bd, and items classified at IT Prioritization piling up faster than the team can scope — the data-backed signal that another resource would accelerate throughput.</div>
           </div>
         </div>
       </div>
