@@ -1561,7 +1561,7 @@
       <div class="section-head">
         <div class="section-num">01 · Overview</div>
         <h2 class="section-title">
-          Eight metrics. <span class="muted">Six read from Asana.</span>
+          The headline numbers.
         </h2>
       </div>
 
@@ -1575,7 +1575,7 @@
           <div class="kpi-label">Average · received → first review</div>
           <div class="kpi-value">{{ kpi_review_avg }}<span class="kpi-unit">business days</span></div>
           <div class="kpi-context">
-            Across <strong>{{ kpi_review_substantive_count }} substantive reviews</strong>. Median <strong>{{ kpi_review_median }} bd</strong>, tight range {{ kpi_review_range_low }}–{{ kpi_review_range_high }}. This is the first concrete "moves faster than previous state" claim the CoE can make.
+            Across <strong>{{ kpi_review_substantive_count }} substantive reviews</strong> — items that required real CoE analysis, excluding requests marked <em>Already Completed</em> or <em>Not Needed</em>. Median <strong>{{ kpi_review_median }} bd</strong>, tight range {{ kpi_review_range_low }}–{{ kpi_review_range_high }}.
           </div>
         </div>
 
@@ -1602,10 +1602,10 @@
 
       <div class="kpi-row-2">
         <div class="card kpi">
-          <div class="card-eyebrow">Intakes · W{{ kpi_w_current }}<span class="badge badge-snapshot">Snapshot</span></div>
-          <div class="kpi-label">New this week</div>
+          <div class="card-eyebrow">Intakes · This week<span class="badge badge-snapshot">Snapshot</span></div>
+          <div class="kpi-label">{{ tw_window_label }}</div>
           <div class="kpi-value">{{ kpi_w_current_intakes }}<span class="unit">new</span></div>
-          <div class="kpi-delta"><span class="kpi-delta-sub">vs. {{ kpi_w_minus1_intakes }} in W{{ kpi_w_minus1 }} seeding surge</span></div>
+          <div class="kpi-delta"><span class="kpi-delta-sub">vs. {{ kpi_w_minus1_intakes }} last week ({{ lw_window_label }})</span></div>
         </div>
         <div class="card kpi">
           <div class="card-eyebrow">Escalated / rejected<span class="badge badge-snapshot">Snapshot</span></div>
@@ -1644,7 +1644,7 @@
         <div class="timeline-card timeline-current">
           <div class="timeline-eyebrow">
             <span class="timeline-dot active"></span>
-            This week · W{{ timeline_w_current }}
+            This week
           </div>
           <div class="timeline-window">{{ tw_window_label }}</div>
           <div class="timeline-primary">
@@ -1670,7 +1670,7 @@
         <div class="timeline-card">
           <div class="timeline-eyebrow">
             <span class="timeline-dot"></span>
-            Last week · W{{ timeline_w_minus1 }}
+            Last week
           </div>
           <div class="timeline-window">{{ lw_window_label }}</div>
           <div class="timeline-primary">
@@ -1806,7 +1806,7 @@
           End to end, in one glance. <span class="muted">Once we have it, we move in four.</span>
         </h2>
         <p class="section-lead">
-          All durations measured in <em style="color: var(--text); font-style: normal; font-weight: 500;">business days</em> — weekends excluded throughout.
+          All durations measured in <em style="color: var(--text); font-style: normal; font-weight: 500;">business days</em> — weekends excluded throughout. <em style="color: var(--text); font-style: normal; font-weight: 500;">Seeding</em> refers to legacy requests inherited from the EPMO portfolio when the CoE began operating — they show artificially long upstream times because they existed before the CoE could receive them.
         </p>
       </div>
 
@@ -2044,27 +2044,27 @@
         <div class="card panel">
           <h3 class="panel-title">Weekly intake — <em>{{ flow_peak_week_label }} peak: {{ flow_peak_count }}</em></h3>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus3_label }}<span class="sub">{{ flow_w_minus3_range }}</span></div>
+            <div class="bar-label">{{ flow_w_minus3_range }}<span class="sub">{{ flow_w_minus3_label }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus3_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_minus3_count }}</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus2_label }}<span class="sub">{{ flow_w_minus2_range }}</span></div>
+            <div class="bar-label">{{ flow_w_minus2_range }}<span class="sub">{{ flow_w_minus2_label }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus2_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_minus2_count }}</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus1_label }}<span class="sub">{{ flow_w_minus1_range }}</span></div>
+            <div class="bar-label">{{ flow_w_minus1_range }}<span class="sub">{{ flow_w_minus1_label }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus1_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_minus1_count }}</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_current_label }}<span class="sub">{{ flow_w_current_range }}</span></div>
+            <div class="bar-label">{{ flow_w_current_range }}<span class="sub">{{ flow_w_current_label }}</span></div>
             <div class="bar-track"><div class="bar-fill current" style="width: {{ flow_w_current_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_current_count }}</div>
           </div>
           <p style="font-size:var(--text-sm); color:var(--text-tertiary); line-height:1.55; margin-top:var(--space-5);">
-            {{ flow_w_current_label }} is the first read on steady-state inflow. Watch this number from here on.
+            This week is the first read on steady-state inflow. Watch this number from here on.
           </p>
         </div>
 
@@ -2139,7 +2139,22 @@
           </div>
           <div class="meter-call">
             <strong>Past ramp-up on review.</strong>
-            BA throughput is the next proof point — {{ rec_it_prio_count }} items classified, zero assigned.
+            BA throughput is the next proof point.
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);">
+          <div>
+            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px;">Ramp-up</div>
+            <div style="font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.55;">Review cycle still settling. Fewer than 10 substantive reviews on record. No BA handoff data yet.</div>
+          </div>
+          <div>
+            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px;">Productive</div>
+            <div style="font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.55;">Review cycle under 5 bd. BA assignment in motion. Delivery cadence forming but not yet consistent.</div>
+          </div>
+          <div>
+            <div style="font-size: var(--text-xs); color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px;">Sweet spot</div>
+            <div style="font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.55;">Review cycle under 5 bd, BA cycle under 5 bd, and items classified at IT Prioritization piling up faster than the team can scope — the data-backed signal that another resource would accelerate throughput.</div>
           </div>
         </div>
       </div>
