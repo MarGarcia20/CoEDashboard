@@ -1658,7 +1658,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 24, 2026 · 5:59 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 24, 2026 · 7:10 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1680,7 +1680,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 24 · 5:59 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 24 · 7:10 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1691,7 +1691,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">April 24, 2026 · 5:59 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">April 24, 2026 · 7:10 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2455,7 +2455,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>29 requests · 3.8 bd review · 14% rejected at gate · 2 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 5:59 PM ET</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 7:10 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -2501,8 +2501,11 @@
         const res = await fetch('/api/refresh', {
           method: 'POST',
           headers: { 'X-Requested-With': 'coe-dashboard' },
+          credentials: 'same-origin',
         });
-        const data = await res.json();
+
+        let data = {};
+        try { data = await res.json(); } catch {}
 
         if (res.ok) {
           btn.classList.add('copied');
@@ -2513,14 +2516,18 @@
             btn.disabled = false;
           }, 8000);
         } else {
-          label.textContent = data.error || 'Error — try again';
+          // Show the real error so the user (or admin) can act on it.
+          const msg = data.error || `Error ${res.status}`;
+          label.textContent = msg.length > 40 ? msg.slice(0, 37) + '…' : msg;
+          console.error('Refresh failed:', res.status, data);
           btn.disabled = false;
-          setTimeout(() => { label.textContent = originalLabel; }, 4000);
+          setTimeout(() => { label.textContent = originalLabel; }, 6000);
         }
       } catch (err) {
-        label.textContent = 'Network error';
+        console.error('Refresh network error:', err);
+        label.textContent = 'Network error — retry';
         btn.disabled = false;
-        setTimeout(() => { label.textContent = originalLabel; }, 4000);
+        setTimeout(() => { label.textContent = originalLabel; }, 6000);
       }
     }
 
@@ -2529,7 +2536,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-04-24T21:59:42+00:00');
+      const snapshotTime = new Date('2026-04-24T23:10:55+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
