@@ -418,12 +418,12 @@
     margin-bottom: var(--space-8);
   }
   .section-num {
-    font-size: clamp(32px, 4vw, 48px);
+    font-size: 30px;
     color: var(--text);
-    letter-spacing: -0.035em;
+    letter-spacing: -0.01em;
     text-transform: uppercase;
     font-weight: 600;
-    line-height: 1.05;
+    line-height: 1.15;
     margin-bottom: var(--space-3);
   }
   .section-title {
@@ -1513,7 +1513,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 3:56 PM</span>
+        <span><strong>Snapshot</strong> · taken April 24, 2026 at 3:59 PM</span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1535,7 +1535,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 3:56 PM</div>
+      <div class="hero-eyebrow">Snapshot · April 24 · 3:59 PM</div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1546,7 +1546,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 3:56 PM</span>
+          <span class="hero-meta-value">April 24, 2026 · 3:59 PM</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2297,7 +2297,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>10 requests · 3.3 bd review · 20% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 3:56 PM · manual refresh</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 3:59 PM · manual refresh</span>
     </footer>
 
   </div>
@@ -2363,7 +2363,7 @@
 
     // Live "age of snapshot" indicator in footer
     (function() {
-      const snapshotTime = new Date('2026-04-24T15:56:53');
+      const snapshotTime = new Date('2026-04-24T15:59:15');
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
@@ -2380,7 +2380,7 @@
         else if (diffHr < 24) ageStr = `${diffHr}h ago`;
         else ageStr = `${diffDay}d ago`;
 
-        indicator.textContent = `Snapshot · April 24, 2026 · 3:56 PM · ${ageStr}`;
+        indicator.textContent = `Snapshot · April 24, 2026 · 3:59 PM · ${ageStr}`;
       }
       updateAge();
       setInterval(updateAge, 60000);
