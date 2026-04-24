@@ -1510,7 +1510,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 12:06 PM</span>
+        <span><strong>Snapshot</strong> · taken April 24, 2026 at 12:18 PM</span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1522,9 +1522,9 @@
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             View live in Asana
           </a>
-          <button class="btn btn-primary" onclick="copyRefreshPrompt(this)">
+          <button class="btn btn-primary" onclick="triggerRefresh(this)" id="refresh-btn">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            <span class="btn-label">Ask Madison to refresh</span>
+            <span class="btn-label">Refresh data</span>
           </button>
         </div>
       </div>
@@ -1532,7 +1532,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 12:06 PM</div>
+      <div class="hero-eyebrow">Snapshot · April 24 · 12:18 PM</div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1543,7 +1543,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 12:06 PM</span>
+          <span class="hero-meta-value">April 24, 2026 · 12:18 PM</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2249,7 +2249,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>10 requests · 3.3 bd review · 20% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 12:06 PM · manual refresh</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 12:18 PM · manual refresh</span>
     </footer>
 
   </div>
@@ -2279,26 +2279,40 @@
       localStorage.setItem('coe-dashboard-theme', next);
     }
 
-    function copyRefreshPrompt(btn) {
-      const prompt = "Madison, refresh the CoE dashboard with the latest data from Asana. Recompute all metrics in business days (exclude weekends) and regenerate the premium HTML with today's timestamp.";
+    async function triggerRefresh(btn) {
       const label = btn.querySelector('.btn-label');
       const originalLabel = label.textContent;
 
-      navigator.clipboard.writeText(prompt).then(() => {
-        btn.classList.add('copied');
-        label.textContent = 'Copied — paste in chat';
-        setTimeout(() => {
-          btn.classList.remove('copied');
-          label.textContent = originalLabel;
-        }, 2400);
-      }).catch(() => {
-        label.textContent = 'Copy failed — select text manually';
-      });
+      btn.disabled = true;
+      label.textContent = 'Refreshing…';
+
+      try {
+        const res = await fetch('/api/refresh', { method: 'POST' });
+        const data = await res.json();
+
+        if (res.ok) {
+          btn.classList.add('copied');
+          label.textContent = 'Triggered · ready in ~60s';
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            label.textContent = originalLabel;
+            btn.disabled = false;
+          }, 8000);
+        } else {
+          label.textContent = data.error || 'Error — try again';
+          btn.disabled = false;
+          setTimeout(() => { label.textContent = originalLabel; }, 4000);
+        }
+      } catch (err) {
+        label.textContent = 'Network error';
+        btn.disabled = false;
+        setTimeout(() => { label.textContent = originalLabel; }, 4000);
+      }
     }
 
     // Live "age of snapshot" indicator in footer
     (function() {
-      const snapshotTime = new Date('2026-04-24T12:06:00');
+      const snapshotTime = new Date('2026-04-24T12:18:28');
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
@@ -2315,7 +2329,7 @@
         else if (diffHr < 24) ageStr = `${diffHr}h ago`;
         else ageStr = `${diffDay}d ago`;
 
-        indicator.textContent = `Snapshot · April 24, 2026 · 12:06 PM · ${ageStr}`;
+        indicator.textContent = `Snapshot · April 24, 2026 · 12:18 PM · ${ageStr}`;
       }
       updateAge();
       setInterval(updateAge, 60000);
