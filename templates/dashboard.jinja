@@ -1144,7 +1144,7 @@
         rgba(48, 209, 88, 0.1) 50%,
         rgba(255, 55, 95, 0.1) 100%);
     border: 1px solid var(--border);
-    overflow: hidden;
+    /* Note: no overflow:hidden so tooltips on zones can escape the track. */
   }
   .meter-zones {
     position: absolute;
