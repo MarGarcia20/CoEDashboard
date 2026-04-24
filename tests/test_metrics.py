@@ -193,6 +193,50 @@ def test_donut_math(items):
     assert m["donut_it_prio_dasharray"] == round(5 / 10 * 100, 1)
 
 
+def test_people_type_parsed_as_names(tmp_path):
+    """When PM Assigned comes as type=people, names are extracted correctly."""
+    from src.asana_client import load_fixture
+    import json
+    fixture = tmp_path / "people.json"
+    fixture.write_text(json.dumps([{
+        "gid": "x",
+        "name": "Test item",
+        "completed": False,
+        "current_status": {"color": None},
+        "custom_fields": [
+            {
+                "gid": "1210474554240546",
+                "type": "people",
+                "people_value": [
+                    {"gid": "u1", "name": "Maria Garcia"},
+                    {"gid": "u2", "name": "Jessie Logan"},
+                ],
+            }
+        ]
+    }]))
+    items = load_fixture(str(fixture))
+    assert items[0]["pm_assigned"] == "Maria Garcia, Jessie Logan"
+
+
+def test_pm_count_finds_maria_garcia():
+    """Simulate new portfolio state where PM is stored as 'Maria Garcia'."""
+    from src.metrics import compute_metrics
+    from datetime import date
+    items = [
+        {
+            "gid": "1", "name": "t", "completed": False, "completed_at": None,
+            "status_color": None, "created_on": "2026-04-01",
+            "received_date": "2026-04-15", "first_review_date": "2026-04-20",
+            "ba_assigned": None, "first_review_tags": ["Task Set Change"],
+            "coe_stage": "Triage", "coe_classification": None,
+            "pm_assigned": "Maria Garcia", "priority": None,
+        }
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 24))
+    # "mar" substring matches "Maria Garcia" (and David is 0)
+    assert m["team_mar_count"] == 1
+
+
 def test_business_days_review_cycle(items):
     """Verify the 3.8 bd target from the brief against known data."""
     m = compute_metrics(items, today=date(2026, 4, 24))

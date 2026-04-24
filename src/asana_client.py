@@ -58,6 +58,12 @@ def _extract_custom_field(item: dict, field_name: str):
                 return [e.get("name") for e in cf.get("multi_enum_values", []) if e.get("name")]
             elif field_type == "text":
                 return cf.get("text_value")
+            elif field_type == "people":
+                # Returns a comma-separated string of names so downstream
+                # metrics logic (which splits on ",") keeps working unchanged.
+                people = cf.get("people_value") or []
+                names = [p.get("name") for p in people if p.get("name")]
+                return ", ".join(names) if names else None
             else:
                 return cf.get("display_value")
     return None
@@ -95,6 +101,7 @@ def fetch_portfolio_items(pat: str, verbose: bool = False) -> list[dict]:
         "custom_fields.display_value", "custom_fields.text_value",
         "custom_fields.date_value", "custom_fields.enum_value.name",
         "custom_fields.multi_enum_values.name",
+        "custom_fields.people_value.name",
     ])
 
     url = f"{BASE_URL}/portfolios/{PORTFOLIO_GID}/items"
