@@ -1658,7 +1658,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 9:32 PM</span>
+        <span><strong>Snapshot</strong> · taken April 24, 2026 at 9:36 PM</span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1680,7 +1680,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 9:32 PM</div>
+      <div class="hero-eyebrow">Snapshot · April 24 · 9:36 PM</div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1691,7 +1691,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 9:32 PM</span>
+          <span class="hero-meta-value">April 24, 2026 · 9:36 PM</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -1699,7 +1699,7 @@
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Refresh</span>
-          <span class="hero-meta-value">Manual · ask Madison</span>
+          <span class="hero-meta-value">Auto · Mon–Fri 12 PM ET</span>
         </div>
       </div>
     </section>
@@ -2455,8 +2455,13 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>29 requests · 3.8 bd review · 14% rejected at gate · 2 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 9:32 PM · manual refresh</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 9:36 PM</span>
     </footer>
+
+    <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
+      Built by <strong style="color: var(--text-tertiary); font-weight: 600;">Mar García</strong> · CoE Team Leader<br>
+      Questions, feedback, or a number that looks off? Reach out directly.
+    </div>
 
   </div>
 
@@ -2521,7 +2526,7 @@
 
     // Live "age of snapshot" indicator in footer
     (function() {
-      const snapshotTime = new Date('2026-04-24T21:32:21');
+      const snapshotTime = new Date('2026-04-24T21:36:14');
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
@@ -2538,7 +2543,7 @@
         else if (diffHr < 24) ageStr = `${diffHr}h ago`;
         else ageStr = `${diffDay}d ago`;
 
-        indicator.textContent = `Snapshot · April 24, 2026 · 9:32 PM · ${ageStr}`;
+        indicator.textContent = `Snapshot · April 24, 2026 · 9:36 PM · ${ageStr}`;
       }
       updateAge();
       setInterval(updateAge, 60000);
