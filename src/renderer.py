@@ -146,23 +146,40 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "kpi_priority_total": total,
         "kpi_priority_unset": metrics["priority_unset_count"],
 
-        # §02 Timeline
+        # §02 Timeline — per-period stats (intakes by received_date, reviews by first_review_date)
         "timeline_w_current": w_current,
         "timeline_w_current_intakes": metrics["tw_intakes"],
-        "timeline_w_current_reviews": metrics["kpi_review_substantive_count"] if "kpi_review_substantive_count" in metrics else metrics["review_substantive_count"],
-        "timeline_w_current_cycle": metrics["review_avg"],
-        "timeline_w_current_gate": metrics["yield_gate"],
+        "timeline_w_current_reviews": metrics["tw_reviews"],
+        "timeline_w_current_cycle": metrics["tw_avg_cycle"],
+        "timeline_w_current_gate": metrics["tw_gate"],
+
         "timeline_w_minus1": w_minus1,
         "timeline_w_minus1_intakes": metrics["lw_intakes"],
+        "timeline_w_minus1_reviews": metrics["lw_reviews"],
+        "timeline_w_minus1_cycle": metrics["lw_avg_cycle"],
+        "timeline_w_minus1_has_reviews": metrics["lw_has_reviews"],
+
         "timeline_month_intakes": metrics["tm_intakes"],
         "timeline_month_reviewed": metrics["tm_reviewed"],
-        "timeline_month_avg_cycle": metrics["review_avg"],
+        "timeline_month_avg_cycle": metrics["tm_avg_cycle"],
         "timeline_month_escalated": metrics["tm_escalated"],
+
         "timeline_lm_intakes": metrics["lm_intakes"],
+        "timeline_lm_reviews": metrics["lm_reviews"],
+        "timeline_lm_avg_cycle": metrics["lm_avg_cycle"],
+        "timeline_lm_escalated": metrics["lm_escalated"],
+        "timeline_lm_has_coe": metrics["lm_has_coe"],
+
         "timeline_6mo_intakes": metrics["six_mo_intakes"],
+        "timeline_6mo_reviews": metrics["six_mo_reviews"],
         "timeline_6mo_days_pre_coe": metrics["pre_coe_days"],
         "timeline_6mo_days_active": metrics["days_coe_active"],
-        "timeline_6mo_avg_cycle": metrics["review_avg"],
+        "timeline_6mo_avg_cycle": metrics["six_mo_avg_cycle"],
+
+        # §04 + §06 header dynamics
+        "top_work_type": metrics.get("top_work_type") or "No classification yet",
+        "flow_peak_week_label": metrics["flow_peak_week_label"],
+        "flow_peak_count": metrics["flow_peak_count"],
 
         # §03 Pipeline
         "pipeline_upstream_bd": metrics["upstream_avg"],

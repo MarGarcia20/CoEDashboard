@@ -274,6 +274,20 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
 
     wt_max = max(work_type_counts.values()) if work_type_counts else 1
 
+    # Top work-type category (dynamic §04 header)
+    if work_type_counts and wt_max > 0:
+        top_wt_name = max(work_type_counts.items(), key=lambda kv: kv[1])[0]
+    else:
+        top_wt_name = None
+
+    # Flow chart peak week (dynamic §06 header)
+    if flow_weeks:
+        peak_week_num, peak_week_count = max(flow_weeks.items(), key=lambda kv: kv[1])
+        flow_peak_week_label = f"W{peak_week_num}"
+    else:
+        peak_week_num, peak_week_count = None, 0
+        flow_peak_week_label = ""
+
     # Metric 11: PM workload
     pm_counts: dict[str, int] = {}
     for i in items:
@@ -284,28 +298,32 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
     mar_count = _find_pm_count(pm_counts, "mar")
     david_count = _find_pm_count(pm_counts, "david")
 
-    # Metric 14: timeline buckets
+    # Metric 14: timeline buckets — per-period stats
+    tomorrow = today + timedelta(days=1)
+
     # This week
     monday_this_week = today - timedelta(days=today.weekday())
-    tw_items = [i for i in items if _in_range(i, monday_this_week, today + timedelta(days=1))]
+    tw = _period_stats(items, monday_this_week, tomorrow)
 
     # Last week
     monday_last_week = monday_this_week - timedelta(weeks=1)
-    sunday_last_week = monday_this_week - timedelta(days=1)
-    lw_items = [i for i in items if _in_range(i, monday_last_week, monday_this_week)]
+    lw = _period_stats(items, monday_last_week, monday_this_week)
 
     # This month
     month_start = today.replace(day=1)
-    tm_items = [i for i in items if _in_range(i, month_start, today + timedelta(days=1))]
+    tm = _period_stats(items, month_start, tomorrow)
 
     # Last month
     last_month_end = month_start - timedelta(days=1)
     last_month_start = last_month_end.replace(day=1)
-    lm_items = [i for i in items if _in_range(i, last_month_start, month_start)]
+    lm = _period_stats(items, last_month_start, month_start)
 
     # 6 months rolling
     six_mo_start = today - timedelta(days=182)
-    six_mo_items = [i for i in items if _in_range(i, six_mo_start, today + timedelta(days=1))]
+    six_mo = _period_stats(items, six_mo_start, tomorrow)
+
+    # Did the CoE even exist during last month?
+    last_month_has_coe = last_month_end >= COE_START_DATE
 
     # Days CoE active
     days_coe_active = (today - COE_START_DATE).days
@@ -459,18 +477,36 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "team_david_pct": f"{david_pct}%",
         "rec_workload_note": workload_note,
 
-        # Timeline
-        "tw_intakes": len(tw_items),
-        "lw_intakes": len(lw_items),
-        "tm_intakes": len(tm_items),
-        "tm_reviewed": len([i for i in tm_items if i.get("first_review_date")]),
-        "tm_escalated": sum(
-            1 for i in tm_items
-            if i.get("coe_stage") in ESCALATED_STAGES
-            or i.get("coe_classification") == "Rejected"
-        ),
-        "lm_intakes": len(lm_items),
-        "six_mo_intakes": len(six_mo_items),
+        # Timeline — all period stats expressed as per-period intakes/reviews/cycle/gate/escalated
+        "tw_intakes": tw["intakes"],
+        "tw_reviews": tw["reviews"],
+        "tw_avg_cycle": str(tw["avg_cycle"]) if tw["avg_cycle"] is not None else "—",
+        "tw_gate": tw["gate"],
+        "tw_escalated": tw["escalated"],
+
+        "lw_intakes": lw["intakes"],
+        "lw_reviews": lw["reviews"],
+        "lw_avg_cycle": str(lw["avg_cycle"]) if lw["avg_cycle"] is not None else "—",
+        "lw_gate": lw["gate"],
+        "lw_escalated": lw["escalated"],
+        "lw_has_reviews": lw["reviews"] > 0,
+
+        "tm_intakes": tm["intakes"],
+        "tm_reviewed": tm["reviews"],
+        "tm_avg_cycle": str(tm["avg_cycle"]) if tm["avg_cycle"] is not None else "—",
+        "tm_escalated": tm["escalated"],
+        "tm_gate": tm["gate"],
+
+        "lm_intakes": lm["intakes"],
+        "lm_reviews": lm["reviews"],
+        "lm_avg_cycle": str(lm["avg_cycle"]) if lm["avg_cycle"] is not None else "—",
+        "lm_escalated": lm["escalated"],
+        "lm_has_coe": last_month_has_coe,
+
+        "six_mo_intakes": six_mo["intakes"],
+        "six_mo_reviews": six_mo["reviews"],
+        "six_mo_avg_cycle": str(six_mo["avg_cycle"]) if six_mo["avg_cycle"] is not None else "—",
+
         "days_coe_active": days_coe_active,
         "pre_coe_days": PRE_COE_DAYS,
 
@@ -492,6 +528,9 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "lm_month_name": lm_month_name,
         "lm_window_label": lm_window,
         "six_mo_window_label": six_mo_label,
+        "top_work_type": top_wt_name,
+        "flow_peak_week_label": flow_peak_week_label,
+        "flow_peak_count": peak_week_count,
         "flow_w_minus3_range": flow_w_minus3_range,
         "flow_w_minus2_range": flow_w_minus2_range,
         "flow_w_minus1_range": flow_w_minus1_range,
@@ -527,6 +566,56 @@ def _in_range(item: dict, start: date, end: date) -> bool:
     if not rd:
         return False
     return start <= rd < end
+
+
+def _reviewed_in_range(item: dict, start: date, end: date) -> bool:
+    """True if item's first_review_date falls in [start, end)."""
+    frd = _parse_date(item.get("first_review_date"))
+    if not frd:
+        return False
+    return start <= frd < end
+
+
+def _period_stats(items: list[dict], start: date, end: date) -> dict:
+    """
+    Per-period stats — intakes by received_date, reviews by first_review_date.
+
+    All durations in business days.
+    """
+    intake_items = [i for i in items if _in_range(i, start, end)]
+    review_items = [i for i in items if _reviewed_in_range(i, start, end)]
+
+    # Substantive cycle times among reviews completed in range
+    cycle_bds = []
+    for i in review_items:
+        tags = i.get("first_review_tags") or []
+        if not _is_substantive(tags):
+            continue
+        rd = _parse_date(i.get("received_date"))
+        frd = _parse_date(i.get("first_review_date"))
+        if rd and frd and frd >= rd:
+            cycle_bds.append(business_days_between(rd, frd))
+
+    avg_cycle = round(statistics.mean(cycle_bds), 1) if cycle_bds else None
+
+    gate_items = [
+        i for i in review_items
+        if _is_closed_at_gate(i.get("first_review_tags") or [])
+    ]
+
+    escalated_items = [
+        i for i in review_items
+        if i.get("coe_stage") in ESCALATED_STAGES
+        or i.get("coe_classification") == "Rejected"
+    ]
+
+    return {
+        "intakes": len(intake_items),
+        "reviews": len(review_items),
+        "avg_cycle": avg_cycle,
+        "gate": len(gate_items),
+        "escalated": len(escalated_items),
+    }
 
 
 def _donut_dasharrays(total: int, it_prio: int, triage: int, new_req: int):

@@ -1657,7 +1657,7 @@
               <span class="tl-stat-label">reviews completed</span>
             </div>
             <div class="tl-stat">
-              <span class="tl-stat-value">{{ timeline_w_current_cycle }}<span class="tl-stat-suffix">bd</span></span>
+              <span class="tl-stat-value">{{ timeline_w_current_cycle }}{% if timeline_w_current_cycle != "—" %}<span class="tl-stat-suffix">bd</span>{% endif %}</span>
               <span class="tl-stat-label">avg cycle</span>
             </div>
             <div class="tl-stat">
@@ -1679,19 +1679,23 @@
           </div>
           <div class="timeline-stats">
             <div class="tl-stat">
-              <span class="tl-stat-value">0</span>
+              <span class="tl-stat-value">{{ timeline_w_minus1_reviews }}</span>
               <span class="tl-stat-label">reviews</span>
             </div>
             <div class="tl-stat">
-              <span class="tl-stat-value">—</span>
+              <span class="tl-stat-value">{{ timeline_w_minus1_cycle }}{% if timeline_w_minus1_cycle != "—" %}<span class="tl-stat-suffix">bd</span>{% endif %}</span>
               <span class="tl-stat-label">avg cycle</span>
             </div>
             <div class="tl-stat">
+              {% if timeline_w_minus1_has_reviews %}
+              <span class="tl-stat-value">{{ timeline_w_minus1_reviews }}</span>
+              <span class="tl-stat-label">reviewed</span>
+              {% else %}
               <span class="tl-stat-value tl-muted">seeding</span>
               <span class="tl-stat-label">week</span>
+              {% endif %}
             </div>
           </div>
-          <p class="timeline-note">All {{ timeline_w_minus1_intakes }} received on {{ coe_start_display }} — the CoE's founding day.</p>
         </div>
 
         <div class="timeline-card">
@@ -1710,7 +1714,7 @@
               <span class="tl-stat-label">reviewed</span>
             </div>
             <div class="tl-stat">
-              <span class="tl-stat-value">{{ timeline_month_avg_cycle }}<span class="tl-stat-suffix">bd</span></span>
+              <span class="tl-stat-value">{{ timeline_month_avg_cycle }}{% if timeline_month_avg_cycle != "—" %}<span class="tl-stat-suffix">bd</span>{% endif %}</span>
               <span class="tl-stat-label">avg cycle</span>
             </div>
             <div class="tl-stat">
@@ -1720,6 +1724,33 @@
           </div>
         </div>
 
+        {% if timeline_lm_has_coe %}
+        <div class="timeline-card">
+          <div class="timeline-eyebrow">
+            <span class="timeline-dot"></span>
+            Last month · {{ lm_month_name }}
+          </div>
+          <div class="timeline-window">{{ lm_window_label }}</div>
+          <div class="timeline-primary">
+            <span class="timeline-value">{{ timeline_lm_intakes }}</span>
+            <span class="timeline-unit">intakes</span>
+          </div>
+          <div class="timeline-stats">
+            <div class="tl-stat">
+              <span class="tl-stat-value">{{ timeline_lm_reviews }}</span>
+              <span class="tl-stat-label">reviewed</span>
+            </div>
+            <div class="tl-stat">
+              <span class="tl-stat-value">{{ timeline_lm_avg_cycle }}{% if timeline_lm_avg_cycle != "—" %}<span class="tl-stat-suffix">bd</span>{% endif %}</span>
+              <span class="tl-stat-label">avg cycle</span>
+            </div>
+            <div class="tl-stat">
+              <span class="tl-stat-value">{{ timeline_lm_escalated }}</span>
+              <span class="tl-stat-label">escalated</span>
+            </div>
+          </div>
+        </div>
+        {% else %}
         <div class="timeline-card timeline-empty">
           <div class="timeline-eyebrow">
             <span class="timeline-dot dim"></span>
@@ -1731,9 +1762,10 @@
             <span class="timeline-unit">intakes</span>
           </div>
           <p class="timeline-empty-note">
-            CoE did not yet exist to receive requests. The business was logging intakes into the EPMO portfolio, which the CoE inherited on April 15.
+            CoE did not yet exist to receive requests. The business was logging intakes into the EPMO portfolio, which the CoE inherited on {{ coe_start_display }}.
           </p>
         </div>
+        {% endif %}
 
         <div class="timeline-card timeline-empty timeline-span-2">
           <div class="timeline-eyebrow">
@@ -1760,7 +1792,7 @@
             </div>
           </div>
           <p class="timeline-note">
-            The {{ timeline_6mo_days_pre_coe }}-day pre-CoE period is when these requests lived in the business's EPMO portfolio with no governance. The {{ timeline_6mo_days_active }} days of CoE activity processed {{ timeline_month_reviewed }} reviews at an average of {{ timeline_6mo_avg_cycle }} bd each — the first measurable proof of the "faster than previous state" claim.
+            The {{ timeline_6mo_days_pre_coe }}-day pre-CoE period is when these requests lived in the business's EPMO portfolio with no governance. The {{ timeline_6mo_days_active }} days of CoE activity processed {{ timeline_6mo_reviews }} reviews{% if timeline_6mo_avg_cycle != "—" %} at an average of {{ timeline_6mo_avg_cycle }} bd each — the first measurable proof of the "faster than previous state" claim{% endif %}.
           </p>
         </div>
       </div>
@@ -1833,7 +1865,7 @@
       <div class="section-head">
         <div class="section-num">04 · Classification</div>
         <h2 class="section-title">
-          What the CoE is seeing. <span class="muted">Task Set changes lead.</span>
+          What the CoE is seeing. <span class="muted">{{ top_work_type }} lead{% if top_work_type != "No classification yet" %}s{% endif %}.</span>
         </h2>
         <p class="section-lead">
           Each request gets classified by what kind of Litify change it needs. Some carry multiple tags — this is a landscape, not a funnel.
@@ -2010,7 +2042,7 @@
 
       <div class="two-col">
         <div class="card panel">
-          <h3 class="panel-title">Weekly intake — <em>the W{{ flow_w_minus1_label }} seeding surge</em></h3>
+          <h3 class="panel-title">Weekly intake — <em>{{ flow_peak_week_label }} peak: {{ flow_peak_count }}</em></h3>
           <div class="bar-row">
             <div class="bar-label">{{ flow_w_minus3_label }}<span class="sub">{{ flow_w_minus3_range }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus3_bar }}"></div></div>
@@ -2165,7 +2197,7 @@
             <div class="alloc-pct">20%</div>
           </div>
           <p class="person-note">
-            Time split is estimated. A week of Friday-retro logging will replace these bars with ground truth. Mar picked up both new intakes this week.
+            Time split is estimated. A week of Friday-retro logging will replace these bars with ground truth.
           </p>
         </div>
 
