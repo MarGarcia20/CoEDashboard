@@ -418,30 +418,33 @@
     margin-bottom: var(--space-8);
   }
   .section-num {
-    font-size: var(--text-xs);
-    color: var(--text-tertiary);
-    letter-spacing: 0.12em;
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--text);
+    letter-spacing: -0.035em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
+    line-height: 1.05;
     margin-bottom: var(--space-3);
   }
   .section-title {
-    font-size: clamp(32px, 4vw, 48px);
-    font-weight: 600;
-    letter-spacing: -0.035em;
-    line-height: 1.05;
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
     max-width: 900px;
   }
   .section-title .muted {
     color: var(--text-tertiary);
-    font-weight: 500;
+    font-weight: 400;
   }
   .section-lead {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    margin-top: var(--space-4);
+    font-size: var(--text-base);
+    color: var(--text-tertiary);
+    margin-top: var(--space-3);
     max-width: 720px;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.005em;
+    line-height: 1.55;
   }
 
   /* ——————————————————————— KPI HERO GRID ——————————————————————— */
@@ -1510,7 +1513,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 3:49 PM</span>
+        <span><strong>Snapshot</strong> · taken April 24, 2026 at 3:56 PM</span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1532,7 +1535,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 3:49 PM</div>
+      <div class="hero-eyebrow">Snapshot · April 24 · 3:56 PM</div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1543,7 +1546,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 3:49 PM</span>
+          <span class="hero-meta-value">April 24, 2026 · 3:56 PM</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -1602,10 +1605,10 @@
 
       <div class="kpi-row-2">
         <div class="card kpi">
-          <div class="card-eyebrow">Intakes · This week<span class="badge badge-snapshot">Snapshot</span></div>
-          <div class="kpi-label">Apr 20 – Today</div>
+          <div class="card-eyebrow">Intakes · W17<span class="badge badge-snapshot">Snapshot</span></div>
+          <div class="kpi-label">New this week <span style="text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--text-quaternary);">· Apr 20 – Today</span></div>
           <div class="kpi-value">1<span class="unit">new</span></div>
-          <div class="kpi-delta"><span class="kpi-delta-sub">vs. 9 last week (Apr 13 – Apr 19)</span></div>
+          <div class="kpi-delta"><span class="kpi-delta-sub">vs. 9 in W16</span></div>
         </div>
         <div class="card kpi">
           <div class="card-eyebrow">Escalated / rejected<span class="badge badge-snapshot">Snapshot</span></div>
@@ -1644,7 +1647,7 @@
         <div class="timeline-card timeline-current">
           <div class="timeline-eyebrow">
             <span class="timeline-dot active"></span>
-            This week
+            This week · W17
           </div>
           <div class="timeline-window">Apr 20 – Today</div>
           <div class="timeline-primary">
@@ -1670,7 +1673,7 @@
         <div class="timeline-card">
           <div class="timeline-eyebrow">
             <span class="timeline-dot"></span>
-            Last week
+            Last week · W16
           </div>
           <div class="timeline-window">Apr 13 – Apr 19</div>
           <div class="timeline-primary">
@@ -2012,22 +2015,22 @@
         <div class="card panel">
           <h3 class="panel-title">Weekly intake — <em>W16 peak: 9</em></h3>
           <div class="bar-row">
-            <div class="bar-label">Mar 30 – Apr 5<span class="sub">W14</span></div>
+            <div class="bar-label">W14<span class="sub">Mar 30 – Apr 5</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: 0%"></div></div>
             <div class="bar-value">0</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">Apr 6 – Apr 12<span class="sub">W15</span></div>
+            <div class="bar-label">W15<span class="sub">Apr 6 – Apr 12</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: 0%"></div></div>
             <div class="bar-value">0</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">Apr 13 – Apr 19<span class="sub">W16</span></div>
+            <div class="bar-label">W16<span class="sub">Apr 13 – Apr 19</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
             <div class="bar-value">9</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">Apr 20 – Now<span class="sub">W17</span></div>
+            <div class="bar-label">W17<span class="sub">Apr 20 – Now</span></div>
             <div class="bar-track"><div class="bar-fill current" style="width: 11%"></div></div>
             <div class="bar-value">1</div>
           </div>
@@ -2294,7 +2297,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>10 requests · 3.3 bd review · 20% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 3:49 PM · manual refresh</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 3:56 PM · manual refresh</span>
     </footer>
 
   </div>
@@ -2360,7 +2363,7 @@
 
     // Live "age of snapshot" indicator in footer
     (function() {
-      const snapshotTime = new Date('2026-04-24T15:49:02');
+      const snapshotTime = new Date('2026-04-24T15:56:53');
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
@@ -2377,7 +2380,7 @@
         else if (diffHr < 24) ageStr = `${diffHr}h ago`;
         else ageStr = `${diffDay}d ago`;
 
-        indicator.textContent = `Snapshot · April 24, 2026 · 3:49 PM · ${ageStr}`;
+        indicator.textContent = `Snapshot · April 24, 2026 · 3:56 PM · ${ageStr}`;
       }
       updateAge();
       setInterval(updateAge, 60000);

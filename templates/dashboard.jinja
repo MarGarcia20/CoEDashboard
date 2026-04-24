@@ -418,30 +418,33 @@
     margin-bottom: var(--space-8);
   }
   .section-num {
-    font-size: var(--text-xs);
-    color: var(--text-tertiary);
-    letter-spacing: 0.12em;
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--text);
+    letter-spacing: -0.035em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
+    line-height: 1.05;
     margin-bottom: var(--space-3);
   }
   .section-title {
-    font-size: clamp(32px, 4vw, 48px);
-    font-weight: 600;
-    letter-spacing: -0.035em;
-    line-height: 1.05;
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
     max-width: 900px;
   }
   .section-title .muted {
     color: var(--text-tertiary);
-    font-weight: 500;
+    font-weight: 400;
   }
   .section-lead {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    margin-top: var(--space-4);
+    font-size: var(--text-base);
+    color: var(--text-tertiary);
+    margin-top: var(--space-3);
     max-width: 720px;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.005em;
+    line-height: 1.55;
   }
 
   /* ——————————————————————— KPI HERO GRID ——————————————————————— */
@@ -1602,10 +1605,10 @@
 
       <div class="kpi-row-2">
         <div class="card kpi">
-          <div class="card-eyebrow">Intakes · This week<span class="badge badge-snapshot">Snapshot</span></div>
-          <div class="kpi-label">{{ tw_window_label }}</div>
+          <div class="card-eyebrow">Intakes · W{{ kpi_w_current }}<span class="badge badge-snapshot">Snapshot</span></div>
+          <div class="kpi-label">New this week <span style="text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--text-quaternary);">· {{ tw_window_label }}</span></div>
           <div class="kpi-value">{{ kpi_w_current_intakes }}<span class="unit">new</span></div>
-          <div class="kpi-delta"><span class="kpi-delta-sub">vs. {{ kpi_w_minus1_intakes }} last week ({{ lw_window_label }})</span></div>
+          <div class="kpi-delta"><span class="kpi-delta-sub">vs. {{ kpi_w_minus1_intakes }} in W{{ kpi_w_minus1 }}</span></div>
         </div>
         <div class="card kpi">
           <div class="card-eyebrow">Escalated / rejected<span class="badge badge-snapshot">Snapshot</span></div>
@@ -1644,7 +1647,7 @@
         <div class="timeline-card timeline-current">
           <div class="timeline-eyebrow">
             <span class="timeline-dot active"></span>
-            This week
+            This week · W{{ timeline_w_current }}
           </div>
           <div class="timeline-window">{{ tw_window_label }}</div>
           <div class="timeline-primary">
@@ -1670,7 +1673,7 @@
         <div class="timeline-card">
           <div class="timeline-eyebrow">
             <span class="timeline-dot"></span>
-            Last week
+            Last week · W{{ timeline_w_minus1 }}
           </div>
           <div class="timeline-window">{{ lw_window_label }}</div>
           <div class="timeline-primary">
@@ -2044,22 +2047,22 @@
         <div class="card panel">
           <h3 class="panel-title">Weekly intake — <em>{{ flow_peak_week_label }} peak: {{ flow_peak_count }}</em></h3>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus3_range }}<span class="sub">{{ flow_w_minus3_label }}</span></div>
+            <div class="bar-label">{{ flow_w_minus3_label }}<span class="sub">{{ flow_w_minus3_range }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus3_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_minus3_count }}</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus2_range }}<span class="sub">{{ flow_w_minus2_label }}</span></div>
+            <div class="bar-label">{{ flow_w_minus2_label }}<span class="sub">{{ flow_w_minus2_range }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus2_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_minus2_count }}</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus1_range }}<span class="sub">{{ flow_w_minus1_label }}</span></div>
+            <div class="bar-label">{{ flow_w_minus1_label }}<span class="sub">{{ flow_w_minus1_range }}</span></div>
             <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus1_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_minus1_count }}</div>
           </div>
           <div class="bar-row">
-            <div class="bar-label">{{ flow_w_current_range }}<span class="sub">{{ flow_w_current_label }}</span></div>
+            <div class="bar-label">{{ flow_w_current_label }}<span class="sub">{{ flow_w_current_range }}</span></div>
             <div class="bar-track"><div class="bar-fill current" style="width: {{ flow_w_current_bar }}"></div></div>
             <div class="bar-value">{{ flow_w_current_count }}</div>
           </div>
