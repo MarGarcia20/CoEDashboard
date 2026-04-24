@@ -425,6 +425,91 @@
     font-weight: 600;
     line-height: 1.15;
     margin-bottom: var(--space-3);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  /* ——————————————————————— TOOLTIP ——————————————————————— */
+  .tt {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text-tertiary);
+    font-size: 11px;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0;
+    cursor: help;
+    text-transform: none;
+    transition: all 0.2s var(--ease);
+    vertical-align: middle;
+  }
+  .tt:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+  .tt::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    width: max-content;
+    max-width: 320px;
+    padding: 10px 14px;
+    background: var(--bg-elev-3);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    text-transform: none;
+    text-align: left;
+    white-space: normal;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.4);
+    z-index: 60;
+  }
+  .tt::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--bg-elev-3);
+    border-right: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border-strong);
+    rotate: 45deg;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s var(--ease);
+    z-index: 60;
+  }
+  .tt:hover::after,
+  .tt:focus::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .tt:hover::before,
+  .tt:focus::before {
+    opacity: 1;
+  }
+  @media (max-width: 720px) {
+    .tt::after { max-width: 220px; font-size: var(--text-xs); }
   }
   .section-title {
     font-size: var(--text-lg);
@@ -1513,7 +1598,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken April 24, 2026 at 3:59 PM</span>
+        <span><strong>Snapshot</strong> · taken April 24, 2026 at 4:03 PM</span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1535,7 +1620,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow">Snapshot · April 24 · 3:59 PM</div>
+      <div class="hero-eyebrow">Snapshot · April 24 · 4:03 PM</div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1546,7 +1631,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value">April 24, 2026 · 3:59 PM</span>
+          <span class="hero-meta-value">April 24, 2026 · 4:03 PM</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -1562,7 +1647,7 @@
     <!-- ══════════ §01 KPIs ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">01 · Overview</div>
+        <div class="section-num">01 · Overview<span class="tt" tabindex="0" data-tip="The headline numbers — the eight KPIs executives see first. Review cycle time, open backlog, BA handoff status, weekly intake, escalations, delivered work, and triage coverage.">i</span></div>
         <h2 class="section-title">
           The headline numbers.
         </h2>
@@ -1634,7 +1719,7 @@
     <!-- ══════════ §02 Timeline ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">02 · Timeline</div>
+        <div class="section-num">02 · Timeline<span class="tt" tabindex="0" data-tip="Five time windows: this week, last week, this month, last month, and a rolling six-month view. Lets leaders see cadence and direction — is the CoE accelerating, steady, or slowing down?">i</span></div>
         <h2 class="section-title">
           Five windows, <span class="muted">honest about where the CoE was born.</span>
         </h2>
@@ -1775,7 +1860,7 @@
     <!-- ══════════ §03 Pipeline ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">03 · Pipeline</div>
+        <div class="section-num">03 · Pipeline<span class="tt" tabindex="0" data-tip="The end-to-end journey of a request: Business created → CoE received → First review → BA assigned. Each gap shown in business days so you can spot where work waits.">i</span></div>
         <h2 class="section-title">
           End to end, in one glance. <span class="muted">Once we have it, we move in four.</span>
         </h2>
@@ -1834,7 +1919,7 @@
     <!-- ══════════ §04 Classification ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">04 · Classification</div>
+        <div class="section-num">04 · Classification<span class="tt" tabindex="0" data-tip="What kind of Litify change each request requires — task sets, automation, picklists, fields, templates, stages, or object modifications. Some requests carry multiple tags, so this is a landscape, not a funnel.">i</span></div>
         <h2 class="section-title">
           What the CoE is seeing. <span class="muted">Task Set changes leads.</span>
         </h2>
@@ -1957,7 +2042,7 @@
     <!-- ══════════ §05 Yield ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">05 · Yield</div>
+        <div class="section-num">05 · Yield<span class="tt" tabindex="0" data-tip="What came out of CoE review: real build work queued, noise closed at the gate (Already Completed / Not Needed), or still pending classification. The gate filter is the measurable savings the CoE provides upstream of IT.">i</span></div>
         <h2 class="section-title">
           The gate works. <span class="muted">2 requests closed without IT.</span>
         </h2>
@@ -2005,7 +2090,7 @@
     <!-- ══════════ §06 Flow ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">06 · Flow</div>
+        <div class="section-num">06 · Flow<span class="tt" tabindex="0" data-tip="Weekly intake velocity on the left, backlog distribution by CoE stage on the right. Shows both the pressure coming in and where open work is currently parked in the pipeline.">i</span></div>
         <h2 class="section-title">
           Intake velocity and stage composition.
         </h2>
@@ -2117,7 +2202,7 @@
     <!-- ══════════ §07 Sweet Spot ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">07 · Sara's success indicator</div>
+        <div class="section-num">07 · Sara's success indicator<span class="tt" tabindex="0" data-tip="Sara's working definition of CoE health: moving faster than the previous state, with a clear signal for when adding another resource would demonstrably accelerate throughput. The meter tracks where the CoE sits today against that definition.">i</span></div>
         <h2 class="section-title">
           When does "faster" <span class="muted">become "needs another resource"?</span>
         </h2>
@@ -2168,7 +2253,7 @@
     <!-- ══════════ §08 Team ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">08 · Team</div>
+        <div class="section-num">08 · Team<span class="tt" tabindex="0" data-tip="Workload distribution across the CoE team. Shows how many active portfolio items each PM is carrying and how their week breaks down across intake, triage, project work, and comms.">i</span></div>
         <h2 class="section-title">
           Mar and David. <span class="muted">5 and 5 projects.</span>
         </h2>
@@ -2254,7 +2339,7 @@
     <!-- ══════════ §09 Recommendations ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">09 · Next</div>
+        <div class="section-num">09 · Next<span class="tt" tabindex="0" data-tip="The three gaps left to close before the CoE's measurement system is complete — BA Assigned population, weekly status colors, and a time-log cycle that turns workload estimates into ground truth.">i</span></div>
         <h2 class="section-title">
           Three gaps left to close.
         </h2>
@@ -2297,7 +2382,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>10 requests · 3.3 bd review · 20% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 24, 2026 · 3:59 PM · manual refresh</span>
+      <span id="age-indicator">Snapshot · April 24, 2026 · 4:03 PM · manual refresh</span>
     </footer>
 
   </div>
@@ -2363,7 +2448,7 @@
 
     // Live "age of snapshot" indicator in footer
     (function() {
-      const snapshotTime = new Date('2026-04-24T15:59:15');
+      const snapshotTime = new Date('2026-04-24T16:03:33');
       const indicator = document.getElementById('age-indicator');
       if (!indicator) return;
 
@@ -2380,7 +2465,7 @@
         else if (diffHr < 24) ageStr = `${diffHr}h ago`;
         else ageStr = `${diffDay}d ago`;
 
-        indicator.textContent = `Snapshot · April 24, 2026 · 3:59 PM · ${ageStr}`;
+        indicator.textContent = `Snapshot · April 24, 2026 · 4:03 PM · ${ageStr}`;
       }
       updateAge();
       setInterval(updateAge, 60000);
