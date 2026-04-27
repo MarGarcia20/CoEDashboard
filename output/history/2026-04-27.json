@@ -1,6 +1,6 @@
 {
   "date": "2026-04-27",
-  "generated_at": "2026-04-27T17:49:40",
+  "generated_at": "2026-04-27T18:41:29",
   "metrics": {
     "total": 27,
     "open_count": 23,
@@ -183,35 +183,45 @@
       {
         "name": "New Request",
         "count": 4,
-        "delta": null,
+        "delta": 4,
+        "baseline_label": "since Apr 24",
+        "empty_note": null,
         "color": "#4f7ef0",
         "slug": "new_request"
       },
       {
         "name": "Triage",
         "count": 8,
-        "delta": null,
+        "delta": 8,
+        "baseline_label": "since Apr 24",
+        "empty_note": null,
         "color": "#a463f5",
         "slug": "triage"
       },
       {
         "name": "IT Prioritization",
         "count": 0,
-        "delta": null,
+        "delta": 0,
+        "baseline_label": "since Apr 24",
+        "empty_note": null,
         "color": "#e1417a",
         "slug": "it_prioritization"
       },
       {
         "name": "In Progress",
         "count": 8,
-        "delta": null,
+        "delta": 8,
+        "baseline_label": "since Apr 24",
+        "empty_note": null,
         "color": "#e87a3a",
         "slug": "in_progress"
       },
       {
         "name": "Awaiting Next Sprint",
         "count": 3,
-        "delta": null,
+        "delta": 3,
+        "baseline_label": "since Apr 24",
+        "empty_note": null,
         "color": "#d4a23a",
         "slug": "awaiting_next_sprint"
       }
@@ -226,8 +236,9 @@
     "completed_last_week": 3,
     "closed_last_week": 4,
     "has_history": true,
-    "outcome_closed_at_review": 4,
-    "outcome_pushed_to_epmo": 4,
+    "outcome_closed_at_review": 0,
+    "outcome_rejected": 4,
+    "outcome_pushed_to_epmo": 0,
     "outcome_on_hold": 4,
     "outcome_delivered": 0,
     "area_chart": {
