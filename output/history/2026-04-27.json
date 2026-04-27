@@ -1,12 +1,12 @@
 {
   "date": "2026-04-27",
-  "generated_at": "2026-04-27T14:19:15",
+  "generated_at": "2026-04-27T17:48:46",
   "metrics": {
-    "total": 29,
+    "total": 27,
     "open_count": 23,
-    "delivered_count": 2,
+    "delivered_count": 0,
     "escalated_count": 4,
-    "escalated_pct": "14%",
+    "escalated_pct": "15%",
     "review_avg": "3.8",
     "review_median": "4",
     "review_min": "3",
@@ -15,21 +15,21 @@
     "upstream_avg": "37.0",
     "upstream_median": "30.5",
     "priority_set_count": 11,
-    "priority_unset_count": 18,
-    "ba_avg": "2",
-    "ba_count": 4,
-    "ba_pending_total": "4 of 29",
+    "priority_unset_count": 16,
+    "ba_avg": "2.2",
+    "ba_count": 6,
+    "ba_pending_total": "6 of 27",
     "yield_substantive": 19,
-    "yield_substantive_pct": "66%",
+    "yield_substantive_pct": "70%",
     "yield_gate": 4,
-    "yield_gate_pct": "14%",
-    "yield_pending": 6,
-    "yield_pending_pct": "21%",
-    "yield_pending_names": "VAWA CP Case Type + VPT Client was informed of the Cancellation Refund Policy + Follow Up SMS Template + Update of Matter Plan LPR VAWA AOS + TEST + JEAN & JANET TEST",
+    "yield_gate_pct": "15%",
+    "yield_pending": 4,
+    "yield_pending_pct": "15%",
+    "yield_pending_names": "VAWA CP Case Type + VPT Client was informed of the Cancellation Refund Policy + Follow Up SMS Template + Update of Matter Plan LPR VAWA AOS",
     "flow_weeks": {
       "15": 0,
       "16": 23,
-      "17": 6,
+      "17": 4,
       "18": 0
     },
     "flow_week_labels": [
@@ -41,14 +41,14 @@
     "flow_bar_pcts": [
       "0%",
       "100%",
-      "26%",
+      "17%",
       "0%"
     ],
     "flow_max": 23,
     "donut_total_open": 23,
     "donut_segments": [
       {
-        "name": "Triage",
+        "name": "In Progress",
         "count": 8,
         "pct": 34.8,
         "dasharray": 34.8,
@@ -59,10 +59,10 @@
         "hex_end": "#bf5af2"
       },
       {
-        "name": "In Progress",
-        "count": 4,
-        "pct": 17.4,
-        "dasharray": 17.4,
+        "name": "Triage",
+        "count": 8,
+        "pct": 34.8,
+        "dasharray": 34.8,
         "dashoffset": -9.8,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
@@ -70,26 +70,15 @@
         "hex_end": "#ff375f"
       },
       {
-        "name": "IT Prioritization",
-        "count": 4,
-        "pct": 17.4,
-        "dasharray": 17.4,
-        "dashoffset": -27.2,
-        "stroke_css": "var(--green)",
-        "gradient_id": "donut-grad-2",
-        "hex_start": "#30d158",
-        "hex_end": "#30d158"
-      },
-      {
         "name": "New Request",
         "count": 4,
         "pct": 17.4,
         "dasharray": 17.4,
         "dashoffset": -44.6,
-        "stroke_css": "var(--cyan)",
-        "gradient_id": "donut-grad-3",
-        "hex_start": "#64d2ff",
-        "hex_end": "#0a84ff"
+        "stroke_css": "var(--green)",
+        "gradient_id": "donut-grad-2",
+        "hex_start": "#30d158",
+        "hex_end": "#30d158"
       },
       {
         "name": "Awaiting Next Sprint",
@@ -97,21 +86,21 @@
         "pct": 13.0,
         "dasharray": 13.0,
         "dashoffset": -62.0,
-        "stroke_css": "var(--purple)",
-        "gradient_id": "donut-grad-4",
-        "hex_start": "#bf5af2",
-        "hex_end": "#5e5ce6"
+        "stroke_css": "var(--cyan)",
+        "gradient_id": "donut-grad-3",
+        "hex_start": "#64d2ff",
+        "hex_end": "#0a84ff"
       }
     ],
-    "donut_it_prio": 4,
+    "donut_it_prio": 0,
     "donut_triage": 8,
     "donut_new_request": 4,
-    "donut_it_prio_dasharray": 17.4,
+    "donut_it_prio_dasharray": 0.0,
     "donut_triage_dasharray": 34.8,
     "donut_new_request_dasharray": 17.4,
     "donut_it_prio_dashoffset": "25",
-    "donut_triage_dashoffset": "7.6",
-    "donut_new_request_dashoffset": "-27.2",
+    "donut_triage_dashoffset": "25.0",
+    "donut_new_request_dashoffset": "-9.8",
     "work_type_counts": {
       "Task Set changes": 6,
       "Automation changes": 5,
@@ -126,26 +115,26 @@
     "work_type_max": 6,
     "pm_counts": {
       "Jessie Logan": 1,
-      "Maria Garcia": 16,
-      "David Molano": 13
+      "Maria Garcia": 13,
+      "David Molano": 14
     },
-    "team_mar_count": 16,
-    "team_mar_pct": "55%",
-    "team_david_count": 13,
-    "team_david_pct": "45%",
-    "rec_workload_note": "16/13 \u2014 Mar is +23% this week",
+    "team_mar_count": 13,
+    "team_mar_pct": "48%",
+    "team_david_count": 14,
+    "team_david_pct": "52%",
+    "rec_workload_note": "13/14 \u2014 David is +8% this week",
     "tw_intakes": 0,
     "tw_reviews": 0,
     "tw_avg_cycle": "\u2014",
     "tw_gate": 0,
     "tw_escalated": 0,
-    "lw_intakes": 6,
+    "lw_intakes": 4,
     "lw_reviews": 23,
     "lw_avg_cycle": "3.8",
     "lw_gate": 4,
     "lw_escalated": 4,
     "lw_has_reviews": true,
-    "tm_intakes": 29,
+    "tm_intakes": 27,
     "tm_reviewed": 23,
     "tm_avg_cycle": "3.8",
     "tm_escalated": 4,
@@ -155,7 +144,7 @@
     "lm_avg_cycle": "\u2014",
     "lm_escalated": 0,
     "lm_has_coe": false,
-    "six_mo_intakes": 29,
+    "six_mo_intakes": 27,
     "six_mo_reviews": 23,
     "six_mo_avg_cycle": "3.8",
     "days_coe_active": 12,
@@ -164,8 +153,8 @@
     "w_minus1": 17,
     "w_minus2": 16,
     "w_minus3": 15,
-    "rec_it_prio_count": 4,
-    "rec_status_color_blank": "22 of 29",
+    "rec_it_prio_count": 0,
+    "rec_status_color_blank": "22 of 27",
     "tw_window_label": "Apr 27 \u2013 Today",
     "lw_window_label": "Apr 20 \u2013 Apr 26",
     "tm_month_name": "April",
@@ -182,6 +171,212 @@
     "flow_w_current_range": "Apr 27 \u2013 Now",
     "pending_received_label": "Apr 23",
     "coe_start_display": "April 15, 2026",
-    "coe_start_date": "2026-04-15"
+    "coe_start_date": "2026-04-15",
+    "stage_current": {
+      "New Request": 4,
+      "Triage": 8,
+      "IT Prioritization": 0,
+      "In Progress": 8,
+      "Awaiting Next Sprint": 3
+    },
+    "stage_cards": [
+      {
+        "name": "New Request",
+        "count": 4,
+        "delta": null,
+        "color": "#4f7ef0",
+        "slug": "new_request"
+      },
+      {
+        "name": "Triage",
+        "count": 8,
+        "delta": null,
+        "color": "#a463f5",
+        "slug": "triage"
+      },
+      {
+        "name": "IT Prioritization",
+        "count": 0,
+        "delta": null,
+        "color": "#e1417a",
+        "slug": "it_prioritization"
+      },
+      {
+        "name": "In Progress",
+        "count": 8,
+        "delta": null,
+        "color": "#e87a3a",
+        "slug": "in_progress"
+      },
+      {
+        "name": "Awaiting Next Sprint",
+        "count": 3,
+        "delta": null,
+        "color": "#d4a23a",
+        "slug": "awaiting_next_sprint"
+      }
+    ],
+    "backlog_total": 23,
+    "backlog_prior": 23,
+    "backlog_delta": 0,
+    "backlog_intakes_this_week": 0,
+    "backlog_completed_this_week": 0,
+    "backlog_closed_this_week": 0,
+    "intakes_last_week": 4,
+    "completed_last_week": 3,
+    "closed_last_week": 4,
+    "has_history": true,
+    "outcome_closed_at_review": 4,
+    "outcome_pushed_to_epmo": 4,
+    "outcome_on_hold": 4,
+    "outcome_delivered": 0,
+    "area_chart": {
+      "labels": [
+        "W11",
+        "W12",
+        "W13",
+        "W14",
+        "W15",
+        "W16",
+        "W17",
+        "W18"
+      ],
+      "stages": [
+        {
+          "name": "New Request",
+          "color": "#4f7ef0",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Triage",
+          "color": "#a463f5",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "IT Prioritization",
+          "color": "#e1417a",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "In Progress",
+          "color": "#e87a3a",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "Awaiting Next Sprint",
+          "color": "#d4a23a",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "polygons": [
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,244.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,244.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,244.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,244.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,244.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
+      ],
+      "y_max": 15,
+      "x_labels": [
+        {
+          "x": 40.0,
+          "label": "W11"
+        },
+        {
+          "x": 134.28571428571428,
+          "label": "W12"
+        },
+        {
+          "x": 228.57142857142858,
+          "label": "W13"
+        },
+        {
+          "x": 322.85714285714283,
+          "label": "W14"
+        },
+        {
+          "x": 417.14285714285717,
+          "label": "W15"
+        },
+        {
+          "x": 511.42857142857144,
+          "label": "W16"
+        },
+        {
+          "x": 605.7142857142857,
+          "label": "W17"
+        },
+        {
+          "x": 700.0,
+          "label": "W18"
+        }
+      ],
+      "y_labels": [
+        {
+          "y": 244.0,
+          "label": "0"
+        },
+        {
+          "y": 137.6,
+          "label": "7"
+        },
+        {
+          "y": 16.0,
+          "label": "15"
+        }
+      ],
+      "width": 720,
+      "height": 280,
+      "pad_left": 40,
+      "pad_top": 16,
+      "plot_w": 660,
+      "plot_h": 228,
+      "has_data": false,
+      "weeks_with_data": 0
+    }
   }
 }
