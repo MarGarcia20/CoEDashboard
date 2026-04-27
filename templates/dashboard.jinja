@@ -1082,6 +1082,247 @@
     letter-spacing: -0.02em;
   }
 
+  /* ——————————————————————— FLOW (§06) ——————————————————————— */
+  .flow-kpis {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+  .flow-kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5) var(--space-5);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+  }
+  .flow-kpi-primary {
+    background: linear-gradient(135deg, rgba(94, 92, 230, 0.12), rgba(10, 132, 255, 0.04));
+    border: 1px solid rgba(94, 92, 230, 0.3);
+  }
+  .flow-kpi-label {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+  }
+  .flow-kpi-value {
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    color: var(--text);
+  }
+  .flow-kpi-value.secondary { color: var(--text-secondary); font-weight: 500; }
+  .flow-kpi-value.up { color: var(--cyan); }
+  .flow-kpi-value.down { color: var(--green); }
+  .flow-kpi-delta {
+    font-size: var(--text-xs);
+    margin-top: var(--space-3);
+    color: var(--text-tertiary);
+    letter-spacing: -0.005em;
+  }
+  .flow-kpi-delta.up { color: var(--orange); }
+  .flow-kpi-delta.down { color: var(--green); }
+  .flow-kpi-delta.flat { color: var(--text-tertiary); }
+  .flow-kpi-delta.muted { color: var(--text-quaternary); }
+
+  .flow-equation {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    padding: var(--space-5) var(--space-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-5);
+  }
+  .eq-pill {
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    min-width: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .eq-pill-up { border-color: rgba(255, 159, 10, 0.3); background: rgba(255, 159, 10, 0.06); }
+  .eq-pill-down { border-color: rgba(48, 209, 88, 0.3); background: rgba(48, 209, 88, 0.06); }
+  .eq-pill-result {
+    background: linear-gradient(135deg, rgba(94, 92, 230, 0.18), rgba(10, 132, 255, 0.08));
+    border-color: rgba(94, 92, 230, 0.4);
+  }
+  .eq-num {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  .eq-label {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+  .eq-op {
+    display: flex;
+    align-items: center;
+    font-size: var(--text-xl);
+    color: var(--text-quaternary);
+    font-weight: 400;
+    padding: 0 4px;
+  }
+
+  .flow-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .flow-area-card { padding: var(--space-6); }
+  .flow-area-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+  }
+  .flow-area-sub {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+  }
+  .flow-area-svg-wrap {
+    width: 100%;
+    margin: var(--space-3) 0 var(--space-4);
+  }
+  .flow-area-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border);
+  }
+  .flow-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  .flow-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+
+  .flow-stage-card { padding: var(--space-6); }
+  .stage-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+  }
+  .stage-row:last-child { margin-bottom: 0; }
+  .stage-row-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .stage-row-delta {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-top: 3px;
+  }
+  .stage-row-delta.up { color: var(--orange); }
+  .stage-row-delta.down { color: var(--green); }
+  .stage-row-delta.flat { color: var(--text-tertiary); }
+  .stage-row-delta.muted { color: var(--text-quaternary); font-style: italic; }
+  .stage-row-count {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .flow-outcomes-head {
+    margin-bottom: var(--space-4);
+  }
+  .flow-outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+  .outcome-card {
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-align: left;
+  }
+  .outcome-closed    { background: linear-gradient(135deg, rgba(255, 55, 95, 0.08), transparent); border-color: rgba(255, 55, 95, 0.18); }
+  .outcome-epmo      { background: linear-gradient(135deg, rgba(255, 159, 10, 0.08), transparent); border-color: rgba(255, 159, 10, 0.18); }
+  .outcome-hold      { background: linear-gradient(135deg, rgba(255, 214, 10, 0.08), transparent); border-color: rgba(255, 214, 10, 0.18); }
+  .outcome-delivered { background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent); border-color: rgba(48, 209, 88, 0.2); }
+  .outcome-num {
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: var(--space-3);
+  }
+  .outcome-closed    .outcome-num { color: var(--pink); }
+  .outcome-epmo      .outcome-num { color: var(--orange); }
+  .outcome-hold      .outcome-num { color: var(--yellow); }
+  .outcome-delivered .outcome-num { color: var(--green); }
+  .outcome-name {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+  .outcome-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+
+  @media (max-width: 1024px) {
+    .flow-kpis { grid-template-columns: repeat(3, 1fr); }
+    .flow-grid { grid-template-columns: 1fr; }
+    .flow-outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .flow-kpis { grid-template-columns: repeat(2, 1fr); }
+    .flow-equation { gap: var(--space-2); padding: var(--space-3); }
+    .eq-pill { min-width: 64px; padding: var(--space-2) var(--space-3); }
+    .eq-num { font-size: var(--text-lg); }
+    .flow-outcomes-grid { grid-template-columns: 1fr; }
+  }
+
   /* ——————————————————————— SWEET SPOT ——————————————————————— */
   .hero-block {
     margin-top: var(--space-10);
@@ -2179,80 +2420,168 @@
       </div>
     </section>
 
-    <!-- ══════════ §06 Flow ══════════ -->
+    <!-- ══════════ §06 Flow — backlog equation, stage trend, outcomes ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">06 · Flow<span class="tt" tabindex="0" data-tip="Weekly intake velocity on the left, backlog distribution by CoE stage on the right. Shows both the pressure coming in and where open work is currently parked in the pipeline.">i</span></div>
+        <div class="section-num">06 · Flow<span class="tt" tabindex="0" data-tip="Movement, not snapshot. The backlog equation shows how the queue grew or shrank this week. The stacked area shows where work is accumulating across stages over time. Outcomes show how requests actually leave the queue.">i</span></div>
         <h2 class="section-title">
-          Intake velocity and stage composition.
+          The film, not the photo. <span class="muted">What grew, what shrank, where it's piling up.</span>
         </h2>
       </div>
 
-      <div class="two-col">
-        <div class="card panel">
-          <h3 class="panel-title">Weekly intake — <em>{{ flow_peak_week_label }} peak: {{ flow_peak_count }}</em></h3>
-          <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus3_label }}<span class="sub">{{ flow_w_minus3_range }}</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus3_bar }}"></div></div>
-            <div class="bar-value">{{ flow_w_minus3_count }}</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus2_label }}<span class="sub">{{ flow_w_minus2_range }}</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus2_bar }}"></div></div>
-            <div class="bar-value">{{ flow_w_minus2_count }}</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">{{ flow_w_minus1_label }}<span class="sub">{{ flow_w_minus1_range }}</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width: {{ flow_w_minus1_bar }}"></div></div>
-            <div class="bar-value">{{ flow_w_minus1_count }}</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">{{ flow_w_current_label }}<span class="sub">{{ flow_w_current_range }}</span></div>
-            <div class="bar-track"><div class="bar-fill current" style="width: {{ flow_w_current_bar }}"></div></div>
-            <div class="bar-value">{{ flow_w_current_count }}</div>
-          </div>
-          <p style="font-size:var(--text-sm); color:var(--text-tertiary); line-height:1.55; margin-top:var(--space-5);">
-            This week is the first read on steady-state inflow. Watch this number from here on.
-          </p>
+      <!-- ── Top KPI row: backlog equation cards ── -->
+      <div class="flow-kpis">
+        <div class="flow-kpi flow-kpi-primary">
+          <div class="flow-kpi-label">Current backlog</div>
+          <div class="flow-kpi-value">{{ backlog_total }}</div>
+          {% if has_history %}
+            {% if backlog_delta > 0 %}
+              <div class="flow-kpi-delta up">▲ {{ backlog_delta }} from last week</div>
+            {% elif backlog_delta < 0 %}
+              <div class="flow-kpi-delta down">▼ {{ -backlog_delta }} from last week</div>
+            {% else %}
+              <div class="flow-kpi-delta flat">— flat vs last week</div>
+            {% endif %}
+          {% else %}
+            <div class="flow-kpi-delta muted">first snapshot</div>
+          {% endif %}
         </div>
 
-        <div class="card panel">
-          <h3 class="panel-title">Backlog by stage — <em>{{ sweet_spot_it_prio_count_word }} at IT Prioritization</em></h3>
-          <div class="donut-wrap">
-            <div class="donut">
-              <svg viewBox="0 0 42 42" width="160" height="160">
-                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--border-strong)" stroke-width="3.5"/>
-                {% for seg in donut_segments %}
-                <circle cx="21" cy="21" r="15.915" fill="transparent"
-                        stroke="url(#{{ seg.gradient_id }})" stroke-width="3.5"
-                        stroke-dasharray="{{ seg.dasharray }} 100"
-                        stroke-dashoffset="{{ seg.dashoffset }}"
-                        transform="rotate(-90 21 21)" stroke-linecap="round"/>
-                {% endfor %}
-                <defs>
-                  {% for seg in donut_segments %}
-                  <linearGradient id="{{ seg.gradient_id }}" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="{{ seg.hex_start }}"/>
-                    <stop offset="100%" stop-color="{{ seg.hex_end }}"/>
-                  </linearGradient>
-                  {% endfor %}
-                </defs>
-              </svg>
-              <div class="donut-center">
-                <span class="donut-big">{{ donut_total_open }}</span>
-                <span class="donut-small">open</span>
-              </div>
-            </div>
-            <div class="legend">
-              {% for seg in donut_segments %}
-              <div class="legend-row">
-                <span class="legend-dot" style="background: {{ seg.stroke_css }}"></span>
-                <span class="legend-name">{{ seg.name }}</span>
-                <span class="legend-val">{{ seg.count }}</span>
-              </div>
-              {% endfor %}
+        <div class="flow-kpi">
+          <div class="flow-kpi-label">Prior backlog</div>
+          <div class="flow-kpi-value secondary">{{ backlog_prior }}</div>
+          <div class="flow-kpi-delta muted">Carried in</div>
+        </div>
+
+        <div class="flow-kpi">
+          <div class="flow-kpi-label">New intakes</div>
+          <div class="flow-kpi-value up">+{{ backlog_intakes_this_week }}</div>
+          <div class="flow-kpi-delta muted">vs {{ intakes_last_week }} last week</div>
+        </div>
+
+        <div class="flow-kpi">
+          <div class="flow-kpi-label">Completed</div>
+          <div class="flow-kpi-value down">−{{ backlog_completed_this_week }}</div>
+          <div class="flow-kpi-delta muted">vs {{ completed_last_week }} last week</div>
+        </div>
+
+        <div class="flow-kpi">
+          <div class="flow-kpi-label">Closed at review</div>
+          <div class="flow-kpi-value down">−{{ backlog_closed_this_week }}</div>
+          <div class="flow-kpi-delta muted">Removed / declined</div>
+        </div>
+      </div>
+
+      <!-- ── Equation strip ── -->
+      <div class="flow-equation">
+        <div class="eq-pill"><span class="eq-num">{{ backlog_prior }}</span><span class="eq-label">Prior</span></div>
+        <div class="eq-op">+</div>
+        <div class="eq-pill eq-pill-up"><span class="eq-num">{{ backlog_intakes_this_week }}</span><span class="eq-label">New intake</span></div>
+        <div class="eq-op">−</div>
+        <div class="eq-pill eq-pill-down"><span class="eq-num">{{ backlog_completed_this_week }}</span><span class="eq-label">Completed</span></div>
+        <div class="eq-op">−</div>
+        <div class="eq-pill eq-pill-down"><span class="eq-num">{{ backlog_closed_this_week }}</span><span class="eq-label">Closed at review</span></div>
+        <div class="eq-op">=</div>
+        <div class="eq-pill eq-pill-result"><span class="eq-num">{{ backlog_total }}</span><span class="eq-label">Current backlog</span></div>
+      </div>
+
+      <!-- ── Two-column: stacked area (left, wide) + stage cards (right) ── -->
+      <div class="flow-grid">
+        <div class="card panel flow-area-card">
+          <div class="flow-area-head">
+            <div>
+              <h3 class="panel-title" style="margin-bottom: 4px;">Backlog composition by stage</h3>
+              <p class="flow-area-sub">{% if area_chart.weeks_with_data > 1 %}{{ area_chart.weeks_with_data }}-week trend · stacked area showing where work is accumulating{% else %}Building history — chart fills in as weekly snapshots accumulate{% endif %}</p>
             </div>
           </div>
+
+          <div class="flow-area-svg-wrap">
+            <svg viewBox="0 0 {{ area_chart.width }} {{ area_chart.height }}" width="100%" preserveAspectRatio="none" style="display: block;">
+              <!-- Y-axis grid + labels -->
+              {% for tick in area_chart.y_labels %}
+              <line x1="{{ area_chart.pad_left }}" x2="{{ area_chart.width - 20 }}" y1="{{ tick.y }}" y2="{{ tick.y }}" stroke="var(--border)" stroke-width="0.5"/>
+              <text x="{{ area_chart.pad_left - 8 }}" y="{{ tick.y + 4 }}" text-anchor="end" font-size="10" fill="var(--text-quaternary)">{{ tick.label }}</text>
+              {% endfor %}
+
+              <!-- Stacked polygons -->
+              {% for stage in area_chart.stages %}
+              <polygon points="{{ area_chart.polygons[loop.index0] }}"
+                       fill="{{ stage.color }}" fill-opacity="0.85"
+                       stroke="{{ stage.color }}" stroke-width="0.5"/>
+              {% endfor %}
+
+              <!-- X-axis labels -->
+              {% for x in area_chart.x_labels %}
+              <text x="{{ x.x }}" y="{{ area_chart.height - 14 }}" text-anchor="middle" font-size="10" fill="var(--text-quaternary)" letter-spacing="0.04em">{{ x.label }}</text>
+              {% endfor %}
+
+              <!-- Y-axis label -->
+              <text x="14" y="{{ area_chart.pad_top + area_chart.plot_h / 2 }}" text-anchor="middle" font-size="9" fill="var(--text-quaternary)" transform="rotate(-90, 14, {{ area_chart.pad_top + area_chart.plot_h / 2 }})" letter-spacing="0.04em">REQUESTS IN BACKLOG</text>
+            </svg>
+          </div>
+
+          <!-- Legend -->
+          <div class="flow-area-legend">
+            {% for stage in area_chart.stages %}
+            <div class="flow-legend-item">
+              <span class="flow-legend-dot" style="background: {{ stage.color }}"></span>
+              <span>{{ stage.name }}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="card panel flow-stage-card">
+          <h3 class="panel-title" style="margin-bottom: 6px;">This week by stage</h3>
+          <p class="flow-area-sub" style="margin-bottom: var(--space-5);">Snapshot of where the {{ backlog_total }} sit right now</p>
+          {% for stage in stage_cards %}
+          <div class="stage-row" style="border-left-color: {{ stage.color }};">
+            <div class="stage-row-name">
+              {{ stage.name }}
+              {% if stage.delta is not none %}
+                {% if stage.delta > 0 %}
+                  <div class="stage-row-delta up">▲ {{ stage.delta }} from last week</div>
+                {% elif stage.delta < 0 %}
+                  <div class="stage-row-delta down">▼ {{ -stage.delta }} from last week</div>
+                {% else %}
+                  <div class="stage-row-delta flat">flat</div>
+                {% endif %}
+              {% else %}
+                <div class="stage-row-delta muted">no prior week</div>
+              {% endif %}
+            </div>
+            <div class="stage-row-count">{{ stage.count }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- ── Outcomes (trailing 4 weeks) ── -->
+      <div class="flow-outcomes-head">
+        <h3 class="panel-title" style="margin-bottom: 4px;">Completion outcomes — trailing 4 weeks</h3>
+        <p class="flow-area-sub">How requests exit the queue, not just whether they exit</p>
+      </div>
+
+      <div class="flow-outcomes-grid">
+        <div class="outcome-card outcome-closed">
+          <div class="outcome-num">{{ outcome_closed_at_review }}</div>
+          <div class="outcome-name">Closed at review</div>
+          <div class="outcome-desc">Evaluated, removed from roadmap, not needed, or duplicate</div>
+        </div>
+        <div class="outcome-card outcome-epmo">
+          <div class="outcome-num">{{ outcome_pushed_to_epmo }}</div>
+          <div class="outcome-name">Pushed to EPMO</div>
+          <div class="outcome-desc">Too large for the CoE — handed off as a formal EPMO project</div>
+        </div>
+        <div class="outcome-card outcome-hold">
+          <div class="outcome-num">{{ outcome_on_hold }}</div>
+          <div class="outcome-name">On hold</div>
+          <div class="outcome-desc">Valid but paused — revisit when blocking conditions clear</div>
+        </div>
+        <div class="outcome-card outcome-delivered">
+          <div class="outcome-num">{{ outcome_delivered }}</div>
+          <div class="outcome-name">Delivered</div>
+          <div class="outcome-desc">Implemented and shipped to production</div>
         </div>
       </div>
     </section>

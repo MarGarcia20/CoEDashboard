@@ -193,6 +193,24 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "flow_peak_week_label": metrics["flow_peak_week_label"],
         "flow_peak_count": metrics["flow_peak_count"],
 
+        # §06 v2 — Backlog flow
+        "stage_cards": metrics["stage_cards"],
+        "backlog_total": metrics["backlog_total"],
+        "backlog_prior": metrics["backlog_prior"],
+        "backlog_delta": metrics["backlog_delta"],
+        "backlog_intakes_this_week": metrics["backlog_intakes_this_week"],
+        "backlog_completed_this_week": metrics["backlog_completed_this_week"],
+        "backlog_closed_this_week": metrics["backlog_closed_this_week"],
+        "has_history": metrics["has_history"],
+        "outcome_closed_at_review": metrics["outcome_closed_at_review"],
+        "outcome_pushed_to_epmo": metrics["outcome_pushed_to_epmo"],
+        "outcome_on_hold": metrics["outcome_on_hold"],
+        "outcome_delivered": metrics["outcome_delivered"],
+        "intakes_last_week": metrics["intakes_last_week"],
+        "completed_last_week": metrics["completed_last_week"],
+        "closed_last_week": metrics["closed_last_week"],
+        "area_chart": metrics["area_chart"],
+
         # §03 Pipeline
         "pipeline_upstream_bd": metrics["upstream_avg"],
         "pipeline_review_bd": metrics["review_avg"],

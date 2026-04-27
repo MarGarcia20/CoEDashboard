@@ -22,6 +22,11 @@ CUSTOM_FIELD_GIDS = {
     "coe_classification": "1214057968804957",
     "pm_assigned": "1210474554240546",
     "priority": "1206729686320253",
+    "project_paused": "1214267182280877",
+    "deployed": "1214267165903924",
+    "completed_date": "1208524309563086",
+    "classification_date": "1214083489074997",
+    "it_prioritization_date": "1214205709219888",
 }
 
 BASE_URL = "https://app.asana.com/api/1.0"
@@ -87,6 +92,11 @@ def _normalize_item(raw: dict) -> dict:
         "coe_classification": _extract_custom_field(raw, "coe_classification"),
         "pm_assigned": _extract_custom_field(raw, "pm_assigned"),
         "priority": _extract_custom_field(raw, "priority"),
+        "project_paused": _extract_custom_field(raw, "project_paused"),
+        "deployed": _extract_custom_field(raw, "deployed"),
+        "completed_date": _extract_custom_field(raw, "completed_date"),
+        "classification_date": _extract_custom_field(raw, "classification_date"),
+        "it_prioritization_date": _extract_custom_field(raw, "it_prioritization_date"),
     }
 
 
