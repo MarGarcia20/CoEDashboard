@@ -1256,6 +1256,13 @@
   .stage-row-delta.down { color: var(--green); }
   .stage-row-delta.flat { color: var(--text-tertiary); }
   .stage-row-delta.muted { color: var(--text-quaternary); font-style: italic; }
+  .stage-row-note {
+    font-size: 10px;
+    color: var(--text-quaternary);
+    font-style: italic;
+    letter-spacing: 0.02em;
+    margin-top: 2px;
+  }
   .stage-row-count {
     font-size: var(--text-2xl);
     font-weight: 600;
@@ -1269,7 +1276,7 @@
   }
   .flow-outcomes-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: var(--space-4);
   }
   .outcome-card {
@@ -1279,7 +1286,8 @@
     background: var(--surface);
     text-align: left;
   }
-  .outcome-closed    { background: linear-gradient(135deg, rgba(255, 55, 95, 0.08), transparent); border-color: rgba(255, 55, 95, 0.18); }
+  .outcome-closed    { background: linear-gradient(135deg, rgba(191, 90, 242, 0.08), transparent); border-color: rgba(191, 90, 242, 0.20); }
+  .outcome-rejected  { background: linear-gradient(135deg, rgba(255, 69, 58, 0.10), transparent); border-color: rgba(255, 69, 58, 0.22); }
   .outcome-epmo      { background: linear-gradient(135deg, rgba(255, 159, 10, 0.08), transparent); border-color: rgba(255, 159, 10, 0.18); }
   .outcome-hold      { background: linear-gradient(135deg, rgba(255, 214, 10, 0.08), transparent); border-color: rgba(255, 214, 10, 0.18); }
   .outcome-delivered { background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent); border-color: rgba(48, 209, 88, 0.2); }
@@ -1291,7 +1299,8 @@
     color: var(--text);
     margin-bottom: var(--space-3);
   }
-  .outcome-closed    .outcome-num { color: var(--pink); }
+  .outcome-closed    .outcome-num { color: var(--purple); }
+  .outcome-rejected  .outcome-num { color: var(--red); }
   .outcome-epmo      .outcome-num { color: var(--orange); }
   .outcome-hold      .outcome-num { color: var(--yellow); }
   .outcome-delivered .outcome-num { color: var(--green); }
@@ -1313,7 +1322,7 @@
   @media (max-width: 1024px) {
     .flow-kpis { grid-template-columns: repeat(3, 1fr); }
     .flow-grid { grid-template-columns: 1fr; }
-    .flow-outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+    .flow-outcomes-grid { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 720px) {
     .flow-kpis { grid-template-columns: repeat(2, 1fr); }
@@ -1899,7 +1908,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 27, 2026 · 1:49 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 27, 2026 · 2:41 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1921,7 +1930,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 27 · 1:49 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 27 · 2:41 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1932,7 +1941,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">April 27, 2026 · 1:49 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">April 27, 2026 · 2:41 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2557,7 +2566,10 @@
             <div class="stage-row-name">
               New Request
               
-                <div class="stage-row-delta muted">no prior week</div>
+                
+                  <div class="stage-row-delta up">▲ 4 since Apr 24</div>
+                
+                
               
             </div>
             <div class="stage-row-count">4</div>
@@ -2567,7 +2579,10 @@
             <div class="stage-row-name">
               Triage
               
-                <div class="stage-row-delta muted">no prior week</div>
+                
+                  <div class="stage-row-delta up">▲ 8 since Apr 24</div>
+                
+                
               
             </div>
             <div class="stage-row-count">8</div>
@@ -2577,7 +2592,10 @@
             <div class="stage-row-name">
               IT Prioritization
               
-                <div class="stage-row-delta muted">no prior week</div>
+                
+                  <div class="stage-row-delta flat">flat since Apr 24</div>
+                
+                
               
             </div>
             <div class="stage-row-count">0</div>
@@ -2587,7 +2605,10 @@
             <div class="stage-row-name">
               In Progress
               
-                <div class="stage-row-delta muted">no prior week</div>
+                
+                  <div class="stage-row-delta up">▲ 8 since Apr 24</div>
+                
+                
               
             </div>
             <div class="stage-row-count">8</div>
@@ -2597,7 +2618,10 @@
             <div class="stage-row-name">
               Awaiting Next Sprint
               
-                <div class="stage-row-delta muted">no prior week</div>
+                
+                  <div class="stage-row-delta up">▲ 3 since Apr 24</div>
+                
+                
               
             </div>
             <div class="stage-row-count">3</div>
@@ -2614,12 +2638,17 @@
 
       <div class="flow-outcomes-grid">
         <div class="outcome-card outcome-closed">
-          <div class="outcome-num">4</div>
+          <div class="outcome-num">0</div>
           <div class="outcome-name">Closed at review</div>
-          <div class="outcome-desc">Evaluated, removed from roadmap, not needed, or duplicate</div>
+          <div class="outcome-desc">Already done, not needed, or duplicate — closed without IT</div>
+        </div>
+        <div class="outcome-card outcome-rejected">
+          <div class="outcome-num">4</div>
+          <div class="outcome-name">Rejected</div>
+          <div class="outcome-desc">Reviewed and declined — not aligned with CoE scope or priority</div>
         </div>
         <div class="outcome-card outcome-epmo">
-          <div class="outcome-num">4</div>
+          <div class="outcome-num">0</div>
           <div class="outcome-name">Pushed to EPMO</div>
           <div class="outcome-desc">Too large for the CoE — handed off as a formal EPMO project</div>
         </div>
@@ -2798,7 +2827,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>27 requests · 3.8 bd review · 15% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 27, 2026 · 1:49 PM ET</span>
+      <span id="age-indicator">Snapshot · April 27, 2026 · 2:41 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -2879,7 +2908,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-04-27T17:49:40+00:00');
+      const snapshotTime = new Date('2026-04-27T18:41:29+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
