@@ -2504,8 +2504,8 @@
             </div>
           </div>
 
-          <div class="flow-area-svg-wrap">
-            <svg viewBox="0 0 {{ area_chart.width }} {{ area_chart.height }}" width="100%" preserveAspectRatio="none" style="display: block;">
+          <div class="flow-area-svg-wrap" style="position:relative;">
+            <svg id="area-chart-svg" viewBox="0 0 {{ area_chart.width }} {{ area_chart.height }}" width="100%" preserveAspectRatio="none" style="display: block;">
               <!-- Y-axis grid + labels -->
               {% for tick in area_chart.y_labels %}
               <line x1="{{ area_chart.pad_left }}" x2="{{ area_chart.width - 20 }}" y1="{{ tick.y }}" y2="{{ tick.y }}" stroke="var(--border)" stroke-width="0.5"/>
@@ -2526,8 +2526,35 @@
 
               <!-- Y-axis label -->
               <text x="14" y="{{ area_chart.pad_top + area_chart.plot_h / 2 }}" text-anchor="middle" font-size="9" fill="var(--text-quaternary)" transform="rotate(-90, 14, {{ area_chart.pad_top + area_chart.plot_h / 2 }})" letter-spacing="0.04em">REQUESTS IN BACKLOG</text>
+
+              <!-- Hover crosshair line (hidden by default) -->
+              <line id="area-crosshair" x1="0" x2="0" y1="{{ area_chart.pad_top }}" y2="{{ area_chart.pad_top + area_chart.plot_h }}" stroke="var(--border-strong)" stroke-width="1" stroke-dasharray="3 3" style="display:none; pointer-events:none;"/>
+
+              <!-- Transparent overlay for mouse events -->
+              <rect id="area-overlay"
+                    x="{{ area_chart.pad_left }}" y="{{ area_chart.pad_top }}"
+                    width="{{ area_chart.plot_w }}" height="{{ area_chart.plot_h }}"
+                    fill="transparent" style="cursor:crosshair;"/>
             </svg>
+
+            <!-- Floating tooltip -->
+            <div id="area-tooltip" style="display:none; position:fixed; z-index:200; pointer-events:none;
+                 background:var(--bg-elev-3); border:1px solid var(--border-strong);
+                 border-radius:var(--radius-sm); padding:10px 12px; min-width:160px;
+                 box-shadow:0 8px 32px rgba(0,0,0,0.28); font-size:var(--text-sm);">
+            </div>
           </div>
+
+          <!-- Area chart data for JS tooltip -->
+          <script type="application/json" id="area-chart-data">
+          {
+            "labels": {{ area_chart.labels | tojson }},
+            "padLeft": {{ area_chart.pad_left }},
+            "plotW": {{ area_chart.plot_w }},
+            "viewBoxWidth": {{ area_chart.width }},
+            "stages": [{% for stage in area_chart.stages %}{"name": {{ stage['name'] | tojson }}, "color": {{ stage['color'] | tojson }}, "values": {{ stage['values'] | tojson }}}{% if not loop.last %},{% endif %}{% endfor %}]
+          }
+          </script>
 
           <!-- Legend -->
           <div class="flow-area-legend">
@@ -2905,6 +2932,91 @@
       }
       updateAge();
       setInterval(updateAge, 60000);
+    })();
+
+    // ── Stacked area chart tooltip ────────────────────────────────────────────
+    (function initAreaTooltip() {
+      const dataEl = document.getElementById('area-chart-data');
+      if (!dataEl) return;
+      const chartData = JSON.parse(dataEl.textContent);
+      const { labels, padLeft, plotW, viewBoxWidth, stages } = chartData;
+      const weeks = labels.length;
+
+      const svg       = document.getElementById('area-chart-svg');
+      const overlay   = document.getElementById('area-overlay');
+      const tooltip   = document.getElementById('area-tooltip');
+      const crosshair = document.getElementById('area-crosshair');
+      if (!svg || !overlay || !tooltip || !crosshair) return;
+
+      function weekIndexFromMouseX(clientX) {
+        const svgRect = svg.getBoundingClientRect();
+        const scale   = svgRect.width / viewBoxWidth;
+        const svgX    = (clientX - svgRect.left) / scale;
+        const relX    = svgX - padLeft;
+        const colW    = weeks > 1 ? plotW / (weeks - 1) : plotW;
+        return Math.max(0, Math.min(weeks - 1, Math.round(relX / colW)));
+      }
+
+      function colSvgX(idx) {
+        return weeks > 1
+          ? padLeft + (plotW * idx / (weeks - 1))
+          : padLeft + plotW / 2;
+      }
+
+      overlay.addEventListener('mousemove', function(e) {
+        const idx   = weekIndexFromMouseX(e.clientX);
+        const total = stages.reduce((s, st) => s + (st.values[idx] || 0), 0);
+
+        // Crosshair
+        const cx = colSvgX(idx);
+        crosshair.setAttribute('x1', cx);
+        crosshair.setAttribute('x2', cx);
+        crosshair.style.display = '';
+
+        // Build tooltip HTML
+        let rows = '';
+        for (let i = stages.length - 1; i >= 0; i--) {
+          const st = stages[i];
+          const v  = st.values[idx] || 0;
+          if (v === 0) continue;
+          rows += `<div style="display:flex;align-items:center;gap:7px;margin-top:5px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:${st.color};flex-shrink:0;display:inline-block;"></span>
+            <span style="flex:1;color:var(--text-secondary);">${st.name}</span>
+            <span style="font-weight:600;color:var(--text);">${v}</span>
+          </div>`;
+        }
+        if (rows === '') {
+          rows = `<div style="color:var(--text-tertiary);margin-top:4px;font-size:var(--text-xs);">No data this week</div>`;
+        }
+        const divider = `<div style="border-top:1px solid var(--border);margin:7px 0 4px;"></div>`;
+        const totalRow = `<div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:var(--text-tertiary);font-size:var(--text-xs);letter-spacing:0.06em;text-transform:uppercase;">Total</span>
+          <span style="font-weight:700;color:var(--text);">${total}</span>
+        </div>`;
+
+        tooltip.innerHTML =
+          `<div style="font-weight:600;color:var(--text);font-size:var(--text-sm);letter-spacing:0.04em;">${labels[idx]}</div>` +
+          rows + divider + totalRow;
+
+        // Position: follow cursor, flip left if near right edge
+        const ttW  = 180;
+        const ttH  = tooltip.offsetHeight || 120;
+        const vw   = window.innerWidth;
+        const vh   = window.innerHeight;
+        let left   = e.clientX + 14;
+        let top    = e.clientY - ttH / 2;
+        if (left + ttW > vw - 8) left = e.clientX - ttW - 14;
+        if (top < 8)             top  = 8;
+        if (top + ttH > vh - 8)  top  = vh - ttH - 8;
+        tooltip.style.left    = left + 'px';
+        tooltip.style.top     = top  + 'px';
+        tooltip.style.display = '';
+      });
+
+      overlay.addEventListener('mouseleave', function() {
+        tooltip.style.display  = 'none';
+        crosshair.style.display = 'none';
+      });
     })();
   </script>
 </body>
