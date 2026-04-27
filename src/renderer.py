@@ -203,6 +203,7 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "backlog_closed_this_week": metrics["backlog_closed_this_week"],
         "has_history": metrics["has_history"],
         "outcome_closed_at_review": metrics["outcome_closed_at_review"],
+        "outcome_rejected": metrics["outcome_rejected"],
         "outcome_pushed_to_epmo": metrics["outcome_pushed_to_epmo"],
         "outcome_on_hold": metrics["outcome_on_hold"],
         "outcome_delivered": metrics["outcome_delivered"],

@@ -467,24 +467,63 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         if s in stage_current:
             stage_current[s] += 1
 
-    # Pull last week's counts from history if available
+    # Pull last week's counts from history if available; otherwise fall back
+    # to the first available snapshot (so the dashboard shows real movement
+    # while history is still accumulating, instead of "no prior week").
     history_snapshots = _load_history_for_metrics()
     last_week_snap = _find_snapshot_n_days_ago(history_snapshots, today, 7)
-    stage_last_week = {}
+
+    using_first_snapshot = False
+    first_snapshot_date_str = None
     if last_week_snap:
-        prev_stage_current = last_week_snap.get("stage_current", {})
+        baseline_metrics = last_week_snap
+    else:
+        # Find oldest snapshot strictly before today
+        baseline_metrics, first_snapshot_date_str = _find_first_snapshot_before(
+            history_snapshots, today
+        )
+        using_first_snapshot = baseline_metrics is not None
+
+    stage_baseline = {}
+    if baseline_metrics:
+        prev_stage_current = baseline_metrics.get("stage_current", {}) or {}
         for s in BACKLOG_STAGES_ORDERED:
-            stage_last_week[s] = int(prev_stage_current.get(s, 0))
+            stage_baseline[s] = int(prev_stage_current.get(s, 0))
+
+    # Pretty label for the comparison source ("last week" vs "since Apr 24")
+    if last_week_snap:
+        baseline_label = "from last week"
+    elif using_first_snapshot and first_snapshot_date_str:
+        d = _parse_date(first_snapshot_date_str)
+        baseline_label = f"since {d.strftime('%b %-d')}" if d else "since first snapshot"
+    else:
+        baseline_label = None
 
     stage_cards = []
     for s in BACKLOG_STAGES_ORDERED:
         cur = stage_current.get(s, 0)
-        prev = stage_last_week.get(s)
+        prev = stage_baseline.get(s)
         delta = (cur - prev) if prev is not None else None
+
+        # Context note: stage is empty NOW but had items in the baseline
+        empty_with_history = (cur == 0 and prev is not None and prev > 0)
+        empty_note = None
+        if empty_with_history:
+            if s == "IT Prioritization":
+                empty_note = "all moved forward in the pipeline"
+            elif s == "Triage":
+                empty_note = "all classified and progressed"
+            elif s == "New Request":
+                empty_note = "all picked up for triage"
+            else:
+                empty_note = "all moved to next stage"
+
         stage_cards.append({
             "name": s,
             "count": cur,
-            "delta": delta,  # None when no history data exists
+            "delta": delta,                      # None if no baseline at all
+            "baseline_label": baseline_label,    # "from last week" / "since Apr 24" / None
+            "empty_note": empty_note,            # short explanation when count=0 but had history
             "color": STAGE_COLOR_MAP.get(s, "#888"),
             "slug": s.lower().replace(" ", "_").replace("/", "_"),
         })
@@ -517,19 +556,38 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
     backlog_delta = current_backlog - prior_backlog
 
     # ── Outcomes (trailing 4 weeks based on relevant exit date) ────────────
+    # Mutually exclusive: an item appears in exactly ONE outcome bucket.
+    # Rejected and EPMO are tracked separately — they are NOT the same thing.
     four_weeks_ago = today - timedelta(weeks=4)
 
-    outcome_closed_at_review = sum(
+    def _is_rejected(i):
+        return (
+            i.get("coe_classification") == "Rejected"
+            or i.get("coe_stage") in ESCALATED_STAGES   # legacy "Escalated/rejected"
+            or i.get("coe_stage") == "Rejected"
+        )
+
+    def _is_pushed_to_epmo(i):
+        return i.get("coe_classification") in EPMO_CLASSIFICATIONS
+
+    outcome_rejected = sum(
         1 for i in items
-        if _closed_at_review_in_range(i, four_weeks_ago, today + timedelta(days=1))
+        if _is_rejected(i)
+        and _exit_date_in_range(i, four_weeks_ago, today + timedelta(days=1))
     )
 
     outcome_pushed_to_epmo = sum(
         1 for i in items
-        if (i.get("coe_classification") in EPMO_CLASSIFICATIONS
-            or i.get("coe_stage") in ESCALATED_STAGES
-            or i.get("coe_classification") == "Rejected")
+        if _is_pushed_to_epmo(i)
+        and not _is_rejected(i)
         and _exit_date_in_range(i, four_weeks_ago, today + timedelta(days=1))
+    )
+
+    outcome_closed_at_review = sum(
+        1 for i in items
+        if not _is_rejected(i)
+        and not _is_pushed_to_epmo(i)
+        and _closed_at_review_in_range(i, four_weeks_ago, today + timedelta(days=1))
     )
 
     outcome_on_hold = sum(
@@ -708,6 +766,7 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "closed_last_week": closed_last_week,
         "has_history": bool(history_snapshots),
         "outcome_closed_at_review": outcome_closed_at_review,
+        "outcome_rejected": outcome_rejected,
         "outcome_pushed_to_epmo": outcome_pushed_to_epmo,
         "outcome_on_hold": outcome_on_hold,
         "outcome_delivered": outcome_delivered,
@@ -908,6 +967,22 @@ def _find_snapshot_n_days_ago(snapshots: list[dict], today: date, n: int) -> dic
             best_diff = diff
             best = snap.get("metrics", {})
     return best
+
+
+def _find_first_snapshot_before(snapshots: list[dict], today: date):
+    """Return (metrics_dict, date_str) of the oldest snapshot dated strictly
+    before today. Returns (None, None) if none exists."""
+    candidates = []
+    for snap in snapshots:
+        snap_date_str = snap.get("date") or ""
+        d = _parse_date(snap_date_str)
+        if d and d < today:
+            candidates.append((d, snap))
+    if not candidates:
+        return None, None
+    candidates.sort(key=lambda kv: kv[0])  # oldest first
+    oldest_date, oldest_snap = candidates[0]
+    return oldest_snap.get("metrics", {}), oldest_date.isoformat()
 
 
 def _build_area_series(snapshots: list[dict], today: date, weeks: int = 8) -> dict:
