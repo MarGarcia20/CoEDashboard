@@ -1,6 +1,6 @@
 {
   "date": "2026-04-27",
-  "generated_at": "2026-04-27T14:17:14",
+  "generated_at": "2026-04-27T14:19:15",
   "metrics": {
     "total": 29,
     "open_count": 23,
@@ -126,14 +126,14 @@
     "work_type_max": 6,
     "pm_counts": {
       "Jessie Logan": 1,
-      "Maria Garcia": 18,
-      "David Molano": 11
+      "Maria Garcia": 16,
+      "David Molano": 13
     },
-    "team_mar_count": 18,
-    "team_mar_pct": "62%",
-    "team_david_count": 11,
-    "team_david_pct": "38%",
-    "rec_workload_note": "18/11 \u2014 Mar is +64% this week",
+    "team_mar_count": 16,
+    "team_mar_pct": "55%",
+    "team_david_count": 13,
+    "team_david_pct": "45%",
+    "rec_workload_note": "16/13 \u2014 Mar is +23% this week",
     "tw_intakes": 0,
     "tw_reviews": 0,
     "tw_avg_cycle": "\u2014",
