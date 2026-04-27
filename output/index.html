@@ -1082,6 +1082,247 @@
     letter-spacing: -0.02em;
   }
 
+  /* ——————————————————————— FLOW (§06) ——————————————————————— */
+  .flow-kpis {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+  .flow-kpi {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5) var(--space-5);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+  }
+  .flow-kpi-primary {
+    background: linear-gradient(135deg, rgba(94, 92, 230, 0.12), rgba(10, 132, 255, 0.04));
+    border: 1px solid rgba(94, 92, 230, 0.3);
+  }
+  .flow-kpi-label {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+  }
+  .flow-kpi-value {
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    color: var(--text);
+  }
+  .flow-kpi-value.secondary { color: var(--text-secondary); font-weight: 500; }
+  .flow-kpi-value.up { color: var(--cyan); }
+  .flow-kpi-value.down { color: var(--green); }
+  .flow-kpi-delta {
+    font-size: var(--text-xs);
+    margin-top: var(--space-3);
+    color: var(--text-tertiary);
+    letter-spacing: -0.005em;
+  }
+  .flow-kpi-delta.up { color: var(--orange); }
+  .flow-kpi-delta.down { color: var(--green); }
+  .flow-kpi-delta.flat { color: var(--text-tertiary); }
+  .flow-kpi-delta.muted { color: var(--text-quaternary); }
+
+  .flow-equation {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    padding: var(--space-5) var(--space-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-5);
+  }
+  .eq-pill {
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    min-width: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .eq-pill-up { border-color: rgba(255, 159, 10, 0.3); background: rgba(255, 159, 10, 0.06); }
+  .eq-pill-down { border-color: rgba(48, 209, 88, 0.3); background: rgba(48, 209, 88, 0.06); }
+  .eq-pill-result {
+    background: linear-gradient(135deg, rgba(94, 92, 230, 0.18), rgba(10, 132, 255, 0.08));
+    border-color: rgba(94, 92, 230, 0.4);
+  }
+  .eq-num {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  .eq-label {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+  .eq-op {
+    display: flex;
+    align-items: center;
+    font-size: var(--text-xl);
+    color: var(--text-quaternary);
+    font-weight: 400;
+    padding: 0 4px;
+  }
+
+  .flow-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .flow-area-card { padding: var(--space-6); }
+  .flow-area-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+  }
+  .flow-area-sub {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+  }
+  .flow-area-svg-wrap {
+    width: 100%;
+    margin: var(--space-3) 0 var(--space-4);
+  }
+  .flow-area-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border);
+  }
+  .flow-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  .flow-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+
+  .flow-stage-card { padding: var(--space-6); }
+  .stage-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+  }
+  .stage-row:last-child { margin-bottom: 0; }
+  .stage-row-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .stage-row-delta {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-top: 3px;
+  }
+  .stage-row-delta.up { color: var(--orange); }
+  .stage-row-delta.down { color: var(--green); }
+  .stage-row-delta.flat { color: var(--text-tertiary); }
+  .stage-row-delta.muted { color: var(--text-quaternary); font-style: italic; }
+  .stage-row-count {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .flow-outcomes-head {
+    margin-bottom: var(--space-4);
+  }
+  .flow-outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+  .outcome-card {
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-align: left;
+  }
+  .outcome-closed    { background: linear-gradient(135deg, rgba(255, 55, 95, 0.08), transparent); border-color: rgba(255, 55, 95, 0.18); }
+  .outcome-epmo      { background: linear-gradient(135deg, rgba(255, 159, 10, 0.08), transparent); border-color: rgba(255, 159, 10, 0.18); }
+  .outcome-hold      { background: linear-gradient(135deg, rgba(255, 214, 10, 0.08), transparent); border-color: rgba(255, 214, 10, 0.18); }
+  .outcome-delivered { background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent); border-color: rgba(48, 209, 88, 0.2); }
+  .outcome-num {
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: var(--space-3);
+  }
+  .outcome-closed    .outcome-num { color: var(--pink); }
+  .outcome-epmo      .outcome-num { color: var(--orange); }
+  .outcome-hold      .outcome-num { color: var(--yellow); }
+  .outcome-delivered .outcome-num { color: var(--green); }
+  .outcome-name {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+  .outcome-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+
+  @media (max-width: 1024px) {
+    .flow-kpis { grid-template-columns: repeat(3, 1fr); }
+    .flow-grid { grid-template-columns: 1fr; }
+    .flow-outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .flow-kpis { grid-template-columns: repeat(2, 1fr); }
+    .flow-equation { gap: var(--space-2); padding: var(--space-3); }
+    .eq-pill { min-width: 64px; padding: var(--space-2) var(--space-3); }
+    .eq-num { font-size: var(--text-lg); }
+    .flow-outcomes-grid { grid-template-columns: 1fr; }
+  }
+
   /* ——————————————————————— SWEET SPOT ——————————————————————— */
   .hero-block {
     margin-top: var(--space-10);
@@ -1658,7 +1899,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 27, 2026 · 10:19 AM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 27, 2026 · 1:49 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1680,18 +1921,18 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 27 · 10:19 AM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 27 · 1:49 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
       </h1>
       <p class="hero-sub">
-        Twenty-nine requests. A 3.8 business-day review cycle. Fourteen percent filtered at the gate. Here's what's actually moving — and what still needs to be measured before the resource conversation.
+        Twenty-seven requests. A 3.8 business-day review cycle. Fifteen percent filtered at the gate. Here's what's actually moving — and what still needs to be measured before the resource conversation.
       </p>
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">April 27, 2026 · 10:19 AM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">April 27, 2026 · 1:49 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -1733,7 +1974,7 @@
             <span class="badge badge-snapshot">Snapshot</span>
           </div>
           <div class="kpi-label">Open requests</div>
-          <div class="kpi-value">23<span class="unit">of 29</span></div>
+          <div class="kpi-value">23<span class="unit">of 27</span></div>
           <div class="kpi-delta warn">↗ Trending up<span class="kpi-delta-sub"> · 19 need real work</span></div>
         </div>
 
@@ -1743,8 +1984,8 @@
             <span class="badge badge-snapshot">Snapshot</span>
           </div>
           <div class="kpi-label">Average business days</div>
-          <div class="kpi-value">2<span class="unit">bd</span></div>
-          <div class="kpi-delta"><span class="kpi-delta-sub">4 of 29 BA dates set</span></div>
+          <div class="kpi-value">2.2<span class="unit">bd</span></div>
+          <div class="kpi-delta"><span class="kpi-delta-sub">6 of 27 BA dates set</span></div>
         </div>
       </div>
 
@@ -1753,25 +1994,25 @@
           <div class="card-eyebrow">Intakes · W18<span class="badge badge-snapshot">Snapshot</span></div>
           <div class="kpi-label">New this week <span style="text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--text-quaternary);">· Apr 27 – Today</span></div>
           <div class="kpi-value">0<span class="unit">new</span></div>
-          <div class="kpi-delta"><span class="kpi-delta-sub">vs. 6 in W17</span></div>
+          <div class="kpi-delta"><span class="kpi-delta-sub">vs. 4 in W17</span></div>
         </div>
         <div class="card kpi">
           <div class="card-eyebrow">Escalated / rejected<span class="badge badge-snapshot">Snapshot</span></div>
           <div class="kpi-label">This cycle</div>
           <div class="kpi-value">4<span class="unit">proj</span></div>
-          <div class="kpi-delta"><span class="kpi-delta-sub">14% filtered at gate</span></div>
+          <div class="kpi-delta"><span class="kpi-delta-sub">15% filtered at gate</span></div>
         </div>
         <div class="card kpi">
           <div class="card-eyebrow">Delivered<span class="badge badge-snapshot">Snapshot</span></div>
           <div class="kpi-label">Completed work · last cycle</div>
-          <div class="kpi-value">2<span class="unit">done</span></div>
+          <div class="kpi-value">0<span class="unit">done</span></div>
           <div class="kpi-delta warn">First delivery pending · Sprint 10</div>
         </div>
         <div class="card kpi">
           <div class="card-eyebrow">Priority set<span class="badge badge-snapshot">Snapshot</span></div>
           <div class="kpi-label">Triaged</div>
-          <div class="kpi-value">11<span class="unit">/29</span></div>
-          <div class="kpi-delta"><span class="kpi-delta-sub">18 untriaged for priority</span></div>
+          <div class="kpi-value">11<span class="unit">/27</span></div>
+          <div class="kpi-delta"><span class="kpi-delta-sub">16 untriaged for priority</span></div>
         </div>
       </div>
     </section>
@@ -1822,7 +2063,7 @@
           </div>
           <div class="timeline-window">Apr 20 – Apr 26</div>
           <div class="timeline-primary">
-            <span class="timeline-value">6</span>
+            <span class="timeline-value">4</span>
             <span class="timeline-unit">intakes</span>
           </div>
           <div class="timeline-stats">
@@ -1850,7 +2091,7 @@
           </div>
           <div class="timeline-window">Apr 1 – Apr 30</div>
           <div class="timeline-primary">
-            <span class="timeline-value">29</span>
+            <span class="timeline-value">27</span>
             <span class="timeline-unit">intakes</span>
           </div>
           <div class="timeline-stats">
@@ -1893,7 +2134,7 @@
           </div>
           <div class="timeline-window">182-day window</div>
           <div class="timeline-primary">
-            <span class="timeline-value">29</span>
+            <span class="timeline-value">27</span>
             <span class="timeline-unit">intakes · all in the last 12 days</span>
           </div>
           <div class="timeline-stats">
@@ -1962,8 +2203,8 @@
               <div class="pipeline-sublabel">BA Assigned Date</div>
               <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
                 
-                <div class="pipeline-gap-value" style="color: var(--purple);">2<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
-                <div class="pipeline-gap-label">4 assigned</div>
+                <div class="pipeline-gap-value" style="color: var(--purple);">2.2<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
+                <div class="pipeline-gap-label">6 assigned</div>
                 
               </div>
             </div>
@@ -1996,7 +2237,7 @@
           </div>
           <div class="worktype-value">
             <span class="worktype-count">6</span>
-            <span class="worktype-pct">21%</span>
+            <span class="worktype-pct">22%</span>
           </div>
           <div class="worktype-bar"><div class="worktype-bar-fill" style="width: 100%"></div></div>
         </div>
@@ -2008,7 +2249,7 @@
           </div>
           <div class="worktype-value">
             <span class="worktype-count">5</span>
-            <span class="worktype-pct">17%</span>
+            <span class="worktype-pct">19%</span>
           </div>
           <div class="worktype-bar"><div class="worktype-bar-fill" style="width: 83%"></div></div>
         </div>
@@ -2020,7 +2261,7 @@
           </div>
           <div class="worktype-value">
             <span class="worktype-count">4</span>
-            <span class="worktype-pct">14%</span>
+            <span class="worktype-pct">15%</span>
           </div>
           <div class="worktype-bar"><div class="worktype-bar-fill" style="width: 67%"></div></div>
         </div>
@@ -2032,7 +2273,7 @@
           </div>
           <div class="worktype-value">
             <span class="worktype-count">3</span>
-            <span class="worktype-pct">10%</span>
+            <span class="worktype-pct">11%</span>
           </div>
           <div class="worktype-bar"><div class="worktype-bar-fill" style="width: 50%"></div></div>
         </div>
@@ -2056,7 +2297,7 @@
           </div>
           <div class="worktype-value">
             <span class="worktype-count">1</span>
-            <span class="worktype-pct">3%</span>
+            <span class="worktype-pct">4%</span>
           </div>
           <div class="worktype-bar"><div class="worktype-bar-fill" style="width: 17%"></div></div>
         </div>
@@ -2068,7 +2309,7 @@
           </div>
           <div class="worktype-value">
             <span class="worktype-count">1</span>
-            <span class="worktype-pct">3%</span>
+            <span class="worktype-pct">4%</span>
           </div>
           <div class="worktype-bar"><div class="worktype-bar-fill" style="width: 17%"></div></div>
         </div>
@@ -2080,7 +2321,7 @@
           </div>
           <div class="worktype-value">
             <span class="worktype-count">4</span>
-            <span class="worktype-pct">14%</span>
+            <span class="worktype-pct">15%</span>
           </div>
           <div class="worktype-bar"><div class="worktype-bar-fill" style="width: 67%"></div></div>
         </div>
@@ -2092,7 +2333,7 @@
           </div>
           <div class="worktype-value">
             <span class="worktype-count">4</span>
-            <span class="worktype-pct">14%</span>
+            <span class="worktype-pct">15%</span>
           </div>
           <div class="worktype-bar"><div class="worktype-bar-fill" style="width: 67%"></div></div>
         </div>
@@ -2116,7 +2357,7 @@
           <div class="outcome-label">Substantive build · queued</div>
           <div class="outcome-count-row">
             <div class="outcome-count">19</div>
-            <div class="outcome-pct">66%</div>
+            <div class="outcome-pct">70%</div>
           </div>
           <p class="outcome-desc">
             Real CoE work classified across seven change categories — task set, automation, picklist, field, template, stage, object. This is the pipeline into Sprint 10 and beyond.
@@ -2127,7 +2368,7 @@
           <div class="outcome-label">Closed at review</div>
           <div class="outcome-count-row">
             <div class="outcome-count">4</div>
-            <div class="outcome-pct">14%</div>
+            <div class="outcome-pct">15%</div>
           </div>
           <p class="outcome-desc">
             Tagged "Already Completed" or "No Needed." Stopped before reaching IT — that's measurable savings.
@@ -2137,158 +2378,260 @@
         <div class="outcome">
           <div class="outcome-label">Pending classification</div>
           <div class="outcome-count-row">
-            <div class="outcome-count">6</div>
-            <div class="outcome-pct">21%</div>
+            <div class="outcome-count">4</div>
+            <div class="outcome-pct">15%</div>
           </div>
           <p class="outcome-desc">
-            VAWA CP Case Type + VPT Client was informed of the Cancellation Refund Policy + Follow Up SMS Template + Update of Matter Plan LPR VAWA AOS + TEST + JEAN & JANET TEST — all received Apr 23, classification in progress.
+            VAWA CP Case Type + VPT Client was informed of the Cancellation Refund Policy + Follow Up SMS Template + Update of Matter Plan LPR VAWA AOS — all received Apr 23, classification in progress.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- ══════════ §06 Flow ══════════ -->
+    <!-- ══════════ §06 Flow — backlog equation, stage trend, outcomes ══════════ -->
     <section class="section">
       <div class="section-head">
-        <div class="section-num">06 · Flow<span class="tt" tabindex="0" data-tip="Weekly intake velocity on the left, backlog distribution by CoE stage on the right. Shows both the pressure coming in and where open work is currently parked in the pipeline.">i</span></div>
+        <div class="section-num">06 · Flow<span class="tt" tabindex="0" data-tip="Movement, not snapshot. The backlog equation shows how the queue grew or shrank this week. The stacked area shows where work is accumulating across stages over time. Outcomes show how requests actually leave the queue.">i</span></div>
         <h2 class="section-title">
-          Intake velocity and stage composition.
+          The film, not the photo. <span class="muted">What grew, what shrank, where it's piling up.</span>
         </h2>
       </div>
 
-      <div class="two-col">
-        <div class="card panel">
-          <h3 class="panel-title">Weekly intake — <em>W16 peak: 23</em></h3>
-          <div class="bar-row">
-            <div class="bar-label">W15<span class="sub">Apr 6 – Apr 12</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width: 0%"></div></div>
-            <div class="bar-value">0</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">W16<span class="sub">Apr 13 – Apr 19</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
-            <div class="bar-value">23</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">W17<span class="sub">Apr 20 – Apr 26</span></div>
-            <div class="bar-track"><div class="bar-fill" style="width: 26%"></div></div>
-            <div class="bar-value">6</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label">W18<span class="sub">Apr 27 – Now</span></div>
-            <div class="bar-track"><div class="bar-fill current" style="width: 0%"></div></div>
-            <div class="bar-value">0</div>
-          </div>
-          <p style="font-size:var(--text-sm); color:var(--text-tertiary); line-height:1.55; margin-top:var(--space-5);">
-            This week is the first read on steady-state inflow. Watch this number from here on.
-          </p>
+      <!-- ── Top KPI row: backlog equation cards ── -->
+      <div class="flow-kpis">
+        <div class="flow-kpi flow-kpi-primary">
+          <div class="flow-kpi-label">Current backlog</div>
+          <div class="flow-kpi-value">23</div>
+          
+            
+              <div class="flow-kpi-delta flat">— flat vs last week</div>
+            
+          
         </div>
 
-        <div class="card panel">
-          <h3 class="panel-title">Backlog by stage — <em>four at IT Prioritization</em></h3>
-          <div class="donut-wrap">
-            <div class="donut">
-              <svg viewBox="0 0 42 42" width="160" height="160">
-                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="var(--border-strong)" stroke-width="3.5"/>
-                
-                <circle cx="21" cy="21" r="15.915" fill="transparent"
-                        stroke="url(#donut-grad-0)" stroke-width="3.5"
-                        stroke-dasharray="34.8 100"
-                        stroke-dashoffset="25.0"
-                        transform="rotate(-90 21 21)" stroke-linecap="round"/>
-                
-                <circle cx="21" cy="21" r="15.915" fill="transparent"
-                        stroke="url(#donut-grad-1)" stroke-width="3.5"
-                        stroke-dasharray="17.4 100"
-                        stroke-dashoffset="-9.8"
-                        transform="rotate(-90 21 21)" stroke-linecap="round"/>
-                
-                <circle cx="21" cy="21" r="15.915" fill="transparent"
-                        stroke="url(#donut-grad-2)" stroke-width="3.5"
-                        stroke-dasharray="17.4 100"
-                        stroke-dashoffset="-27.2"
-                        transform="rotate(-90 21 21)" stroke-linecap="round"/>
-                
-                <circle cx="21" cy="21" r="15.915" fill="transparent"
-                        stroke="url(#donut-grad-3)" stroke-width="3.5"
-                        stroke-dasharray="17.4 100"
-                        stroke-dashoffset="-44.6"
-                        transform="rotate(-90 21 21)" stroke-linecap="round"/>
-                
-                <circle cx="21" cy="21" r="15.915" fill="transparent"
-                        stroke="url(#donut-grad-4)" stroke-width="3.5"
-                        stroke-dasharray="13.0 100"
-                        stroke-dashoffset="-62.0"
-                        transform="rotate(-90 21 21)" stroke-linecap="round"/>
-                
-                <defs>
-                  
-                  <linearGradient id="donut-grad-0" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#5e5ce6"/>
-                    <stop offset="100%" stop-color="#bf5af2"/>
-                  </linearGradient>
-                  
-                  <linearGradient id="donut-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ff9f0a"/>
-                    <stop offset="100%" stop-color="#ff375f"/>
-                  </linearGradient>
-                  
-                  <linearGradient id="donut-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#30d158"/>
-                    <stop offset="100%" stop-color="#30d158"/>
-                  </linearGradient>
-                  
-                  <linearGradient id="donut-grad-3" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#64d2ff"/>
-                    <stop offset="100%" stop-color="#0a84ff"/>
-                  </linearGradient>
-                  
-                  <linearGradient id="donut-grad-4" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#bf5af2"/>
-                    <stop offset="100%" stop-color="#5e5ce6"/>
-                  </linearGradient>
-                  
-                </defs>
-              </svg>
-              <div class="donut-center">
-                <span class="donut-big">23</span>
-                <span class="donut-small">open</span>
-              </div>
-            </div>
-            <div class="legend">
-              
-              <div class="legend-row">
-                <span class="legend-dot" style="background: var(--indigo)"></span>
-                <span class="legend-name">Triage</span>
-                <span class="legend-val">8</span>
-              </div>
-              
-              <div class="legend-row">
-                <span class="legend-dot" style="background: var(--orange)"></span>
-                <span class="legend-name">In Progress</span>
-                <span class="legend-val">4</span>
-              </div>
-              
-              <div class="legend-row">
-                <span class="legend-dot" style="background: var(--green)"></span>
-                <span class="legend-name">IT Prioritization</span>
-                <span class="legend-val">4</span>
-              </div>
-              
-              <div class="legend-row">
-                <span class="legend-dot" style="background: var(--cyan)"></span>
-                <span class="legend-name">New Request</span>
-                <span class="legend-val">4</span>
-              </div>
-              
-              <div class="legend-row">
-                <span class="legend-dot" style="background: var(--purple)"></span>
-                <span class="legend-name">Awaiting Next Sprint</span>
-                <span class="legend-val">3</span>
-              </div>
-              
+        <div class="flow-kpi">
+          <div class="flow-kpi-label">Prior backlog</div>
+          <div class="flow-kpi-value secondary">23</div>
+          <div class="flow-kpi-delta muted">Carried in</div>
+        </div>
+
+        <div class="flow-kpi">
+          <div class="flow-kpi-label">New intakes</div>
+          <div class="flow-kpi-value up">+0</div>
+          <div class="flow-kpi-delta muted">vs 4 last week</div>
+        </div>
+
+        <div class="flow-kpi">
+          <div class="flow-kpi-label">Completed</div>
+          <div class="flow-kpi-value down">−0</div>
+          <div class="flow-kpi-delta muted">vs 3 last week</div>
+        </div>
+
+        <div class="flow-kpi">
+          <div class="flow-kpi-label">Closed at review</div>
+          <div class="flow-kpi-value down">−0</div>
+          <div class="flow-kpi-delta muted">Removed / declined</div>
+        </div>
+      </div>
+
+      <!-- ── Equation strip ── -->
+      <div class="flow-equation">
+        <div class="eq-pill"><span class="eq-num">23</span><span class="eq-label">Prior</span></div>
+        <div class="eq-op">+</div>
+        <div class="eq-pill eq-pill-up"><span class="eq-num">0</span><span class="eq-label">New intake</span></div>
+        <div class="eq-op">−</div>
+        <div class="eq-pill eq-pill-down"><span class="eq-num">0</span><span class="eq-label">Completed</span></div>
+        <div class="eq-op">−</div>
+        <div class="eq-pill eq-pill-down"><span class="eq-num">0</span><span class="eq-label">Closed at review</span></div>
+        <div class="eq-op">=</div>
+        <div class="eq-pill eq-pill-result"><span class="eq-num">23</span><span class="eq-label">Current backlog</span></div>
+      </div>
+
+      <!-- ── Two-column: stacked area (left, wide) + stage cards (right) ── -->
+      <div class="flow-grid">
+        <div class="card panel flow-area-card">
+          <div class="flow-area-head">
+            <div>
+              <h3 class="panel-title" style="margin-bottom: 4px;">Backlog composition by stage</h3>
+              <p class="flow-area-sub">Building history — chart fills in as weekly snapshots accumulate</p>
             </div>
           </div>
+
+          <div class="flow-area-svg-wrap">
+            <svg viewBox="0 0 720 280" width="100%" preserveAspectRatio="none" style="display: block;">
+              <!-- Y-axis grid + labels -->
+              
+              <line x1="40" x2="700" y1="244.0" y2="244.0" stroke="var(--border)" stroke-width="0.5"/>
+              <text x="32" y="248.0" text-anchor="end" font-size="10" fill="var(--text-quaternary)">0</text>
+              
+              <line x1="40" x2="700" y1="134.56" y2="134.56" stroke="var(--border)" stroke-width="0.5"/>
+              <text x="32" y="138.56" text-anchor="end" font-size="10" fill="var(--text-quaternary)">12</text>
+              
+              <line x1="40" x2="700" y1="16.0" y2="16.0" stroke="var(--border)" stroke-width="0.5"/>
+              <text x="32" y="20.0" text-anchor="end" font-size="10" fill="var(--text-quaternary)">25</text>
+              
+
+              <!-- Stacked polygons -->
+              
+              <polygon points="40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,207.5 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
+                       fill="#4f7ef0" fill-opacity="0.85"
+                       stroke="#4f7ef0" stroke-width="0.5"/>
+              
+              <polygon points="40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,134.6 700.0,207.5 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
+                       fill="#a463f5" fill-opacity="0.85"
+                       stroke="#a463f5" stroke-width="0.5"/>
+              
+              <polygon points="40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,134.6 700.0,134.6 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
+                       fill="#e1417a" fill-opacity="0.85"
+                       stroke="#e1417a" stroke-width="0.5"/>
+              
+              <polygon points="40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,61.6 700.0,134.6 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
+                       fill="#e87a3a" fill-opacity="0.85"
+                       stroke="#e87a3a" stroke-width="0.5"/>
+              
+              <polygon points="40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,244.0 700.0,34.2 700.0,61.6 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
+                       fill="#d4a23a" fill-opacity="0.85"
+                       stroke="#d4a23a" stroke-width="0.5"/>
+              
+
+              <!-- X-axis labels -->
+              
+              <text x="40.0" y="266" text-anchor="middle" font-size="10" fill="var(--text-quaternary)" letter-spacing="0.04em">W11</text>
+              
+              <text x="134.28571428571428" y="266" text-anchor="middle" font-size="10" fill="var(--text-quaternary)" letter-spacing="0.04em">W12</text>
+              
+              <text x="228.57142857142858" y="266" text-anchor="middle" font-size="10" fill="var(--text-quaternary)" letter-spacing="0.04em">W13</text>
+              
+              <text x="322.85714285714283" y="266" text-anchor="middle" font-size="10" fill="var(--text-quaternary)" letter-spacing="0.04em">W14</text>
+              
+              <text x="417.14285714285717" y="266" text-anchor="middle" font-size="10" fill="var(--text-quaternary)" letter-spacing="0.04em">W15</text>
+              
+              <text x="511.42857142857144" y="266" text-anchor="middle" font-size="10" fill="var(--text-quaternary)" letter-spacing="0.04em">W16</text>
+              
+              <text x="605.7142857142857" y="266" text-anchor="middle" font-size="10" fill="var(--text-quaternary)" letter-spacing="0.04em">W17</text>
+              
+              <text x="700.0" y="266" text-anchor="middle" font-size="10" fill="var(--text-quaternary)" letter-spacing="0.04em">W18</text>
+              
+
+              <!-- Y-axis label -->
+              <text x="14" y="130.0" text-anchor="middle" font-size="9" fill="var(--text-quaternary)" transform="rotate(-90, 14, 130.0)" letter-spacing="0.04em">REQUESTS IN BACKLOG</text>
+            </svg>
+          </div>
+
+          <!-- Legend -->
+          <div class="flow-area-legend">
+            
+            <div class="flow-legend-item">
+              <span class="flow-legend-dot" style="background: #4f7ef0"></span>
+              <span>New Request</span>
+            </div>
+            
+            <div class="flow-legend-item">
+              <span class="flow-legend-dot" style="background: #a463f5"></span>
+              <span>Triage</span>
+            </div>
+            
+            <div class="flow-legend-item">
+              <span class="flow-legend-dot" style="background: #e1417a"></span>
+              <span>IT Prioritization</span>
+            </div>
+            
+            <div class="flow-legend-item">
+              <span class="flow-legend-dot" style="background: #e87a3a"></span>
+              <span>In Progress</span>
+            </div>
+            
+            <div class="flow-legend-item">
+              <span class="flow-legend-dot" style="background: #d4a23a"></span>
+              <span>Awaiting Next Sprint</span>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="card panel flow-stage-card">
+          <h3 class="panel-title" style="margin-bottom: 6px;">This week by stage</h3>
+          <p class="flow-area-sub" style="margin-bottom: var(--space-5);">Snapshot of where the 23 sit right now</p>
+          
+          <div class="stage-row" style="border-left-color: #4f7ef0;">
+            <div class="stage-row-name">
+              New Request
+              
+                <div class="stage-row-delta muted">no prior week</div>
+              
+            </div>
+            <div class="stage-row-count">4</div>
+          </div>
+          
+          <div class="stage-row" style="border-left-color: #a463f5;">
+            <div class="stage-row-name">
+              Triage
+              
+                <div class="stage-row-delta muted">no prior week</div>
+              
+            </div>
+            <div class="stage-row-count">8</div>
+          </div>
+          
+          <div class="stage-row" style="border-left-color: #e1417a;">
+            <div class="stage-row-name">
+              IT Prioritization
+              
+                <div class="stage-row-delta muted">no prior week</div>
+              
+            </div>
+            <div class="stage-row-count">0</div>
+          </div>
+          
+          <div class="stage-row" style="border-left-color: #e87a3a;">
+            <div class="stage-row-name">
+              In Progress
+              
+                <div class="stage-row-delta muted">no prior week</div>
+              
+            </div>
+            <div class="stage-row-count">8</div>
+          </div>
+          
+          <div class="stage-row" style="border-left-color: #d4a23a;">
+            <div class="stage-row-name">
+              Awaiting Next Sprint
+              
+                <div class="stage-row-delta muted">no prior week</div>
+              
+            </div>
+            <div class="stage-row-count">3</div>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- ── Outcomes (trailing 4 weeks) ── -->
+      <div class="flow-outcomes-head">
+        <h3 class="panel-title" style="margin-bottom: 4px;">Completion outcomes — trailing 4 weeks</h3>
+        <p class="flow-area-sub">How requests exit the queue, not just whether they exit</p>
+      </div>
+
+      <div class="flow-outcomes-grid">
+        <div class="outcome-card outcome-closed">
+          <div class="outcome-num">4</div>
+          <div class="outcome-name">Closed at review</div>
+          <div class="outcome-desc">Evaluated, removed from roadmap, not needed, or duplicate</div>
+        </div>
+        <div class="outcome-card outcome-epmo">
+          <div class="outcome-num">4</div>
+          <div class="outcome-name">Pushed to EPMO</div>
+          <div class="outcome-desc">Too large for the CoE — handed off as a formal EPMO project</div>
+        </div>
+        <div class="outcome-card outcome-hold">
+          <div class="outcome-num">4</div>
+          <div class="outcome-name">On hold</div>
+          <div class="outcome-desc">Valid but paused — revisit when blocking conditions clear</div>
+        </div>
+        <div class="outcome-card outcome-delivered">
+          <div class="outcome-num">0</div>
+          <div class="outcome-name">Delivered</div>
+          <div class="outcome-desc">Implemented and shipped to production</div>
         </div>
       </div>
     </section>
@@ -2328,7 +2671,7 @@
       <div class="section-head">
         <div class="section-num">08 · Team<span class="tt" tabindex="0" data-tip="Workload distribution across the CoE team. Shows how many active portfolio items each PM is carrying and how their week breaks down across intake, triage, project work, and comms.">i</span></div>
         <h2 class="section-title">
-          Mar and David. <span class="muted">16 and 13 projects.</span>
+          Mar and David. <span class="muted">13 and 14 projects.</span>
         </h2>
       </div>
 
@@ -2342,8 +2685,8 @@
             </div>
           </div>
           <div class="person-stat">
-            <div class="person-stat-value">16</div>
-            <div class="person-stat-label">of 29 projects · 55%</div>
+            <div class="person-stat-value">13</div>
+            <div class="person-stat-label">of 27 projects · 48%</div>
           </div>
           <div class="alloc-row">
             <div class="alloc-name">Intake</div>
@@ -2379,8 +2722,8 @@
             </div>
           </div>
           <div class="person-stat">
-            <div class="person-stat-value">13</div>
-            <div class="person-stat-label">of 29 projects · 45%</div>
+            <div class="person-stat-value">14</div>
+            <div class="person-stat-label">of 27 projects · 52%</div>
           </div>
           <div class="alloc-row">
             <div class="alloc-name">Intake</div>
@@ -2427,7 +2770,7 @@
           <div class="rec-content">
             <h4>Populate BA Assigned Date this week.</h4>
             <p>
-              Anu is assigning BAs Apr 24–25 to ready tickets based on Frank's sizing. With <em>4 items already classified at IT Prioritization</em>, this week's assignments are the first real data point for the second half of the pipeline. Once 5–10 projects have both First Review and BA Assigned dates, we have a defensible velocity read on the handoff.
+              Anu is assigning BAs Apr 24–25 to ready tickets based on Frank's sizing. With <em>0 items already classified at IT Prioritization</em>, this week's assignments are the first real data point for the second half of the pipeline. Once 5–10 projects have both First Review and BA Assigned dates, we have a defensible velocity read on the handoff.
             </p>
           </div>
         </div>
@@ -2436,7 +2779,7 @@
           <div class="rec-content">
             <h4>Require a status color on every portfolio item — Fridays.</h4>
             <p>
-              Cycle-time data is strong; health-at-a-glance still isn't. Green / yellow / red every Friday, no exceptions. Complements the quantitative metrics with the qualitative read that lets Sara spot stalls before they become backlog. Today, <em>22 of 29 items have no color set.</em>
+              Cycle-time data is strong; health-at-a-glance still isn't. Green / yellow / red every Friday, no exceptions. Complements the quantitative metrics with the qualitative read that lets Sara spot stalls before they become backlog. Today, <em>22 of 27 items have no color set.</em>
             </p>
           </div>
         </div>
@@ -2445,7 +2788,7 @@
           <div class="rec-content">
             <h4>One-week time log for Mar &amp; David.</h4>
             <p>
-              Workload by count is imbalanced (16/13 — Mar is +23% this week). Workload by hours is not documented at all. A single Friday-retro question — <em>"roughly, how did your week break down across intake, triage, project work, and comms?"</em> — converts §08 from placeholder to ground truth. That's the prerequisite for the data-backed resource request Sara outlined.
+              Workload by count is imbalanced (13/14 — David is +8% this week). Workload by hours is not documented at all. A single Friday-retro question — <em>"roughly, how did your week break down across intake, triage, project work, and comms?"</em> — converts §08 from placeholder to ground truth. That's the prerequisite for the data-backed resource request Sara outlined.
             </p>
           </div>
         </div>
@@ -2454,8 +2797,8 @@
 
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
-      <span>29 requests · 3.8 bd review · 14% rejected at gate · 2 delivered</span>
-      <span id="age-indicator">Snapshot · April 27, 2026 · 10:19 AM ET</span>
+      <span>27 requests · 3.8 bd review · 15% rejected at gate · 0 delivered</span>
+      <span id="age-indicator">Snapshot · April 27, 2026 · 1:49 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -2536,7 +2879,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-04-27T14:19:15+00:00');
+      const snapshotTime = new Date('2026-04-27T17:49:40+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
