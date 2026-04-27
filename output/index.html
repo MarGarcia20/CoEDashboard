@@ -1908,7 +1908,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 27, 2026 · 2:41 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 27, 2026 · 3:39 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1930,7 +1930,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 27 · 2:41 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 27 · 3:39 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1941,7 +1941,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">April 27, 2026 · 2:41 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">April 27, 2026 · 3:39 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2466,8 +2466,8 @@
             </div>
           </div>
 
-          <div class="flow-area-svg-wrap">
-            <svg viewBox="0 0 720 280" width="100%" preserveAspectRatio="none" style="display: block;">
+          <div class="flow-area-svg-wrap" style="position:relative;">
+            <svg id="area-chart-svg" viewBox="0 0 720 280" width="100%" preserveAspectRatio="none" style="display: block;">
               <!-- Y-axis grid + labels -->
               
               <line x1="40" x2="700" y1="244.0" y2="244.0" stroke="var(--border)" stroke-width="0.5"/>
@@ -2524,8 +2524,35 @@
 
               <!-- Y-axis label -->
               <text x="14" y="130.0" text-anchor="middle" font-size="9" fill="var(--text-quaternary)" transform="rotate(-90, 14, 130.0)" letter-spacing="0.04em">REQUESTS IN BACKLOG</text>
+
+              <!-- Hover crosshair line (hidden by default) -->
+              <line id="area-crosshair" x1="0" x2="0" y1="16" y2="244" stroke="var(--border-strong)" stroke-width="1" stroke-dasharray="3 3" style="display:none; pointer-events:none;"/>
+
+              <!-- Transparent overlay for mouse events -->
+              <rect id="area-overlay"
+                    x="40" y="16"
+                    width="660" height="228"
+                    fill="transparent" style="cursor:crosshair;"/>
             </svg>
+
+            <!-- Floating tooltip -->
+            <div id="area-tooltip" style="display:none; position:fixed; z-index:200; pointer-events:none;
+                 background:var(--bg-elev-3); border:1px solid var(--border-strong);
+                 border-radius:var(--radius-sm); padding:10px 12px; min-width:160px;
+                 box-shadow:0 8px 32px rgba(0,0,0,0.28); font-size:var(--text-sm);">
+            </div>
           </div>
+
+          <!-- Area chart data for JS tooltip -->
+          <script type="application/json" id="area-chart-data">
+          {
+            "labels": ["W11", "W12", "W13", "W14", "W15", "W16", "W17", "W18"],
+            "padLeft": 40,
+            "plotW": 660,
+            "viewBoxWidth": 720,
+            "stages": [{"name": "New Request", "color": "#4f7ef0", "values": [0, 0, 0, 0, 0, 0, 0, 4]},{"name": "Triage", "color": "#a463f5", "values": [0, 0, 0, 0, 0, 0, 0, 8]},{"name": "IT Prioritization", "color": "#e1417a", "values": [0, 0, 0, 0, 0, 0, 0, 0]},{"name": "In Progress", "color": "#e87a3a", "values": [0, 0, 0, 0, 0, 0, 0, 8]},{"name": "Awaiting Next Sprint", "color": "#d4a23a", "values": [0, 0, 0, 0, 0, 0, 0, 3]}]
+          }
+          </script>
 
           <!-- Legend -->
           <div class="flow-area-legend">
@@ -2827,7 +2854,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>27 requests · 3.8 bd review · 15% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 27, 2026 · 2:41 PM ET</span>
+      <span id="age-indicator">Snapshot · April 27, 2026 · 3:39 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -2908,7 +2935,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-04-27T18:41:29+00:00');
+      const snapshotTime = new Date('2026-04-27T19:39:32+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
@@ -2967,6 +2994,91 @@
       }
       updateAge();
       setInterval(updateAge, 60000);
+    })();
+
+    // ── Stacked area chart tooltip ────────────────────────────────────────────
+    (function initAreaTooltip() {
+      const dataEl = document.getElementById('area-chart-data');
+      if (!dataEl) return;
+      const chartData = JSON.parse(dataEl.textContent);
+      const { labels, padLeft, plotW, viewBoxWidth, stages } = chartData;
+      const weeks = labels.length;
+
+      const svg       = document.getElementById('area-chart-svg');
+      const overlay   = document.getElementById('area-overlay');
+      const tooltip   = document.getElementById('area-tooltip');
+      const crosshair = document.getElementById('area-crosshair');
+      if (!svg || !overlay || !tooltip || !crosshair) return;
+
+      function weekIndexFromMouseX(clientX) {
+        const svgRect = svg.getBoundingClientRect();
+        const scale   = svgRect.width / viewBoxWidth;
+        const svgX    = (clientX - svgRect.left) / scale;
+        const relX    = svgX - padLeft;
+        const colW    = weeks > 1 ? plotW / (weeks - 1) : plotW;
+        return Math.max(0, Math.min(weeks - 1, Math.round(relX / colW)));
+      }
+
+      function colSvgX(idx) {
+        return weeks > 1
+          ? padLeft + (plotW * idx / (weeks - 1))
+          : padLeft + plotW / 2;
+      }
+
+      overlay.addEventListener('mousemove', function(e) {
+        const idx   = weekIndexFromMouseX(e.clientX);
+        const total = stages.reduce((s, st) => s + (st.values[idx] || 0), 0);
+
+        // Crosshair
+        const cx = colSvgX(idx);
+        crosshair.setAttribute('x1', cx);
+        crosshair.setAttribute('x2', cx);
+        crosshair.style.display = '';
+
+        // Build tooltip HTML
+        let rows = '';
+        for (let i = stages.length - 1; i >= 0; i--) {
+          const st = stages[i];
+          const v  = st.values[idx] || 0;
+          if (v === 0) continue;
+          rows += `<div style="display:flex;align-items:center;gap:7px;margin-top:5px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:${st.color};flex-shrink:0;display:inline-block;"></span>
+            <span style="flex:1;color:var(--text-secondary);">${st.name}</span>
+            <span style="font-weight:600;color:var(--text);">${v}</span>
+          </div>`;
+        }
+        if (rows === '') {
+          rows = `<div style="color:var(--text-tertiary);margin-top:4px;font-size:var(--text-xs);">No data this week</div>`;
+        }
+        const divider = `<div style="border-top:1px solid var(--border);margin:7px 0 4px;"></div>`;
+        const totalRow = `<div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:var(--text-tertiary);font-size:var(--text-xs);letter-spacing:0.06em;text-transform:uppercase;">Total</span>
+          <span style="font-weight:700;color:var(--text);">${total}</span>
+        </div>`;
+
+        tooltip.innerHTML =
+          `<div style="font-weight:600;color:var(--text);font-size:var(--text-sm);letter-spacing:0.04em;">${labels[idx]}</div>` +
+          rows + divider + totalRow;
+
+        // Position: follow cursor, flip left if near right edge
+        const ttW  = 180;
+        const ttH  = tooltip.offsetHeight || 120;
+        const vw   = window.innerWidth;
+        const vh   = window.innerHeight;
+        let left   = e.clientX + 14;
+        let top    = e.clientY - ttH / 2;
+        if (left + ttW > vw - 8) left = e.clientX - ttW - 14;
+        if (top < 8)             top  = 8;
+        if (top + ttH > vh - 8)  top  = vh - ttH - 8;
+        tooltip.style.left    = left + 'px';
+        tooltip.style.top     = top  + 'px';
+        tooltip.style.display = '';
+      });
+
+      overlay.addEventListener('mouseleave', function() {
+        tooltip.style.display  = 'none';
+        crosshair.style.display = 'none';
+      });
     })();
   </script>
 </body>
