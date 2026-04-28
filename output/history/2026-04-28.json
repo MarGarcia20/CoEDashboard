@@ -1,6 +1,6 @@
 {
   "date": "2026-04-28",
-  "generated_at": "2026-04-28T19:06:21",
+  "generated_at": "2026-04-28T22:16:07",
   "metrics": {
     "total": 31,
     "open_count": 27,
@@ -25,7 +25,7 @@
     "yield_gate_pct": "13%",
     "yield_pending": 5,
     "yield_pending_pct": "16%",
-    "yield_pending_names": "Follow Up SMS Template + Update \"AR11 - Address Change\" Litify Taskset (AOS - Phase 2) + Deprecate \"LPR VAWA Supplement\" Litify taskset + Add Follow Up Status to CT-INT + LLF Probono Mark",
+    "yield_pending_names": "LLF Probono Mark + Follow Up SMS Template + Update \"AR11 - Address Change\" Litify Taskset (AOS - Phase 2) + Deprecate \"LPR VAWA Supplement\" Litify taskset + Add Follow Up Status to CT-INT",
     "flow_weeks": {
       "15": 0,
       "16": 23,
@@ -121,12 +121,12 @@
       "Stage changes": 2,
       "Object modifications": 1,
       "No action / Already done": 4,
-      "TBD": 5
+      "TBD": 4
     },
     "work_type_max": 7,
     "pm_counts": {
-      "Jessie Logan": 1,
       "Maria Garcia": 15,
+      "Jessie Logan": 1,
       "David Molano": 16
     },
     "team_mar_count": 15,
