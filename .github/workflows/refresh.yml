@@ -1,11 +1,12 @@
 name: Refresh CoE Dashboard
 
 on:
-  # Two cron triggers to cover both EDT (summer) and EST (winter).
-  # The job checks the actual Eastern Time hour and only proceeds at 12:00 ET.
+  # Run every 2 hours during ET business hours (8am–6pm), Mon–Fri.
+  # Two UTC cron windows cover EDT (summer) and EST (winter); the job
+  # checks the actual ET hour and only proceeds inside the work window.
   schedule:
-    - cron: '0 16 * * 1-5'   # 12pm EDT  / 11am EST
-    - cron: '0 17 * * 1-5'   # 12pm EST  / 1pm EDT
+    - cron: '7 12-22/2 * * 1-5'   # EDT window: 8am, 10am, 12pm, 2pm, 4pm, 6pm ET
+    - cron: '7 13-23/2 * * 1-5'   # EST window: 8am, 10am, 12pm, 2pm, 4pm, 6pm ET
   workflow_dispatch:
 
 permissions:
@@ -16,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check Eastern Time is 12:00
+      - name: Check Eastern Time is in business window
         id: et_check
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
@@ -26,13 +27,15 @@ jobs:
           fi
           et_hour=$(TZ=America/New_York date +%H)
           echo "Current Eastern Time hour: $et_hour"
-          if [ "$et_hour" = "12" ]; then
-            echo "ET is 12:00 — proceeding with refresh."
-            echo "run=yes" >> "$GITHUB_OUTPUT"
-          else
-            echo "ET is $et_hour (not 12) — skipping this cron tick."
-            echo "run=no" >> "$GITHUB_OUTPUT"
-          fi
+          # Allowed ET hours: 8, 10, 12, 14, 16, 18 (every 2h, 8am–6pm)
+          case "$et_hour" in
+            08|10|12|14|16|18)
+              echo "ET is $et_hour:00 — within business window, proceeding."
+              echo "run=yes" >> "$GITHUB_OUTPUT" ;;
+            *)
+              echo "ET is $et_hour — outside business window, skipping."
+              echo "run=no" >> "$GITHUB_OUTPUT" ;;
+          esac
 
       - name: Checkout repo
         if: steps.et_check.outputs.run == 'yes'

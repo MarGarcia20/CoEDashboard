@@ -547,7 +547,7 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
 
     # Prior backlog: total in active stages as of last Sunday end-of-day
     if last_week_snap:
-        prior_backlog = int(last_week_snap.get("backlog_total", sum(stage_last_week.values())))
+        prior_backlog = int(last_week_snap.get("backlog_total", sum(stage_baseline.values())))
     else:
         # Fallback: derive from current = prior + intakes - completed - closed
         prior_backlog = max(0, len(backlog_items) - intakes_this_week + completed_this_week + closed_at_review_this_week)
