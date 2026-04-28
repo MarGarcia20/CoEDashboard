@@ -50,6 +50,74 @@ def num_to_words_cap(n: int) -> str:
     return num_to_words(n).capitalize()
 
 
+# ── Recommendation builder (§09) ──────────────────────────────────────────────
+
+# Threshold from the §09 narrative itself: "Once 5–10 projects have both
+# First Review and BA Assigned dates, we have a defensible velocity read".
+# Drop the BA-assigned-date rec once we cross the lower bound.
+BA_ASSIGNED_THRESHOLD = 5
+
+# Manual override for rec 03 — set to True once Mar & David have submitted
+# their one-week time log self-report. There's no automated metric for this
+# (it lives in their heads / a Slack thread), so it's a manual flag.
+TIME_LOG_COMPLETED = False
+
+
+def _build_recs(metrics: dict) -> list[dict]:
+    """
+    Build the list of open recommendations for §09. Each rec self-evaluates
+    whether it still applies; resolved recs drop off the list. Template
+    re-numbers from 1 based on what comes back.
+    """
+    recs: list[dict] = []
+
+    # Rec 01: BA Assigned Date
+    if metrics.get("rec_ba_count", 0) < BA_ASSIGNED_THRESHOLD:
+        recs.append({
+            "id": "ba_assigned",
+            "title": "Populate BA Assigned Date this week.",
+            "body_html": (
+                f"Anu is assigning BAs Apr 24–25 to ready tickets based on Frank's sizing. "
+                f"With <em>{metrics['rec_it_prio_count']} items already classified at IT "
+                f"Prioritization</em>, this week's assignments are the first real data "
+                f"point for the second half of the pipeline. Once 5–10 projects have both "
+                f"First Review and BA Assigned dates, we have a defensible velocity read "
+                f"on the handoff."
+            ),
+        })
+
+    # Rec 02: Status colors on every portfolio item
+    if metrics.get("rec_no_color_count", 0) > 0:
+        recs.append({
+            "id": "status_color",
+            "title": "Require a status color on every portfolio item — Fridays.",
+            "body_html": (
+                f"Cycle-time data is strong; health-at-a-glance still isn't. Green / "
+                f"yellow / red every Friday, no exceptions. Complements the quantitative "
+                f"metrics with the qualitative read that lets Sara spot stalls before "
+                f"they become backlog. Today, <em>{metrics['rec_status_color_blank']} "
+                f"items have no color set.</em>"
+            ),
+        })
+
+    # Rec 03: One-week time log
+    if not TIME_LOG_COMPLETED:
+        recs.append({
+            "id": "time_log",
+            "title": "One-week time log for Mar &amp; David.",
+            "body_html": (
+                f"Workload by count is imbalanced ({metrics['rec_workload_note']}). "
+                f"Workload by hours is not documented at all. A single Friday-retro "
+                f"question — <em>\"roughly, how did your week break down across intake, "
+                f"triage, project work, and comms?\"</em> — converts §08 from placeholder "
+                f"to ground truth. That's the prerequisite for the data-backed resource "
+                f"request Sara outlined."
+            ),
+        })
+
+    return recs
+
+
 # ── Context builder ───────────────────────────────────────────────────────────
 
 def build_context(metrics: dict, today: date | None = None) -> dict:
@@ -266,10 +334,11 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "team_david_pct": f"{david_pct}%",
         "team_section_title": team_section_title,
 
-        # §09 Recs
+        # §09 Recs (dynamic — only the ones still open)
         "rec_it_prio_count": metrics["rec_it_prio_count"],
         "rec_status_color_blank": metrics["rec_status_color_blank"],
         "rec_workload_note": metrics["rec_workload_note"],
+        "recs": _build_recs(metrics),
 
         # Footer
         "footer_stats": footer_stats,

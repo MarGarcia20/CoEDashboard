@@ -259,6 +259,21 @@
     border-color: #6e6cf0;
     box-shadow: 0 4px 12px -2px rgba(94, 92, 230, 0.4);
   }
+  .auto-refresh-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--text-tertiary);
+    background: transparent;
+    border: 1px dashed var(--border-strong);
+    cursor: default;
+  }
+  .auto-refresh-note .btn-icon { color: var(--text-quaternary); }
   .btn-icon {
     width: 12px; height: 12px;
     opacity: 0.8;
@@ -1920,10 +1935,10 @@
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             View live in Asana
           </a>
-          <button class="btn btn-primary" onclick="triggerRefresh(this)" id="refresh-btn">
+          <span class="auto-refresh-note" title="The dashboard refreshes automatically every weekday at 12pm Eastern Time.">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            <span class="btn-label">Refresh data</span>
-          </button>
+            <span>Auto-refresh · weekdays 12pm ET</span>
+          </span>
         </div>
       </div>
     </div>
@@ -2752,46 +2767,52 @@
     </section>
 
     <!-- ══════════ §09 Recommendations ══════════ -->
+    {% set rec_count = recs | length %}
+    {% set rec_word = {0: "No", 1: "One", 2: "Two", 3: "Three"}.get(rec_count, rec_count) %}
     <section class="section">
       <div class="section-head">
-        <div class="section-num">09 · Next<span class="tt" tabindex="0" data-tip="The three gaps left to close before the CoE's measurement system is complete — BA Assigned population, weekly status colors, and a time-log cycle that turns workload estimates into ground truth.">i</span></div>
+        <div class="section-num">09 · Next<span class="tt" tabindex="0" data-tip="The gaps left to close before the CoE's measurement system is complete. Items disappear from this list as their underlying condition is met.">i</span></div>
         <h2 class="section-title">
-          Three gaps left to close.
+          {% if rec_count == 0 %}
+            All gaps closed.
+          {% elif rec_count == 1 %}
+            One gap left to close.
+          {% else %}
+            {{ rec_word }} gaps left to close.
+          {% endif %}
         </h2>
         <p class="section-lead">
-          The dashboard reads the real pipeline now. Three changes make it self-updating and complete the measurement system Sara will rely on for the resource conversation.
+          {% if rec_count == 0 %}
+            The dashboard reads the real pipeline and every measurement gap that Sara flagged has been resolved. The system is self-updating end-to-end.
+          {% else %}
+            The dashboard reads the real pipeline now. {{ rec_word }} change{% if rec_count != 1 %}s{% endif %} make{% if rec_count == 1 %}s{% endif %} it self-updating and complete{% if rec_count == 1 %}s{% endif %} the measurement system Sara will rely on for the resource conversation.
+          {% endif %}
         </p>
       </div>
 
+      {% if rec_count > 0 %}
       <div class="recs">
+        {% for rec in recs %}
         <div class="rec-item">
-          <div class="rec-num">01</div>
+          <div class="rec-num">{{ "%02d" | format(loop.index) }}</div>
           <div class="rec-content">
-            <h4>Populate BA Assigned Date this week.</h4>
-            <p>
-              Anu is assigning BAs Apr 24–25 to ready tickets based on Frank's sizing. With <em>{{ rec_it_prio_count }} items already classified at IT Prioritization</em>, this week's assignments are the first real data point for the second half of the pipeline. Once 5–10 projects have both First Review and BA Assigned dates, we have a defensible velocity read on the handoff.
-            </p>
+            <h4>{{ rec.title | safe }}</h4>
+            <p>{{ rec.body_html | safe }}</p>
           </div>
         </div>
-        <div class="rec-item">
-          <div class="rec-num">02</div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="recs recs-empty">
+        <div class="rec-item rec-item-done">
+          <div class="rec-num" style="color: var(--green);">✓</div>
           <div class="rec-content">
-            <h4>Require a status color on every portfolio item — Fridays.</h4>
-            <p>
-              Cycle-time data is strong; health-at-a-glance still isn't. Green / yellow / red every Friday, no exceptions. Complements the quantitative metrics with the qualitative read that lets Sara spot stalls before they become backlog. Today, <em>{{ rec_status_color_blank }} items have no color set.</em>
-            </p>
-          </div>
-        </div>
-        <div class="rec-item">
-          <div class="rec-num">03</div>
-          <div class="rec-content">
-            <h4>One-week time log for Mar &amp; David.</h4>
-            <p>
-              Workload by count is imbalanced ({{ rec_workload_note }}). Workload by hours is not documented at all. A single Friday-retro question — <em>"roughly, how did your week break down across intake, triage, project work, and comms?"</em> — converts §08 from placeholder to ground truth. That's the prerequisite for the data-backed resource request Sara outlined.
-            </p>
+            <h4>Measurement system is complete.</h4>
+            <p>BA Assigned dates are populated, every portfolio item has a weekly status color, and the team time-log cycle is in place. Onward.</p>
           </div>
         </div>
       </div>
+      {% endif %}
     </section>
 
     <footer>
@@ -2830,47 +2851,6 @@
         document.documentElement.setAttribute('data-theme', 'light');
       }
       localStorage.setItem('coe-dashboard-theme', next);
-    }
-
-    async function triggerRefresh(btn) {
-      const label = btn.querySelector('.btn-label');
-      const originalLabel = label.textContent;
-
-      btn.disabled = true;
-      label.textContent = 'Refreshing…';
-
-      try {
-        const res = await fetch('/api/refresh', {
-          method: 'POST',
-          headers: { 'X-Requested-With': 'coe-dashboard' },
-          credentials: 'same-origin',
-        });
-
-        let data = {};
-        try { data = await res.json(); } catch {}
-
-        if (res.ok) {
-          btn.classList.add('copied');
-          label.textContent = 'Triggered · ready in ~60s';
-          setTimeout(() => {
-            btn.classList.remove('copied');
-            label.textContent = originalLabel;
-            btn.disabled = false;
-          }, 8000);
-        } else {
-          // Show the real error so the user (or admin) can act on it.
-          const msg = data.error || `Error ${res.status}`;
-          label.textContent = msg.length > 40 ? msg.slice(0, 37) + '…' : msg;
-          console.error('Refresh failed:', res.status, data);
-          btn.disabled = false;
-          setTimeout(() => { label.textContent = originalLabel; }, 6000);
-        }
-      } catch (err) {
-        console.error('Refresh network error:', err);
-        label.textContent = 'Network error — retry';
-        btn.disabled = false;
-        setTimeout(() => { label.textContent = originalLabel; }, 6000);
-      }
     }
 
     // Localize snapshot timestamp to the viewer's timezone + keep "X ago" fresh.

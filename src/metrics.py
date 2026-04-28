@@ -730,6 +730,8 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         # Recs
         "rec_it_prio_count": it_prio_count,
         "rec_status_color_blank": rec_status_color_blank,
+        "rec_no_color_count": len(no_color),
+        "rec_ba_count": ba_count,
 
         # Dynamic date labels
         "tw_window_label": tw_window,
