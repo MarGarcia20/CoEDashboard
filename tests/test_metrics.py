@@ -324,3 +324,110 @@ def test_business_days_review_cycle(items):
     avg = float(m["review_avg"])
     # With our fixture dates the avg should be reasonable (> 1, < 10 bd)
     assert 1.0 <= avg <= 10.0
+
+
+# ── Funnel: stage-based "passed to IT" + Admin Request breakdown ─────────────
+
+def _base_item(gid, **overrides):
+    base = {
+        "gid": gid, "name": f"item-{gid}", "completed": False,
+        "completed_at": None, "status_color": None,
+        "created_on": "2026-04-01", "received_date": "2026-04-15",
+        "first_review_date": "2026-04-18", "ba_assigned": None,
+        "it_prioritization_date": None, "first_review_tags": ["Task Set Change"],
+        "coe_stage": "Triage", "coe_classification": None,
+        "pm_assigned": None, "priority": None, "project_paused": None,
+        "deployed": None, "completed_date": None, "classification_date": None,
+    }
+    base.update(overrides)
+    return base
+
+
+def test_passed_to_it_uses_stage():
+    """total_passed_to_it = items in any IT_HANDOFF_STAGES, regardless of dates."""
+    items = [
+        _base_item("1", coe_stage="IT Prioritization"),
+        _base_item("2", coe_stage="In Progress"),
+        _base_item("3", coe_stage="Awaiting Next Sprint"),
+        _base_item("4", coe_stage="On Hold"),
+        _base_item("5", coe_stage="Triage"),       # not yet in IT
+        _base_item("6", coe_stage="New Request"),  # not yet in IT
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 28))
+    assert m["total_passed_to_it"] == 4
+    assert m["passed_to_it_rate"] == "67%"
+
+
+def test_passed_to_it_breakdown_sprint_vs_halo():
+    """sprint_passed_count + admin_request_count = total_passed_to_it."""
+    items = [
+        # Sprint path
+        _base_item("1", coe_stage="In Progress"),
+        _base_item("2", coe_stage="Awaiting Next Sprint"),
+        # Halo path (Admin Request)
+        _base_item("3", coe_stage="In Progress",
+                   coe_classification="Admin Request"),
+        _base_item("4", coe_stage="On Hold",
+                   coe_classification="Admin Request"),
+        # Not in IT
+        _base_item("5", coe_stage="Triage"),
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 28))
+    assert m["total_passed_to_it"] == 4
+    assert m["sprint_passed_count"] == 2
+    assert m["admin_request_count"] == 2
+
+
+def test_ba_to_it_cycle_when_dates_present():
+    """BA→IT cycle time is a quality metric — only computed when dates set."""
+    items = [
+        _base_item("1", coe_stage="In Progress",
+                   ba_assigned="2026-04-21", it_prioritization_date="2026-04-24"),
+        # Mon Apr 21 → Thu Apr 24 = 3 business days
+        _base_item("2", coe_stage="In Progress"),  # no dates → not counted
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 28))
+    assert m["ba_to_it_dated_count"] == 1
+    assert float(m["ba_to_it_cycle_avg"]) == 3.0
+    # Stage drives the funnel count, not the dates
+    assert m["total_passed_to_it"] == 2
+
+
+def test_ba_to_it_cycle_dash_when_no_dates():
+    """No populated dates → cycle reports '—' but funnel still works via stage."""
+    items = [
+        _base_item("1", coe_stage="In Progress"),
+        _base_item("2", coe_stage="On Hold"),
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 28))
+    assert m["ba_to_it_cycle_avg"] == "—"
+    assert m["ba_to_it_dated_count"] == 0
+    assert m["total_passed_to_it"] == 2
+
+
+def test_outcome_on_hold_includes_stage():
+    """outcome_on_hold counts items currently in stage 'On Hold' too."""
+    items = [
+        _base_item("1", coe_stage="On Hold"),
+        _base_item("2", coe_stage="In Progress",
+                   project_paused="2026-04-15"),  # paused recently
+        _base_item("3", coe_stage="Triage"),      # not on hold
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 28))
+    assert m["outcome_on_hold"] == 2
+
+
+def test_outcome_admin_request_trailing_4_weeks():
+    """outcome_admin_request counts Admin Request items exiting in the trailing 4 weeks."""
+    items = [
+        _base_item("1", coe_stage="In Progress",
+                   coe_classification="Admin Request",
+                   classification_date="2026-04-10"),   # within 4 weeks
+        _base_item("2", coe_stage="In Progress",
+                   coe_classification="Admin Request",
+                   classification_date="2026-02-01",
+                   first_review_date="2026-02-03"),     # too old → excluded
+        _base_item("3"),
+    ]
+    m = compute_metrics(items, today=date(2026, 4, 28))
+    assert m["outcome_admin_request"] == 1

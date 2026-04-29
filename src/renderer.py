@@ -275,6 +275,7 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "outcome_pushed_to_epmo": metrics["outcome_pushed_to_epmo"],
         "outcome_on_hold": metrics["outcome_on_hold"],
         "outcome_delivered": metrics["outcome_delivered"],
+        "outcome_admin_request": metrics["outcome_admin_request"],
         "intakes_last_week": metrics["intakes_last_week"],
         "completed_last_week": metrics["completed_last_week"],
         "closed_last_week": metrics["closed_last_week"],
@@ -283,6 +284,12 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         # §03 Pipeline
         "pipeline_upstream_bd": metrics["upstream_avg"],
         "pipeline_review_bd": metrics["review_avg"],
+        "pipeline_ba_to_it_bd": metrics["ba_to_it_cycle_avg"],
+        "pipeline_ba_to_it_dated_count": metrics["ba_to_it_dated_count"],
+        "pipeline_total_passed_to_it": metrics["total_passed_to_it"],
+        "pipeline_sprint_passed_count": metrics["sprint_passed_count"],
+        "pipeline_admin_request_count": metrics["admin_request_count"],
+        "pipeline_passed_to_it_rate": metrics["passed_to_it_rate"],
 
         # §04 Classification
         "wt": wt_data,

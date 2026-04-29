@@ -70,6 +70,18 @@ STAGE_COLOR_MAP = {
 # until Asana classification options are updated.
 EPMO_CLASSIFICATIONS = {"Pushed to EPMO"}
 
+# Items classified as "Admin Request" are sent directly by IT to Halo for
+# implementation — they're worked on by IT (different area) but show in the
+# same stage flow as sprint items (In Progress when active, On Hold when
+# blocked on internal bandwidth).
+ADMIN_REQUEST_CLASSIFICATIONS = {"Admin Request"}
+
+# Stages downstream of CoE's "push to IT" decision. Anything in these stages
+# means CoE has handed it off to IT — whether for sprint, next sprint, or
+# Halo (admin) work. Stage is the primary signal for "passed to IT" because
+# the it_prioritization_date custom field is not populated reliably.
+IT_HANDOFF_STAGES = {"IT Prioritization", "In Progress", "Awaiting Next Sprint", "On Hold"}
+
 # Color palette for donut segments — assigned in priority order.
 # CSS variables that exist in the template's :root.
 STAGE_COLOR_PALETTE = [
@@ -242,6 +254,42 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
 
     ba_avg = round(statistics.mean(ba_durations), 1) if ba_durations else None
     ba_count = len(ba_assigned_items)
+
+    # Metric 6b: Funnel — "passed to IT"
+    # Stage is the primary signal: anything in IT_HANDOFF_STAGES means CoE
+    # decided to push this to IT (regardless of which path — sprint or Halo).
+    # Workflow per LLF: Triage → IT Prioritization → {In Progress | Awaiting
+    # Next Sprint | On Hold}. On Hold = Halo tickets without internal bandwidth.
+    passed_to_it_items = [
+        i for i in items
+        if i.get("coe_stage") in IT_HANDOFF_STAGES
+    ]
+    total_passed_to_it = len(passed_to_it_items)
+
+    # Breakdown by path: Halo (Admin Request classification) vs Sprint (everything else)
+    admin_request_items = [
+        i for i in passed_to_it_items
+        if i.get("coe_classification") in ADMIN_REQUEST_CLASSIFICATIONS
+    ]
+    admin_request_count = len(admin_request_items)
+    sprint_passed_count = total_passed_to_it - admin_request_count
+
+    # Cycle time BA → IT Prioritization (data-quality metric — only computed
+    # when both ba_assigned AND it_prioritization_date are populated; today
+    # these fields are unreliable so this often reports "—").
+    ba_to_it_durations = []
+    for i in items:
+        ba = _parse_date(i.get("ba_assigned"))
+        it_date = _parse_date(i.get("it_prioritization_date"))
+        if ba and it_date and it_date >= ba:
+            ba_to_it_durations.append(business_days_between(ba, it_date))
+
+    ba_to_it_dated_count = len(ba_to_it_durations)
+    ba_to_it_cycle_avg = round(statistics.mean(ba_to_it_durations), 1) if ba_to_it_durations else None
+
+    # Conversion rates
+    passed_to_it_rate = round(total_passed_to_it / total * 100) if total else 0
+    ba_to_it_rate = round(total_passed_to_it / ba_count * 100) if ba_count else 0
 
     # Metric 7: upstream lag (Created on → Received Date)
     upstream_durations = []
@@ -590,9 +638,13 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         and _closed_at_review_in_range(i, four_weeks_ago, today + timedelta(days=1))
     )
 
+    # On Hold = currently in stage "On Hold" (Halo tickets without internal
+    # bandwidth, per LLF workflow) OR paused in trailing 4 weeks via the
+    # project_paused custom field. Stage is the primary signal.
     outcome_on_hold = sum(
         1 for i in items
-        if _date_in_range(i.get("project_paused"), four_weeks_ago, today + timedelta(days=1))
+        if i.get("coe_stage") == "On Hold"
+        or _date_in_range(i.get("project_paused"), four_weeks_ago, today + timedelta(days=1))
     )
 
     outcome_delivered = sum(
@@ -601,6 +653,14 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         and i.get("coe_classification") != "Rejected"
         and i.get("status_color") != "dropped"
         and _completed_in_range(i, four_weeks_ago, today + timedelta(days=1))
+    )
+
+    # Admin Request outcome: classified as Admin Request in the trailing 4 weeks.
+    # Exit date = classification_date or first_review_date (same logic as EPMO).
+    outcome_admin_request = sum(
+        1 for i in items
+        if i.get("coe_classification") in ADMIN_REQUEST_CLASSIFICATIONS
+        and _exit_date_in_range(i, four_weeks_ago, today + timedelta(days=1))
     )
 
     # ── Stacked area chart series (last 8 weeks of snapshots) ──────────────
@@ -647,6 +707,16 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "ba_avg": str(ba_avg) if ba_avg is not None else "—",
         "ba_count": ba_count,
         "ba_pending_total": f"{ba_count} of {total}",
+
+        # Funnel — "passed to IT" (stage-based) + Halo breakdown
+        "total_passed_to_it": total_passed_to_it,
+        "sprint_passed_count": sprint_passed_count,
+        "admin_request_count": admin_request_count,
+        "passed_to_it_rate": f"{passed_to_it_rate}%",
+        "ba_to_it_rate": f"{ba_to_it_rate}%",
+        # Cycle time (data-quality metric — '—' when fields not populated)
+        "ba_to_it_cycle_avg": str(ba_to_it_cycle_avg) if ba_to_it_cycle_avg is not None else "—",
+        "ba_to_it_dated_count": ba_to_it_dated_count,
 
         # Yield
         "yield_substantive": len(substantive_items),
@@ -772,6 +842,7 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "outcome_pushed_to_epmo": outcome_pushed_to_epmo,
         "outcome_on_hold": outcome_on_hold,
         "outcome_delivered": outcome_delivered,
+        "outcome_admin_request": outcome_admin_request,
         "area_chart": area_series,
     }
 

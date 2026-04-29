@@ -772,6 +772,28 @@
     color: var(--purple);
     border: 1px dashed rgba(191, 90, 242, 0.4);
   }
+  .pipeline-orb.it {
+    background: radial-gradient(circle at 30% 30%, rgba(225,65,122,0.2), rgba(225,65,122,0.08));
+    color: var(--pink);
+    border: 1px dashed rgba(225, 65, 122, 0.4);
+  }
+  .pipeline-bypass {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    padding: var(--space-3) var(--space-4);
+    background: rgba(255, 159, 10, 0.06);
+    border: 1px solid rgba(255, 159, 10, 0.18);
+    border-radius: 10px;
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+  .pipeline-bypass-count {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--orange);
+  }
   .pipeline-node:hover .pipeline-orb {
     transform: scale(1.08);
   }
@@ -1306,6 +1328,7 @@
   .outcome-epmo      { background: linear-gradient(135deg, rgba(255, 159, 10, 0.08), transparent); border-color: rgba(255, 159, 10, 0.18); }
   .outcome-hold      { background: linear-gradient(135deg, rgba(255, 214, 10, 0.08), transparent); border-color: rgba(255, 214, 10, 0.18); }
   .outcome-delivered { background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent); border-color: rgba(48, 209, 88, 0.2); }
+  .outcome-admin     { background: linear-gradient(135deg, rgba(225, 65, 122, 0.08), transparent); border-color: rgba(225, 65, 122, 0.20); }
   .outcome-num {
     font-size: var(--text-4xl);
     font-weight: 600;
@@ -1319,6 +1342,7 @@
   .outcome-epmo      .outcome-num { color: var(--orange); }
   .outcome-hold      .outcome-num { color: var(--yellow); }
   .outcome-delivered .outcome-num { color: var(--green); }
+  .outcome-admin     .outcome-num { color: var(--pink); }
   .outcome-name {
     font-size: var(--text-xs);
     text-transform: uppercase;
@@ -2264,7 +2288,31 @@
                 {% endif %}
               </div>
             </div>
+            <div class="pipeline-node">
+              <div class="pipeline-orb it">⑤</div>
+              <div class="pipeline-label"{% if pipeline_total_passed_to_it == 0 %} style="color: var(--text-tertiary);"{% endif %}>Passed to IT</div>
+              <div class="pipeline-sublabel">IT Prio · In Progress · Awaiting · On Hold</div>
+              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
+                {% if pipeline_total_passed_to_it > 0 %}
+                <div class="pipeline-gap-value" style="color: var(--pink);">{{ pipeline_total_passed_to_it }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">·&nbsp;{{ pipeline_passed_to_it_rate }}</span></div>
+                <div class="pipeline-gap-label">{{ pipeline_sprint_passed_count }} sprint · {{ pipeline_admin_request_count }} Halo</div>
+                {% else %}
+                <div class="pipeline-gap-value dim">—</div>
+                <div class="pipeline-gap-label">Pending data</div>
+                {% endif %}
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="pipeline-bypass">
+          <span>Two paths to IT:</span>
+          <span><strong style="color: var(--text-secondary);">{{ pipeline_sprint_passed_count }}</strong> sprint (BA→IT Prio→In Progress / Awaiting Next Sprint)</span>
+          <span style="opacity: 0.5;">·</span>
+          <span><strong style="color: var(--pink);">{{ pipeline_admin_request_count }}</strong> Halo (Admin Request — IT works directly, On Hold if no bandwidth)</span>
+          {% if pipeline_ba_to_it_dated_count > 0 %}
+          <span style="margin-left: auto; white-space: nowrap;">BA→IT cycle: <strong style="color: var(--text-secondary);">{{ pipeline_ba_to_it_bd }}</strong> bd · n={{ pipeline_ba_to_it_dated_count }}</span>
+          {% endif %}
         </div>
 
         <p class="pipeline-note">
@@ -2646,6 +2694,11 @@
           <div class="outcome-num">{{ outcome_delivered }}</div>
           <div class="outcome-name">Delivered</div>
           <div class="outcome-desc">Implemented and shipped to production</div>
+        </div>
+        <div class="outcome-card outcome-admin">
+          <div class="outcome-num">{{ outcome_admin_request }}</div>
+          <div class="outcome-name">Admin Request</div>
+          <div class="outcome-desc">Sent directly by IT to Halo — bypasses BA analysis, implemented as admin change</div>
         </div>
       </div>
     </section>
