@@ -772,6 +772,28 @@
     color: var(--purple);
     border: 1px dashed rgba(191, 90, 242, 0.4);
   }
+  .pipeline-orb.it {
+    background: radial-gradient(circle at 30% 30%, rgba(225,65,122,0.2), rgba(225,65,122,0.08));
+    color: var(--pink);
+    border: 1px dashed rgba(225, 65, 122, 0.4);
+  }
+  .pipeline-bypass {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    padding: var(--space-3) var(--space-4);
+    background: rgba(255, 159, 10, 0.06);
+    border: 1px solid rgba(255, 159, 10, 0.18);
+    border-radius: 10px;
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+  .pipeline-bypass-count {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--orange);
+  }
   .pipeline-node:hover .pipeline-orb {
     transform: scale(1.08);
   }
@@ -1306,6 +1328,7 @@
   .outcome-epmo      { background: linear-gradient(135deg, rgba(255, 159, 10, 0.08), transparent); border-color: rgba(255, 159, 10, 0.18); }
   .outcome-hold      { background: linear-gradient(135deg, rgba(255, 214, 10, 0.08), transparent); border-color: rgba(255, 214, 10, 0.18); }
   .outcome-delivered { background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent); border-color: rgba(48, 209, 88, 0.2); }
+  .outcome-admin     { background: linear-gradient(135deg, rgba(225, 65, 122, 0.08), transparent); border-color: rgba(225, 65, 122, 0.20); }
   .outcome-num {
     font-size: var(--text-4xl);
     font-weight: 600;
@@ -1319,6 +1342,7 @@
   .outcome-epmo      .outcome-num { color: var(--orange); }
   .outcome-hold      .outcome-num { color: var(--yellow); }
   .outcome-delivered .outcome-num { color: var(--green); }
+  .outcome-admin     .outcome-num { color: var(--pink); }
   .outcome-name {
     font-size: var(--text-xs);
     text-transform: uppercase;
@@ -1923,7 +1947,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 29, 2026 · 7:22 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">April 29, 2026 · 7:57 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -1945,7 +1969,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 29 · 7:22 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · April 29 · 7:57 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -1956,7 +1980,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">April 29, 2026 · 7:22 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">April 29, 2026 · 7:57 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2232,7 +2256,28 @@
                 
               </div>
             </div>
+            <div class="pipeline-node">
+              <div class="pipeline-orb it">⑤</div>
+              <div class="pipeline-label">Passed to IT</div>
+              <div class="pipeline-sublabel">IT Prio · In Progress · Awaiting · On Hold</div>
+              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
+                
+                <div class="pipeline-gap-value" style="color: var(--pink);">13<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">·&nbsp;41%</span></div>
+                <div class="pipeline-gap-label">11 sprint · 2 Halo</div>
+                
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="pipeline-bypass">
+          <span>Two paths to IT:</span>
+          <span><strong style="color: var(--text-secondary);">11</strong> sprint (BA→IT Prio→In Progress / Awaiting Next Sprint)</span>
+          <span style="opacity: 0.5;">·</span>
+          <span><strong style="color: var(--pink);">2</strong> Halo (Admin Request — IT works directly, On Hold if no bandwidth)</span>
+          
+          <span style="margin-left: auto; white-space: nowrap;">BA→IT cycle: <strong style="color: var(--text-secondary);">1</strong> bd · n=1</span>
+          
         </div>
 
         <p class="pipeline-note">
@@ -2709,6 +2754,11 @@
           <div class="outcome-name">Delivered</div>
           <div class="outcome-desc">Implemented and shipped to production</div>
         </div>
+        <div class="outcome-card outcome-admin">
+          <div class="outcome-num">2</div>
+          <div class="outcome-name">Admin Request</div>
+          <div class="outcome-desc">Sent directly by IT to Halo — bypasses BA analysis, implemented as admin change</div>
+        </div>
       </div>
     </section>
 
@@ -2872,7 +2922,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>32 requests · 3.7 bd review · 12% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · April 29, 2026 · 7:22 PM ET</span>
+      <span id="age-indicator">Snapshot · April 29, 2026 · 7:57 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -2912,7 +2962,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-04-29T23:22:44+00:00');
+      const snapshotTime = new Date('2026-04-29T23:57:57+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
