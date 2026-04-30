@@ -1,6 +1,6 @@
 {
   "date": "2026-04-29",
-  "generated_at": "2026-04-29T23:22:44",
+  "generated_at": "2026-04-29T23:57:57",
   "metrics": {
     "total": 32,
     "open_count": 28,
@@ -19,6 +19,13 @@
     "ba_avg": "2.2",
     "ba_count": 6,
     "ba_pending_total": "6 of 32",
+    "total_passed_to_it": 13,
+    "sprint_passed_count": 11,
+    "admin_request_count": 2,
+    "passed_to_it_rate": "41%",
+    "ba_to_it_rate": "217%",
+    "ba_to_it_cycle_avg": "1",
+    "ba_to_it_dated_count": 1,
     "yield_substantive": 23,
     "yield_substantive_pct": "72%",
     "yield_gate": 4,
@@ -265,6 +272,7 @@
     "outcome_pushed_to_epmo": 0,
     "outcome_on_hold": 4,
     "outcome_delivered": 0,
+    "outcome_admin_request": 2,
     "area_chart": {
       "labels": [
         "W11",
