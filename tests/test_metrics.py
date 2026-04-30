@@ -186,11 +186,11 @@ def test_priority_set(items):
 def test_donut_math(items):
     m = compute_metrics(items, today=date(2026, 4, 24))
     # All 10 open, IT Prio stage: 1001, 1002, 1003, 1007, 1010 → 5
-    total = m["donut_total_open"]
-    it = m["donut_it_prio"]
-    assert total == 10
-    assert it == 5
-    assert m["donut_it_prio_dasharray"] == round(5 / 10 * 100, 1)
+    assert m["donut_total_open"] == 10
+    # Find the IT Prioritization segment in the dynamic donut_segments list
+    it_seg = next(s for s in m["donut_segments"] if s["name"] == "IT Prioritization")
+    assert it_seg["count"] == 5
+    assert it_seg["dasharray"] == round(5 / 10 * 100, 1)
 
 
 def test_ba_metrics_computed():

@@ -48,12 +48,15 @@ ESCALATED_STAGES = {"Escalated/rejected"}
 
 # Stages that are part of the active backlog (excluded: terminal stages like
 # Rejected, Completed, etc.). Order here = order in cards / area chart.
+# On Hold = Halo tickets without internal bandwidth (per LLF workflow); they
+# remain part of IT's pipeline so we keep them visible in the backlog view.
 BACKLOG_STAGES_ORDERED = [
     "New Request",
     "Triage",
     "IT Prioritization",
     "In Progress",
     "Awaiting Next Sprint",
+    "On Hold",
 ]
 
 # Stage colors for stacked-area + cards (matching the boss's mock)
@@ -63,6 +66,7 @@ STAGE_COLOR_MAP = {
     "IT Prioritization":   "#e1417a",   # pink
     "In Progress":         "#e87a3a",   # orange
     "Awaiting Next Sprint": "#d4a23a",  # gold
+    "On Hold":             "#8e8e93",   # neutral gray (paused)
 }
 
 # CoE Classification values that mark a request as "Pushed to EPMO".
@@ -287,9 +291,8 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
     ba_to_it_dated_count = len(ba_to_it_durations)
     ba_to_it_cycle_avg = round(statistics.mean(ba_to_it_durations), 1) if ba_to_it_durations else None
 
-    # Conversion rates
+    # Conversion rate: % of all intakes that reached IT (any of IT_HANDOFF_STAGES)
     passed_to_it_rate = round(total_passed_to_it / total * 100) if total else 0
-    ba_to_it_rate = round(total_passed_to_it / ba_count * 100) if ba_count else 0
 
     # Metric 7: upstream lag (Created on → Received Date)
     upstream_durations = []
@@ -312,8 +315,6 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
     pending_names = " + ".join(i["name"] for i in pending_items if i.get("name"))
 
     # Metric 8: weekly intakes by ISO week (last 4 ISO weeks ending this week)
-    this_week_num = _iso_week(today)
-    this_week_year = _iso_year(today)
     weekly_counts: dict[int, int] = {}
     for i in items:
         rd = _parse_date(i.get("received_date"))
@@ -345,8 +346,6 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         stage_counts[stage] = stage_counts.get(stage, 0) + 1
 
     it_prio_count = stage_counts.get("IT Prioritization", 0)
-    triage_count = stage_counts.get("Triage", 0)
-    new_request_count = stage_counts.get("New Request", 0)
 
     # Metric 10: work type distribution
     work_type_counts: dict[str, int] = {}
@@ -466,11 +465,6 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
     donut_total = len(open_items)
     donut_segments = _build_donut_segments(stage_counts, donut_total)
 
-    # Backwards-compat keys still used by tests
-    donut_it_prio_da, donut_triage_da, donut_new_req_da = _donut_dasharrays(
-        donut_total, it_prio_count, triage_count, new_request_count
-    )
-
     # Flow bar widths (relative to max week)
     flow_values = list(flow_weeks.values())
     flow_max = max(flow_values) if any(flow_values) else 1
@@ -563,6 +557,8 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
                 empty_note = "all classified and progressed"
             elif s == "New Request":
                 empty_note = "all picked up for triage"
+            elif s == "On Hold":
+                empty_note = "bandwidth freed up — all resumed"
             else:
                 empty_note = "all moved to next stage"
 
@@ -713,7 +709,6 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "sprint_passed_count": sprint_passed_count,
         "admin_request_count": admin_request_count,
         "passed_to_it_rate": f"{passed_to_it_rate}%",
-        "ba_to_it_rate": f"{ba_to_it_rate}%",
         # Cycle time (data-quality metric — '—' when fields not populated)
         "ba_to_it_cycle_avg": str(ba_to_it_cycle_avg) if ba_to_it_cycle_avg is not None else "—",
         "ba_to_it_dated_count": ba_to_it_dated_count,
@@ -733,18 +728,9 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "flow_bar_pcts": [bar_pct(v) for v in flow_values],
         "flow_max": flow_max,
 
-        # Stage donut
+        # Stage donut (dynamic — see donut_segments)
         "donut_total_open": donut_total,
         "donut_segments": donut_segments,
-        "donut_it_prio": it_prio_count,
-        "donut_triage": triage_count,
-        "donut_new_request": new_request_count,
-        "donut_it_prio_dasharray": donut_it_prio_da,
-        "donut_triage_dasharray": donut_triage_da,
-        "donut_new_request_dasharray": donut_new_req_da,
-        "donut_it_prio_dashoffset": "25",
-        "donut_triage_dashoffset": str(round(25 - donut_it_prio_da, 1)),
-        "donut_new_request_dashoffset": str(round(25 - donut_it_prio_da - donut_triage_da, 1)),
 
         # Work types
         "work_type_counts": work_type_counts,
@@ -864,20 +850,27 @@ def _find_pm_count(pm_counts: dict, name_fragment: str) -> int:
     return 0
 
 
+def _item_date_in_range(item: dict, keys, start: date, end: date) -> bool:
+    """True if any of the given date keys on `item` resolves to a date in
+    [start, end). Pass a single key name or a list of fallback keys.
+    Used for "did this happen between X and Y" predicates."""
+    if isinstance(keys, str):
+        keys = (keys,)
+    for k in keys:
+        d = _parse_date(item.get(k))
+        if d and start <= d < end:
+            return True
+    return False
+
+
 def _in_range(item: dict, start: date, end: date) -> bool:
     """True if item's received_date falls in [start, end)."""
-    rd = _parse_date(item.get("received_date"))
-    if not rd:
-        return False
-    return start <= rd < end
+    return _item_date_in_range(item, "received_date", start, end)
 
 
 def _reviewed_in_range(item: dict, start: date, end: date) -> bool:
     """True if item's first_review_date falls in [start, end)."""
-    frd = _parse_date(item.get("first_review_date"))
-    if not frd:
-        return False
-    return start <= frd < end
+    return _item_date_in_range(item, "first_review_date", start, end)
 
 
 def _period_stats(items: list[dict], start: date, end: date) -> dict:
@@ -968,48 +961,34 @@ def _build_donut_segments(stage_counts: dict, total: int) -> list[dict]:
     return segments
 
 
-def _donut_dasharrays(total: int, it_prio: int, triage: int, new_req: int):
-    """Compute SVG stroke-dasharray values for donut chart segments."""
-    if total == 0:
-        return (0, 0, 0)
-    it_da = round(it_prio / total * 100, 1)
-    tr_da = round(triage / total * 100, 1)
-    nr_da = round(new_req / total * 100, 1)
-    return (it_da, tr_da, nr_da)
-
-
-# ── Date / range helpers used by the new §06 flow section ─────────────────────
+# ── Date / range helpers used by the §06 flow section ────────────────────────
 
 def _completed_in_range(item: dict, start: date, end: date) -> bool:
-    """True if the item completed in [start, end). Tries completed_at first,
-    then completed_date custom field, then deployed."""
-    for key in ("completed_at", "completed_date", "deployed"):
-        d = _parse_date((item.get(key) or "")[:10] if item.get(key) else None)
-        if d and start <= d < end:
-            return True
-    return False
+    """True if item completed in [start, end). Tries completed_at, then
+    completed_date custom field, then deployed (first match wins)."""
+    return _item_date_in_range(
+        item, ("completed_at", "completed_date", "deployed"), start, end,
+    )
 
 
 def _closed_at_review_in_range(item: dict, start: date, end: date) -> bool:
     """True if the item was closed at the gate (Already Completed / No Needed /
     Not Needed) and its first review happened in [start, end)."""
-    tags = item.get("first_review_tags") or []
-    if not _is_closed_at_gate(tags):
+    if not _is_closed_at_gate(item.get("first_review_tags") or []):
         return False
-    frd = _parse_date(item.get("first_review_date"))
-    return bool(frd and start <= frd < end)
+    return _item_date_in_range(item, "first_review_date", start, end)
 
 
 def _exit_date_in_range(item: dict, start: date, end: date) -> bool:
-    """For EPMO push: use classification_date or first_review_date as exit."""
-    for key in ("classification_date", "first_review_date"):
-        d = _parse_date(item.get(key))
-        if d and start <= d < end:
-            return True
-    return False
+    """Exit date for EPMO / Admin Request: classification_date or
+    first_review_date (first match wins)."""
+    return _item_date_in_range(
+        item, ("classification_date", "first_review_date"), start, end,
+    )
 
 
 def _date_in_range(value, start: date, end: date) -> bool:
+    """True if a raw date value (string or None) falls in [start, end)."""
     d = _parse_date(value)
     return bool(d and start <= d < end)
 

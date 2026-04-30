@@ -201,7 +201,6 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "hero_total_spelled": hero_total_spelled,
         "hero_cycle_bd": hero_cycle_bd,
         "hero_gate_pct_spelled": hero_gate_pct_spelled,
-        "hero_gate_pct_num": gate_pct_num,
 
         # §01 KPIs
         "kpi_review_avg": metrics["review_avg"],
@@ -317,18 +316,9 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "flow_w_minus1_bar": flow_pcts[2] if len(flow_pcts) > 2 else "0%",
         "flow_w_current_bar": flow_pcts[3] if len(flow_pcts) > 3 else "0%",
 
-        # §06 Donut
+        # §06 Donut (dynamic — see donut_segments)
         "donut_total_open": metrics["donut_total_open"],
         "donut_segments": metrics["donut_segments"],
-        "donut_it_prio": metrics["donut_it_prio"],
-        "donut_triage": metrics["donut_triage"],
-        "donut_new_request": metrics["donut_new_request"],
-        "donut_it_prio_dasharray": metrics["donut_it_prio_dasharray"],
-        "donut_triage_dasharray": metrics["donut_triage_dasharray"],
-        "donut_new_request_dasharray": metrics["donut_new_request_dasharray"],
-        "donut_it_prio_dashoffset": metrics["donut_it_prio_dashoffset"],
-        "donut_triage_dashoffset": metrics["donut_triage_dashoffset"],
-        "donut_new_request_dashoffset": metrics["donut_new_request_dashoffset"],
 
         # §07 Sweet spot
         "sweet_spot_it_prio_count_word": sweet_spot_it_prio_count_word,
