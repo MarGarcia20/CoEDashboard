@@ -1,31 +1,31 @@
 {
   "date": "2026-05-06",
-  "generated_at": "2026-05-06T21:39:06",
+  "generated_at": "2026-05-06T22:07:11",
   "metrics": {
-    "total": 36,
-    "open_count": 32,
+    "total": 37,
+    "open_count": 33,
     "delivered_count": 0,
     "escalated_count": 3,
     "escalated_pct": "8%",
-    "review_avg": "3.8",
+    "review_avg": "3.7",
     "review_median": "4",
     "review_min": "1",
     "review_max": "10",
-    "review_substantive_count": 32,
+    "review_substantive_count": 33,
     "upstream_avg": "32.8",
     "upstream_median": "28",
-    "priority_set_count": 11,
-    "priority_unset_count": 25,
+    "priority_set_count": 27,
+    "priority_unset_count": 10,
     "ba_avg": "2.2",
     "ba_count": 6,
-    "ba_pending_total": "6 of 36",
+    "ba_pending_total": "6 of 37",
     "total_passed_to_it": 17,
     "sprint_passed_count": 15,
     "admin_request_count": 2,
-    "passed_to_it_rate": "47%",
+    "passed_to_it_rate": "46%",
     "ba_to_it_cycle_avg": "1",
     "ba_to_it_dated_count": 1,
-    "yield_substantive": 32,
+    "yield_substantive": 33,
     "yield_substantive_pct": "89%",
     "yield_gate": 4,
     "yield_gate_pct": "11%",
@@ -36,7 +36,7 @@
       "16": 23,
       "17": 4,
       "18": 5,
-      "19": 4
+      "19": 5
     },
     "flow_week_labels": [
       16,
@@ -48,16 +48,16 @@
       "100%",
       "17%",
       "22%",
-      "17%"
+      "22%"
     ],
     "flow_max": 23,
-    "donut_total_open": 32,
+    "donut_total_open": 33,
     "donut_segments": [
       {
         "name": "Triage",
-        "count": 15,
-        "pct": 46.9,
-        "dasharray": 46.9,
+        "count": 16,
+        "pct": 48.5,
+        "dasharray": 48.5,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -67,9 +67,9 @@
       {
         "name": "In Progress",
         "count": 8,
-        "pct": 25.0,
-        "dasharray": 25.0,
-        "dashoffset": -21.9,
+        "pct": 24.2,
+        "dasharray": 24.2,
+        "dashoffset": -23.5,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
@@ -78,9 +78,9 @@
       {
         "name": "IT Prioritization",
         "count": 8,
-        "pct": 25.0,
-        "dasharray": 25.0,
-        "dashoffset": -46.9,
+        "pct": 24.2,
+        "dasharray": 24.2,
+        "dashoffset": -47.7,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
@@ -89,8 +89,8 @@
       {
         "name": "Rejected",
         "count": 1,
-        "pct": 3.1,
-        "dasharray": 3.1,
+        "pct": 3.0,
+        "dasharray": 3.0,
         "dashoffset": -71.9,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
@@ -111,18 +111,18 @@
     },
     "work_type_max": 11,
     "pm_counts": {
-      "Maria Garcia": 22,
+      "Maria Garcia": 19,
       "Jessie Logan": 1,
-      "David Molano": 14
+      "David Molano": 18
     },
-    "team_mar_count": 22,
-    "team_mar_pct": "61%",
-    "team_david_count": 14,
-    "team_david_pct": "39%",
-    "rec_workload_note": "22/14 \u2014 Mar is +57% this week",
-    "tw_intakes": 4,
-    "tw_reviews": 7,
-    "tw_avg_cycle": "4.1",
+    "team_mar_count": 19,
+    "team_mar_pct": "51%",
+    "team_david_count": 18,
+    "team_david_pct": "49%",
+    "rec_workload_note": "19/18 \u2014 Mar is +6% this week",
+    "tw_intakes": 5,
+    "tw_reviews": 8,
+    "tw_avg_cycle": "3.8",
     "tw_gate": 0,
     "tw_escalated": 0,
     "lw_intakes": 5,
@@ -131,9 +131,9 @@
     "lw_gate": 1,
     "lw_escalated": 0,
     "lw_has_reviews": true,
-    "tm_intakes": 4,
-    "tm_reviewed": 7,
-    "tm_avg_cycle": "4.1",
+    "tm_intakes": 5,
+    "tm_reviewed": 8,
+    "tm_avg_cycle": "3.8",
     "tm_escalated": 0,
     "tm_gate": 0,
     "lm_intakes": 32,
@@ -141,9 +141,9 @@
     "lm_avg_cycle": "3.6",
     "lm_escalated": 3,
     "lm_has_coe": true,
-    "six_mo_intakes": 36,
-    "six_mo_reviews": 36,
-    "six_mo_avg_cycle": "3.8",
+    "six_mo_intakes": 37,
+    "six_mo_reviews": 37,
+    "six_mo_avg_cycle": "3.7",
     "days_coe_active": 21,
     "pre_coe_days": 174,
     "w_current": 19,
@@ -151,8 +151,8 @@
     "w_minus2": 17,
     "w_minus3": 16,
     "rec_it_prio_count": 8,
-    "rec_status_color_blank": "28 of 36",
-    "rec_no_color_count": 28,
+    "rec_status_color_blank": "29 of 37",
+    "rec_no_color_count": 29,
     "rec_ba_count": 6,
     "tw_window_label": "May 4 \u2013 Today",
     "lw_window_label": "Apr 27 \u2013 May 3",
@@ -173,7 +173,7 @@
     "coe_start_date": "2026-04-15",
     "stage_current": {
       "New Request": 0,
-      "Triage": 15,
+      "Triage": 16,
       "IT Prioritization": 8,
       "In Progress": 8,
       "Awaiting Next Sprint": 0,
@@ -191,8 +191,8 @@
       },
       {
         "name": "Triage",
-        "count": 15,
-        "delta": 6,
+        "count": 16,
+        "delta": 7,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#a463f5",
@@ -235,10 +235,10 @@
         "slug": "on_hold"
       }
     ],
-    "backlog_total": 31,
+    "backlog_total": 32,
     "backlog_prior": 27,
-    "backlog_delta": 4,
-    "backlog_intakes_this_week": 4,
+    "backlog_delta": 5,
+    "backlog_intakes_this_week": 5,
     "backlog_completed_this_week": 0,
     "backlog_closed_this_week": 0,
     "intakes_last_week": 5,
@@ -274,7 +274,7 @@
             0,
             0,
             3,
-            4
+            0
           ]
         },
         {
@@ -288,7 +288,7 @@
             0,
             0,
             8,
-            8
+            15
           ]
         },
         {
@@ -349,14 +349,14 @@
         }
       ],
       "polygons": [
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,221.2 700.0,213.6 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,160.4 700.0,152.8 700.0,213.6 605.7,221.2 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,99.6 700.0,92.0 700.0,152.8 605.7,160.4 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,38.8 700.0,31.2 700.0,92.0 605.7,99.6 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,38.8 700.0,31.2 700.0,31.2 605.7,38.8 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,38.8 700.0,31.2 700.0,31.2 605.7,38.8 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,224.5 700.0,244.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,172.3 700.0,146.3 700.0,244.0 605.7,224.5 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,120.2 700.0,94.2 700.0,146.3 605.7,172.3 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,68.1 700.0,42.1 700.0,94.2 605.7,120.2 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,68.1 700.0,42.1 700.0,42.1 605.7,68.1 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,244.0 605.7,68.1 700.0,42.1 700.0,42.1 605.7,68.1 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
       ],
-      "y_max": 30,
+      "y_max": 35,
       "x_labels": [
         {
           "x": 40.0,
@@ -397,12 +397,12 @@
           "label": "0"
         },
         {
-          "y": 130.0,
-          "label": "15"
+          "y": 133.25714285714287,
+          "label": "17"
         },
         {
           "y": 16.0,
-          "label": "30"
+          "label": "35"
         }
       ],
       "width": 720,
