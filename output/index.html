@@ -1353,36 +1353,76 @@
     background: var(--surface);
     border-color: var(--border);
   }
-  .pace-state {
+  /* New pace card layout: human headline → badge → math → consequence */
+  .pace-headline {
     font-size: var(--text-2xl);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin-bottom: var(--space-3);
-  }
-  .pace-state-on_pace { color: var(--green); }
-  .pace-state-catching_up { color: var(--yellow); }
-  .pace-state-off_pace { color: var(--red); }
-  .pace-state-no_data { color: var(--text-tertiary); }
-  .pace-net {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-bottom: var(--space-3);
-  }
-  .pace-net-num {
-    font-size: var(--text-3xl);
     font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.03em;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: var(--space-2);
   }
-  .pace-net-num.up { color: var(--orange); }
-  .pace-net-num.down { color: var(--green); }
-  .pace-net-num.flat { color: var(--text-secondary); }
-  .pace-net-unit {
+  .pace-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-4);
+  }
+  .pace-badge-on_pace {
+    color: var(--green);
+    background: rgba(48, 209, 88, 0.14);
+    border: 1px solid rgba(48, 209, 88, 0.32);
+  }
+  .pace-badge-catching_up {
+    color: var(--yellow);
+    background: rgba(255, 214, 10, 0.12);
+    border: 1px solid rgba(255, 214, 10, 0.32);
+  }
+  .pace-badge-off_pace {
+    color: var(--red);
+    background: rgba(255, 69, 58, 0.12);
+    border: 1px solid rgba(255, 69, 58, 0.32);
+  }
+  .pace-badge-no_data {
+    color: var(--text-tertiary);
+    background: rgba(142, 142, 147, 0.10);
+    border: 1px solid var(--border);
+  }
+  .pace-math {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+  .pace-math strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .pace-consequence-divider {
+    height: 1px;
+    background: var(--border);
+    margin: var(--space-3) 0;
+  }
+  .pace-consequence {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+  .pace-consequence strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .pace-off_pace .pace-consequence strong { color: var(--orange); }
+  .pace-on_pace .pace-consequence strong { color: var(--green); }
+  .pace-consequence-tail {
+    display: block;
     font-size: var(--text-xs);
     color: var(--text-tertiary);
-    font-weight: 500;
+    margin-top: 2px;
   }
   .health-throughput {
     background: linear-gradient(135deg, rgba(48, 209, 88, 0.06), transparent);
@@ -2401,7 +2441,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 11:30 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 11:35 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -2423,7 +2463,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 11:30 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 11:35 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -2434,7 +2474,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 11:30 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 11:35 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2799,20 +2839,22 @@
       <div class="health-hero-grid">
         <div class="health-hero-card health-pace pace-off_pace">
           <div class="health-hero-label">Pace vs intake</div>
-          <div class="pace-state pace-state-off_pace">Off pace</div>
           
-            <div class="pace-net">
-              
-                <span class="pace-net-num up">+7.7</span>
-              
-              <span class="pace-net-unit">items / week net</span>
+            <div class="pace-headline">We're falling behind</div>
+          
+          <div class="pace-badge pace-badge-off_pace">Off pace</div>
+
+          
+            <div class="pace-math">
+              Closing <strong>1.5 / wk</strong> · receiving <strong>9.2 / wk</strong>
             </div>
-            <div class="health-hero-context">
-              Intake <strong>9.2/wk</strong> vs throughput <strong>1.5/wk</strong>
-              
-                · <strong style="color: var(--orange);">+30.8 / month</strong>
-              
-            </div>
+            <div class="pace-consequence-divider"></div>
+            
+              <div class="pace-consequence">
+                Backlog grows by <strong>~31 items / month</strong>
+                <span class="pace-consequence-tail">if nothing changes</span>
+              </div>
+            
           
         </div>
 
@@ -3723,7 +3765,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>37 requests · 3.7 bd review · 11% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · May 6, 2026 · 11:30 PM ET</span>
+      <span id="age-indicator">Snapshot · May 6, 2026 · 11:35 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -3763,7 +3805,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-05-07T03:30:14+00:00');
+      const snapshotTime = new Date('2026-05-07T03:35:29+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
