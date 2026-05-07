@@ -328,6 +328,17 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "yield_pending_pct": metrics["yield_pending_pct"],
         "yield_pending_names": metrics["yield_pending_names"],
 
+        # §03b — Flow health (aging + throughput + weeks-to-clear)
+        "aging_by_stage": metrics["aging_by_stage"],
+        "throughput_weekly": metrics["throughput_weekly"],
+        "throughput_avg": metrics["throughput_avg"],
+        "intake_avg_4w": metrics["intake_avg_4w"],
+        "weeks_to_clear": metrics["weeks_to_clear"],
+        "weeks_to_clear_label": metrics["weeks_to_clear_label"],
+        "oldest_open_days": metrics["oldest_open_days"],
+        "oldest_open_stage": metrics["oldest_open_stage"],
+        "stuck_total": metrics["stuck_total"],
+
         # §06 Flow — bar chart
         "flow_w_minus3_label": f"W{w_minus3}",
         "flow_w_minus2_label": f"W{w_minus2}",

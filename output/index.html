@@ -1324,6 +1324,180 @@
     letter-spacing: -0.02em;
   }
 
+  /* ——————————————————————— FLOW HEALTH (§03b) ——————————————————————— */
+  .health-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .health-hero-card {
+    padding: var(--space-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .health-runway {
+    background: linear-gradient(135deg, rgba(94, 92, 230, 0.08), transparent);
+    border-color: rgba(94, 92, 230, 0.22);
+  }
+  .health-throughput {
+    background: linear-gradient(135deg, rgba(48, 209, 88, 0.06), transparent);
+    border-color: rgba(48, 209, 88, 0.18);
+  }
+  .health-stuck {
+    background: linear-gradient(135deg, rgba(255, 159, 10, 0.06), transparent);
+    border-color: rgba(255, 159, 10, 0.18);
+  }
+  .health-hero-label {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+  }
+  .health-hero-num {
+    font-size: var(--text-5xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    margin-bottom: var(--space-3);
+  }
+  .health-hero-num.warn { color: var(--orange); }
+  .health-hero-num.alert { color: var(--red); }
+  .health-hero-num.dim { color: var(--text-quaternary); }
+  .health-hero-unit {
+    font-size: var(--text-lg);
+    color: var(--text-tertiary);
+    margin-left: 6px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .health-hero-context {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+
+  /* Throughput mini bar chart */
+  .health-throughput-bars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    height: 60px;
+    align-items: end;
+    margin-top: var(--space-3);
+  }
+  .health-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    gap: 2px;
+  }
+  .health-bar {
+    width: 100%;
+    background: linear-gradient(180deg, var(--green), rgba(48, 209, 88, 0.4));
+    border-radius: 2px 2px 0 0;
+    min-height: 2px;
+  }
+  .health-bar-label {
+    font-size: 9px;
+    color: var(--text-quaternary);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .health-bar-value {
+    font-size: 10px;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  /* Aging table */
+  .aging-table {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .aging-row {
+    display: grid;
+    grid-template-columns: 1.8fr repeat(4, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    align-items: center;
+  }
+  .aging-row.aging-header {
+    background: transparent;
+    border: none;
+    padding-top: 0;
+    padding-bottom: var(--space-2);
+  }
+  .aging-cell-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text);
+  }
+  .aging-header .aging-cell-name {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .aging-stage-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .aging-cell-num {
+    font-size: var(--text-md);
+    font-weight: 500;
+    color: var(--text);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .aging-header .aging-cell-num {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .aging-cell-num.warn { color: var(--orange); }
+  .aging-cell-num.alert { color: var(--red); }
+  .aging-unit {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-left: 2px;
+    font-weight: 400;
+  }
+  .aging-cell-sub {
+    display: block;
+    font-size: 8px;
+    color: var(--text-quaternary);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    margin-top: 1px;
+  }
+  @media (max-width: 1024px) {
+    .health-hero-grid { grid-template-columns: 1fr; }
+    .aging-row { grid-template-columns: 1.5fr repeat(2, 1fr); font-size: var(--text-xs); }
+    .aging-row .aging-cell-num:nth-child(4),
+    .aging-row .aging-cell-num:nth-child(5) { display: none; }
+  }
+
   /* ——————————————————————— FLOW (§06) ——————————————————————— */
   .flow-kpis {
     display: grid;
@@ -2184,7 +2358,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 11:02 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 11:22 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -2206,7 +2380,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 11:02 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 11:22 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -2217,7 +2391,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 11:02 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 11:22 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2562,6 +2736,182 @@
 
         <p class="pipeline-note">
           The 32.8 business-day upstream gap reflects legacy requests that existed in the EPMO portfolio before the CoE received them on April 15, 2026 — it's a seeding artifact, not a steady-state signal. The <strong style="color: var(--text);">3.7 business-day CoE review time</strong> is the actionable figure: computed across 33 substantive reviews (excluding "Already Completed" and "No Needed" trivial touches), with a tight 1–10 bd range. All measures exclude weekends.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════ §03b Flow Health — aging, throughput, weeks-to-clear ══════════ -->
+    <section class="section">
+      <div class="section-head">
+        <div class="section-num">03b · Flow Health<span class="tt" tabindex="0" data-tip="The three operational metrics that answer 'are we keeping up?': how long open items have been waiting, how many we close per week, and how long it would take to clear the queue at current pace.">i</span></div>
+        <h2 class="section-title">
+          Are we keeping up? <span class="muted">Aging, throughput, and runway in one view.</span>
+        </h2>
+      </div>
+
+      
+      <div class="health-hero-grid">
+        <div class="health-hero-card health-runway">
+          <div class="health-hero-label">Weeks to clear backlog</div>
+          
+            <div class="health-hero-num alert">
+              21.3<span class="health-hero-unit">wks</span>
+            </div>
+            <div class="health-hero-context">
+              32 open ÷ 1.5/wk throughput
+              
+                · <strong style="color: var(--orange);">intake 9.2/wk &gt; throughput</strong>
+              
+            </div>
+          
+        </div>
+
+        <div class="health-hero-card health-throughput">
+          <div class="health-hero-label">Throughput · trailing 4 weeks</div>
+          <div class="health-hero-num">1.5<span class="health-hero-unit">/ wk</span></div>
+          <div class="health-throughput-bars">
+            
+            
+            
+              <div class="health-bar-wrap">
+                <div class="health-bar" style="height: 25.0%;"></div>
+                <div class="health-bar-label">W16</div>
+                <div class="health-bar-value">1</div>
+              </div>
+            
+              <div class="health-bar-wrap">
+                <div class="health-bar" style="height: 100.0%;"></div>
+                <div class="health-bar-label">W17</div>
+                <div class="health-bar-value">4</div>
+              </div>
+            
+              <div class="health-bar-wrap">
+                <div class="health-bar" style="height: 25.0%;"></div>
+                <div class="health-bar-label">W18</div>
+                <div class="health-bar-value">1</div>
+              </div>
+            
+              <div class="health-bar-wrap">
+                <div class="health-bar" style="height: 0.0%;"></div>
+                <div class="health-bar-label">W19</div>
+                <div class="health-bar-value">0</div>
+              </div>
+            
+          </div>
+        </div>
+
+        <div class="health-hero-card health-stuck">
+          <div class="health-hero-label">Stuck items · 14+ days</div>
+          <div class="health-hero-num alert">
+            8
+          </div>
+          <div class="health-hero-context">
+            
+              Oldest: <strong>16d</strong> in Triage
+            
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="card panel" style="padding: var(--space-6);">
+        <h3 class="panel-title" style="margin-bottom: var(--space-2);">Aging by stage</h3>
+        <p class="flow-area-sub" style="margin-bottom: var(--space-5);">Calendar days since each item entered its current stage</p>
+
+        <div class="aging-table">
+          <div class="aging-row aging-header">
+            <div class="aging-cell-name">Stage</div>
+            <div class="aging-cell-num">Items</div>
+            <div class="aging-cell-num">Avg age</div>
+            <div class="aging-cell-num">Oldest</div>
+            <div class="aging-cell-num">Stuck<br><span class="aging-cell-sub">14+ days</span></div>
+          </div>
+          
+            
+            
+          
+            
+            
+            <div class="aging-row" style="--stage-color: #a463f5;">
+              <div class="aging-cell-name">
+                <span class="aging-stage-dot" style="background: #a463f5;"></span>
+                Triage
+              </div>
+              <div class="aging-cell-num">16</div>
+              <div class="aging-cell-num">6.6<span class="aging-unit">d</span></div>
+              <div class="aging-cell-num warn">
+                16<span class="aging-unit">d</span>
+              </div>
+              <div class="aging-cell-num warn">
+                6
+              </div>
+            </div>
+            
+          
+            
+            
+            <div class="aging-row" style="--stage-color: #e1417a;">
+              <div class="aging-cell-name">
+                <span class="aging-stage-dot" style="background: #e1417a;"></span>
+                IT Prioritization
+              </div>
+              <div class="aging-cell-num">9</div>
+              <div class="aging-cell-num">5.0<span class="aging-unit">d</span></div>
+              <div class="aging-cell-num">
+                7<span class="aging-unit">d</span>
+              </div>
+              <div class="aging-cell-num">
+                0
+              </div>
+            </div>
+            
+          
+            
+            
+            <div class="aging-row" style="--stage-color: #e87a3a;">
+              <div class="aging-cell-name">
+                <span class="aging-stage-dot" style="background: #e87a3a;"></span>
+                In Progress
+              </div>
+              <div class="aging-cell-num">3</div>
+              <div class="aging-cell-num">13.7<span class="aging-unit">d</span></div>
+              <div class="aging-cell-num warn">
+                14<span class="aging-unit">d</span>
+              </div>
+              <div class="aging-cell-num warn">
+                2
+              </div>
+            </div>
+            
+          
+            
+            
+            <div class="aging-row" style="--stage-color: #30d158;">
+              <div class="aging-cell-name">
+                <span class="aging-stage-dot" style="background: #30d158;"></span>
+                UAT/Testing
+              </div>
+              <div class="aging-cell-num">5</div>
+              <div class="aging-cell-num">12.0<span class="aging-unit">d</span></div>
+              <div class="aging-cell-num">
+                13<span class="aging-unit">d</span>
+              </div>
+              <div class="aging-cell-num">
+                0
+              </div>
+            </div>
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+
+        <p class="flow-area-sub" style="margin-top: var(--space-4); font-size: var(--text-xs);">
+          Stuck = items that have not moved stage in 14+ days. They're not necessarily blocked, but they warrant a check-in.
         </p>
       </div>
     </section>
@@ -3323,7 +3673,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>37 requests · 3.7 bd review · 11% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · May 6, 2026 · 11:02 PM ET</span>
+      <span id="age-indicator">Snapshot · May 6, 2026 · 11:22 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -3363,7 +3713,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-05-07T03:02:00+00:00');
+      const snapshotTime = new Date('2026-05-07T03:22:14+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {

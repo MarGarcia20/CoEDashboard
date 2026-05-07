@@ -1324,6 +1324,180 @@
     letter-spacing: -0.02em;
   }
 
+  /* ——————————————————————— FLOW HEALTH (§03b) ——————————————————————— */
+  .health-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .health-hero-card {
+    padding: var(--space-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .health-runway {
+    background: linear-gradient(135deg, rgba(94, 92, 230, 0.08), transparent);
+    border-color: rgba(94, 92, 230, 0.22);
+  }
+  .health-throughput {
+    background: linear-gradient(135deg, rgba(48, 209, 88, 0.06), transparent);
+    border-color: rgba(48, 209, 88, 0.18);
+  }
+  .health-stuck {
+    background: linear-gradient(135deg, rgba(255, 159, 10, 0.06), transparent);
+    border-color: rgba(255, 159, 10, 0.18);
+  }
+  .health-hero-label {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+  }
+  .health-hero-num {
+    font-size: var(--text-5xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    margin-bottom: var(--space-3);
+  }
+  .health-hero-num.warn { color: var(--orange); }
+  .health-hero-num.alert { color: var(--red); }
+  .health-hero-num.dim { color: var(--text-quaternary); }
+  .health-hero-unit {
+    font-size: var(--text-lg);
+    color: var(--text-tertiary);
+    margin-left: 6px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .health-hero-context {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+
+  /* Throughput mini bar chart */
+  .health-throughput-bars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    height: 60px;
+    align-items: end;
+    margin-top: var(--space-3);
+  }
+  .health-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    gap: 2px;
+  }
+  .health-bar {
+    width: 100%;
+    background: linear-gradient(180deg, var(--green), rgba(48, 209, 88, 0.4));
+    border-radius: 2px 2px 0 0;
+    min-height: 2px;
+  }
+  .health-bar-label {
+    font-size: 9px;
+    color: var(--text-quaternary);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .health-bar-value {
+    font-size: 10px;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  /* Aging table */
+  .aging-table {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .aging-row {
+    display: grid;
+    grid-template-columns: 1.8fr repeat(4, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    align-items: center;
+  }
+  .aging-row.aging-header {
+    background: transparent;
+    border: none;
+    padding-top: 0;
+    padding-bottom: var(--space-2);
+  }
+  .aging-cell-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text);
+  }
+  .aging-header .aging-cell-name {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .aging-stage-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .aging-cell-num {
+    font-size: var(--text-md);
+    font-weight: 500;
+    color: var(--text);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .aging-header .aging-cell-num {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .aging-cell-num.warn { color: var(--orange); }
+  .aging-cell-num.alert { color: var(--red); }
+  .aging-unit {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-left: 2px;
+    font-weight: 400;
+  }
+  .aging-cell-sub {
+    display: block;
+    font-size: 8px;
+    color: var(--text-quaternary);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    margin-top: 1px;
+  }
+  @media (max-width: 1024px) {
+    .health-hero-grid { grid-template-columns: 1fr; }
+    .aging-row { grid-template-columns: 1.5fr repeat(2, 1fr); font-size: var(--text-xs); }
+    .aging-row .aging-cell-num:nth-child(4),
+    .aging-row .aging-cell-num:nth-child(5) { display: none; }
+  }
+
   /* ——————————————————————— FLOW (§06) ——————————————————————— */
   .flow-kpis {
     display: grid;
@@ -2584,6 +2758,106 @@
 
         <p class="pipeline-note">
           The {{ pipeline_upstream_bd }} business-day upstream gap reflects legacy requests that existed in the EPMO portfolio before the CoE received them on {{ coe_start_display }} — it's a seeding artifact, not a steady-state signal. The <strong style="color: var(--text);">{{ pipeline_review_bd }} business-day CoE review time</strong> is the actionable figure: computed across {{ kpi_review_substantive_count }} substantive reviews (excluding "Already Completed" and "No Needed" trivial touches), with a tight {{ kpi_review_range_low }}–{{ kpi_review_range_high }} bd range. All measures exclude weekends.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════ §03b Flow Health — aging, throughput, weeks-to-clear ══════════ -->
+    <section class="section">
+      <div class="section-head">
+        <div class="section-num">03b · Flow Health<span class="tt" tabindex="0" data-tip="The three operational metrics that answer 'are we keeping up?': how long open items have been waiting, how many we close per week, and how long it would take to clear the queue at current pace.">i</span></div>
+        <h2 class="section-title">
+          Are we keeping up? <span class="muted">Aging, throughput, and runway in one view.</span>
+        </h2>
+      </div>
+
+      {# ── Hero row: 3 headline numbers ── #}
+      <div class="health-hero-grid">
+        <div class="health-hero-card health-runway">
+          <div class="health-hero-label">Weeks to clear backlog</div>
+          {% if weeks_to_clear %}
+            <div class="health-hero-num{% if weeks_to_clear > 12 %} alert{% elif weeks_to_clear > 6 %} warn{% endif %}">
+              {{ weeks_to_clear }}<span class="health-hero-unit">wks</span>
+            </div>
+            <div class="health-hero-context">
+              {{ backlog_total }} open ÷ {{ throughput_avg }}/wk throughput
+              {% if intake_avg_4w > throughput_avg %}
+                · <strong style="color: var(--orange);">intake {{ intake_avg_4w }}/wk &gt; throughput</strong>
+              {% endif %}
+            </div>
+          {% else %}
+            <div class="health-hero-num dim">—</div>
+            <div class="health-hero-context">No throughput in trailing 4 weeks</div>
+          {% endif %}
+        </div>
+
+        <div class="health-hero-card health-throughput">
+          <div class="health-hero-label">Throughput · trailing 4 weeks</div>
+          <div class="health-hero-num">{{ throughput_avg }}<span class="health-hero-unit">/ wk</span></div>
+          <div class="health-throughput-bars">
+            {% set tp_max = throughput_weekly | map(attribute='count') | max %}
+            {% set tp_max_safe = [tp_max, 1] | max %}
+            {% for w in throughput_weekly %}
+              <div class="health-bar-wrap">
+                <div class="health-bar" style="height: {{ (w.count / tp_max_safe * 100) | round(0) }}%;"></div>
+                <div class="health-bar-label">{{ w.label }}</div>
+                <div class="health-bar-value">{{ w.count }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="health-hero-card health-stuck">
+          <div class="health-hero-label">Stuck items · 14+ days</div>
+          <div class="health-hero-num{% if stuck_total > 5 %} alert{% elif stuck_total > 0 %} warn{% endif %}">
+            {{ stuck_total }}
+          </div>
+          <div class="health-hero-context">
+            {% if stuck_total > 0 %}
+              Oldest: <strong>{{ oldest_open_days }}d</strong> in {{ oldest_open_stage }}
+            {% else %}
+              All items moving within 14 days
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {# ── Aging by stage table ── #}
+      <div class="card panel" style="padding: var(--space-6);">
+        <h3 class="panel-title" style="margin-bottom: var(--space-2);">Aging by stage</h3>
+        <p class="flow-area-sub" style="margin-bottom: var(--space-5);">Calendar days since each item entered its current stage</p>
+
+        <div class="aging-table">
+          <div class="aging-row aging-header">
+            <div class="aging-cell-name">Stage</div>
+            <div class="aging-cell-num">Items</div>
+            <div class="aging-cell-num">Avg age</div>
+            <div class="aging-cell-num">Oldest</div>
+            <div class="aging-cell-num">Stuck<br><span class="aging-cell-sub">14+ days</span></div>
+          </div>
+          {% for stage in stage_cards %}
+            {% set ag = aging_by_stage[stage.name] %}
+            {% if ag.count > 0 %}
+            <div class="aging-row" style="--stage-color: {{ stage.color }};">
+              <div class="aging-cell-name">
+                <span class="aging-stage-dot" style="background: {{ stage.color }};"></span>
+                {{ stage.name }}
+              </div>
+              <div class="aging-cell-num">{{ ag.count }}</div>
+              <div class="aging-cell-num">{{ ag.avg }}<span class="aging-unit">d</span></div>
+              <div class="aging-cell-num{% if ag.oldest >= 21 %} alert{% elif ag.oldest >= 14 %} warn{% endif %}">
+                {{ ag.oldest }}<span class="aging-unit">d</span>
+              </div>
+              <div class="aging-cell-num{% if ag.stuck > 0 %} warn{% endif %}">
+                {{ ag.stuck }}
+              </div>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <p class="flow-area-sub" style="margin-top: var(--space-4); font-size: var(--text-xs);">
+          Stuck = items that have not moved stage in 14+ days. They're not necessarily blocked, but they warrant a check-in.
         </p>
       </div>
     </section>

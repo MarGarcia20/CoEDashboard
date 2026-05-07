@@ -834,6 +834,35 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "area_chart": area_series,
     }
 
+    # ── Tier-1 operational metrics (aging + throughput + weeks-to-clear) ──
+    aging = _compute_aging_per_stage(items, today)
+    throughput = _weekly_throughput(items, today, weeks=4)
+    open_count_for_clear = current_backlog
+    wtc = _weeks_to_clear(open_count_for_clear, throughput)
+
+    # Find oldest item across all open stages for the headline alert
+    oldest_overall = 0
+    oldest_stage = None
+    for stage, info in aging.items():
+        if info["count"] > 0 and info["oldest"] > oldest_overall:
+            oldest_overall = info["oldest"]
+            oldest_stage = stage
+
+    result["aging_by_stage"] = aging
+    result["throughput_weekly"] = throughput
+    result["throughput_avg"] = wtc["avg_throughput"]
+    result["intake_avg_4w"] = round(
+        sum(1 for item in items
+            if _date_in_range(item.get("received_date"),
+                              today - timedelta(days=28), today + timedelta(days=1))) / 4,
+        1,
+    )
+    result["weeks_to_clear"] = wtc["weeks"]
+    result["weeks_to_clear_label"] = wtc["label"]
+    result["oldest_open_days"] = oldest_overall
+    result["oldest_open_stage"] = oldest_stage
+    result["stuck_total"] = sum(info["stuck"] for info in aging.values())
+
     if verbose:
         for k, v in result.items():
             if not isinstance(v, (dict, list)):
@@ -993,6 +1022,97 @@ def _date_in_range(value, start: date, end: date) -> bool:
     """True if a raw date value (string or None) falls in [start, end)."""
     d = _parse_date(value)
     return bool(d and start <= d < end)
+
+
+def _stage_entry_date(item: dict) -> Optional[date]:
+    """Best estimate of when the item entered its CURRENT stage.
+
+    Uses the most recent stage-transition date available, in priority order:
+    completed_date > deployed > it_prioritization_date > ba_assigned >
+    first_review_date > classification_date > received_date > created_on.
+    Falls back gracefully when fields are missing.
+    """
+    candidates = [
+        _parse_date(item.get(k))
+        for k in (
+            "completed_date", "deployed",
+            "it_prioritization_date", "ba_assigned",
+            "first_review_date", "classification_date",
+            "received_date", "created_on",
+        )
+    ]
+    valid = [d for d in candidates if d is not None]
+    return max(valid) if valid else None
+
+
+def _compute_aging_per_stage(items: list[dict], today: date) -> dict[str, dict]:
+    """For each backlog stage, compute count, oldest age, avg age (calendar days
+    since the item entered its current stage). Only counts items currently in
+    that stage."""
+    by_stage: dict[str, list[int]] = {s: [] for s in BACKLOG_STAGES_ORDERED}
+    for item in items:
+        stage = item.get("coe_stage")
+        if stage not in by_stage:
+            continue
+        entry = _stage_entry_date(item)
+        if entry is None:
+            continue
+        age = (today - entry).days
+        if age >= 0:
+            by_stage[stage].append(age)
+
+    result = {}
+    for stage, ages in by_stage.items():
+        if ages:
+            result[stage] = {
+                "count": len(ages),
+                "oldest": max(ages),
+                "avg": round(sum(ages) / len(ages), 1),
+                "stuck": sum(1 for a in ages if a >= 14),  # 14+ days = stuck flag
+            }
+        else:
+            result[stage] = {"count": 0, "oldest": 0, "avg": 0, "stuck": 0}
+    return result
+
+
+def _weekly_throughput(items: list[dict], today: date, weeks: int = 4) -> list[dict]:
+    """Items closed (delivered, closed-at-review, rejected, EPMO, admin) per
+    ISO week, trailing N weeks ending with the current week."""
+    monday_this = today - timedelta(days=today.weekday())
+    out = []
+    for i in range(weeks - 1, -1, -1):
+        week_start = monday_this - timedelta(days=7 * i)
+        week_end = week_start + timedelta(days=7)
+        # Count any item whose "exit signal" lands in this window
+        count = sum(
+            1 for item in items
+            if _completed_in_range(item, week_start, week_end)
+            or _closed_at_review_in_range(item, week_start, week_end)
+        )
+        out.append({
+            "week_start": week_start.isoformat(),
+            "label": f"W{week_start.isocalendar()[1]}",
+            "count": count,
+        })
+    return out
+
+
+def _weeks_to_clear(open_count: int, throughput_history: list[dict]) -> dict:
+    """Estimate weeks-to-clear backlog at current pace.
+    Uses trailing-4-weeks throughput average. Returns dict with weeks number
+    and the throughput used."""
+    counts = [w["count"] for w in throughput_history]
+    if not counts or sum(counts) == 0:
+        return {"weeks": None, "avg_throughput": 0, "label": "—"}
+    avg = sum(counts) / len(counts)
+    if avg == 0:
+        return {"weeks": None, "avg_throughput": 0, "label": "—"}
+    weeks = round(open_count / avg, 1)
+    return {
+        "weeks": weeks,
+        "avg_throughput": round(avg, 1),
+        "label": f"{weeks} weeks",
+    }
 
 
 # ── History helpers ──────────────────────────────────────────────────────────
