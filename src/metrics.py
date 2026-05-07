@@ -55,6 +55,7 @@ BACKLOG_STAGES_ORDERED = [
     "Triage",
     "IT Prioritization",
     "In Progress",
+    "UAT/Testing",
     "Awaiting Next Sprint",
     "On Hold",
 ]
@@ -65,6 +66,7 @@ STAGE_COLOR_MAP = {
     "Triage":              "#a463f5",   # purple
     "IT Prioritization":   "#e1417a",   # pink
     "In Progress":         "#e87a3a",   # orange
+    "UAT/Testing":         "#30d158",   # green
     "Awaiting Next Sprint": "#d4a23a",  # gold
     "On Hold":             "#8e8e93",   # neutral gray (paused)
 }
