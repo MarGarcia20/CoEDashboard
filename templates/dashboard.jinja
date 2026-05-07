@@ -809,22 +809,113 @@
     color: var(--text-tertiary);
     margin-top: 2px;
   }
-  .pipeline-stage-pills {
+  /* Landing card: where the work goes after passing to IT */
+  .landing-card {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .landing-head {
+    margin-bottom: var(--space-5);
+  }
+  .landing-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-2);
+  }
+  .landing-sub {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+  .landing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+  .landing-group {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--bg-elev-2);
+  }
+  .landing-active {
+    background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent);
+    border-color: rgba(48, 209, 88, 0.22);
+  }
+  .landing-queued {
+    background: linear-gradient(135deg, rgba(10, 132, 255, 0.08), transparent);
+    border-color: rgba(10, 132, 255, 0.22);
+  }
+  .landing-paused {
+    background: linear-gradient(135deg, rgba(255, 159, 10, 0.06), transparent);
+    border-color: rgba(255, 159, 10, 0.18);
+  }
+  .landing-num {
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: var(--space-3);
+  }
+  .landing-active .landing-num { color: var(--green); }
+  .landing-queued .landing-num { color: var(--blue); }
+  .landing-paused .landing-num { color: var(--orange); }
+  .landing-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .landing-detail {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    line-height: 1.4;
+    margin-bottom: var(--space-3);
+  }
+  .landing-stages {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px;
-    margin-top: 4px;
+    gap: 6px;
   }
-  .pipeline-stage-pill {
-    font-size: 9px;
-    letter-spacing: 0.03em;
-    padding: 2px 6px;
+  .landing-stage-pill {
+    font-size: 11px;
+    padding: 3px 8px;
     border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     white-space: nowrap;
+  }
+  .landing-stage-pill strong {
+    color: var(--text);
+    font-weight: 600;
+    margin-right: 3px;
+  }
+  .landing-paths {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+  .landing-paths-label {
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    font-size: 10px;
+  }
+  @media (max-width: 1024px) {
+    .landing-grid { grid-template-columns: 1fr; }
   }
   .pipeline-gap {
     position: absolute;
@@ -2340,17 +2431,11 @@
             <div class="pipeline-node">
               <div class="pipeline-orb it">⑤</div>
               <div class="pipeline-label"{% if pipeline_total_passed_to_it == 0 %} style="color: var(--text-tertiary);"{% endif %}>Passed to IT</div>
-              <div class="pipeline-stage-pills">
-                <span class="pipeline-stage-pill">IT Prio</span>
-                <span class="pipeline-stage-pill">In Progress</span>
-                <span class="pipeline-stage-pill">UAT/Testing</span>
-                <span class="pipeline-stage-pill">Awaiting</span>
-                <span class="pipeline-stage-pill">On Hold</span>
-              </div>
+              <div class="pipeline-sublabel">{{ pipeline_total_passed_to_it }} items · {{ pipeline_passed_to_it_rate }}</div>
               <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
-                {% if pipeline_total_passed_to_it > 0 %}
-                <div class="pipeline-gap-value" style="color: var(--pink);">{{ pipeline_total_passed_to_it }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">·&nbsp;{{ pipeline_passed_to_it_rate }}</span></div>
-                <div class="pipeline-gap-label">{{ pipeline_sprint_passed_count }} sprint · {{ pipeline_admin_request_count }} Halo</div>
+                {% if pipeline_ba_to_it_dated_count > 0 %}
+                <div class="pipeline-gap-value" style="color: var(--pink);">{{ pipeline_ba_to_it_bd }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
+                <div class="pipeline-gap-label">BA→IT cycle · n={{ pipeline_ba_to_it_dated_count }}</div>
                 {% else %}
                 <div class="pipeline-gap-value dim">—</div>
                 <div class="pipeline-gap-label">Pending data</div>
@@ -2360,14 +2445,49 @@
           </div>
         </div>
 
-        <div class="pipeline-bypass">
-          <span>Two paths to IT:</span>
-          <span><strong style="color: var(--text-secondary);">{{ pipeline_sprint_passed_count }}</strong> sprint (BA→IT Prio→In Progress / Awaiting Next Sprint)</span>
-          <span style="opacity: 0.5;">·</span>
-          <span><strong style="color: var(--pink);">{{ pipeline_admin_request_count }}</strong> Halo (Admin Request — IT works directly, On Hold if no bandwidth)</span>
-          {% if pipeline_ba_to_it_dated_count > 0 %}
-          <span style="margin-left: auto; white-space: nowrap;">BA→IT cycle: <strong style="color: var(--text-secondary);">{{ pipeline_ba_to_it_bd }}</strong> bd · n={{ pipeline_ba_to_it_dated_count }}</span>
-          {% endif %}
+        {# ── Where the work landed: 3 semantic groups ── #}
+        <div class="landing-card">
+          <div class="landing-head">
+            <h3 class="landing-title">Where the work landed</h3>
+            <p class="landing-sub">{{ pipeline_total_passed_to_it }} items handed off to IT, split by what's actually happening</p>
+          </div>
+          <div class="landing-grid">
+            <div class="landing-group landing-active">
+              <div class="landing-num">{{ pipeline_active_build_count }}</div>
+              <div class="landing-name">Active build</div>
+              <div class="landing-detail">IT actively working</div>
+              <div class="landing-stages">
+                <span class="landing-stage-pill"><strong>{{ pipeline_active_in_progress }}</strong> In Progress</span>
+                <span class="landing-stage-pill"><strong>{{ pipeline_active_uat }}</strong> UAT/Testing</span>
+              </div>
+            </div>
+
+            <div class="landing-group landing-queued">
+              <div class="landing-num">{{ pipeline_queued_count }}</div>
+              <div class="landing-name">Queued for IT</div>
+              <div class="landing-detail">In matrix, awaiting categorization or sprint pickup</div>
+              <div class="landing-stages">
+                <span class="landing-stage-pill"><strong>{{ pipeline_queued_it_prio }}</strong> IT Prioritization</span>
+                <span class="landing-stage-pill"><strong>{{ pipeline_queued_awaiting }}</strong> Awaiting Next Sprint</span>
+              </div>
+            </div>
+
+            <div class="landing-group landing-paused">
+              <div class="landing-num">{{ pipeline_paused_count }}</div>
+              <div class="landing-name">Paused</div>
+              <div class="landing-detail">Blocked — revisit when conditions clear</div>
+              <div class="landing-stages">
+                <span class="landing-stage-pill"><strong>{{ pipeline_paused_count }}</strong> On Hold</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="landing-paths">
+            <span class="landing-paths-label">Two paths to IT:</span>
+            <span><strong style="color: var(--text-secondary);">{{ pipeline_sprint_passed_count }}</strong> sprint (BA → IT Prio → Build)</span>
+            <span style="opacity: 0.4;">·</span>
+            <span><strong style="color: var(--pink);">{{ pipeline_admin_request_count }}</strong> Halo (Admin Request — IT direct)</span>
+          </div>
         </div>
 
         <p class="pipeline-note">

@@ -298,6 +298,24 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "pipeline_admin_request_count": metrics["admin_request_count"],
         "pipeline_passed_to_it_rate": metrics["passed_to_it_rate"],
 
+        # §03 Pipeline — landing groups (semantic split of "Passed to IT")
+        # Active build: IT actively working (In Progress + UAT/Testing)
+        # Queued for IT: in matrix awaiting categorization or sprint pickup
+        # Paused: blocked
+        "pipeline_active_build_count": (
+            metrics["stage_current"].get("In Progress", 0)
+            + metrics["stage_current"].get("UAT/Testing", 0)
+        ),
+        "pipeline_active_in_progress": metrics["stage_current"].get("In Progress", 0),
+        "pipeline_active_uat": metrics["stage_current"].get("UAT/Testing", 0),
+        "pipeline_queued_count": (
+            metrics["stage_current"].get("IT Prioritization", 0)
+            + metrics["stage_current"].get("Awaiting Next Sprint", 0)
+        ),
+        "pipeline_queued_it_prio": metrics["stage_current"].get("IT Prioritization", 0),
+        "pipeline_queued_awaiting": metrics["stage_current"].get("Awaiting Next Sprint", 0),
+        "pipeline_paused_count": metrics["stage_current"].get("On Hold", 0),
+
         # §04 Classification
         "wt": wt_data,
 

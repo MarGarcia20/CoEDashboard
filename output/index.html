@@ -809,22 +809,113 @@
     color: var(--text-tertiary);
     margin-top: 2px;
   }
-  .pipeline-stage-pills {
+  /* Landing card: where the work goes after passing to IT */
+  .landing-card {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .landing-head {
+    margin-bottom: var(--space-5);
+  }
+  .landing-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-2);
+  }
+  .landing-sub {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+  .landing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+  .landing-group {
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--bg-elev-2);
+  }
+  .landing-active {
+    background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent);
+    border-color: rgba(48, 209, 88, 0.22);
+  }
+  .landing-queued {
+    background: linear-gradient(135deg, rgba(10, 132, 255, 0.08), transparent);
+    border-color: rgba(10, 132, 255, 0.22);
+  }
+  .landing-paused {
+    background: linear-gradient(135deg, rgba(255, 159, 10, 0.06), transparent);
+    border-color: rgba(255, 159, 10, 0.18);
+  }
+  .landing-num {
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: var(--space-3);
+  }
+  .landing-active .landing-num { color: var(--green); }
+  .landing-queued .landing-num { color: var(--blue); }
+  .landing-paused .landing-num { color: var(--orange); }
+  .landing-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .landing-detail {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    line-height: 1.4;
+    margin-bottom: var(--space-3);
+  }
+  .landing-stages {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px;
-    margin-top: 4px;
+    gap: 6px;
   }
-  .pipeline-stage-pill {
-    font-size: 9px;
-    letter-spacing: 0.03em;
-    padding: 2px 6px;
+  .landing-stage-pill {
+    font-size: 11px;
+    padding: 3px 8px;
     border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     white-space: nowrap;
+  }
+  .landing-stage-pill strong {
+    color: var(--text);
+    font-weight: 600;
+    margin-right: 3px;
+  }
+  .landing-paths {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+  .landing-paths-label {
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    font-size: 10px;
+  }
+  @media (max-width: 1024px) {
+    .landing-grid { grid-template-columns: 1fr; }
   }
   .pipeline-gap {
     position: absolute;
@@ -1996,7 +2087,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 8:40 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 8:52 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -2018,7 +2109,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 8:40 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 8:52 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -2029,7 +2120,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 8:40 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 8:52 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2319,31 +2410,60 @@
             <div class="pipeline-node">
               <div class="pipeline-orb it">⑤</div>
               <div class="pipeline-label">Passed to IT</div>
-              <div class="pipeline-stage-pills">
-                <span class="pipeline-stage-pill">IT Prio</span>
-                <span class="pipeline-stage-pill">In Progress</span>
-                <span class="pipeline-stage-pill">UAT/Testing</span>
-                <span class="pipeline-stage-pill">Awaiting</span>
-                <span class="pipeline-stage-pill">On Hold</span>
-              </div>
+              <div class="pipeline-sublabel">17 items · 46%</div>
               <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
                 
-                <div class="pipeline-gap-value" style="color: var(--pink);">17<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">·&nbsp;46%</span></div>
-                <div class="pipeline-gap-label">15 sprint · 2 Halo</div>
+                <div class="pipeline-gap-value" style="color: var(--pink);">1<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
+                <div class="pipeline-gap-label">BA→IT cycle · n=1</div>
                 
               </div>
             </div>
           </div>
         </div>
 
-        <div class="pipeline-bypass">
-          <span>Two paths to IT:</span>
-          <span><strong style="color: var(--text-secondary);">15</strong> sprint (BA→IT Prio→In Progress / Awaiting Next Sprint)</span>
-          <span style="opacity: 0.5;">·</span>
-          <span><strong style="color: var(--pink);">2</strong> Halo (Admin Request — IT works directly, On Hold if no bandwidth)</span>
-          
-          <span style="margin-left: auto; white-space: nowrap;">BA→IT cycle: <strong style="color: var(--text-secondary);">1</strong> bd · n=1</span>
-          
+        
+        <div class="landing-card">
+          <div class="landing-head">
+            <h3 class="landing-title">Where the work landed</h3>
+            <p class="landing-sub">17 items handed off to IT, split by what's actually happening</p>
+          </div>
+          <div class="landing-grid">
+            <div class="landing-group landing-active">
+              <div class="landing-num">8</div>
+              <div class="landing-name">Active build</div>
+              <div class="landing-detail">IT actively working</div>
+              <div class="landing-stages">
+                <span class="landing-stage-pill"><strong>3</strong> In Progress</span>
+                <span class="landing-stage-pill"><strong>5</strong> UAT/Testing</span>
+              </div>
+            </div>
+
+            <div class="landing-group landing-queued">
+              <div class="landing-num">8</div>
+              <div class="landing-name">Queued for IT</div>
+              <div class="landing-detail">In matrix, awaiting categorization or sprint pickup</div>
+              <div class="landing-stages">
+                <span class="landing-stage-pill"><strong>8</strong> IT Prioritization</span>
+                <span class="landing-stage-pill"><strong>0</strong> Awaiting Next Sprint</span>
+              </div>
+            </div>
+
+            <div class="landing-group landing-paused">
+              <div class="landing-num">0</div>
+              <div class="landing-name">Paused</div>
+              <div class="landing-detail">Blocked — revisit when conditions clear</div>
+              <div class="landing-stages">
+                <span class="landing-stage-pill"><strong>0</strong> On Hold</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="landing-paths">
+            <span class="landing-paths-label">Two paths to IT:</span>
+            <span><strong style="color: var(--text-secondary);">15</strong> sprint (BA → IT Prio → Build)</span>
+            <span style="opacity: 0.4;">·</span>
+            <span><strong style="color: var(--pink);">2</strong> Halo (Admin Request — IT direct)</span>
+          </div>
         </div>
 
         <p class="pipeline-note">
@@ -3109,7 +3229,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>37 requests · 3.7 bd review · 11% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · May 6, 2026 · 8:40 PM ET</span>
+      <span id="age-indicator">Snapshot · May 6, 2026 · 8:52 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -3149,7 +3269,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-05-07T00:40:34+00:00');
+      const snapshotTime = new Date('2026-05-07T00:52:29+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
