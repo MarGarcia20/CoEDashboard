@@ -809,6 +809,103 @@
     color: var(--text-tertiary);
     margin-top: 2px;
   }
+  /* Pipeline KPI tiles — replaces the orb-based visual */
+  .pipeline-tiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .pipeline-tile {
+    padding: var(--space-6);
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: left;
+  }
+  .pipeline-tile-active {
+    background: linear-gradient(135deg, rgba(100, 210, 255, 0.06), transparent);
+    border-color: rgba(100, 210, 255, 0.22);
+  }
+  .pipeline-tile-dim {
+    opacity: 0.55;
+  }
+  .pipeline-tile-num {
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    margin-bottom: var(--space-3);
+  }
+  .pipeline-tile-num.dim {
+    color: var(--text-quaternary);
+  }
+  .pipeline-tile-unit {
+    font-size: var(--text-md);
+    color: var(--text-tertiary);
+    margin-left: 4px;
+    font-weight: 500;
+  }
+  .pipeline-tile-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .pipeline-tile-flow {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-2);
+  }
+  .pipeline-tile-foot {
+    font-size: 10px;
+    color: var(--text-quaternary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  /* Flow line — simple horizontal step list under the tiles */
+  .pipeline-flow-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-6);
+  }
+  .pipeline-flow-step {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .pipeline-flow-end {
+    color: var(--text);
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    background: rgba(225, 65, 122, 0.1);
+    border: 1px solid rgba(225, 65, 122, 0.25);
+  }
+  .pipeline-flow-arrow {
+    color: var(--text-quaternary);
+    font-size: var(--text-md);
+  }
+  @media (max-width: 1024px) {
+    .pipeline-tiles { grid-template-columns: repeat(2, 1fr); }
+    .pipeline-flow-line { gap: var(--space-2); padding: var(--space-3); }
+    .pipeline-flow-step { font-size: var(--text-xs); }
+  }
+  @media (max-width: 720px) {
+    .pipeline-tiles { grid-template-columns: 1fr; }
+  }
+
   /* Landing card: where the work goes after passing to IT */
   .landing-card {
     margin-top: var(--space-8);
@@ -2388,61 +2485,56 @@
       </div>
 
       <div class="card pipeline-card">
-        <div class="pipeline-wrap">
-          <div class="pipeline-track">
-            <div class="pipeline-rail"></div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb biz">①</div>
-              <div class="pipeline-label">Business created</div>
-              <div class="pipeline-sublabel">in EPMO portfolio</div>
-            </div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb recv">②</div>
-              <div class="pipeline-label">CoE received</div>
-              <div class="pipeline-sublabel">Received Date</div>
-              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
-                <div class="pipeline-gap-value">{{ pipeline_upstream_bd }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
-                <div class="pipeline-gap-label">Upstream · seeding</div>
-              </div>
-            </div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb review">③</div>
-              <div class="pipeline-label">First review</div>
-              <div class="pipeline-sublabel">First Review Date</div>
-              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
-                <div class="pipeline-gap-value" style="color: var(--cyan);">{{ pipeline_review_bd }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
-                <div class="pipeline-gap-label">CoE review time</div>
-              </div>
-            </div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb ba">④</div>
-              <div class="pipeline-label"{% if kpi_ba_count == 0 %} style="color: var(--text-tertiary);"{% endif %}>BA assigned</div>
-              <div class="pipeline-sublabel">BA Assigned Date</div>
-              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
-                {% if kpi_ba_count > 0 %}
-                <div class="pipeline-gap-value" style="color: var(--purple);">{{ kpi_ba_avg }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
-                <div class="pipeline-gap-label">{{ kpi_ba_count }} assigned</div>
-                {% else %}
-                <div class="pipeline-gap-value dim">—</div>
-                <div class="pipeline-gap-label">Pending data</div>
-                {% endif %}
-              </div>
-            </div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb it">⑤</div>
-              <div class="pipeline-label"{% if pipeline_total_passed_to_it == 0 %} style="color: var(--text-tertiary);"{% endif %}>Passed to IT</div>
-              <div class="pipeline-sublabel">{{ pipeline_total_passed_to_it }} items · {{ pipeline_passed_to_it_rate }}</div>
-              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
-                {% if pipeline_ba_to_it_dated_count > 0 %}
-                <div class="pipeline-gap-value" style="color: var(--pink);">{{ pipeline_ba_to_it_bd }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
-                <div class="pipeline-gap-label">BA→IT cycle · n={{ pipeline_ba_to_it_dated_count }}</div>
-                {% else %}
-                <div class="pipeline-gap-value dim">—</div>
-                <div class="pipeline-gap-label">Pending data</div>
-                {% endif %}
-              </div>
-            </div>
+        {# ── 4-tile KPI strip: each duration is its own metric ── #}
+        <div class="pipeline-tiles">
+          <div class="pipeline-tile">
+            <div class="pipeline-tile-num">{{ pipeline_upstream_bd }}<span class="pipeline-tile-unit">bd</span></div>
+            <div class="pipeline-tile-name">Upstream gap</div>
+            <div class="pipeline-tile-flow">Intake PMO → CoE</div>
+            <div class="pipeline-tile-foot">legacy seeding</div>
           </div>
+
+          <div class="pipeline-tile pipeline-tile-active">
+            <div class="pipeline-tile-num" style="color: var(--cyan);">{{ pipeline_review_bd }}<span class="pipeline-tile-unit">bd</span></div>
+            <div class="pipeline-tile-name">CoE review</div>
+            <div class="pipeline-tile-flow">CoE → First review</div>
+            <div class="pipeline-tile-foot">{{ kpi_review_substantive_count }} substantive reviews</div>
+          </div>
+
+          <div class="pipeline-tile{% if kpi_ba_count == 0 %} pipeline-tile-dim{% endif %}">
+            {% if kpi_ba_count > 0 %}
+              <div class="pipeline-tile-num" style="color: var(--purple);">{{ kpi_ba_avg }}<span class="pipeline-tile-unit">bd</span></div>
+            {% else %}
+              <div class="pipeline-tile-num dim">—</div>
+            {% endif %}
+            <div class="pipeline-tile-name">Review → BA</div>
+            <div class="pipeline-tile-flow">CoE review → BA assigned</div>
+            <div class="pipeline-tile-foot">{{ kpi_ba_count }} assigned</div>
+          </div>
+
+          <div class="pipeline-tile{% if pipeline_ba_to_it_dated_count == 0 %} pipeline-tile-dim{% endif %}">
+            {% if pipeline_ba_to_it_dated_count > 0 %}
+              <div class="pipeline-tile-num" style="color: var(--pink);">{{ pipeline_ba_to_it_bd }}<span class="pipeline-tile-unit">bd</span></div>
+            {% else %}
+              <div class="pipeline-tile-num dim">—</div>
+            {% endif %}
+            <div class="pipeline-tile-name">BA → IT</div>
+            <div class="pipeline-tile-flow">BA assigned → Passed to IT</div>
+            <div class="pipeline-tile-foot">n={{ pipeline_ba_to_it_dated_count }}</div>
+          </div>
+        </div>
+
+        {# ── Simple flow line under tiles ── #}
+        <div class="pipeline-flow-line">
+          <span class="pipeline-flow-step">Intake PMO</span>
+          <span class="pipeline-flow-arrow">→</span>
+          <span class="pipeline-flow-step">CoE received</span>
+          <span class="pipeline-flow-arrow">→</span>
+          <span class="pipeline-flow-step">First review</span>
+          <span class="pipeline-flow-arrow">→</span>
+          <span class="pipeline-flow-step">BA assigned</span>
+          <span class="pipeline-flow-arrow">→</span>
+          <span class="pipeline-flow-step pipeline-flow-end">Passed to IT · {{ pipeline_total_passed_to_it }} items · {{ pipeline_passed_to_it_rate }}</span>
         </div>
 
         {# ── Where the work landed: 3 semantic groups ── #}

@@ -809,6 +809,103 @@
     color: var(--text-tertiary);
     margin-top: 2px;
   }
+  /* Pipeline KPI tiles — replaces the orb-based visual */
+  .pipeline-tiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .pipeline-tile {
+    padding: var(--space-6);
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: left;
+  }
+  .pipeline-tile-active {
+    background: linear-gradient(135deg, rgba(100, 210, 255, 0.06), transparent);
+    border-color: rgba(100, 210, 255, 0.22);
+  }
+  .pipeline-tile-dim {
+    opacity: 0.55;
+  }
+  .pipeline-tile-num {
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    margin-bottom: var(--space-3);
+  }
+  .pipeline-tile-num.dim {
+    color: var(--text-quaternary);
+  }
+  .pipeline-tile-unit {
+    font-size: var(--text-md);
+    color: var(--text-tertiary);
+    margin-left: 4px;
+    font-weight: 500;
+  }
+  .pipeline-tile-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .pipeline-tile-flow {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-2);
+  }
+  .pipeline-tile-foot {
+    font-size: 10px;
+    color: var(--text-quaternary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  /* Flow line — simple horizontal step list under the tiles */
+  .pipeline-flow-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-6);
+  }
+  .pipeline-flow-step {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .pipeline-flow-end {
+    color: var(--text);
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    background: rgba(225, 65, 122, 0.1);
+    border: 1px solid rgba(225, 65, 122, 0.25);
+  }
+  .pipeline-flow-arrow {
+    color: var(--text-quaternary);
+    font-size: var(--text-md);
+  }
+  @media (max-width: 1024px) {
+    .pipeline-tiles { grid-template-columns: repeat(2, 1fr); }
+    .pipeline-flow-line { gap: var(--space-2); padding: var(--space-3); }
+    .pipeline-flow-step { font-size: var(--text-xs); }
+  }
+  @media (max-width: 720px) {
+    .pipeline-tiles { grid-template-columns: 1fr; }
+  }
+
   /* Landing card: where the work goes after passing to IT */
   .landing-card {
     margin-top: var(--space-8);
@@ -2087,7 +2184,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 8:52 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 11:02 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -2109,7 +2206,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 8:52 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 11:02 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -2120,7 +2217,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 8:52 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 11:02 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2370,55 +2467,52 @@
       </div>
 
       <div class="card pipeline-card">
-        <div class="pipeline-wrap">
-          <div class="pipeline-track">
-            <div class="pipeline-rail"></div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb biz">①</div>
-              <div class="pipeline-label">Business created</div>
-              <div class="pipeline-sublabel">in EPMO portfolio</div>
-            </div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb recv">②</div>
-              <div class="pipeline-label">CoE received</div>
-              <div class="pipeline-sublabel">Received Date</div>
-              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
-                <div class="pipeline-gap-value">32.8<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
-                <div class="pipeline-gap-label">Upstream · seeding</div>
-              </div>
-            </div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb review">③</div>
-              <div class="pipeline-label">First review</div>
-              <div class="pipeline-sublabel">First Review Date</div>
-              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
-                <div class="pipeline-gap-value" style="color: var(--cyan);">3.7<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
-                <div class="pipeline-gap-label">CoE review time</div>
-              </div>
-            </div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb ba">④</div>
-              <div class="pipeline-label">BA assigned</div>
-              <div class="pipeline-sublabel">BA Assigned Date</div>
-              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
-                
-                <div class="pipeline-gap-value" style="color: var(--purple);">2.2<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
-                <div class="pipeline-gap-label">6 assigned</div>
-                
-              </div>
-            </div>
-            <div class="pipeline-node">
-              <div class="pipeline-orb it">⑤</div>
-              <div class="pipeline-label">Passed to IT</div>
-              <div class="pipeline-sublabel">17 items · 46%</div>
-              <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
-                
-                <div class="pipeline-gap-value" style="color: var(--pink);">1<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">bd</span></div>
-                <div class="pipeline-gap-label">BA→IT cycle · n=1</div>
-                
-              </div>
-            </div>
+        
+        <div class="pipeline-tiles">
+          <div class="pipeline-tile">
+            <div class="pipeline-tile-num">32.8<span class="pipeline-tile-unit">bd</span></div>
+            <div class="pipeline-tile-name">Upstream gap</div>
+            <div class="pipeline-tile-flow">Intake PMO → CoE</div>
+            <div class="pipeline-tile-foot">legacy seeding</div>
           </div>
+
+          <div class="pipeline-tile pipeline-tile-active">
+            <div class="pipeline-tile-num" style="color: var(--cyan);">3.7<span class="pipeline-tile-unit">bd</span></div>
+            <div class="pipeline-tile-name">CoE review</div>
+            <div class="pipeline-tile-flow">CoE → First review</div>
+            <div class="pipeline-tile-foot">33 substantive reviews</div>
+          </div>
+
+          <div class="pipeline-tile">
+            
+              <div class="pipeline-tile-num" style="color: var(--purple);">2.2<span class="pipeline-tile-unit">bd</span></div>
+            
+            <div class="pipeline-tile-name">Review → BA</div>
+            <div class="pipeline-tile-flow">CoE review → BA assigned</div>
+            <div class="pipeline-tile-foot">6 assigned</div>
+          </div>
+
+          <div class="pipeline-tile">
+            
+              <div class="pipeline-tile-num" style="color: var(--pink);">1<span class="pipeline-tile-unit">bd</span></div>
+            
+            <div class="pipeline-tile-name">BA → IT</div>
+            <div class="pipeline-tile-flow">BA assigned → Passed to IT</div>
+            <div class="pipeline-tile-foot">n=1</div>
+          </div>
+        </div>
+
+        
+        <div class="pipeline-flow-line">
+          <span class="pipeline-flow-step">Intake PMO</span>
+          <span class="pipeline-flow-arrow">→</span>
+          <span class="pipeline-flow-step">CoE received</span>
+          <span class="pipeline-flow-arrow">→</span>
+          <span class="pipeline-flow-step">First review</span>
+          <span class="pipeline-flow-arrow">→</span>
+          <span class="pipeline-flow-step">BA assigned</span>
+          <span class="pipeline-flow-arrow">→</span>
+          <span class="pipeline-flow-step pipeline-flow-end">Passed to IT · 17 items · 46%</span>
         </div>
 
         
@@ -3229,7 +3323,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>37 requests · 3.7 bd review · 11% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · May 6, 2026 · 8:52 PM ET</span>
+      <span id="age-indicator">Snapshot · May 6, 2026 · 11:02 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -3269,7 +3363,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-05-07T00:52:29+00:00');
+      const snapshotTime = new Date('2026-05-07T03:02:00+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
