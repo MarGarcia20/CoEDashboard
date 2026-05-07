@@ -1,6 +1,6 @@
 {
   "date": "2026-05-07",
-  "generated_at": "2026-05-07T20:24:02",
+  "generated_at": "2026-05-07T22:13:19",
   "metrics": {
     "total": 38,
     "open_count": 34,
@@ -12,8 +12,8 @@
     "review_min": "1",
     "review_max": "10",
     "review_substantive_count": 33,
-    "upstream_avg": "32.8",
-    "upstream_median": "28",
+    "upstream_avg": "31.5",
+    "upstream_median": "27.0",
     "priority_set_count": 33,
     "priority_unset_count": 5,
     "ba_avg": "2.2",
@@ -596,8 +596,8 @@
       },
       "IT Prioritization": {
         "count": 9,
-        "oldest": 8,
-        "avg": 6.0,
+        "oldest": 6,
+        "avg": 2.2,
         "stuck": 0
       },
       "In Progress": {
