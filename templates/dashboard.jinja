@@ -2323,7 +2323,7 @@
             <div class="pipeline-node">
               <div class="pipeline-orb it">⑤</div>
               <div class="pipeline-label"{% if pipeline_total_passed_to_it == 0 %} style="color: var(--text-tertiary);"{% endif %}>Passed to IT</div>
-              <div class="pipeline-sublabel">IT Prio · In Progress · UAT · Awaiting · On Hold</div>
+              <div class="pipeline-sublabel">IT Prio · In Progress · UAT/Testing<br>Awaiting · On Hold</div>
               <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
                 {% if pipeline_total_passed_to_it > 0 %}
                 <div class="pipeline-gap-value" style="color: var(--pink);">{{ pipeline_total_passed_to_it }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">·&nbsp;{{ pipeline_passed_to_it_rate }}</span></div>
