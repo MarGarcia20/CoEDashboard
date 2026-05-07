@@ -328,11 +328,11 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "yield_pending_pct": metrics["yield_pending_pct"],
         "yield_pending_names": metrics["yield_pending_names"],
 
-        # §03b — Flow health (aging + throughput + pace)
+        # §03b — Flow health (aging + biweekly throughput + pace)
         "aging_by_stage": metrics["aging_by_stage"],
-        "throughput_weekly": metrics["throughput_weekly"],
+        "throughput_biweekly": metrics["throughput_biweekly"],
         "throughput_avg": metrics["throughput_avg"],
-        "intake_avg_4w": metrics["intake_avg_4w"],
+        "intake_avg_biweekly": metrics["intake_avg_biweekly"],
         "pace": metrics["pace"],
         "oldest_open_days": metrics["oldest_open_days"],
         "oldest_open_stage": metrics["oldest_open_stage"],

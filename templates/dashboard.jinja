@@ -1402,6 +1402,15 @@
     color: var(--text);
     font-weight: 600;
   }
+  .pace-cadence {
+    display: block;
+    font-size: 10px;
+    color: var(--text-quaternary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    margin-top: 4px;
+  }
   .pace-consequence-divider {
     height: 1px;
     background: var(--border);
@@ -2874,15 +2883,16 @@
 
           {% if pace.state != "no_data" %}
             <div class="pace-math">
-              Closing <strong>{{ pace.throughput_avg }} / wk</strong> · receiving <strong>{{ pace.intake_avg }} / wk</strong>
+              Closing <strong>{{ pace.throughput_avg }} / sprint</strong> · receiving <strong>{{ pace.intake_avg }} / sprint</strong>
+              <span class="pace-cadence">biweekly average</span>
             </div>
             <div class="pace-consequence-divider"></div>
-            {% if pace.net_per_week > 0 %}
+            {% if pace.net_per_period > 0 %}
               <div class="pace-consequence">
                 Backlog grows by <strong>~{{ pace.net_per_month | round(0) | int }} items / month</strong>
                 <span class="pace-consequence-tail">if nothing changes</span>
               </div>
-            {% elif pace.net_per_week < 0 %}
+            {% elif pace.net_per_period < 0 %}
               <div class="pace-consequence">
                 Backlog shrinks by <strong>~{{ (-pace.net_per_month) | round(0) | int }} items / month</strong>
                 <span class="pace-consequence-tail">at this pace</span>
@@ -2897,12 +2907,12 @@
         </div>
 
         <div class="health-hero-card health-throughput">
-          <div class="health-hero-label">Throughput · trailing 4 weeks</div>
-          <div class="health-hero-num">{{ throughput_avg }}<span class="health-hero-unit">/ wk</span></div>
+          <div class="health-hero-label">Throughput · last 4 sprints</div>
+          <div class="health-hero-num">{{ throughput_avg }}<span class="health-hero-unit">/ sprint</span></div>
           <div class="health-throughput-bars">
-            {% set tp_max = throughput_weekly | map(attribute='count') | max %}
+            {% set tp_max = throughput_biweekly | map(attribute='count') | max %}
             {% set tp_max_safe = [tp_max, 1] | max %}
-            {% for w in throughput_weekly %}
+            {% for w in throughput_biweekly %}
               <div class="health-bar-wrap">
                 <div class="health-bar" style="height: {{ (w.count / tp_max_safe * 100) | round(0) }}%;"></div>
                 <div class="health-bar-label">{{ w.label }}</div>

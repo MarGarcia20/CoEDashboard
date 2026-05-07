@@ -834,21 +834,23 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "area_chart": area_series,
     }
 
-    # ── Tier-1 operational metrics (aging + throughput + pace) ──
+    # ── Tier-1 operational metrics (aging + biweekly throughput + pace) ──
+    # All flow metrics use a biweekly cadence to align with sprint cycle.
     aging = _compute_aging_per_stage(items, today)
-    throughput = _weekly_throughput(items, today, weeks=4)
+    throughput = _biweekly_throughput(items, today, periods=4)  # last 8 weeks → 4 buckets
     throughput_counts = [w["count"] for w in throughput]
     throughput_avg = (
         round(sum(throughput_counts) / len(throughput_counts), 1)
         if throughput_counts else 0.0
     )
-    intake_avg_4w = round(
+    # Intake per biweekly period over the same trailing 8 weeks
+    intake_avg_biweekly = round(
         sum(1 for item in items
             if _date_in_range(item.get("received_date"),
-                              today - timedelta(days=28), today + timedelta(days=1))) / 4,
+                              today - timedelta(days=56), today + timedelta(days=1))) / 4,
         1,
     )
-    pace = _pace_vs_intake(intake_avg_4w, throughput_avg)
+    pace = _pace_vs_intake(intake_avg_biweekly, throughput_avg)
 
     # Find oldest item across all open stages for the headline alert
     oldest_overall = 0
@@ -859,9 +861,9 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
             oldest_stage = stage
 
     result["aging_by_stage"] = aging
-    result["throughput_weekly"] = throughput
+    result["throughput_biweekly"] = throughput
     result["throughput_avg"] = throughput_avg
-    result["intake_avg_4w"] = intake_avg_4w
+    result["intake_avg_biweekly"] = intake_avg_biweekly
     result["pace"] = pace
     result["oldest_open_days"] = oldest_overall
     result["oldest_open_stage"] = oldest_stage
@@ -1079,23 +1081,24 @@ def _compute_aging_per_stage(items: list[dict], today: date) -> dict[str, dict]:
     return result
 
 
-def _weekly_throughput(items: list[dict], today: date, weeks: int = 4) -> list[dict]:
+def _biweekly_throughput(items: list[dict], today: date, periods: int = 4) -> list[dict]:
     """Items closed (delivered, closed-at-review, rejected, EPMO, admin) per
-    ISO week, trailing N weeks ending with the current week."""
+    biweekly (2-week) period, trailing N periods ending with the current one.
+    Aligns with sprint cadence."""
     monday_this = today - timedelta(days=today.weekday())
     out = []
-    for i in range(weeks - 1, -1, -1):
-        week_start = monday_this - timedelta(days=7 * i)
-        week_end = week_start + timedelta(days=7)
-        # Count any item whose "exit signal" lands in this window
+    for i in range(periods - 1, -1, -1):
+        period_start = monday_this - timedelta(days=14 * i)
+        period_end = period_start + timedelta(days=14)
         count = sum(
             1 for item in items
-            if _completed_in_range(item, week_start, week_end)
-            or _closed_at_review_in_range(item, week_start, week_end)
+            if _completed_in_range(item, period_start, period_end)
+            or _closed_at_review_in_range(item, period_start, period_end)
         )
+        period_end_label = (period_end - timedelta(days=1))
         out.append({
-            "week_start": week_start.isoformat(),
-            "label": f"W{week_start.isocalendar()[1]}",
+            "period_start": period_start.isoformat(),
+            "label": f"W{period_start.isocalendar()[1]}–W{period_end_label.isocalendar()[1]}",
             "count": count,
         })
     return out
@@ -1103,6 +1106,7 @@ def _weekly_throughput(items: list[dict], today: date, weeks: int = 4) -> list[d
 
 def _pace_vs_intake(intake_avg: float, throughput_avg: float) -> dict:
     """Steady-state queue health: are we closing at least what's entering?
+    All inputs and outputs are per biweekly (2-week) period.
 
     States:
       on_pace      → throughput >= intake (queue stable or shrinking)
@@ -1110,15 +1114,15 @@ def _pace_vs_intake(intake_avg: float, throughput_avg: float) -> dict:
       off_pace     → throughput < 80% of intake (queue inflating)
       no_data      → no throughput in window
     """
-    net_per_week = round(intake_avg - throughput_avg, 1)
-    net_per_month = round(net_per_week * 4, 1)
+    net_per_period = round(intake_avg - throughput_avg, 1)
+    # Project monthly: 1 month ≈ 2.17 biweekly periods
+    net_per_month = round(net_per_period * 2.17, 1)
 
     if throughput_avg <= 0:
         state = "no_data"
         label = "No data"
         ratio = 0.0
     elif intake_avg <= 0:
-        # No intake means anything we close is pure progress
         state = "on_pace"
         label = "On pace"
         ratio = 1.0
@@ -1138,7 +1142,7 @@ def _pace_vs_intake(intake_avg: float, throughput_avg: float) -> dict:
         "state": state,
         "label": label,
         "ratio": round(ratio, 2),
-        "net_per_week": net_per_week,
+        "net_per_period": net_per_period,
         "net_per_month": net_per_month,
         "intake_avg": intake_avg,
         "throughput_avg": throughput_avg,

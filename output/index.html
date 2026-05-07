@@ -1402,6 +1402,15 @@
     color: var(--text);
     font-weight: 600;
   }
+  .pace-cadence {
+    display: block;
+    font-size: 10px;
+    color: var(--text-quaternary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    margin-top: 4px;
+  }
   .pace-consequence-divider {
     height: 1px;
     background: var(--border);
@@ -2441,7 +2450,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 11:35 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 11:43 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -2463,7 +2472,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 11:35 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 11:43 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -2474,7 +2483,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 11:35 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 11:43 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2846,12 +2855,13 @@
 
           
             <div class="pace-math">
-              Closing <strong>1.5 / wk</strong> · receiving <strong>9.2 / wk</strong>
+              Closing <strong>1.5 / sprint</strong> · receiving <strong>9.2 / sprint</strong>
+              <span class="pace-cadence">biweekly average</span>
             </div>
             <div class="pace-consequence-divider"></div>
             
               <div class="pace-consequence">
-                Backlog grows by <strong>~31 items / month</strong>
+                Backlog grows by <strong>~17 items / month</strong>
                 <span class="pace-consequence-tail">if nothing changes</span>
               </div>
             
@@ -2859,33 +2869,33 @@
         </div>
 
         <div class="health-hero-card health-throughput">
-          <div class="health-hero-label">Throughput · trailing 4 weeks</div>
-          <div class="health-hero-num">1.5<span class="health-hero-unit">/ wk</span></div>
+          <div class="health-hero-label">Throughput · last 4 sprints</div>
+          <div class="health-hero-num">1.5<span class="health-hero-unit">/ sprint</span></div>
           <div class="health-throughput-bars">
             
             
             
               <div class="health-bar-wrap">
-                <div class="health-bar" style="height: 25.0%;"></div>
-                <div class="health-bar-label">W16</div>
+                <div class="health-bar" style="height: 0.0%;"></div>
+                <div class="health-bar-label">W13–W14</div>
+                <div class="health-bar-value">0</div>
+              </div>
+            
+              <div class="health-bar-wrap">
+                <div class="health-bar" style="height: 20.0%;"></div>
+                <div class="health-bar-label">W15–W16</div>
                 <div class="health-bar-value">1</div>
               </div>
             
               <div class="health-bar-wrap">
                 <div class="health-bar" style="height: 100.0%;"></div>
-                <div class="health-bar-label">W17</div>
-                <div class="health-bar-value">4</div>
-              </div>
-            
-              <div class="health-bar-wrap">
-                <div class="health-bar" style="height: 25.0%;"></div>
-                <div class="health-bar-label">W18</div>
-                <div class="health-bar-value">1</div>
+                <div class="health-bar-label">W17–W18</div>
+                <div class="health-bar-value">5</div>
               </div>
             
               <div class="health-bar-wrap">
                 <div class="health-bar" style="height: 0.0%;"></div>
-                <div class="health-bar-label">W19</div>
+                <div class="health-bar-label">W19–W20</div>
                 <div class="health-bar-value">0</div>
               </div>
             
@@ -3765,7 +3775,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>37 requests · 3.7 bd review · 11% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · May 6, 2026 · 11:35 PM ET</span>
+      <span id="age-indicator">Snapshot · May 6, 2026 · 11:43 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -3805,7 +3815,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-05-07T03:35:29+00:00');
+      const snapshotTime = new Date('2026-05-07T03:43:01+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
