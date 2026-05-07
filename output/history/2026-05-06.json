@@ -1,6 +1,6 @@
 {
   "date": "2026-05-06",
-  "generated_at": "2026-05-06T23:07:27",
+  "generated_at": "2026-05-06T23:18:48",
   "metrics": {
     "total": 37,
     "open_count": 33,
@@ -339,7 +339,7 @@
     "outcome_closed_at_review": 0,
     "outcome_rejected": 4,
     "outcome_pushed_to_epmo": 0,
-    "outcome_on_hold": 4,
+    "outcome_on_hold": 3,
     "outcome_delivered": 0,
     "outcome_admin_request": 2,
     "area_chart": {
@@ -541,14 +541,14 @@
       },
       "In Progress": {
         "count": 3,
-        "oldest": 14,
-        "avg": 13.7,
-        "stuck": 2
+        "oldest": 9,
+        "avg": 9.0,
+        "stuck": 0
       },
       "UAT/Testing": {
         "count": 5,
-        "oldest": 13,
-        "avg": 12.0,
+        "oldest": 0,
+        "avg": 0.0,
         "stuck": 0
       },
       "Awaiting Next Sprint": {
@@ -599,6 +599,36 @@
     },
     "oldest_open_days": 16,
     "oldest_open_stage": "Triage",
-    "stuck_total": 8
+    "stuck_total": 6,
+    "it_cycle": {
+      "build": {
+        "avg": 7.6,
+        "median": 8,
+        "count": 5,
+        "min": 7,
+        "max": 8
+      },
+      "testing": {
+        "avg": null,
+        "median": null,
+        "count": 0,
+        "min": 0,
+        "max": 0
+      },
+      "closeout": {
+        "avg": null,
+        "median": null,
+        "count": 0,
+        "min": 0,
+        "max": 0
+      },
+      "total": {
+        "avg": null,
+        "median": null,
+        "count": 0,
+        "min": 0,
+        "max": 0
+      }
+    }
   }
 }

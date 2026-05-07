@@ -328,6 +328,9 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "yield_pending_pct": metrics["yield_pending_pct"],
         "yield_pending_names": metrics["yield_pending_names"],
 
+        # §03 IT cycle (Start Date → UAT → Deployed → Completed)
+        "it_cycle": metrics["it_cycle"],
+
         # §03b — Flow health (aging + biweekly throughput + pace)
         "aging_by_stage": metrics["aging_by_stage"],
         "throughput_biweekly": metrics["throughput_biweekly"],

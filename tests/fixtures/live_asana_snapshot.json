@@ -4993,11 +4993,8 @@
       {
         "gid": "1214267182280877",
         "name": "Project Paused",
-        "display_value": "2026-04-24T00:00:00.000Z",
-        "date_value": {
-          "date": "2026-04-24",
-          "date_time": null
-        },
+        "display_value": null,
+        "date_value": null,
         "type": "date"
       },
       {
@@ -6747,11 +6744,11 @@
       {
         "gid": "1214593752433962",
         "enum_value": {
-          "gid": "1214593752433963",
-          "name": "High"
+          "gid": "1214593752433966",
+          "name": "Critical"
         },
         "name": "CoE Priority",
-        "display_value": "High",
+        "display_value": "Critical",
         "type": "enum"
       },
       {

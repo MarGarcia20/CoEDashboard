@@ -869,6 +869,9 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
     result["oldest_open_stage"] = oldest_stage
     result["stuck_total"] = sum(info["stuck"] for info in aging.values())
 
+    # ── IT-side cycle times (Start Date → UAT → Deployed → Completed) ──
+    result["it_cycle"] = _it_cycle_durations(items)
+
     if verbose:
         for k, v in result.items():
             if not isinstance(v, (dict, list)):
@@ -1030,6 +1033,44 @@ def _date_in_range(value, start: date, end: date) -> bool:
     return bool(d and start <= d < end)
 
 
+def _it_cycle_durations(items: list[dict]) -> dict:
+    """IT-side cycle times in business days, averaged across items that have
+    both endpoints populated. Returns dict with avg + count for each transition.
+
+    Transitions:
+      build:    Start Date     → UAT Start         (IT building)
+      testing:  UAT Start       → Deployed          (UAT/Testing)
+      closeout: Deployed        → Completed Date    (deploy → marked done)
+      total:    Start Date      → Completed Date    (full IT engagement)
+    """
+    pairs = {
+        "build":    ("start_date", "uat_start"),
+        "testing":  ("uat_start",  "deployed"),
+        "closeout": ("deployed",   "completed_date"),
+        "total":    ("start_date", "completed_date"),
+    }
+
+    out = {}
+    for name, (start_key, end_key) in pairs.items():
+        durations = []
+        for item in items:
+            s = _parse_date(item.get(start_key))
+            e = _parse_date(item.get(end_key))
+            if s and e and e >= s:
+                durations.append(business_days_between(s, e))
+        if durations:
+            out[name] = {
+                "avg": round(statistics.mean(durations), 1),
+                "median": round(statistics.median(durations), 1),
+                "count": len(durations),
+                "min": min(durations),
+                "max": max(durations),
+            }
+        else:
+            out[name] = {"avg": None, "median": None, "count": 0, "min": 0, "max": 0}
+    return out
+
+
 def _stage_entry_date(item: dict) -> Optional[date]:
     """Best estimate of when the item entered its CURRENT stage.
 
@@ -1041,7 +1082,7 @@ def _stage_entry_date(item: dict) -> Optional[date]:
     candidates = [
         _parse_date(item.get(k))
         for k in (
-            "completed_date", "deployed",
+            "completed_date", "deployed", "uat_start", "start_date",
             "it_prioritization_date", "ba_assigned",
             "first_review_date", "classification_date",
             "received_date", "created_on",

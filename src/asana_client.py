@@ -27,6 +27,8 @@ CUSTOM_FIELD_GIDS = {
     "completed_date": "1208524309563086",
     "classification_date": "1214083489074997",
     "it_prioritization_date": "1214205709219888",
+    "start_date": "1205996528539007",        # IT "In Progress" start
+    "uat_start": "1214267250385733",          # UAT/Testing start
 }
 
 BASE_URL = "https://app.asana.com/api/1.0"
@@ -97,6 +99,8 @@ def _normalize_item(raw: dict) -> dict:
         "completed_date": _extract_custom_field(raw, "completed_date"),
         "classification_date": _extract_custom_field(raw, "classification_date"),
         "it_prioritization_date": _extract_custom_field(raw, "it_prioritization_date"),
+        "start_date": _extract_custom_field(raw, "start_date"),
+        "uat_start": _extract_custom_field(raw, "uat_start"),
     }
 
 

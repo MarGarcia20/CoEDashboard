@@ -866,6 +866,27 @@
     font-weight: 500;
   }
 
+  /* IT cycle section (second row of tiles + hero) */
+  .it-cycle-section {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-6);
+  }
+  .it-cycle-head {
+    margin-bottom: var(--space-4);
+  }
+  .pipeline-tile-eyebrow {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+  .pipeline-tile-hero {
+    background: linear-gradient(135deg, rgba(225, 65, 122, 0.08), transparent);
+    border-color: rgba(225, 65, 122, 0.28);
+  }
+
   /* Flow line — simple horizontal step list under the tiles */
   .pipeline-flow-line {
     display: flex;
@@ -2801,6 +2822,65 @@
           <span class="pipeline-flow-step">BA assigned</span>
           <span class="pipeline-flow-arrow">→</span>
           <span class="pipeline-flow-step pipeline-flow-end">Passed to IT · {{ pipeline_total_passed_to_it }} items · {{ pipeline_passed_to_it_rate }}</span>
+        </div>
+
+        {# ── IT-side cycle: Build → Testing → Closeout + total hero ── #}
+        <div class="it-cycle-section">
+          <div class="it-cycle-head">
+            <h3 class="panel-title">IT cycle · once IT picks it up</h3>
+            <p class="flow-area-sub">From In Progress (Start Date) through UAT, Deployed, and Completed</p>
+          </div>
+
+          <div class="pipeline-tiles">
+            {# Build: Start Date → UAT Start #}
+            <div class="pipeline-tile{% if it_cycle.build.count == 0 %} pipeline-tile-dim{% endif %}">
+              {% if it_cycle.build.count > 0 %}
+                <div class="pipeline-tile-num" style="color: var(--orange);">{{ it_cycle.build.avg }}<span class="pipeline-tile-unit">bd</span></div>
+              {% else %}
+                <div class="pipeline-tile-num dim">—</div>
+              {% endif %}
+              <div class="pipeline-tile-name">Build</div>
+              <div class="pipeline-tile-flow">In Progress → UAT</div>
+              <div class="pipeline-tile-foot">n={{ it_cycle.build.count }}{% if it_cycle.build.count > 0 %} · median {{ it_cycle.build.median }}bd{% endif %}</div>
+            </div>
+
+            {# Testing: UAT Start → Deployed #}
+            <div class="pipeline-tile{% if it_cycle.testing.count == 0 %} pipeline-tile-dim{% endif %}">
+              {% if it_cycle.testing.count > 0 %}
+                <div class="pipeline-tile-num" style="color: var(--green);">{{ it_cycle.testing.avg }}<span class="pipeline-tile-unit">bd</span></div>
+              {% else %}
+                <div class="pipeline-tile-num dim">—</div>
+              {% endif %}
+              <div class="pipeline-tile-name">Testing</div>
+              <div class="pipeline-tile-flow">UAT → Deployed</div>
+              <div class="pipeline-tile-foot">n={{ it_cycle.testing.count }}{% if it_cycle.testing.count > 0 %} · median {{ it_cycle.testing.median }}bd{% endif %}</div>
+            </div>
+
+            {# Closeout: Deployed → Completed #}
+            <div class="pipeline-tile{% if it_cycle.closeout.count == 0 %} pipeline-tile-dim{% endif %}">
+              {% if it_cycle.closeout.count > 0 %}
+                <div class="pipeline-tile-num" style="color: var(--purple);">{{ it_cycle.closeout.avg }}<span class="pipeline-tile-unit">bd</span></div>
+              {% else %}
+                <div class="pipeline-tile-num dim">—</div>
+              {% endif %}
+              <div class="pipeline-tile-name">Closeout</div>
+              <div class="pipeline-tile-flow">Deployed → Completed</div>
+              <div class="pipeline-tile-foot">n={{ it_cycle.closeout.count }}{% if it_cycle.closeout.count > 0 %} · median {{ it_cycle.closeout.median }}bd{% endif %}</div>
+            </div>
+
+            {# Hero: Total IT cycle (Start Date → Completed) #}
+            <div class="pipeline-tile pipeline-tile-hero{% if it_cycle.total.count == 0 %} pipeline-tile-dim{% endif %}">
+              <div class="pipeline-tile-eyebrow">Total IT cycle</div>
+              {% if it_cycle.total.count > 0 %}
+                <div class="pipeline-tile-num" style="color: var(--pink);">{{ it_cycle.total.avg }}<span class="pipeline-tile-unit">bd</span></div>
+              {% else %}
+                <div class="pipeline-tile-num dim">—</div>
+              {% endif %}
+              <div class="pipeline-tile-name">Avg days to complete</div>
+              <div class="pipeline-tile-flow">Start Date → Completed</div>
+              <div class="pipeline-tile-foot">{% if it_cycle.total.count > 0 %}n={{ it_cycle.total.count }} · range {{ it_cycle.total.min }}–{{ it_cycle.total.max }}bd{% else %}awaiting first completion{% endif %}</div>
+            </div>
+          </div>
         </div>
 
         {# ── Where the work landed: 3 semantic groups ── #}
