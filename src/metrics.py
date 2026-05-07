@@ -834,11 +834,21 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         "area_chart": area_series,
     }
 
-    # ── Tier-1 operational metrics (aging + throughput + weeks-to-clear) ──
+    # ── Tier-1 operational metrics (aging + throughput + pace) ──
     aging = _compute_aging_per_stage(items, today)
     throughput = _weekly_throughput(items, today, weeks=4)
-    open_count_for_clear = current_backlog
-    wtc = _weeks_to_clear(open_count_for_clear, throughput)
+    throughput_counts = [w["count"] for w in throughput]
+    throughput_avg = (
+        round(sum(throughput_counts) / len(throughput_counts), 1)
+        if throughput_counts else 0.0
+    )
+    intake_avg_4w = round(
+        sum(1 for item in items
+            if _date_in_range(item.get("received_date"),
+                              today - timedelta(days=28), today + timedelta(days=1))) / 4,
+        1,
+    )
+    pace = _pace_vs_intake(intake_avg_4w, throughput_avg)
 
     # Find oldest item across all open stages for the headline alert
     oldest_overall = 0
@@ -850,15 +860,9 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
 
     result["aging_by_stage"] = aging
     result["throughput_weekly"] = throughput
-    result["throughput_avg"] = wtc["avg_throughput"]
-    result["intake_avg_4w"] = round(
-        sum(1 for item in items
-            if _date_in_range(item.get("received_date"),
-                              today - timedelta(days=28), today + timedelta(days=1))) / 4,
-        1,
-    )
-    result["weeks_to_clear"] = wtc["weeks"]
-    result["weeks_to_clear_label"] = wtc["label"]
+    result["throughput_avg"] = throughput_avg
+    result["intake_avg_4w"] = intake_avg_4w
+    result["pace"] = pace
     result["oldest_open_days"] = oldest_overall
     result["oldest_open_stage"] = oldest_stage
     result["stuck_total"] = sum(info["stuck"] for info in aging.values())
@@ -1097,21 +1101,47 @@ def _weekly_throughput(items: list[dict], today: date, weeks: int = 4) -> list[d
     return out
 
 
-def _weeks_to_clear(open_count: int, throughput_history: list[dict]) -> dict:
-    """Estimate weeks-to-clear backlog at current pace.
-    Uses trailing-4-weeks throughput average. Returns dict with weeks number
-    and the throughput used."""
-    counts = [w["count"] for w in throughput_history]
-    if not counts or sum(counts) == 0:
-        return {"weeks": None, "avg_throughput": 0, "label": "—"}
-    avg = sum(counts) / len(counts)
-    if avg == 0:
-        return {"weeks": None, "avg_throughput": 0, "label": "—"}
-    weeks = round(open_count / avg, 1)
+def _pace_vs_intake(intake_avg: float, throughput_avg: float) -> dict:
+    """Steady-state queue health: are we closing at least what's entering?
+
+    States:
+      on_pace      → throughput >= intake (queue stable or shrinking)
+      catching_up  → throughput is 80-99% of intake (slight growth)
+      off_pace     → throughput < 80% of intake (queue inflating)
+      no_data      → no throughput in window
+    """
+    net_per_week = round(intake_avg - throughput_avg, 1)
+    net_per_month = round(net_per_week * 4, 1)
+
+    if throughput_avg <= 0:
+        state = "no_data"
+        label = "No data"
+        ratio = 0.0
+    elif intake_avg <= 0:
+        # No intake means anything we close is pure progress
+        state = "on_pace"
+        label = "On pace"
+        ratio = 1.0
+    else:
+        ratio = throughput_avg / intake_avg
+        if ratio >= 1.0:
+            state = "on_pace"
+            label = "On pace"
+        elif ratio >= 0.8:
+            state = "catching_up"
+            label = "Catching up"
+        else:
+            state = "off_pace"
+            label = "Off pace"
+
     return {
-        "weeks": weeks,
-        "avg_throughput": round(avg, 1),
-        "label": f"{weeks} weeks",
+        "state": state,
+        "label": label,
+        "ratio": round(ratio, 2),
+        "net_per_week": net_per_week,
+        "net_per_month": net_per_month,
+        "intake_avg": intake_avg,
+        "throughput_avg": throughput_avg,
     }
 
 
