@@ -86,7 +86,7 @@ ADMIN_REQUEST_CLASSIFICATIONS = {"Admin Request"}
 # means CoE has handed it off to IT — whether for sprint, next sprint, or
 # Halo (admin) work. Stage is the primary signal for "passed to IT" because
 # the it_prioritization_date custom field is not populated reliably.
-IT_HANDOFF_STAGES = {"IT Prioritization", "In Progress", "Awaiting Next Sprint", "On Hold"}
+IT_HANDOFF_STAGES = {"IT Prioritization", "In Progress", "UAT/Testing", "Awaiting Next Sprint", "On Hold"}
 
 # Color palette for donut segments — assigned in priority order.
 # CSS variables that exist in the template's :root.
