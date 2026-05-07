@@ -21,7 +21,7 @@ CUSTOM_FIELD_GIDS = {
     "coe_stage": "1214061494576315",
     "coe_classification": "1214057968804957",
     "pm_assigned": "1210474554240546",
-    "priority": "1206729686320253",
+    "priority": "1214593752433962",  # CoE Priority (replaces old "Priority" 1206729686320253)
     "project_paused": "1214267182280877",
     "deployed": "1214267165903924",
     "completed_date": "1208524309563086",
