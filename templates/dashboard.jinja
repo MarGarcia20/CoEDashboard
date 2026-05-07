@@ -3180,6 +3180,35 @@
       </div>
     </section>
 
+    <!-- ══════════ §04b Department Distribution ══════════ -->
+    <section class="section">
+      <div class="section-head">
+        <div class="section-num">04b · Department<span class="tt" tabindex="0" data-tip="Which department submitted each request. Shows the share of CoE workload by requesting area.">i</span></div>
+        <h2 class="section-title">
+          Where requests come from. <span class="muted">{{ top_dept_name }} leads.</span>
+        </h2>
+        <p class="section-lead">
+          Percentage of total CoE requests by submitting department.
+        </p>
+      </div>
+
+      <div class="worktype-grid">
+        {% for dept in dept_cards %}
+        <div class="worktype" style="--wt-color: {{ dept.css_color }}; --wt-glow: {{ dept.hex }}80;">
+          <div class="worktype-head">
+            <span class="worktype-name">{{ dept.name }}</span>
+            <span class="worktype-dot"></span>
+          </div>
+          <div class="worktype-value">
+            <span class="worktype-count">{{ dept.count }}</span>
+            <span class="worktype-pct">{{ dept.pct }}</span>
+          </div>
+          <div class="worktype-bar"><div class="worktype-bar-fill" style="width: {{ dept.bar_width }}"></div></div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
     <!-- ══════════ §05 Yield ══════════ -->
     <section class="section">
       <div class="section-head">

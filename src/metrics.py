@@ -90,6 +90,16 @@ IT_HANDOFF_STAGES = {"IT Prioritization", "In Progress", "UAT/Testing", "Awaitin
 
 # Color palette for donut segments — assigned in priority order.
 # CSS variables that exist in the template's :root.
+# Department color palette — one per known department, order matches visual priority.
+DEPT_COLOR_MAP = {
+    "Phase 2":               {"css": "var(--indigo)",  "hex": "#5e5ce6"},
+    "Business Development":  {"css": "var(--orange)",  "hex": "#ff9f0a"},
+    "CSC":                   {"css": "var(--mint)",    "hex": "#63e6e2"},
+    "Inventory Control":     {"css": "var(--yellow)",  "hex": "#ffd60a"},
+    "Phase 1":               {"css": "var(--green)",   "hex": "#30d158"},
+}
+DEPT_FALLBACK_COLOR = {"css": "var(--purple)", "hex": "#bf5af2"}
+
 STAGE_COLOR_PALETTE = [
     {"css": "var(--indigo)", "hex_start": "#5e5ce6", "hex_end": "#bf5af2"},
     {"css": "var(--orange)", "hex_start": "#ff9f0a", "hex_end": "#ff375f"},
@@ -367,6 +377,35 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         top_wt_name = max(work_type_counts.items(), key=lambda kv: kv[1])[0]
     else:
         top_wt_name = None
+
+    # Metric 10b: department distribution
+    dept_counts: dict[str, int] = {}
+    for i in items:
+        dept = i.get("project_department") or "Not set"
+        dept_counts[dept] = dept_counts.get(dept, 0) + 1
+
+    dept_max = max(dept_counts.values()) if dept_counts else 1
+
+    # Top department (dynamic header)
+    if dept_counts and dept_max > 0:
+        top_dept_name = max(dept_counts.items(), key=lambda kv: kv[1])[0]
+    else:
+        top_dept_name = None
+
+    # Build department cards sorted by count desc
+    dept_cards = []
+    for dept_name, count in sorted(dept_counts.items(), key=lambda kv: kv[1], reverse=True):
+        pct = round(count / total * 100, 1) if total else 0
+        bar_width = f"{round(count / dept_max * 100)}%" if dept_max else "0%"
+        color = DEPT_COLOR_MAP.get(dept_name, DEPT_FALLBACK_COLOR)
+        dept_cards.append({
+            "name": dept_name,
+            "count": count,
+            "pct": f"{pct}%",
+            "bar_width": bar_width,
+            "css_color": color["css"],
+            "hex": color["hex"],
+        })
 
     # Flow chart peak week (dynamic §06 header)
     if flow_weeks:
@@ -737,6 +776,11 @@ def compute_metrics(items: list[dict], today: Optional[date] = None, verbose: bo
         # Work types
         "work_type_counts": work_type_counts,
         "work_type_max": wt_max,
+
+        # Department distribution
+        "dept_counts": dept_counts,
+        "dept_cards": dept_cards,
+        "top_dept_name": top_dept_name,
 
         # PM workload
         "pm_counts": pm_counts,

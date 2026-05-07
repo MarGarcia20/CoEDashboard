@@ -29,6 +29,7 @@ CUSTOM_FIELD_GIDS = {
     "it_prioritization_date": "1214205709219888",
     "start_date": "1205996528539007",        # IT "In Progress" start
     "uat_start": "1214267250385733",          # UAT/Testing start
+    "project_department": "1210473285574310", # Project Department (enum)
 }
 
 BASE_URL = "https://app.asana.com/api/1.0"
@@ -101,6 +102,7 @@ def _normalize_item(raw: dict) -> dict:
         "it_prioritization_date": _extract_custom_field(raw, "it_prioritization_date"),
         "start_date": _extract_custom_field(raw, "start_date"),
         "uat_start": _extract_custom_field(raw, "uat_start"),
+        "project_department": _extract_custom_field(raw, "project_department"),
     }
 
 

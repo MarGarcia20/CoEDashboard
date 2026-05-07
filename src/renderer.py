@@ -319,6 +319,10 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         # §04 Classification
         "wt": wt_data,
 
+        # §04b Department distribution
+        "dept_cards": metrics["dept_cards"],
+        "top_dept_name": metrics.get("top_dept_name") or "No department set",
+
         # §05 Yield
         "yield_substantive": metrics["yield_substantive"],
         "yield_substantive_pct": metrics["yield_substantive_pct"],
