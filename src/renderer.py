@@ -118,6 +118,14 @@ def _build_recs(metrics: dict) -> list[dict]:
     return recs
 
 
+def _enrich_stage_cards(stage_cards: list[dict], area_chart: dict) -> list[dict]:
+    """Add sparkline values from area_chart into each stage_card."""
+    stage_values = {s["name"]: s["values"] for s in area_chart.get("stages", [])}
+    for card in stage_cards:
+        card["sparkline"] = stage_values.get(card["name"], [])
+    return stage_cards
+
+
 # ── Context builder ───────────────────────────────────────────────────────────
 
 def build_context(metrics: dict, today: date | None = None) -> dict:
@@ -260,8 +268,8 @@ def build_context(metrics: dict, today: date | None = None) -> dict:
         "flow_peak_week_label": metrics["flow_peak_week_label"],
         "flow_peak_count": metrics["flow_peak_count"],
 
-        # §06 v2 — Backlog flow
-        "stage_cards": metrics["stage_cards"],
+        # §06 v2 — Backlog flow (enrich stage_cards with sparkline values)
+        "stage_cards": _enrich_stage_cards(metrics["stage_cards"], metrics["area_chart"]),
         "backlog_total": metrics["backlog_total"],
         "backlog_prior": metrics["backlog_prior"],
         "backlog_delta": metrics["backlog_delta"],

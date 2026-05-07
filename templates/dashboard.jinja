@@ -1167,6 +1167,24 @@
   .flow-kpi-delta.flat { color: var(--text-tertiary); }
   .flow-kpi-delta.muted { color: var(--text-quaternary); }
 
+  /* Value row: total + delta badge inline */
+  .flow-kpi-value-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+  .flow-kpi-badge {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    line-height: 1.3;
+  }
+  .flow-kpi-badge.up { color: var(--orange); background: rgba(255, 159, 10, 0.12); }
+  .flow-kpi-badge.down { color: var(--green); background: rgba(48, 209, 88, 0.12); }
+  .flow-kpi-badge.flat { color: var(--text-tertiary); background: rgba(142, 142, 147, 0.10); }
+
   .flow-equation {
     display: flex;
     align-items: stretch;
@@ -1265,15 +1283,21 @@
 
   .flow-stage-card { padding: var(--space-6); }
   .stage-row {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 60px auto;
     align-items: center;
+    gap: var(--space-3);
     padding: var(--space-3) var(--space-4);
     margin-bottom: var(--space-3);
     background: var(--surface);
     border: 1px solid var(--border);
     border-left: 3px solid var(--border-strong);
     border-radius: var(--radius-sm);
+  }
+  .stage-sparkline {
+    width: 60px;
+    height: 20px;
+    display: block;
   }
   .stage-row:last-child { margin-bottom: 0; }
   .stage-row-name {
@@ -1323,12 +1347,13 @@
     background: var(--surface);
     text-align: left;
   }
-  .outcome-closed    { background: linear-gradient(135deg, rgba(191, 90, 242, 0.08), transparent); border-color: rgba(191, 90, 242, 0.20); }
-  .outcome-rejected  { background: linear-gradient(135deg, rgba(255, 69, 58, 0.10), transparent); border-color: rgba(255, 69, 58, 0.22); }
-  .outcome-epmo      { background: linear-gradient(135deg, rgba(255, 159, 10, 0.08), transparent); border-color: rgba(255, 159, 10, 0.18); }
-  .outcome-hold      { background: linear-gradient(135deg, rgba(255, 214, 10, 0.08), transparent); border-color: rgba(255, 214, 10, 0.18); }
-  .outcome-delivered { background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent); border-color: rgba(48, 209, 88, 0.2); }
-  .outcome-admin     { background: linear-gradient(135deg, rgba(225, 65, 122, 0.08), transparent); border-color: rgba(225, 65, 122, 0.20); }
+  /* Semantic outcome colors: green = resolved/saved, amber = attention, neutral = routed */
+  .outcome-closed    { background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent);  border-color: rgba(48, 209, 88, 0.20); }
+  .outcome-rejected  { background: linear-gradient(135deg, rgba(255, 69, 58, 0.10), transparent);  border-color: rgba(255, 69, 58, 0.22); }
+  .outcome-epmo      { background: linear-gradient(135deg, rgba(142, 142, 147, 0.08), transparent); border-color: rgba(142, 142, 147, 0.18); }
+  .outcome-hold      { background: linear-gradient(135deg, rgba(255, 159, 10, 0.08), transparent);  border-color: rgba(255, 159, 10, 0.18); }
+  .outcome-delivered { background: linear-gradient(135deg, rgba(48, 209, 88, 0.08), transparent);  border-color: rgba(48, 209, 88, 0.20); }
+  .outcome-admin     { background: linear-gradient(135deg, rgba(142, 142, 147, 0.08), transparent); border-color: rgba(142, 142, 147, 0.20); }
   .outcome-num {
     font-size: var(--text-4xl);
     font-weight: 600;
@@ -1337,12 +1362,13 @@
     color: var(--text);
     margin-bottom: var(--space-3);
   }
-  .outcome-closed    .outcome-num { color: var(--purple); }
+  /* Semantic number colors */
+  .outcome-closed    .outcome-num { color: var(--green); }
   .outcome-rejected  .outcome-num { color: var(--red); }
-  .outcome-epmo      .outcome-num { color: var(--orange); }
-  .outcome-hold      .outcome-num { color: var(--yellow); }
+  .outcome-epmo      .outcome-num { color: var(--text-secondary); }
+  .outcome-hold      .outcome-num { color: var(--orange); }
   .outcome-delivered .outcome-num { color: var(--green); }
-  .outcome-admin     .outcome-num { color: var(--pink); }
+  .outcome-admin     .outcome-num { color: var(--text-secondary); }
   .outcome-name {
     font-size: var(--text-xs);
     text-transform: uppercase;
@@ -1356,6 +1382,12 @@
     color: var(--text-secondary);
     line-height: 1.5;
     letter-spacing: -0.005em;
+  }
+  .outcomes-zero-note {
+    font-size: var(--text-xs);
+    color: var(--text-quaternary);
+    margin-top: var(--space-3);
+    letter-spacing: 0.01em;
   }
 
   @media (max-width: 1024px) {
@@ -2456,38 +2488,66 @@
         </p>
       </div>
 
-      <div class="outcome-grid">
-        <div class="outcome outcome-primary">
-          <div class="outcome-label">Substantive build · queued</div>
-          <div class="outcome-count-row">
-            <div class="outcome-count">{{ yield_substantive }}</div>
-            <div class="outcome-pct">{{ yield_substantive_pct }}</div>
+      {# ── Yield donut — compact visualization ── #}
+      {% set yield_total = yield_substantive + yield_gate + yield_pending %}
+      {% set circ = 339.292 %}
+      {% set sub_pct = (yield_substantive / yield_total * 100) if yield_total > 0 else 0 %}
+      {% set gate_pct = (yield_gate / yield_total * 100) if yield_total > 0 else 0 %}
+      {% set pend_pct = (yield_pending / yield_total * 100) if yield_total > 0 else 0 %}
+      {% set sub_arc = circ * sub_pct / 100 %}
+      {% set gate_arc = circ * gate_pct / 100 %}
+      {% set pend_arc = circ * pend_pct / 100 %}
+
+      <div class="donut-wrap" style="margin-top: var(--space-6);">
+        <div class="donut">
+          <svg viewBox="0 0 120 120" width="160" height="160">
+            {# Substantive — green, starts at 0 #}
+            <circle cx="60" cy="60" r="54" fill="none"
+                    stroke="var(--green)" stroke-width="10" stroke-linecap="round"
+                    stroke-dasharray="{{ sub_arc | round(1) }} {{ (circ - sub_arc) | round(1) }}"
+                    stroke-dashoffset="0"
+                    transform="rotate(-90 60 60)"/>
+            {# Gate — orange, starts after substantive #}
+            {% if gate_arc > 0 %}
+            <circle cx="60" cy="60" r="54" fill="none"
+                    stroke="var(--orange)" stroke-width="10" stroke-linecap="round"
+                    stroke-dasharray="{{ gate_arc | round(1) }} {{ (circ - gate_arc) | round(1) }}"
+                    stroke-dashoffset="{{ (-sub_arc) | round(1) }}"
+                    transform="rotate(-90 60 60)"/>
+            {% endif %}
+            {# Pending — grey, starts after substantive + gate #}
+            {% if pend_arc > 0 %}
+            <circle cx="60" cy="60" r="54" fill="none"
+                    stroke="var(--text-quaternary)" stroke-width="10" stroke-linecap="round"
+                    stroke-dasharray="{{ pend_arc | round(1) }} {{ (circ - pend_arc) | round(1) }}"
+                    stroke-dashoffset="{{ (-(sub_arc + gate_arc)) | round(1) }}"
+                    transform="rotate(-90 60 60)"/>
+            {% endif %}
+          </svg>
+          <div class="donut-center">
+            <div class="donut-big">{{ yield_total }}</div>
+            <div class="donut-small">reviewed</div>
           </div>
-          <p class="outcome-desc">
-            Real CoE work classified across seven change categories — task set, automation, picklist, field, template, stage, object. This is the pipeline into Sprint 10 and beyond.
-          </p>
         </div>
 
-        <div class="outcome outcome-secondary">
-          <div class="outcome-label">Closed at review</div>
-          <div class="outcome-count-row">
-            <div class="outcome-count">{{ yield_gate }}</div>
-            <div class="outcome-pct">{{ yield_gate_pct }}</div>
+        <div class="legend">
+          <div class="legend-row">
+            <span class="legend-dot" style="background: var(--green);"></span>
+            <span class="legend-name">Substantive build</span>
+            <span class="legend-val" style="color: var(--green);">{{ yield_substantive }} <small style="color: var(--text-tertiary); font-weight: 400;">{{ yield_substantive_pct }}</small></span>
           </div>
-          <p class="outcome-desc">
-            Tagged "Already Completed" or "No Needed." Stopped before reaching IT — that's measurable savings.
-          </p>
-        </div>
-
-        <div class="outcome">
-          <div class="outcome-label">Pending classification</div>
-          <div class="outcome-count-row">
-            <div class="outcome-count">{{ yield_pending }}</div>
-            <div class="outcome-pct">{{ yield_pending_pct }}</div>
+          <div class="legend-row">
+            <span class="legend-dot" style="background: var(--orange);"></span>
+            <span class="legend-name">Closed at gate</span>
+            <span class="legend-val" style="color: var(--orange);">{{ yield_gate }} <small style="color: var(--text-tertiary); font-weight: 400;">{{ yield_gate_pct }}</small></span>
           </div>
-          <p class="outcome-desc">
-            {{ yield_pending_names }} — all received {{ pending_received_label }}, classification in progress.
-          </p>
+          {% if yield_pending > 0 %}
+          <div class="legend-row">
+            <span class="legend-dot" style="background: var(--text-quaternary);"></span>
+            <span class="legend-name">Pending classification</span>
+            <span class="legend-val">{{ yield_pending }} <small style="color: var(--text-tertiary); font-weight: 400;">{{ yield_pending_pct }}</small></span>
+          </div>
+          {% endif %}
         </div>
       </div>
     </section>
@@ -2505,12 +2565,23 @@
       <div class="flow-kpis">
         <div class="flow-kpi flow-kpi-primary">
           <div class="flow-kpi-label">Current backlog</div>
-          <div class="flow-kpi-value">{{ backlog_total }}</div>
+          <div class="flow-kpi-value-row">
+            <div class="flow-kpi-value">{{ backlog_total }}</div>
+            {% if has_history %}
+              {% if backlog_delta > 0 %}
+                <span class="flow-kpi-badge up">+{{ backlog_delta }}</span>
+              {% elif backlog_delta < 0 %}
+                <span class="flow-kpi-badge down">{{ backlog_delta }}</span>
+              {% else %}
+                <span class="flow-kpi-badge flat">±0</span>
+              {% endif %}
+            {% endif %}
+          </div>
           {% if has_history %}
             {% if backlog_delta > 0 %}
-              <div class="flow-kpi-delta up">▲ {{ backlog_delta }} from last week</div>
+              <div class="flow-kpi-delta up">▲ growing vs last week</div>
             {% elif backlog_delta < 0 %}
-              <div class="flow-kpi-delta down">▼ {{ -backlog_delta }} from last week</div>
+              <div class="flow-kpi-delta down">▼ shrinking vs last week</div>
             {% else %}
               <div class="flow-kpi-delta flat">— flat vs last week</div>
             {% endif %}
@@ -2544,18 +2615,7 @@
         </div>
       </div>
 
-      <!-- ── Equation strip ── -->
-      <div class="flow-equation">
-        <div class="eq-pill"><span class="eq-num">{{ backlog_prior }}</span><span class="eq-label">Prior</span></div>
-        <div class="eq-op">+</div>
-        <div class="eq-pill eq-pill-up"><span class="eq-num">{{ backlog_intakes_this_week }}</span><span class="eq-label">New intake</span></div>
-        <div class="eq-op">−</div>
-        <div class="eq-pill eq-pill-down"><span class="eq-num">{{ backlog_completed_this_week }}</span><span class="eq-label">Completed</span></div>
-        <div class="eq-op">−</div>
-        <div class="eq-pill eq-pill-down"><span class="eq-num">{{ backlog_closed_this_week }}</span><span class="eq-label">Closed at review</span></div>
-        <div class="eq-op">=</div>
-        <div class="eq-pill eq-pill-result"><span class="eq-num">{{ backlog_total }}</span><span class="eq-label">Current backlog</span></div>
-      </div>
+      <!-- ── Equation strip (removed — data already in KPI row above) ── -->
 
       <!-- ── Two-column: stacked area (left, wide) + stage cards (right) ── -->
       <div class="flow-grid">
@@ -2657,6 +2717,17 @@
                 <div class="stage-row-delta muted">building history</div>
               {% endif %}
             </div>
+            {# ── Micro-sparkline from weekly history ── #}
+            {% if stage.sparkline | length > 1 %}
+              {% set spark_max = [stage.sparkline | max, 1] | max %}
+              <svg class="stage-sparkline" viewBox="0 0 60 20" preserveAspectRatio="none">
+                <polyline fill="none" stroke="{{ stage.color }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                  points="{% for v in stage.sparkline %}{{ (loop.index0 / (stage.sparkline | length - 1) * 56 + 2) | round(1) }},{{ (18 - v / spark_max * 16) | round(1) }}{% if not loop.last %} {% endif %}{% endfor %}"/>
+                <circle cx="{{ 56 + 2 }}" cy="{{ (18 - stage.sparkline[-1] / spark_max * 16) | round(1) }}" r="2" fill="{{ stage.color }}"/>
+              </svg>
+            {% else %}
+              <div class="stage-sparkline"></div>
+            {% endif %}
             <div class="stage-row-count">{{ stage.count }}</div>
           </div>
           {% endfor %}
@@ -2669,38 +2740,31 @@
         <p class="flow-area-sub">How requests exit the queue, not just whether they exit</p>
       </div>
 
-      <div class="flow-outcomes-grid">
-        <div class="outcome-card outcome-closed">
-          <div class="outcome-num">{{ outcome_closed_at_review }}</div>
-          <div class="outcome-name">Closed at review</div>
-          <div class="outcome-desc">Already done, not needed, or duplicate — closed without IT</div>
+      {# ── Build outcomes list and split into active vs zero ── #}
+      {% set outcomes = [
+        {"key": "closed",    "cls": "outcome-closed",    "val": outcome_closed_at_review, "name": "Closed at review", "desc": "Already done, not needed, or duplicate — closed without IT"},
+        {"key": "rejected",  "cls": "outcome-rejected",  "val": outcome_rejected,         "name": "Rejected",         "desc": "Reviewed and declined — not aligned with CoE scope or priority"},
+        {"key": "epmo",      "cls": "outcome-epmo",      "val": outcome_pushed_to_epmo,   "name": "Pushed to EPMO",   "desc": "Too large for the CoE — handed off as a formal EPMO project"},
+        {"key": "hold",      "cls": "outcome-hold",      "val": outcome_on_hold,          "name": "On hold",          "desc": "Valid but paused — revisit when blocking conditions clear"},
+        {"key": "delivered", "cls": "outcome-delivered",  "val": outcome_delivered,        "name": "Delivered",        "desc": "Implemented and shipped to production"},
+        {"key": "admin",     "cls": "outcome-admin",      "val": outcome_admin_request,    "name": "Admin Request",    "desc": "Sent directly by IT to Halo — bypasses BA analysis, implemented as admin change"}
+      ] %}
+      {% set active_outcomes = outcomes | selectattr("val", "greaterthan", 0) | list %}
+      {% set zero_outcomes   = outcomes | selectattr("val", "equalto", 0)      | list %}
+
+      <div class="flow-outcomes-grid" style="grid-template-columns: repeat({{ [active_outcomes | length, 1] | max }}, 1fr);">
+        {% for o in active_outcomes %}
+        <div class="outcome-card {{ o.cls }}">
+          <div class="outcome-num">{{ o.val }}</div>
+          <div class="outcome-name">{{ o.name }}</div>
+          <div class="outcome-desc">{{ o.desc }}</div>
         </div>
-        <div class="outcome-card outcome-rejected">
-          <div class="outcome-num">{{ outcome_rejected }}</div>
-          <div class="outcome-name">Rejected</div>
-          <div class="outcome-desc">Reviewed and declined — not aligned with CoE scope or priority</div>
-        </div>
-        <div class="outcome-card outcome-epmo">
-          <div class="outcome-num">{{ outcome_pushed_to_epmo }}</div>
-          <div class="outcome-name">Pushed to EPMO</div>
-          <div class="outcome-desc">Too large for the CoE — handed off as a formal EPMO project</div>
-        </div>
-        <div class="outcome-card outcome-hold">
-          <div class="outcome-num">{{ outcome_on_hold }}</div>
-          <div class="outcome-name">On hold</div>
-          <div class="outcome-desc">Valid but paused — revisit when blocking conditions clear</div>
-        </div>
-        <div class="outcome-card outcome-delivered">
-          <div class="outcome-num">{{ outcome_delivered }}</div>
-          <div class="outcome-name">Delivered</div>
-          <div class="outcome-desc">Implemented and shipped to production</div>
-        </div>
-        <div class="outcome-card outcome-admin">
-          <div class="outcome-num">{{ outcome_admin_request }}</div>
-          <div class="outcome-name">Admin Request</div>
-          <div class="outcome-desc">Sent directly by IT to Halo — bypasses BA analysis, implemented as admin change</div>
-        </div>
+        {% endfor %}
       </div>
+
+      {% if zero_outcomes %}
+      <p class="outcomes-zero-note">No activity: {{ zero_outcomes | map(attribute="name") | join(", ") }}</p>
+      {% endif %}
     </section>
 
     <!-- ══════════ §07 Sweet Spot ══════════ -->
