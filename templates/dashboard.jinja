@@ -809,6 +809,23 @@
     color: var(--text-tertiary);
     margin-top: 2px;
   }
+  .pipeline-stage-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .pipeline-stage-pill {
+    font-size: 9px;
+    letter-spacing: 0.03em;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-tertiary);
+    white-space: nowrap;
+  }
   .pipeline-gap {
     position: absolute;
     top: 100%;
@@ -2323,7 +2340,13 @@
             <div class="pipeline-node">
               <div class="pipeline-orb it">⑤</div>
               <div class="pipeline-label"{% if pipeline_total_passed_to_it == 0 %} style="color: var(--text-tertiary);"{% endif %}>Passed to IT</div>
-              <div class="pipeline-sublabel">IT Prio · In Progress · UAT/Testing<br>Awaiting · On Hold</div>
+              <div class="pipeline-stage-pills">
+                <span class="pipeline-stage-pill">IT Prio</span>
+                <span class="pipeline-stage-pill">In Progress</span>
+                <span class="pipeline-stage-pill">UAT/Testing</span>
+                <span class="pipeline-stage-pill">Awaiting</span>
+                <span class="pipeline-stage-pill">On Hold</span>
+              </div>
               <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
                 {% if pipeline_total_passed_to_it > 0 %}
                 <div class="pipeline-gap-value" style="color: var(--pink);">{{ pipeline_total_passed_to_it }}<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">·&nbsp;{{ pipeline_passed_to_it_rate }}</span></div>

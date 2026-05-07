@@ -809,6 +809,23 @@
     color: var(--text-tertiary);
     margin-top: 2px;
   }
+  .pipeline-stage-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .pipeline-stage-pill {
+    font-size: 9px;
+    letter-spacing: 0.03em;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-tertiary);
+    white-space: nowrap;
+  }
   .pipeline-gap {
     position: absolute;
     top: 100%;
@@ -1979,7 +1996,7 @@
     <div class="snapshot-banner">
       <div class="snapshot-banner-left">
         <span class="snapshot-banner-dot"></span>
-        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 8:38 PM ET</span></span>
+        <span><strong>Snapshot</strong> · taken <span data-snapshot-time="full">May 6, 2026 · 8:40 PM ET</span></span>
       </div>
       <div class="snapshot-banner-right">
         <div class="refresh-actions">
@@ -2001,7 +2018,7 @@
 
     <!-- ══════════ HERO ══════════ -->
     <section class="hero">
-      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 8:38 PM ET</span></div>
+      <div class="hero-eyebrow"><span data-snapshot-time="eyebrow">Snapshot · May 6 · 8:40 PM ET</span></div>
       <h1 class="hero-title">
         The CoE, in numbers.
         <span class="accent">Quietly working.</span>
@@ -2012,7 +2029,7 @@
       <div class="hero-meta">
         <div class="hero-meta-item">
           <span class="hero-meta-label">Snapshot taken</span>
-          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 8:38 PM ET</span>
+          <span class="hero-meta-value" data-snapshot-time="full">May 6, 2026 · 8:40 PM ET</span>
         </div>
         <div class="hero-meta-item">
           <span class="hero-meta-label">Source</span>
@@ -2302,7 +2319,13 @@
             <div class="pipeline-node">
               <div class="pipeline-orb it">⑤</div>
               <div class="pipeline-label">Passed to IT</div>
-              <div class="pipeline-sublabel">IT Prio · In Progress · UAT/Testing<br>Awaiting · On Hold</div>
+              <div class="pipeline-stage-pills">
+                <span class="pipeline-stage-pill">IT Prio</span>
+                <span class="pipeline-stage-pill">In Progress</span>
+                <span class="pipeline-stage-pill">UAT/Testing</span>
+                <span class="pipeline-stage-pill">Awaiting</span>
+                <span class="pipeline-stage-pill">On Hold</span>
+              </div>
               <div class="pipeline-gap" style="left: 0; transform: translateX(-50%);">
                 
                 <div class="pipeline-gap-value" style="color: var(--pink);">17<span style="font-size:16px; color:var(--text-tertiary); margin-left:3px;">·&nbsp;46%</span></div>
@@ -3086,7 +3109,7 @@
     <footer>
       <span>Source · CoE Portfolio · gid 1214057614427291</span>
       <span>37 requests · 3.7 bd review · 11% rejected at gate · 0 delivered</span>
-      <span id="age-indicator">Snapshot · May 6, 2026 · 8:38 PM ET</span>
+      <span id="age-indicator">Snapshot · May 6, 2026 · 8:40 PM ET</span>
     </footer>
 
     <div style="margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--border); text-align: center; font-size: var(--text-xs); color: var(--text-quaternary); letter-spacing: 0.04em; line-height: 1.6;">
@@ -3126,7 +3149,7 @@
     // the viewer's local date/time. The footer #age-indicator also gets an
     // "Xm ago / Xh ago / Xd ago" suffix that ticks every minute.
     (function() {
-      const snapshotTime = new Date('2026-05-07T00:38:43+00:00');
+      const snapshotTime = new Date('2026-05-07T00:40:34+00:00');
       if (isNaN(snapshotTime.getTime())) return;
 
       function fmtLocalDate() {
