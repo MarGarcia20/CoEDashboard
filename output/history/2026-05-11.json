@@ -1,9 +1,9 @@
 {
   "date": "2026-05-11",
-  "generated_at": "2026-05-11T18:02:28",
+  "generated_at": "2026-05-11T20:01:50",
   "metrics": {
     "total": 39,
-    "open_count": 35,
+    "open_count": 36,
     "delivered_count": 0,
     "escalated_count": 3,
     "escalated_pct": "8%",
@@ -16,15 +16,15 @@
     "upstream_median": "26",
     "priority_set_count": 33,
     "priority_unset_count": 6,
-    "ba_avg": "2.2",
-    "ba_count": 6,
-    "ba_pending_total": "6 of 39",
+    "ba_avg": "5.7",
+    "ba_count": 11,
+    "ba_pending_total": "11 of 39",
     "total_passed_to_it": 17,
     "sprint_passed_count": 15,
     "admin_request_count": 2,
     "passed_to_it_rate": "44%",
-    "ba_to_it_cycle_avg": "1",
-    "ba_to_it_dated_count": 1,
+    "ba_to_it_cycle_avg": "6.5",
+    "ba_to_it_dated_count": 2,
     "yield_substantive": 33,
     "yield_substantive_pct": "85%",
     "yield_gate": 4,
@@ -51,13 +51,13 @@
       "0%"
     ],
     "flow_max": 7,
-    "donut_total_open": 35,
+    "donut_total_open": 36,
     "donut_segments": [
       {
         "name": "Triage",
         "count": 16,
-        "pct": 45.7,
-        "dasharray": 45.7,
+        "pct": 44.4,
+        "dasharray": 44.4,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -65,22 +65,22 @@
         "hex_end": "#bf5af2"
       },
       {
-        "name": "UAT/Testing",
-        "count": 8,
-        "pct": 22.9,
-        "dasharray": 22.9,
-        "dashoffset": -20.7,
+        "name": "IT Prioritization",
+        "count": 10,
+        "pct": 27.8,
+        "dasharray": 27.8,
+        "dashoffset": -19.4,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
         "hex_end": "#ff375f"
       },
       {
-        "name": "IT Prioritization",
-        "count": 8,
-        "pct": 22.9,
-        "dasharray": 22.9,
-        "dashoffset": -43.6,
+        "name": "UAT/Testing",
+        "count": 7,
+        "pct": 19.4,
+        "dasharray": 19.4,
+        "dashoffset": -47.2,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
@@ -89,9 +89,9 @@
       {
         "name": "New Request",
         "count": 2,
-        "pct": 5.7,
-        "dasharray": 5.7,
-        "dashoffset": -66.5,
+        "pct": 5.6,
+        "dasharray": 5.6,
+        "dashoffset": -66.6,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
@@ -100,8 +100,8 @@
       {
         "name": "Rejected",
         "count": 1,
-        "pct": 2.9,
-        "dasharray": 2.9,
+        "pct": 2.8,
+        "dasharray": 2.8,
         "dashoffset": -72.2,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
@@ -172,14 +172,14 @@
     ],
     "top_dept_name": "Phase 2",
     "pm_counts": {
-      "Maria Garcia": 21,
-      "David Molano": 18
+      "David Molano": 19,
+      "Maria Garcia": 20
     },
-    "team_mar_count": 21,
-    "team_mar_pct": "54%",
-    "team_david_count": 18,
-    "team_david_pct": "46%",
-    "rec_workload_note": "21/18 \u2014 Mar is +17% this week",
+    "team_mar_count": 20,
+    "team_mar_pct": "51%",
+    "team_david_count": 19,
+    "team_david_pct": "49%",
+    "rec_workload_note": "20/19 \u2014 Mar is +5% this week",
     "tw_intakes": 0,
     "tw_reviews": 0,
     "tw_avg_cycle": "\u2014",
@@ -210,10 +210,10 @@
     "w_minus1": 19,
     "w_minus2": 18,
     "w_minus3": 17,
-    "rec_it_prio_count": 8,
-    "rec_status_color_blank": "31 of 39",
-    "rec_no_color_count": 31,
-    "rec_ba_count": 6,
+    "rec_it_prio_count": 10,
+    "rec_status_color_blank": "1 of 39",
+    "rec_no_color_count": 1,
+    "rec_ba_count": 11,
     "tw_window_label": "May 11 \u2013 Today",
     "lw_window_label": "May 4 \u2013 May 10",
     "tm_month_name": "May",
@@ -234,9 +234,9 @@
     "stage_current": {
       "New Request": 2,
       "Triage": 16,
-      "IT Prioritization": 8,
+      "IT Prioritization": 10,
       "In Progress": 0,
-      "UAT/Testing": 8,
+      "UAT/Testing": 7,
       "Awaiting Next Sprint": 0,
       "On Hold": 0
     },
@@ -281,8 +281,8 @@
       },
       {
         "name": "IT Prioritization",
-        "count": 8,
-        "delta": 0,
+        "count": 10,
+        "delta": 2,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#e1417a",
@@ -314,13 +314,13 @@
           0,
           8,
           1,
-          1
+          0
         ]
       },
       {
         "name": "UAT/Testing",
-        "count": 8,
-        "delta": 8,
+        "count": 7,
+        "delta": 7,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#30d158",
@@ -333,7 +333,7 @@
           0,
           0,
           7,
-          7
+          8
         ]
       },
       {
@@ -375,9 +375,9 @@
         ]
       }
     ],
-    "backlog_total": 34,
+    "backlog_total": 35,
     "backlog_prior": 27,
-    "backlog_delta": 7,
+    "backlog_delta": 8,
     "backlog_intakes_this_week": 0,
     "backlog_completed_this_week": 0,
     "backlog_closed_this_week": 0,
@@ -456,7 +456,7 @@
             0,
             8,
             1,
-            1
+            0
           ]
         },
         {
@@ -470,7 +470,7 @@
             0,
             0,
             7,
-            7
+            8
           ]
         },
         {
@@ -506,8 +506,8 @@
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,224.5 605.7,231.0 700.0,231.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,172.3 605.7,126.7 700.0,126.7 700.0,231.0 605.7,231.0 511.4,224.5 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,120.2 605.7,74.6 700.0,74.6 700.0,126.7 605.7,126.7 511.4,172.3 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,68.1 700.0,68.1 700.0,74.6 605.7,74.6 511.4,120.2 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,22.5 700.0,68.1 605.7,68.1 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,68.1 700.0,74.6 700.0,74.6 605.7,74.6 511.4,120.2 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,22.5 700.0,74.6 605.7,68.1 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,22.5 700.0,22.5 605.7,22.5 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,22.5 700.0,22.5 605.7,22.5 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
       ],
@@ -583,9 +583,9 @@
         "stuck": 6
       },
       "IT Prioritization": {
-        "count": 9,
+        "count": 10,
         "oldest": 10,
-        "avg": 6.2,
+        "avg": 4.4,
         "stuck": 0
       },
       "In Progress": {
@@ -595,7 +595,7 @@
         "stuck": 0
       },
       "UAT/Testing": {
-        "count": 8,
+        "count": 7,
         "oldest": 7,
         "avg": 5.0,
         "stuck": 0
@@ -622,7 +622,7 @@
       {
         "period_start": "2026-04-13",
         "label": "W16\u2013W17",
-        "count": 4
+        "count": 3
       },
       {
         "period_start": "2026-04-27",
@@ -635,25 +635,25 @@
         "count": 0
       }
     ],
-    "throughput_avg": 1.2,
+    "throughput_avg": 1.0,
     "intake_avg_biweekly": 9.8,
     "pace": {
       "state": "off_pace",
       "label": "Off pace",
-      "ratio": 0.12,
-      "net_per_period": 8.6,
-      "net_per_month": 18.7,
+      "ratio": 0.1,
+      "net_per_period": 8.8,
+      "net_per_month": 19.1,
       "intake_avg": 9.8,
-      "throughput_avg": 1.2
+      "throughput_avg": 1.0
     },
     "oldest_open_days": 21,
     "oldest_open_stage": "Triage",
     "stuck_total": 6,
     "it_cycle": {
       "build": {
-        "avg": 7.4,
-        "median": 8.0,
-        "count": 8,
+        "avg": 7.3,
+        "median": 8,
+        "count": 7,
         "min": 5,
         "max": 8
       },
