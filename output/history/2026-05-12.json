@@ -1,10 +1,10 @@
 {
   "date": "2026-05-12",
-  "generated_at": "2026-05-12T20:49:13",
+  "generated_at": "2026-05-12T22:21:11",
   "metrics": {
     "total": 39,
-    "open_count": 36,
-    "delivered_count": 0,
+    "open_count": 35,
+    "delivered_count": 1,
     "escalated_count": 3,
     "escalated_pct": "8%",
     "review_avg": "3.7",
@@ -51,13 +51,13 @@
       "0%"
     ],
     "flow_max": 7,
-    "donut_total_open": 36,
+    "donut_total_open": 35,
     "donut_segments": [
       {
         "name": "Triage",
         "count": 16,
-        "pct": 44.4,
-        "dasharray": 44.4,
+        "pct": 45.7,
+        "dasharray": 45.7,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -67,9 +67,9 @@
       {
         "name": "IT Prioritization",
         "count": 5,
-        "pct": 13.9,
-        "dasharray": 13.9,
-        "dashoffset": -19.4,
+        "pct": 14.3,
+        "dasharray": 14.3,
+        "dashoffset": -20.7,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
@@ -78,31 +78,31 @@
       {
         "name": "Awaiting Next Sprint",
         "count": 4,
-        "pct": 11.1,
-        "dasharray": 11.1,
-        "dashoffset": -33.3,
+        "pct": 11.4,
+        "dasharray": 11.4,
+        "dashoffset": -35.0,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
         "hex_end": "#30d158"
       },
       {
-        "name": "Deployed",
+        "name": "UAT/Testing",
         "count": 3,
-        "pct": 8.3,
-        "dasharray": 8.3,
-        "dashoffset": -44.4,
+        "pct": 8.6,
+        "dasharray": 8.6,
+        "dashoffset": -46.4,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
         "hex_end": "#0a84ff"
       },
       {
-        "name": "UAT/Testing",
-        "count": 3,
-        "pct": 8.3,
-        "dasharray": 8.3,
-        "dashoffset": -52.7,
+        "name": "Deployed",
+        "count": 2,
+        "pct": 5.7,
+        "dasharray": 5.7,
+        "dashoffset": -55.0,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
@@ -111,9 +111,9 @@
       {
         "name": "New Request",
         "count": 2,
-        "pct": 5.6,
-        "dasharray": 5.6,
-        "dashoffset": -61.0,
+        "pct": 5.7,
+        "dasharray": 5.7,
+        "dashoffset": -60.7,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
@@ -122,9 +122,9 @@
       {
         "name": "On Hold",
         "count": 1,
-        "pct": 2.8,
-        "dasharray": 2.8,
-        "dashoffset": -66.6,
+        "pct": 2.9,
+        "dasharray": 2.9,
+        "dashoffset": -66.4,
         "stroke_css": "var(--mint)",
         "gradient_id": "donut-grad-6",
         "hex_start": "#63e6e2",
@@ -133,9 +133,9 @@
       {
         "name": "Rejected",
         "count": 1,
-        "pct": 2.8,
-        "dasharray": 2.8,
-        "dashoffset": -69.4,
+        "pct": 2.9,
+        "dasharray": 2.9,
+        "dashoffset": -69.3,
         "stroke_css": "var(--pink)",
         "gradient_id": "donut-grad-7",
         "hex_start": "#ff375f",
@@ -144,8 +144,8 @@
       {
         "name": "In Progress",
         "count": 1,
-        "pct": 2.8,
-        "dasharray": 2.8,
+        "pct": 2.9,
+        "dasharray": 2.9,
         "dashoffset": -72.2,
         "stroke_css": "var(--red)",
         "gradient_id": "donut-grad-8",
@@ -339,7 +339,7 @@
           0,
           8,
           8,
-          6
+          5
         ]
       },
       {
@@ -358,7 +358,7 @@
           0,
           8,
           1,
-          0
+          1
         ]
       },
       {
@@ -433,7 +433,7 @@
     "outcome_rejected": 4,
     "outcome_pushed_to_epmo": 0,
     "outcome_on_hold": 7,
-    "outcome_delivered": 0,
+    "outcome_delivered": 1,
     "outcome_admin_request": 2,
     "area_chart": {
       "labels": [
@@ -486,7 +486,7 @@
             0,
             8,
             8,
-            6
+            5
           ]
         },
         {
@@ -500,7 +500,7 @@
             0,
             8,
             1,
-            0
+            1
           ]
         },
         {
@@ -549,8 +549,8 @@
       "polygons": [
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,224.5 605.7,231.0 700.0,231.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,172.3 605.7,126.7 700.0,126.7 700.0,231.0 605.7,231.0 511.4,224.5 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,120.2 605.7,74.6 700.0,87.7 700.0,126.7 605.7,126.7 511.4,172.3 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,68.1 700.0,87.7 700.0,87.7 605.7,74.6 511.4,120.2 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,120.2 605.7,74.6 700.0,94.2 700.0,126.7 605.7,126.7 511.4,172.3 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,68.1 700.0,87.7 700.0,94.2 605.7,74.6 511.4,120.2 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,68.1 700.0,87.7 605.7,68.1 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,42.1 700.0,68.1 605.7,22.5 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,35.5 700.0,42.1 605.7,22.5 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
@@ -709,18 +709,18 @@
         "max": 6
       },
       "closeout": {
-        "avg": null,
-        "median": null,
-        "count": 0,
+        "avg": 0,
+        "median": 0,
+        "count": 1,
         "min": 0,
         "max": 0
       },
       "total": {
-        "avg": null,
-        "median": null,
-        "count": 0,
-        "min": 0,
-        "max": 0
+        "avg": 11,
+        "median": 11,
+        "count": 1,
+        "min": 11,
+        "max": 11
       }
     }
   }
