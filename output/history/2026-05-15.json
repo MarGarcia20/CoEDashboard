@@ -1,6 +1,6 @@
 {
   "date": "2026-05-15",
-  "generated_at": "2026-05-15T18:53:36",
+  "generated_at": "2026-05-15T18:58:44",
   "metrics": {
     "total": 39,
     "open_count": 35,
@@ -14,15 +14,15 @@
     "review_substantive_count": 34,
     "upstream_avg": "29.9",
     "upstream_median": "23.0",
-    "priority_set_count": 33,
-    "priority_unset_count": 6,
+    "priority_set_count": 34,
+    "priority_unset_count": 5,
     "ba_avg": "5.7",
     "ba_count": 11,
     "ba_pending_total": "11 of 39",
-    "total_passed_to_it": 13,
-    "sprint_passed_count": 11,
+    "total_passed_to_it": 18,
+    "sprint_passed_count": 16,
     "admin_request_count": 2,
-    "passed_to_it_rate": "33%",
+    "passed_to_it_rate": "46%",
     "ba_to_it_cycle_avg": "6.3",
     "ba_to_it_dated_count": 3,
     "yield_substantive": 34,
@@ -55,9 +55,9 @@
     "donut_segments": [
       {
         "name": "Triage",
-        "count": 17,
-        "pct": 48.6,
-        "dasharray": 48.6,
+        "count": 12,
+        "pct": 34.3,
+        "dasharray": 34.3,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -66,21 +66,21 @@
       },
       {
         "name": "IT Prioritization",
-        "count": 6,
-        "pct": 17.1,
-        "dasharray": 17.1,
-        "dashoffset": -23.6,
+        "count": 8,
+        "pct": 22.9,
+        "dasharray": 22.9,
+        "dashoffset": -9.3,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
         "hex_end": "#ff375f"
       },
       {
-        "name": "Awaiting Next Sprint",
-        "count": 4,
-        "pct": 11.4,
-        "dasharray": 11.4,
-        "dashoffset": -40.7,
+        "name": "In Progress",
+        "count": 6,
+        "pct": 17.1,
+        "dasharray": 17.1,
+        "dashoffset": -32.2,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
@@ -91,7 +91,7 @@
         "count": 3,
         "pct": 8.6,
         "dasharray": 8.6,
-        "dashoffset": -52.1,
+        "dashoffset": -49.3,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
@@ -102,44 +102,55 @@
         "count": 2,
         "pct": 5.7,
         "dasharray": 5.7,
-        "dashoffset": -60.7,
+        "dashoffset": -57.9,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
         "hex_end": "#5e5ce6"
       },
       {
-        "name": "On Hold",
+        "name": "Awaiting Next Sprint",
         "count": 1,
         "pct": 2.9,
         "dasharray": 2.9,
-        "dashoffset": -66.4,
+        "dashoffset": -63.6,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
         "hex_end": "#ff9f0a"
       },
       {
-        "name": "Rejected",
+        "name": "On Hold",
         "count": 1,
         "pct": 2.9,
         "dasharray": 2.9,
-        "dashoffset": -69.3,
+        "dashoffset": -66.5,
         "stroke_css": "var(--mint)",
         "gradient_id": "donut-grad-6",
         "hex_start": "#63e6e2",
         "hex_end": "#40c8e0"
       },
       {
-        "name": "New Request",
+        "name": "Rejected",
         "count": 1,
         "pct": 2.9,
         "dasharray": 2.9,
-        "dashoffset": -72.2,
+        "dashoffset": -69.4,
         "stroke_css": "var(--pink)",
         "gradient_id": "donut-grad-7",
         "hex_start": "#ff375f",
         "hex_end": "#bf5af2"
+      },
+      {
+        "name": "New Request",
+        "count": 1,
+        "pct": 2.9,
+        "dasharray": 2.9,
+        "dashoffset": -72.3,
+        "stroke_css": "var(--red)",
+        "gradient_id": "donut-grad-8",
+        "hex_start": "#ff453a",
+        "hex_end": "#ff375f"
       }
     ],
     "work_type_counts": {
@@ -243,7 +254,7 @@
     "w_minus1": 19,
     "w_minus2": 18,
     "w_minus3": 17,
-    "rec_it_prio_count": 6,
+    "rec_it_prio_count": 8,
     "rec_status_color_blank": "1 of 39",
     "rec_no_color_count": 1,
     "rec_ba_count": 11,
@@ -266,11 +277,11 @@
     "coe_start_date": "2026-04-15",
     "stage_current": {
       "New Request": 1,
-      "Triage": 17,
-      "IT Prioritization": 6,
-      "In Progress": 0,
+      "Triage": 12,
+      "IT Prioritization": 8,
+      "In Progress": 6,
       "UAT/Testing": 2,
-      "Awaiting Next Sprint": 4,
+      "Awaiting Next Sprint": 1,
       "On Hold": 1
     },
     "stage_cards": [
@@ -295,8 +306,8 @@
       },
       {
         "name": "Triage",
-        "count": 17,
-        "delta": 1,
+        "count": 12,
+        "delta": -4,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#a463f5",
@@ -314,8 +325,8 @@
       },
       {
         "name": "IT Prioritization",
-        "count": 6,
-        "delta": -2,
+        "count": 8,
+        "delta": 0,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#e1417a",
@@ -333,10 +344,10 @@
       },
       {
         "name": "In Progress",
-        "count": 0,
-        "delta": -1,
+        "count": 6,
+        "delta": 5,
         "baseline_label": "from last week",
-        "empty_note": "all moved to next stage",
+        "empty_note": null,
         "color": "#e87a3a",
         "slug": "in_progress",
         "sparkline": [
@@ -371,8 +382,8 @@
       },
       {
         "name": "Awaiting Next Sprint",
-        "count": 4,
-        "delta": 4,
+        "count": 1,
+        "delta": 1,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#d4a23a",
@@ -610,15 +621,15 @@
         "stuck": 0
       },
       "Triage": {
-        "count": 17,
+        "count": 12,
         "oldest": 25,
-        "avg": 14.8,
-        "stuck": 8
+        "avg": 13.2,
+        "stuck": 5
       },
       "IT Prioritization": {
-        "count": 6,
-        "oldest": 8,
-        "avg": 6.0,
+        "count": 8,
+        "oldest": 0,
+        "avg": 0.0,
         "stuck": 0
       },
       "In Progress": {
@@ -634,10 +645,10 @@
         "stuck": 0
       },
       "Awaiting Next Sprint": {
-        "count": 4,
-        "oldest": 14,
+        "count": 1,
+        "oldest": 10,
         "avg": 10.0,
-        "stuck": 1
+        "stuck": 0
       },
       "On Hold": {
         "count": 1,
@@ -681,7 +692,7 @@
     },
     "oldest_open_days": 25,
     "oldest_open_stage": "Triage",
-    "stuck_total": 10,
+    "stuck_total": 6,
     "it_cycle": {
       "build": {
         "avg": 7.3,
