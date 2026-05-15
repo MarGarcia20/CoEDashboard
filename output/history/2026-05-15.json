@@ -1,9 +1,9 @@
 {
   "date": "2026-05-15",
-  "generated_at": "2026-05-15T18:58:44",
+  "generated_at": "2026-05-15T20:22:23",
   "metrics": {
-    "total": 39,
-    "open_count": 35,
+    "total": 40,
+    "open_count": 36,
     "delivered_count": 1,
     "escalated_count": 3,
     "escalated_pct": "8%",
@@ -12,31 +12,31 @@
     "review_min": "1",
     "review_max": "10",
     "review_substantive_count": 34,
-    "upstream_avg": "29.9",
-    "upstream_median": "23.0",
+    "upstream_avg": "29.1",
+    "upstream_median": "20",
     "priority_set_count": 34,
-    "priority_unset_count": 5,
+    "priority_unset_count": 6,
     "ba_avg": "5.7",
     "ba_count": 11,
-    "ba_pending_total": "11 of 39",
+    "ba_pending_total": "11 of 40",
     "total_passed_to_it": 18,
     "sprint_passed_count": 16,
     "admin_request_count": 2,
-    "passed_to_it_rate": "46%",
+    "passed_to_it_rate": "45%",
     "ba_to_it_cycle_avg": "6.3",
     "ba_to_it_dated_count": 3,
     "yield_substantive": 34,
-    "yield_substantive_pct": "87%",
+    "yield_substantive_pct": "85%",
     "yield_gate": 4,
     "yield_gate_pct": "10%",
-    "yield_pending": 1,
-    "yield_pending_pct": "3%",
-    "yield_pending_names": "Deprecate \"LPR VAWA DA\" Litify Matter Plan",
+    "yield_pending": 2,
+    "yield_pending_pct": "5%",
+    "yield_pending_names": "Deprecate \"LPR VAWA DA\" Litify Matter Plan + Bio Appt Reschedule",
     "flow_weeks": {
       "17": 4,
       "18": 5,
       "19": 7,
-      "20": 0
+      "20": 1
     },
     "flow_week_labels": [
       17,
@@ -48,16 +48,16 @@
       "57%",
       "71%",
       "100%",
-      "0%"
+      "14%"
     ],
     "flow_max": 7,
-    "donut_total_open": 35,
+    "donut_total_open": 36,
     "donut_segments": [
       {
         "name": "Triage",
         "count": 12,
-        "pct": 34.3,
-        "dasharray": 34.3,
+        "pct": 33.3,
+        "dasharray": 33.3,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -67,9 +67,9 @@
       {
         "name": "IT Prioritization",
         "count": 8,
-        "pct": 22.9,
-        "dasharray": 22.9,
-        "dashoffset": -9.3,
+        "pct": 22.2,
+        "dasharray": 22.2,
+        "dashoffset": -8.3,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
@@ -78,9 +78,9 @@
       {
         "name": "In Progress",
         "count": 6,
-        "pct": 17.1,
-        "dasharray": 17.1,
-        "dashoffset": -32.2,
+        "pct": 16.7,
+        "dasharray": 16.7,
+        "dashoffset": -30.5,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
@@ -89,9 +89,9 @@
       {
         "name": "Deployed",
         "count": 3,
-        "pct": 8.6,
-        "dasharray": 8.6,
-        "dashoffset": -49.3,
+        "pct": 8.3,
+        "dasharray": 8.3,
+        "dashoffset": -47.2,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
@@ -100,52 +100,52 @@
       {
         "name": "UAT/Testing",
         "count": 2,
-        "pct": 5.7,
-        "dasharray": 5.7,
-        "dashoffset": -57.9,
+        "pct": 5.6,
+        "dasharray": 5.6,
+        "dashoffset": -55.5,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
         "hex_end": "#5e5ce6"
       },
       {
-        "name": "Awaiting Next Sprint",
-        "count": 1,
-        "pct": 2.9,
-        "dasharray": 2.9,
-        "dashoffset": -63.6,
+        "name": "New Request",
+        "count": 2,
+        "pct": 5.6,
+        "dasharray": 5.6,
+        "dashoffset": -61.1,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
         "hex_end": "#ff9f0a"
       },
       {
-        "name": "On Hold",
+        "name": "Awaiting Next Sprint",
         "count": 1,
-        "pct": 2.9,
-        "dasharray": 2.9,
-        "dashoffset": -66.5,
+        "pct": 2.8,
+        "dasharray": 2.8,
+        "dashoffset": -66.7,
         "stroke_css": "var(--mint)",
         "gradient_id": "donut-grad-6",
         "hex_start": "#63e6e2",
         "hex_end": "#40c8e0"
       },
       {
-        "name": "Rejected",
+        "name": "On Hold",
         "count": 1,
-        "pct": 2.9,
-        "dasharray": 2.9,
-        "dashoffset": -69.4,
+        "pct": 2.8,
+        "dasharray": 2.8,
+        "dashoffset": -69.5,
         "stroke_css": "var(--pink)",
         "gradient_id": "donut-grad-7",
         "hex_start": "#ff375f",
         "hex_end": "#bf5af2"
       },
       {
-        "name": "New Request",
+        "name": "Rejected",
         "count": 1,
-        "pct": 2.9,
-        "dasharray": 2.9,
+        "pct": 2.8,
+        "dasharray": 2.8,
         "dashoffset": -72.3,
         "stroke_css": "var(--red)",
         "gradient_id": "donut-grad-8",
@@ -162,7 +162,7 @@
       "Stage changes": 2,
       "Object modifications": 1,
       "No action / Already done": 4,
-      "TBD": 1
+      "TBD": 2
     },
     "work_type_max": 11,
     "dept_counts": {
@@ -170,13 +170,14 @@
       "Phase 2": 28,
       "CSC": 3,
       "Inventory Control": 1,
-      "Phase 1": 1
+      "Phase 1": 1,
+      "Legal -  Staff": 1
     },
     "dept_cards": [
       {
         "name": "Phase 2",
         "count": 28,
-        "pct": "71.8%",
+        "pct": "70.0%",
         "bar_width": "100%",
         "css_color": "var(--indigo)",
         "hex": "#5e5ce6"
@@ -184,7 +185,7 @@
       {
         "name": "Business Development",
         "count": 6,
-        "pct": "15.4%",
+        "pct": "15.0%",
         "bar_width": "21%",
         "css_color": "var(--orange)",
         "hex": "#ff9f0a"
@@ -192,7 +193,7 @@
       {
         "name": "CSC",
         "count": 3,
-        "pct": "7.7%",
+        "pct": "7.5%",
         "bar_width": "11%",
         "css_color": "var(--mint)",
         "hex": "#63e6e2"
@@ -200,7 +201,7 @@
       {
         "name": "Inventory Control",
         "count": 1,
-        "pct": "2.6%",
+        "pct": "2.5%",
         "bar_width": "4%",
         "css_color": "var(--yellow)",
         "hex": "#ffd60a"
@@ -208,23 +209,31 @@
       {
         "name": "Phase 1",
         "count": 1,
-        "pct": "2.6%",
+        "pct": "2.5%",
         "bar_width": "4%",
         "css_color": "var(--green)",
         "hex": "#30d158"
+      },
+      {
+        "name": "Legal -  Staff",
+        "count": 1,
+        "pct": "2.5%",
+        "bar_width": "4%",
+        "css_color": "var(--purple)",
+        "hex": "#bf5af2"
       }
     ],
     "top_dept_name": "Phase 2",
     "pm_counts": {
       "David Molano": 19,
-      "Maria Garcia": 20
+      "Maria Garcia": 21
     },
-    "team_mar_count": 20,
-    "team_mar_pct": "51%",
+    "team_mar_count": 21,
+    "team_mar_pct": "52%",
     "team_david_count": 19,
-    "team_david_pct": "49%",
-    "rec_workload_note": "20/19 \u2014 Mar is +5% this week",
-    "tw_intakes": 0,
+    "team_david_pct": "48%",
+    "rec_workload_note": "21/19 \u2014 Mar is +11% this week",
+    "tw_intakes": 1,
     "tw_reviews": 1,
     "tw_avg_cycle": "5",
     "tw_gate": 0,
@@ -235,7 +244,7 @@
     "lw_gate": 0,
     "lw_escalated": 0,
     "lw_has_reviews": true,
-    "tm_intakes": 7,
+    "tm_intakes": 8,
     "tm_reviewed": 9,
     "tm_avg_cycle": "3.9",
     "tm_escalated": 0,
@@ -245,7 +254,7 @@
     "lm_avg_cycle": "3.6",
     "lm_escalated": 3,
     "lm_has_coe": true,
-    "six_mo_intakes": 39,
+    "six_mo_intakes": 40,
     "six_mo_reviews": 38,
     "six_mo_avg_cycle": "3.7",
     "days_coe_active": 30,
@@ -255,8 +264,8 @@
     "w_minus2": 18,
     "w_minus3": 17,
     "rec_it_prio_count": 8,
-    "rec_status_color_blank": "1 of 39",
-    "rec_no_color_count": 1,
+    "rec_status_color_blank": "2 of 40",
+    "rec_no_color_count": 2,
     "rec_ba_count": 11,
     "tw_window_label": "May 11 \u2013 Today",
     "lw_window_label": "May 4 \u2013 May 10",
@@ -272,11 +281,11 @@
     "flow_w_minus2_range": "Apr 27 \u2013 May 3",
     "flow_w_minus1_range": "May 4 \u2013 May 10",
     "flow_w_current_range": "May 11 \u2013 Now",
-    "pending_received_label": "May 6",
+    "pending_received_label": "May 14",
     "coe_start_display": "April 15, 2026",
     "coe_start_date": "2026-04-15",
     "stage_current": {
-      "New Request": 1,
+      "New Request": 2,
       "Triage": 12,
       "IT Prioritization": 8,
       "In Progress": 6,
@@ -287,8 +296,8 @@
     "stage_cards": [
       {
         "name": "New Request",
-        "count": 1,
-        "delta": -1,
+        "count": 2,
+        "delta": 0,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#4f7ef0",
@@ -320,7 +329,7 @@
           0,
           8,
           16,
-          17
+          12
         ]
       },
       {
@@ -339,7 +348,7 @@
           0,
           8,
           8,
-          6
+          8
         ]
       },
       {
@@ -358,7 +367,7 @@
           0,
           8,
           1,
-          0
+          6
         ]
       },
       {
@@ -396,7 +405,7 @@
           0,
           0,
           0,
-          4
+          1
         ]
       },
       {
@@ -419,10 +428,10 @@
         ]
       }
     ],
-    "backlog_total": 31,
+    "backlog_total": 32,
     "backlog_prior": 34,
-    "backlog_delta": -3,
-    "backlog_intakes_this_week": 0,
+    "backlog_delta": -2,
+    "backlog_intakes_this_week": 1,
     "backlog_completed_this_week": 4,
     "backlog_closed_this_week": 0,
     "intakes_last_week": 7,
@@ -472,7 +481,7 @@
             0,
             8,
             16,
-            17
+            12
           ]
         },
         {
@@ -486,7 +495,7 @@
             0,
             8,
             8,
-            6
+            8
           ]
         },
         {
@@ -500,7 +509,7 @@
             0,
             8,
             1,
-            0
+            6
           ]
         },
         {
@@ -528,7 +537,7 @@
             0,
             0,
             0,
-            4
+            1
           ]
         },
         {
@@ -548,11 +557,11 @@
       ],
       "polygons": [
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,224.5 605.7,231.0 700.0,237.5 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,172.3 605.7,126.7 700.0,126.7 700.0,237.5 605.7,231.0 511.4,224.5 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,120.2 605.7,74.6 700.0,87.7 700.0,126.7 605.7,126.7 511.4,172.3 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,68.1 700.0,87.7 700.0,87.7 605.7,74.6 511.4,120.2 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,74.6 700.0,87.7 605.7,68.1 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,48.6 700.0,74.6 605.7,22.5 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,172.3 605.7,126.7 700.0,159.3 700.0,237.5 605.7,231.0 511.4,224.5 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,120.2 605.7,74.6 700.0,107.2 700.0,159.3 605.7,126.7 511.4,172.3 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,68.1 700.0,68.1 700.0,107.2 605.7,74.6 511.4,120.2 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,55.1 700.0,68.1 605.7,68.1 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,48.6 700.0,55.1 605.7,22.5 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,244.0 511.4,68.1 605.7,22.5 700.0,42.1 700.0,48.6 605.7,22.5 511.4,68.1 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
       ],
       "y_max": 35,
@@ -615,9 +624,9 @@
     },
     "aging_by_stage": {
       "New Request": {
-        "count": 1,
+        "count": 2,
         "oldest": 9,
-        "avg": 9.0,
+        "avg": 5.0,
         "stuck": 0
       },
       "Triage": {
@@ -680,14 +689,14 @@
       }
     ],
     "throughput_avg": 2.0,
-    "intake_avg_biweekly": 9.8,
+    "intake_avg_biweekly": 10.0,
     "pace": {
       "state": "off_pace",
       "label": "Off pace",
       "ratio": 0.2,
-      "net_per_period": 7.8,
-      "net_per_month": 16.9,
-      "intake_avg": 9.8,
+      "net_per_period": 8.0,
+      "net_per_month": 17.4,
+      "intake_avg": 10.0,
       "throughput_avg": 2.0
     },
     "oldest_open_days": 25,
