@@ -1,0 +1,725 @@
+{
+  "date": "2026-05-18",
+  "generated_at": "2026-05-18T16:32:24",
+  "metrics": {
+    "total": 40,
+    "open_count": 36,
+    "delivered_count": 1,
+    "escalated_count": 3,
+    "escalated_pct": "8%",
+    "review_avg": "3.8",
+    "review_median": "4",
+    "review_min": "1",
+    "review_max": "10",
+    "review_substantive_count": 35,
+    "upstream_avg": "29.1",
+    "upstream_median": "20",
+    "priority_set_count": 34,
+    "priority_unset_count": 6,
+    "ba_avg": "5.7",
+    "ba_count": 11,
+    "ba_pending_total": "11 of 40",
+    "total_passed_to_it": 20,
+    "sprint_passed_count": 18,
+    "admin_request_count": 2,
+    "passed_to_it_rate": "50%",
+    "ba_to_it_cycle_avg": "6.3",
+    "ba_to_it_dated_count": 3,
+    "yield_substantive": 35,
+    "yield_substantive_pct": "88%",
+    "yield_gate": 4,
+    "yield_gate_pct": "10%",
+    "yield_pending": 1,
+    "yield_pending_pct": "2%",
+    "yield_pending_names": "Bio Appt Reschedule",
+    "flow_weeks": {
+      "18": 5,
+      "19": 7,
+      "20": 1,
+      "21": 0
+    },
+    "flow_week_labels": [
+      18,
+      19,
+      20,
+      21
+    ],
+    "flow_bar_pcts": [
+      "71%",
+      "100%",
+      "14%",
+      "0%"
+    ],
+    "flow_max": 7,
+    "donut_total_open": 36,
+    "donut_segments": [
+      {
+        "name": "Triage",
+        "count": 12,
+        "pct": 33.3,
+        "dasharray": 33.3,
+        "dashoffset": 25.0,
+        "stroke_css": "var(--indigo)",
+        "gradient_id": "donut-grad-0",
+        "hex_start": "#5e5ce6",
+        "hex_end": "#bf5af2"
+      },
+      {
+        "name": "IT Prioritization",
+        "count": 9,
+        "pct": 25.0,
+        "dasharray": 25.0,
+        "dashoffset": -8.3,
+        "stroke_css": "var(--orange)",
+        "gradient_id": "donut-grad-1",
+        "hex_start": "#ff9f0a",
+        "hex_end": "#ff375f"
+      },
+      {
+        "name": "In Progress",
+        "count": 7,
+        "pct": 19.4,
+        "dasharray": 19.4,
+        "dashoffset": -33.3,
+        "stroke_css": "var(--green)",
+        "gradient_id": "donut-grad-2",
+        "hex_start": "#30d158",
+        "hex_end": "#30d158"
+      },
+      {
+        "name": "Completed",
+        "count": 2,
+        "pct": 5.6,
+        "dasharray": 5.6,
+        "dashoffset": -52.7,
+        "stroke_css": "var(--cyan)",
+        "gradient_id": "donut-grad-3",
+        "hex_start": "#64d2ff",
+        "hex_end": "#0a84ff"
+      },
+      {
+        "name": "UAT/Testing",
+        "count": 2,
+        "pct": 5.6,
+        "dasharray": 5.6,
+        "dashoffset": -58.3,
+        "stroke_css": "var(--purple)",
+        "gradient_id": "donut-grad-4",
+        "hex_start": "#bf5af2",
+        "hex_end": "#5e5ce6"
+      },
+      {
+        "name": "Awaiting Next Sprint",
+        "count": 2,
+        "pct": 5.6,
+        "dasharray": 5.6,
+        "dashoffset": -63.9,
+        "stroke_css": "var(--yellow)",
+        "gradient_id": "donut-grad-5",
+        "hex_start": "#ffd60a",
+        "hex_end": "#ff9f0a"
+      },
+      {
+        "name": "Rejected",
+        "count": 1,
+        "pct": 2.8,
+        "dasharray": 2.8,
+        "dashoffset": -69.5,
+        "stroke_css": "var(--mint)",
+        "gradient_id": "donut-grad-6",
+        "hex_start": "#63e6e2",
+        "hex_end": "#40c8e0"
+      },
+      {
+        "name": "New Request",
+        "count": 1,
+        "pct": 2.8,
+        "dasharray": 2.8,
+        "dashoffset": -72.3,
+        "stroke_css": "var(--pink)",
+        "gradient_id": "donut-grad-7",
+        "hex_start": "#ff375f",
+        "hex_end": "#bf5af2"
+      }
+    ],
+    "work_type_counts": {
+      "Task Set changes": 11,
+      "Automation changes": 7,
+      "Picklist changes": 6,
+      "New / Modified Fields": 6,
+      "Template changes": 2,
+      "Stage changes": 2,
+      "Object modifications": 1,
+      "No action / Already done": 4,
+      "TBD": 1
+    },
+    "work_type_max": 11,
+    "dept_counts": {
+      "Business Development": 6,
+      "Phase 2": 28,
+      "CSC": 3,
+      "Inventory Control": 1,
+      "Phase 1": 1,
+      "Legal -  Staff": 1
+    },
+    "dept_cards": [
+      {
+        "name": "Phase 2",
+        "count": 28,
+        "pct": "70.0%",
+        "bar_width": "100%",
+        "css_color": "var(--indigo)",
+        "hex": "#5e5ce6"
+      },
+      {
+        "name": "Business Development",
+        "count": 6,
+        "pct": "15.0%",
+        "bar_width": "21%",
+        "css_color": "var(--orange)",
+        "hex": "#ff9f0a"
+      },
+      {
+        "name": "CSC",
+        "count": 3,
+        "pct": "7.5%",
+        "bar_width": "11%",
+        "css_color": "var(--mint)",
+        "hex": "#63e6e2"
+      },
+      {
+        "name": "Inventory Control",
+        "count": 1,
+        "pct": "2.5%",
+        "bar_width": "4%",
+        "css_color": "var(--yellow)",
+        "hex": "#ffd60a"
+      },
+      {
+        "name": "Phase 1",
+        "count": 1,
+        "pct": "2.5%",
+        "bar_width": "4%",
+        "css_color": "var(--green)",
+        "hex": "#30d158"
+      },
+      {
+        "name": "Legal -  Staff",
+        "count": 1,
+        "pct": "2.5%",
+        "bar_width": "4%",
+        "css_color": "var(--purple)",
+        "hex": "#bf5af2"
+      }
+    ],
+    "top_dept_name": "Phase 2",
+    "pm_counts": {
+      "David Molano": 19,
+      "Maria Garcia": 21
+    },
+    "team_mar_count": 21,
+    "team_mar_pct": "52%",
+    "team_david_count": 19,
+    "team_david_pct": "48%",
+    "rec_workload_note": "21/19 \u2014 Mar is +11% this week",
+    "tw_intakes": 0,
+    "tw_reviews": 0,
+    "tw_avg_cycle": "\u2014",
+    "tw_gate": 0,
+    "tw_escalated": 0,
+    "lw_intakes": 1,
+    "lw_reviews": 2,
+    "lw_avg_cycle": "6",
+    "lw_gate": 0,
+    "lw_escalated": 0,
+    "lw_has_reviews": true,
+    "tm_intakes": 8,
+    "tm_reviewed": 10,
+    "tm_avg_cycle": "4.2",
+    "tm_escalated": 0,
+    "tm_gate": 0,
+    "lm_intakes": 32,
+    "lm_reviews": 29,
+    "lm_avg_cycle": "3.6",
+    "lm_escalated": 3,
+    "lm_has_coe": true,
+    "six_mo_intakes": 40,
+    "six_mo_reviews": 39,
+    "six_mo_avg_cycle": "3.8",
+    "days_coe_active": 33,
+    "pre_coe_days": 174,
+    "w_current": 21,
+    "w_minus1": 20,
+    "w_minus2": 19,
+    "w_minus3": 18,
+    "rec_it_prio_count": 9,
+    "rec_status_color_blank": "2 of 40",
+    "rec_no_color_count": 2,
+    "rec_ba_count": 11,
+    "tw_window_label": "May 18 \u2013 Today",
+    "lw_window_label": "May 11 \u2013 May 17",
+    "tm_month_name": "May",
+    "tm_window_label": "May 1 \u2013 May 31",
+    "lm_month_name": "April",
+    "lm_window_label": "Apr 1 \u2013 Apr 30",
+    "six_mo_window_label": "Nov 2025 \u2013 May 2026",
+    "top_work_type": "Task Set changes",
+    "flow_peak_week_label": "W19",
+    "flow_peak_count": 7,
+    "flow_w_minus3_range": "Apr 27 \u2013 May 3",
+    "flow_w_minus2_range": "May 4 \u2013 May 10",
+    "flow_w_minus1_range": "May 11 \u2013 May 17",
+    "flow_w_current_range": "May 18 \u2013 Now",
+    "pending_received_label": "May 14",
+    "coe_start_display": "April 15, 2026",
+    "coe_start_date": "2026-04-15",
+    "stage_current": {
+      "New Request": 1,
+      "Triage": 12,
+      "IT Prioritization": 9,
+      "In Progress": 7,
+      "UAT/Testing": 2,
+      "Awaiting Next Sprint": 2,
+      "On Hold": 0
+    },
+    "stage_cards": [
+      {
+        "name": "New Request",
+        "count": 1,
+        "delta": -1,
+        "baseline_label": "from last week",
+        "empty_note": null,
+        "color": "#4f7ef0",
+        "slug": "new_request",
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "name": "Triage",
+        "count": 12,
+        "delta": -4,
+        "baseline_label": "from last week",
+        "empty_note": null,
+        "color": "#a463f5",
+        "slug": "triage",
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          8,
+          16,
+          13,
+          0
+        ]
+      },
+      {
+        "name": "IT Prioritization",
+        "count": 9,
+        "delta": -1,
+        "baseline_label": "from last week",
+        "empty_note": null,
+        "color": "#e1417a",
+        "slug": "it_prioritization",
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          8,
+          8,
+          8,
+          0
+        ]
+      },
+      {
+        "name": "In Progress",
+        "count": 7,
+        "delta": 7,
+        "baseline_label": "from last week",
+        "empty_note": null,
+        "color": "#e87a3a",
+        "slug": "in_progress",
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          8,
+          1,
+          7,
+          0
+        ]
+      },
+      {
+        "name": "UAT/Testing",
+        "count": 2,
+        "delta": -5,
+        "baseline_label": "from last week",
+        "empty_note": null,
+        "color": "#30d158",
+        "slug": "uat_testing",
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          2,
+          0
+        ]
+      },
+      {
+        "name": "Awaiting Next Sprint",
+        "count": 2,
+        "delta": 2,
+        "baseline_label": "from last week",
+        "empty_note": null,
+        "color": "#d4a23a",
+        "slug": "awaiting_next_sprint",
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ]
+      },
+      {
+        "name": "On Hold",
+        "count": 0,
+        "delta": 0,
+        "baseline_label": "from last week",
+        "empty_note": null,
+        "color": "#8e8e93",
+        "slug": "on_hold",
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "backlog_total": 33,
+    "backlog_prior": 35,
+    "backlog_delta": -2,
+    "backlog_intakes_this_week": 0,
+    "backlog_completed_this_week": 0,
+    "backlog_closed_this_week": 0,
+    "intakes_last_week": 1,
+    "completed_last_week": 3,
+    "closed_last_week": 0,
+    "has_history": true,
+    "outcome_closed_at_review": 0,
+    "outcome_rejected": 4,
+    "outcome_pushed_to_epmo": 0,
+    "outcome_on_hold": 7,
+    "outcome_delivered": 1,
+    "outcome_admin_request": 2,
+    "area_chart": {
+      "labels": [
+        "W14",
+        "W15",
+        "W16",
+        "W17",
+        "W18",
+        "W19",
+        "W20",
+        "W21"
+      ],
+      "stages": [
+        {
+          "name": "New Request",
+          "color": "#4f7ef0",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            3,
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "name": "Triage",
+          "color": "#a463f5",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            8,
+            16,
+            13,
+            0
+          ]
+        },
+        {
+          "name": "IT Prioritization",
+          "color": "#e1417a",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            8,
+            8,
+            8,
+            0
+          ]
+        },
+        {
+          "name": "In Progress",
+          "color": "#e87a3a",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            8,
+            1,
+            7,
+            0
+          ]
+        },
+        {
+          "name": "UAT/Testing",
+          "color": "#30d158",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "Awaiting Next Sprint",
+          "color": "#d4a23a",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "name": "On Hold",
+          "color": "#8e8e93",
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "polygons": [
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,224.5 511.4,231.0 605.7,237.5 700.0,244.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,172.3 511.4,126.7 605.7,152.8 700.0,244.0 700.0,244.0 605.7,237.5 511.4,231.0 417.1,224.5 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,120.2 511.4,74.6 605.7,100.7 700.0,244.0 700.0,244.0 605.7,152.8 511.4,126.7 417.1,172.3 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,68.1 605.7,55.1 700.0,244.0 700.0,244.0 605.7,100.7 511.4,74.6 417.1,120.2 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,22.5 605.7,42.1 700.0,244.0 700.0,244.0 605.7,55.1 511.4,68.1 417.1,68.1 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,22.5 605.7,29.0 700.0,244.0 700.0,244.0 605.7,42.1 511.4,22.5 417.1,68.1 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,22.5 605.7,29.0 700.0,244.0 700.0,244.0 605.7,29.0 511.4,22.5 417.1,68.1 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
+      ],
+      "y_max": 35,
+      "x_labels": [
+        {
+          "x": 40.0,
+          "label": "W14"
+        },
+        {
+          "x": 134.28571428571428,
+          "label": "W15"
+        },
+        {
+          "x": 228.57142857142858,
+          "label": "W16"
+        },
+        {
+          "x": 322.85714285714283,
+          "label": "W17"
+        },
+        {
+          "x": 417.14285714285717,
+          "label": "W18"
+        },
+        {
+          "x": 511.42857142857144,
+          "label": "W19"
+        },
+        {
+          "x": 605.7142857142857,
+          "label": "W20"
+        },
+        {
+          "x": 700.0,
+          "label": "W21"
+        }
+      ],
+      "y_labels": [
+        {
+          "y": 244.0,
+          "label": "0"
+        },
+        {
+          "y": 133.25714285714287,
+          "label": "17"
+        },
+        {
+          "y": 16.0,
+          "label": "35"
+        }
+      ],
+      "width": 720,
+      "height": 280,
+      "pad_left": 40,
+      "pad_top": 16,
+      "plot_w": 660,
+      "plot_h": 228,
+      "has_data": true,
+      "weeks_with_data": 3
+    },
+    "aging_by_stage": {
+      "New Request": {
+        "count": 1,
+        "oldest": 4,
+        "avg": 4.0,
+        "stuck": 0
+      },
+      "Triage": {
+        "count": 12,
+        "oldest": 28,
+        "avg": 14.2,
+        "stuck": 4
+      },
+      "IT Prioritization": {
+        "count": 9,
+        "oldest": 3,
+        "avg": 3.0,
+        "stuck": 0
+      },
+      "In Progress": {
+        "count": 7,
+        "oldest": 3,
+        "avg": 0.4,
+        "stuck": 0
+      },
+      "UAT/Testing": {
+        "count": 2,
+        "oldest": 11,
+        "avg": 11.0,
+        "stuck": 0
+      },
+      "Awaiting Next Sprint": {
+        "count": 2,
+        "oldest": 21,
+        "avg": 17.0,
+        "stuck": 1
+      },
+      "On Hold": {
+        "count": 0,
+        "oldest": 0,
+        "avg": 0,
+        "stuck": 0
+      }
+    },
+    "throughput_biweekly": [
+      {
+        "period_start": "2026-04-06",
+        "label": "W15\u2013W16",
+        "count": 1
+      },
+      {
+        "period_start": "2026-04-20",
+        "label": "W17\u2013W18",
+        "count": 4
+      },
+      {
+        "period_start": "2026-05-04",
+        "label": "W19\u2013W20",
+        "count": 3
+      },
+      {
+        "period_start": "2026-05-18",
+        "label": "W21\u2013W22",
+        "count": 0
+      }
+    ],
+    "throughput_avg": 2.0,
+    "intake_avg_biweekly": 10.0,
+    "pace": {
+      "state": "off_pace",
+      "label": "Off pace",
+      "ratio": 0.2,
+      "net_per_period": 8.0,
+      "net_per_month": 17.4,
+      "intake_avg": 10.0,
+      "throughput_avg": 2.0
+    },
+    "oldest_open_days": 28,
+    "oldest_open_stage": "Triage",
+    "stuck_total": 5,
+    "it_cycle": {
+      "build": {
+        "avg": 7.4,
+        "median": 8,
+        "count": 5,
+        "min": 5,
+        "max": 8
+      },
+      "testing": {
+        "avg": 4.7,
+        "median": 4,
+        "count": 3,
+        "min": 4,
+        "max": 6
+      },
+      "closeout": {
+        "avg": 2,
+        "median": 3,
+        "count": 3,
+        "min": 0,
+        "max": 3
+      },
+      "total": {
+        "avg": 13.7,
+        "median": 15,
+        "count": 3,
+        "min": 11,
+        "max": 15
+      }
+    }
+  }
+}
