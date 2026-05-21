@@ -1,9 +1,9 @@
 {
   "date": "2026-05-21",
-  "generated_at": "2026-05-21T16:22:36",
+  "generated_at": "2026-05-21T18:08:22",
   "metrics": {
-    "total": 41,
-    "open_count": 37,
+    "total": 42,
+    "open_count": 38,
     "delivered_count": 1,
     "escalated_count": 3,
     "escalated_pct": "7%",
@@ -15,28 +15,28 @@
     "upstream_avg": "28.4",
     "upstream_median": "17.5",
     "priority_set_count": 34,
-    "priority_unset_count": 7,
+    "priority_unset_count": 8,
     "ba_avg": "5.7",
     "ba_count": 11,
-    "ba_pending_total": "11 of 41",
+    "ba_pending_total": "11 of 42",
     "total_passed_to_it": 19,
     "sprint_passed_count": 18,
     "admin_request_count": 1,
-    "passed_to_it_rate": "46%",
+    "passed_to_it_rate": "45%",
     "ba_to_it_cycle_avg": "6.3",
     "ba_to_it_dated_count": 3,
     "yield_substantive": 35,
-    "yield_substantive_pct": "85%",
+    "yield_substantive_pct": "83%",
     "yield_gate": 4,
     "yield_gate_pct": "10%",
-    "yield_pending": 2,
-    "yield_pending_pct": "5%",
-    "yield_pending_names": "Bio Appt Reschedule + Receipt Notices Corrections",
+    "yield_pending": 3,
+    "yield_pending_pct": "7%",
+    "yield_pending_names": "Bio Appt Reschedule + Receipt Notices Corrections + SUPP Fix and Update Tasks",
     "flow_weeks": {
       "18": 5,
       "19": 7,
       "20": 1,
-      "21": 1
+      "21": 2
     },
     "flow_week_labels": [
       18,
@@ -48,16 +48,16 @@
       "71%",
       "100%",
       "14%",
-      "14%"
+      "29%"
     ],
     "flow_max": 7,
-    "donut_total_open": 37,
+    "donut_total_open": 38,
     "donut_segments": [
       {
         "name": "Triage",
         "count": 12,
-        "pct": 32.4,
-        "dasharray": 32.4,
+        "pct": 31.6,
+        "dasharray": 31.6,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -67,9 +67,9 @@
       {
         "name": "IT Prioritization",
         "count": 9,
-        "pct": 24.3,
-        "dasharray": 24.3,
-        "dashoffset": -7.4,
+        "pct": 23.7,
+        "dasharray": 23.7,
+        "dashoffset": -6.6,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
@@ -77,10 +77,10 @@
       },
       {
         "name": "In Progress",
-        "count": 8,
-        "pct": 21.6,
-        "dasharray": 21.6,
-        "dashoffset": -31.7,
+        "count": 7,
+        "pct": 18.4,
+        "dasharray": 18.4,
+        "dashoffset": -30.3,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
@@ -89,9 +89,9 @@
       {
         "name": "Completed",
         "count": 3,
-        "pct": 8.1,
-        "dasharray": 8.1,
-        "dashoffset": -53.3,
+        "pct": 7.9,
+        "dasharray": 7.9,
+        "dashoffset": -48.7,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
@@ -99,10 +99,10 @@
       },
       {
         "name": "New Request",
-        "count": 2,
-        "pct": 5.4,
-        "dasharray": 5.4,
-        "dashoffset": -61.4,
+        "count": 3,
+        "pct": 7.9,
+        "dasharray": 7.9,
+        "dashoffset": -56.6,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
@@ -110,10 +110,10 @@
       },
       {
         "name": "UAT/Testing",
-        "count": 1,
-        "pct": 2.7,
-        "dasharray": 2.7,
-        "dashoffset": -66.8,
+        "count": 2,
+        "pct": 5.3,
+        "dasharray": 5.3,
+        "dashoffset": -64.5,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
@@ -122,9 +122,9 @@
       {
         "name": "Awaiting Next Sprint",
         "count": 1,
-        "pct": 2.7,
-        "dasharray": 2.7,
-        "dashoffset": -69.5,
+        "pct": 2.6,
+        "dasharray": 2.6,
+        "dashoffset": -69.8,
         "stroke_css": "var(--mint)",
         "gradient_id": "donut-grad-6",
         "hex_start": "#63e6e2",
@@ -133,9 +133,9 @@
       {
         "name": "Rejected",
         "count": 1,
-        "pct": 2.7,
-        "dasharray": 2.7,
-        "dashoffset": -72.2,
+        "pct": 2.6,
+        "dasharray": 2.6,
+        "dashoffset": -72.4,
         "stroke_css": "var(--pink)",
         "gradient_id": "donut-grad-7",
         "hex_start": "#ff375f",
@@ -156,7 +156,7 @@
     "work_type_max": 11,
     "dept_counts": {
       "Business Development": 6,
-      "Phase 2": 28,
+      "Phase 2": 29,
       "CSC": 3,
       "Inventory Control": 1,
       "Phase 1": 1,
@@ -165,8 +165,8 @@
     "dept_cards": [
       {
         "name": "Phase 2",
-        "count": 28,
-        "pct": "68.3%",
+        "count": 29,
+        "pct": "69.0%",
         "bar_width": "100%",
         "css_color": "var(--indigo)",
         "hex": "#5e5ce6"
@@ -174,7 +174,7 @@
       {
         "name": "Business Development",
         "count": 6,
-        "pct": "14.6%",
+        "pct": "14.3%",
         "bar_width": "21%",
         "css_color": "var(--orange)",
         "hex": "#ff9f0a"
@@ -182,15 +182,15 @@
       {
         "name": "CSC",
         "count": 3,
-        "pct": "7.3%",
-        "bar_width": "11%",
+        "pct": "7.1%",
+        "bar_width": "10%",
         "css_color": "var(--mint)",
         "hex": "#63e6e2"
       },
       {
         "name": "Legal -  Staff",
         "count": 2,
-        "pct": "4.9%",
+        "pct": "4.8%",
         "bar_width": "7%",
         "css_color": "var(--purple)",
         "hex": "#bf5af2"
@@ -199,7 +199,7 @@
         "name": "Inventory Control",
         "count": 1,
         "pct": "2.4%",
-        "bar_width": "4%",
+        "bar_width": "3%",
         "css_color": "var(--yellow)",
         "hex": "#ffd60a"
       },
@@ -207,7 +207,7 @@
         "name": "Phase 1",
         "count": 1,
         "pct": "2.4%",
-        "bar_width": "4%",
+        "bar_width": "3%",
         "css_color": "var(--green)",
         "hex": "#30d158"
       }
@@ -215,14 +215,14 @@
     "top_dept_name": "Phase 2",
     "pm_counts": {
       "David Molano": 20,
-      "Maria Garcia": 21
+      "Maria Garcia": 22
     },
-    "team_mar_count": 21,
-    "team_mar_pct": "51%",
+    "team_mar_count": 22,
+    "team_mar_pct": "52%",
     "team_david_count": 20,
-    "team_david_pct": "49%",
-    "rec_workload_note": "21/20 \u2014 Mar is +5% this week",
-    "tw_intakes": 1,
+    "team_david_pct": "48%",
+    "rec_workload_note": "22/20 \u2014 Mar is +10% this week",
+    "tw_intakes": 2,
     "tw_reviews": 0,
     "tw_avg_cycle": "\u2014",
     "tw_gate": 0,
@@ -233,7 +233,7 @@
     "lw_gate": 0,
     "lw_escalated": 0,
     "lw_has_reviews": true,
-    "tm_intakes": 9,
+    "tm_intakes": 10,
     "tm_reviewed": 10,
     "tm_avg_cycle": "4.2",
     "tm_escalated": 0,
@@ -243,7 +243,7 @@
     "lm_avg_cycle": "3.6",
     "lm_escalated": 3,
     "lm_has_coe": true,
-    "six_mo_intakes": 41,
+    "six_mo_intakes": 42,
     "six_mo_reviews": 39,
     "six_mo_avg_cycle": "3.8",
     "days_coe_active": 36,
@@ -253,8 +253,8 @@
     "w_minus2": 19,
     "w_minus3": 18,
     "rec_it_prio_count": 9,
-    "rec_status_color_blank": "3 of 41",
-    "rec_no_color_count": 3,
+    "rec_status_color_blank": "4 of 42",
+    "rec_no_color_count": 4,
     "rec_ba_count": 11,
     "tw_window_label": "May 18 \u2013 Today",
     "lw_window_label": "May 11 \u2013 May 17",
@@ -270,23 +270,23 @@
     "flow_w_minus2_range": "May 4 \u2013 May 10",
     "flow_w_minus1_range": "May 11 \u2013 May 17",
     "flow_w_current_range": "May 18 \u2013 Now",
-    "pending_received_label": "May 18",
+    "pending_received_label": "May 20",
     "coe_start_display": "April 15, 2026",
     "coe_start_date": "2026-04-15",
     "stage_current": {
-      "New Request": 2,
+      "New Request": 3,
       "Triage": 12,
       "IT Prioritization": 9,
-      "In Progress": 8,
-      "UAT/Testing": 1,
+      "In Progress": 7,
+      "UAT/Testing": 2,
       "Awaiting Next Sprint": 1,
       "On Hold": 0
     },
     "stage_cards": [
       {
         "name": "New Request",
-        "count": 2,
-        "delta": 1,
+        "count": 3,
+        "delta": 2,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#4f7ef0",
@@ -342,8 +342,8 @@
       },
       {
         "name": "In Progress",
-        "count": 8,
-        "delta": 7,
+        "count": 7,
+        "delta": 6,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#e87a3a",
@@ -361,8 +361,8 @@
       },
       {
         "name": "UAT/Testing",
-        "count": 1,
-        "delta": -2,
+        "count": 2,
+        "delta": -1,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#30d158",
@@ -417,10 +417,10 @@
         ]
       }
     ],
-    "backlog_total": 33,
+    "backlog_total": 34,
     "backlog_prior": 32,
-    "backlog_delta": 1,
-    "backlog_intakes_this_week": 1,
+    "backlog_delta": 2,
+    "backlog_intakes_this_week": 2,
     "backlog_completed_this_week": 2,
     "backlog_closed_this_week": 0,
     "intakes_last_week": 1,
@@ -613,9 +613,9 @@
     },
     "aging_by_stage": {
       "New Request": {
-        "count": 2,
+        "count": 3,
         "oldest": 7,
-        "avg": 5.0,
+        "avg": 3.7,
         "stuck": 0
       },
       "Triage": {
@@ -631,15 +631,15 @@
         "stuck": 0
       },
       "In Progress": {
-        "count": 8,
+        "count": 7,
         "oldest": 24,
-        "avg": 7.1,
-        "stuck": 2
+        "avg": 6.0,
+        "stuck": 1
       },
       "UAT/Testing": {
-        "count": 1,
+        "count": 2,
         "oldest": 1,
-        "avg": 1.0,
+        "avg": 0.5,
         "stuck": 0
       },
       "Awaiting Next Sprint": {
@@ -678,26 +678,26 @@
       }
     ],
     "throughput_avg": 2.5,
-    "intake_avg_biweekly": 10.2,
+    "intake_avg_biweekly": 10.5,
     "pace": {
       "state": "off_pace",
       "label": "Off pace",
-      "ratio": 0.25,
-      "net_per_period": 7.7,
-      "net_per_month": 16.7,
-      "intake_avg": 10.2,
+      "ratio": 0.24,
+      "net_per_period": 8.0,
+      "net_per_month": 17.4,
+      "intake_avg": 10.5,
       "throughput_avg": 2.5
     },
     "oldest_open_days": 31,
     "oldest_open_stage": "Triage",
-    "stuck_total": 13,
+    "stuck_total": 12,
     "it_cycle": {
       "build": {
-        "avg": 8.8,
+        "avg": 10.7,
         "median": 8.0,
         "count": 6,
         "min": 5,
-        "max": 17
+        "max": 18
       },
       "testing": {
         "avg": 4.6,
