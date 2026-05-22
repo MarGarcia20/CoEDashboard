@@ -1,6 +1,6 @@
 {
   "date": "2026-05-22",
-  "generated_at": "2026-05-22T18:01:39",
+  "generated_at": "2026-05-22T20:04:12",
   "metrics": {
     "total": 42,
     "open_count": 38,
@@ -11,11 +11,11 @@
     "review_median": "4",
     "review_min": "1",
     "review_max": "10",
-    "review_substantive_count": 35,
-    "upstream_avg": "28.4",
-    "upstream_median": "17.5",
-    "priority_set_count": 34,
-    "priority_unset_count": 8,
+    "review_substantive_count": 36,
+    "upstream_avg": "27.7",
+    "upstream_median": "15",
+    "priority_set_count": 35,
+    "priority_unset_count": 7,
     "ba_avg": "5.7",
     "ba_count": 11,
     "ba_pending_total": "11 of 42",
@@ -25,13 +25,13 @@
     "passed_to_it_rate": "48%",
     "ba_to_it_cycle_avg": "6.3",
     "ba_to_it_dated_count": 3,
-    "yield_substantive": 35,
-    "yield_substantive_pct": "83%",
+    "yield_substantive": 36,
+    "yield_substantive_pct": "86%",
     "yield_gate": 4,
     "yield_gate_pct": "10%",
-    "yield_pending": 3,
-    "yield_pending_pct": "7%",
-    "yield_pending_names": "Bio Appt Reschedule + Receipt Notices Corrections + SUPP Fix and Update Tasks",
+    "yield_pending": 2,
+    "yield_pending_pct": "5%",
+    "yield_pending_names": "Bio Appt Reschedule + Receipt Notices Corrections",
     "flow_weeks": {
       "18": 5,
       "19": 7,
@@ -54,10 +54,10 @@
     "donut_total_open": 38,
     "donut_segments": [
       {
-        "name": "IT Prioritization",
-        "count": 11,
-        "pct": 28.9,
-        "dasharray": 28.9,
+        "name": "Triage",
+        "count": 12,
+        "pct": 31.6,
+        "dasharray": 31.6,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -65,11 +65,11 @@
         "hex_end": "#bf5af2"
       },
       {
-        "name": "Triage",
+        "name": "IT Prioritization",
         "count": 11,
         "pct": 28.9,
         "dasharray": 28.9,
-        "dashoffset": -3.9,
+        "dashoffset": -6.6,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
@@ -80,7 +80,7 @@
         "count": 7,
         "pct": 18.4,
         "dasharray": 18.4,
-        "dashoffset": -32.8,
+        "dashoffset": -35.5,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
@@ -91,29 +91,29 @@
         "count": 3,
         "pct": 7.9,
         "dasharray": 7.9,
-        "dashoffset": -51.2,
+        "dashoffset": -53.9,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
         "hex_end": "#0a84ff"
       },
       {
-        "name": "New Request",
-        "count": 3,
-        "pct": 7.9,
-        "dasharray": 7.9,
-        "dashoffset": -59.1,
+        "name": "UAT/Testing",
+        "count": 2,
+        "pct": 5.3,
+        "dasharray": 5.3,
+        "dashoffset": -61.8,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
         "hex_end": "#5e5ce6"
       },
       {
-        "name": "UAT/Testing",
+        "name": "New Request",
         "count": 2,
         "pct": 5.3,
         "dasharray": 5.3,
-        "dashoffset": -67.0,
+        "dashoffset": -67.1,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
@@ -124,7 +124,7 @@
         "count": 1,
         "pct": 2.6,
         "dasharray": 2.6,
-        "dashoffset": -72.3,
+        "dashoffset": -72.4,
         "stroke_css": "var(--mint)",
         "gradient_id": "donut-grad-6",
         "hex_start": "#63e6e2",
@@ -132,7 +132,7 @@
       }
     ],
     "work_type_counts": {
-      "Task Set changes": 11,
+      "Task Set changes": 12,
       "Automation changes": 7,
       "Picklist changes": 6,
       "New / Modified Fields": 6,
@@ -140,9 +140,9 @@
       "Stage changes": 2,
       "Object modifications": 1,
       "No action / Already done": 4,
-      "TBD": 3
+      "TBD": 2
     },
-    "work_type_max": 11,
+    "work_type_max": 12,
     "dept_counts": {
       "Business Development": 6,
       "Phase 2": 29,
@@ -212,8 +212,8 @@
     "team_david_pct": "45%",
     "rec_workload_note": "23/19 \u2014 Mar is +21% this week",
     "tw_intakes": 2,
-    "tw_reviews": 0,
-    "tw_avg_cycle": "\u2014",
+    "tw_reviews": 1,
+    "tw_avg_cycle": "2",
     "tw_gate": 0,
     "tw_escalated": 0,
     "lw_intakes": 1,
@@ -223,8 +223,8 @@
     "lw_escalated": 0,
     "lw_has_reviews": true,
     "tm_intakes": 10,
-    "tm_reviewed": 10,
-    "tm_avg_cycle": "4.2",
+    "tm_reviewed": 11,
+    "tm_avg_cycle": "4",
     "tm_escalated": 0,
     "tm_gate": 0,
     "lm_intakes": 32,
@@ -233,7 +233,7 @@
     "lm_escalated": 3,
     "lm_has_coe": true,
     "six_mo_intakes": 42,
-    "six_mo_reviews": 39,
+    "six_mo_reviews": 40,
     "six_mo_avg_cycle": "3.8",
     "days_coe_active": 37,
     "pre_coe_days": 174,
@@ -259,12 +259,12 @@
     "flow_w_minus2_range": "May 4 \u2013 May 10",
     "flow_w_minus1_range": "May 11 \u2013 May 17",
     "flow_w_current_range": "May 18 \u2013 Now",
-    "pending_received_label": "May 20",
+    "pending_received_label": "May 18",
     "coe_start_display": "April 15, 2026",
     "coe_start_date": "2026-04-15",
     "stage_current": {
-      "New Request": 3,
-      "Triage": 11,
+      "New Request": 2,
+      "Triage": 12,
       "IT Prioritization": 11,
       "In Progress": 7,
       "UAT/Testing": 2,
@@ -274,8 +274,8 @@
     "stage_cards": [
       {
         "name": "New Request",
-        "count": 3,
-        "delta": 2,
+        "count": 2,
+        "delta": 1,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#4f7ef0",
@@ -293,8 +293,8 @@
       },
       {
         "name": "Triage",
-        "count": 11,
-        "delta": -2,
+        "count": 12,
+        "delta": -1,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#a463f5",
@@ -307,7 +307,7 @@
           8,
           16,
           13,
-          12
+          11
         ]
       },
       {
@@ -326,7 +326,7 @@
           8,
           8,
           8,
-          9
+          11
         ]
       },
       {
@@ -383,7 +383,7 @@
           0,
           0,
           2,
-          1
+          0
         ]
       },
       {
@@ -459,7 +459,7 @@
             8,
             16,
             13,
-            12
+            11
           ]
         },
         {
@@ -473,7 +473,7 @@
             8,
             8,
             8,
-            9
+            11
           ]
         },
         {
@@ -515,7 +515,7 @@
             0,
             0,
             2,
-            1
+            0
           ]
         },
         {
@@ -535,11 +535,11 @@
       ],
       "polygons": [
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,224.5 511.4,231.0 605.7,237.5 700.0,224.5 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,172.3 511.4,126.7 605.7,152.8 700.0,146.3 700.0,224.5 605.7,237.5 511.4,231.0 417.1,224.5 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,120.2 511.4,74.6 605.7,100.7 700.0,87.7 700.0,146.3 605.7,152.8 511.4,126.7 417.1,172.3 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,68.1 605.7,55.1 700.0,42.1 700.0,87.7 605.7,100.7 511.4,74.6 417.1,120.2 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,22.5 605.7,42.1 700.0,29.0 700.0,42.1 605.7,55.1 511.4,68.1 417.1,68.1 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,22.5 605.7,29.0 700.0,22.5 700.0,29.0 605.7,42.1 511.4,22.5 417.1,68.1 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,172.3 511.4,126.7 605.7,152.8 700.0,152.8 700.0,224.5 605.7,237.5 511.4,231.0 417.1,224.5 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,120.2 511.4,74.6 605.7,100.7 700.0,81.1 700.0,152.8 605.7,152.8 511.4,126.7 417.1,172.3 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,68.1 605.7,55.1 700.0,35.5 700.0,81.1 605.7,100.7 511.4,74.6 417.1,120.2 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,22.5 605.7,42.1 700.0,22.5 700.0,35.5 605.7,55.1 511.4,68.1 417.1,68.1 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,22.5 605.7,29.0 700.0,22.5 700.0,22.5 605.7,42.1 511.4,22.5 417.1,68.1 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,244.0 134.3,244.0 228.6,244.0 322.9,244.0 417.1,68.1 511.4,22.5 605.7,29.0 700.0,22.5 700.0,22.5 605.7,29.0 511.4,22.5 417.1,68.1 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0"
       ],
       "y_max": 35,
@@ -602,15 +602,15 @@
     },
     "aging_by_stage": {
       "New Request": {
-        "count": 3,
+        "count": 2,
         "oldest": 8,
-        "avg": 4.7,
+        "avg": 6.0,
         "stuck": 0
       },
       "Triage": {
-        "count": 11,
+        "count": 12,
         "oldest": 32,
-        "avg": 20.2,
+        "avg": 18.5,
         "stuck": 10
       },
       "IT Prioritization": {
