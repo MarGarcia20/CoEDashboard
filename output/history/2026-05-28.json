@@ -1,17 +1,17 @@
 {
   "date": "2026-05-28",
-  "generated_at": "2026-05-28T16:24:00",
+  "generated_at": "2026-05-28T20:35:49",
   "metrics": {
     "total": 42,
     "open_count": 36,
     "delivered_count": 3,
     "escalated_count": 3,
     "escalated_pct": "7%",
-    "review_avg": "3.8",
+    "review_avg": "4.0",
     "review_median": "4",
     "review_min": "1",
     "review_max": "10",
-    "review_substantive_count": 36,
+    "review_substantive_count": 38,
     "upstream_avg": "27.7",
     "upstream_median": "15",
     "priority_set_count": 35,
@@ -25,13 +25,13 @@
     "passed_to_it_rate": "48%",
     "ba_to_it_cycle_avg": "6.3",
     "ba_to_it_dated_count": 3,
-    "yield_substantive": 36,
-    "yield_substantive_pct": "86%",
+    "yield_substantive": 38,
+    "yield_substantive_pct": "90%",
     "yield_gate": 4,
     "yield_gate_pct": "10%",
-    "yield_pending": 2,
-    "yield_pending_pct": "5%",
-    "yield_pending_names": "Bio Appt Reschedule + Receipt Notices Corrections",
+    "yield_pending": 0,
+    "yield_pending_pct": "0%",
+    "yield_pending_names": "",
     "flow_weeks": {
       "19": 7,
       "20": 1,
@@ -55,9 +55,9 @@
     "donut_segments": [
       {
         "name": "Triage",
-        "count": 12,
-        "pct": 33.3,
-        "dasharray": 33.3,
+        "count": 14,
+        "pct": 38.9,
+        "dasharray": 38.9,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -69,7 +69,7 @@
         "count": 11,
         "pct": 30.6,
         "dasharray": 30.6,
-        "dashoffset": -8.3,
+        "dashoffset": -13.9,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
@@ -80,7 +80,7 @@
         "count": 6,
         "pct": 16.7,
         "dasharray": 16.7,
-        "dashoffset": -38.9,
+        "dashoffset": -44.5,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
@@ -91,22 +91,11 @@
         "count": 3,
         "pct": 8.3,
         "dasharray": 8.3,
-        "dashoffset": -55.6,
+        "dashoffset": -61.2,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
         "hex_end": "#0a84ff"
-      },
-      {
-        "name": "New Request",
-        "count": 2,
-        "pct": 5.6,
-        "dasharray": 5.6,
-        "dashoffset": -63.9,
-        "stroke_css": "var(--purple)",
-        "gradient_id": "donut-grad-4",
-        "hex_start": "#bf5af2",
-        "hex_end": "#5e5ce6"
       },
       {
         "name": "Completed",
@@ -114,10 +103,10 @@
         "pct": 2.8,
         "dasharray": 2.8,
         "dashoffset": -69.5,
-        "stroke_css": "var(--yellow)",
-        "gradient_id": "donut-grad-5",
-        "hex_start": "#ffd60a",
-        "hex_end": "#ff9f0a"
+        "stroke_css": "var(--purple)",
+        "gradient_id": "donut-grad-4",
+        "hex_start": "#bf5af2",
+        "hex_end": "#5e5ce6"
       },
       {
         "name": "Rejected",
@@ -125,14 +114,14 @@
         "pct": 2.8,
         "dasharray": 2.8,
         "dashoffset": -72.3,
-        "stroke_css": "var(--mint)",
-        "gradient_id": "donut-grad-6",
-        "hex_start": "#63e6e2",
-        "hex_end": "#40c8e0"
+        "stroke_css": "var(--yellow)",
+        "gradient_id": "donut-grad-5",
+        "hex_start": "#ffd60a",
+        "hex_end": "#ff9f0a"
       }
     ],
     "work_type_counts": {
-      "Task Set changes": 12,
+      "Task Set changes": 14,
       "Automation changes": 7,
       "Picklist changes": 6,
       "New / Modified Fields": 6,
@@ -140,9 +129,9 @@
       "Stage changes": 2,
       "Object modifications": 1,
       "No action / Already done": 4,
-      "TBD": 2
+      "TBD": 0
     },
-    "work_type_max": 12,
+    "work_type_max": 14,
     "dept_counts": {
       "Business Development": 6,
       "Phase 2": 29,
@@ -212,8 +201,8 @@
     "team_david_pct": "45%",
     "rec_workload_note": "23/19 \u2014 Mar is +21% this week",
     "tw_intakes": 0,
-    "tw_reviews": 0,
-    "tw_avg_cycle": "\u2014",
+    "tw_reviews": 2,
+    "tw_avg_cycle": "9",
     "tw_gate": 0,
     "tw_escalated": 0,
     "lw_intakes": 2,
@@ -223,8 +212,8 @@
     "lw_escalated": 0,
     "lw_has_reviews": true,
     "tm_intakes": 10,
-    "tm_reviewed": 11,
-    "tm_avg_cycle": "4",
+    "tm_reviewed": 13,
+    "tm_avg_cycle": "4.8",
     "tm_escalated": 0,
     "tm_gate": 0,
     "lm_intakes": 32,
@@ -233,8 +222,8 @@
     "lm_escalated": 3,
     "lm_has_coe": true,
     "six_mo_intakes": 42,
-    "six_mo_reviews": 40,
-    "six_mo_avg_cycle": "3.8",
+    "six_mo_reviews": 42,
+    "six_mo_avg_cycle": "4.0",
     "days_coe_active": 43,
     "pre_coe_days": 174,
     "w_current": 22,
@@ -259,12 +248,12 @@
     "flow_w_minus2_range": "May 11 \u2013 May 17",
     "flow_w_minus1_range": "May 18 \u2013 May 24",
     "flow_w_current_range": "May 25 \u2013 Now",
-    "pending_received_label": "May 18",
+    "pending_received_label": "recently",
     "coe_start_display": "April 15, 2026",
     "coe_start_date": "2026-04-15",
     "stage_current": {
-      "New Request": 2,
-      "Triage": 12,
+      "New Request": 0,
+      "Triage": 14,
       "IT Prioritization": 11,
       "In Progress": 3,
       "UAT/Testing": 6,
@@ -274,10 +263,10 @@
     "stage_cards": [
       {
         "name": "New Request",
-        "count": 2,
-        "delta": -1,
+        "count": 0,
+        "delta": -3,
         "baseline_label": "from last week",
-        "empty_note": null,
+        "empty_note": "all picked up for triage",
         "color": "#4f7ef0",
         "slug": "new_request",
         "sparkline": [
@@ -293,8 +282,8 @@
       },
       {
         "name": "Triage",
-        "count": 12,
-        "delta": 0,
+        "count": 14,
+        "delta": 2,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#a463f5",
@@ -602,15 +591,15 @@
     },
     "aging_by_stage": {
       "New Request": {
-        "count": 2,
-        "oldest": 14,
-        "avg": 12.0,
-        "stuck": 1
+        "count": 0,
+        "oldest": 0,
+        "avg": 0,
+        "stuck": 0
       },
       "Triage": {
-        "count": 12,
+        "count": 14,
         "oldest": 38,
-        "avg": 24.5,
+        "avg": 21.0,
         "stuck": 11
       },
       "IT Prioritization": {
@@ -679,7 +668,7 @@
     },
     "oldest_open_days": 38,
     "oldest_open_stage": "Triage",
-    "stuck_total": 13,
+    "stuck_total": 12,
     "it_cycle": {
       "build": {
         "avg": 8.4,
