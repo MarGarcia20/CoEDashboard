@@ -1,6 +1,6 @@
 {
   "date": "2026-05-29",
-  "generated_at": "2026-05-29T18:42:33",
+  "generated_at": "2026-05-29T22:02:40",
   "metrics": {
     "total": 42,
     "open_count": 36,
@@ -19,10 +19,10 @@
     "ba_avg": "5.7",
     "ba_count": 11,
     "ba_pending_total": "11 of 42",
-    "total_passed_to_it": 20,
+    "total_passed_to_it": 19,
     "sprint_passed_count": 19,
-    "admin_request_count": 1,
-    "passed_to_it_rate": "48%",
+    "admin_request_count": 0,
+    "passed_to_it_rate": "45%",
     "ba_to_it_cycle_avg": "6.3",
     "ba_to_it_dated_count": 3,
     "yield_substantive": 38,
@@ -88,9 +88,9 @@
       },
       {
         "name": "In Progress",
-        "count": 3,
-        "pct": 8.3,
-        "dasharray": 8.3,
+        "count": 2,
+        "pct": 5.6,
+        "dasharray": 5.6,
         "dashoffset": -61.2,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
@@ -98,26 +98,37 @@
         "hex_end": "#0a84ff"
       },
       {
-        "name": "Completed",
+        "name": "Deployed",
         "count": 1,
         "pct": 2.8,
         "dasharray": 2.8,
-        "dashoffset": -69.5,
+        "dashoffset": -66.8,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
         "hex_end": "#5e5ce6"
       },
       {
-        "name": "Rejected",
+        "name": "Completed",
         "count": 1,
         "pct": 2.8,
         "dasharray": 2.8,
-        "dashoffset": -72.3,
+        "dashoffset": -69.6,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
         "hex_end": "#ff9f0a"
+      },
+      {
+        "name": "Rejected",
+        "count": 1,
+        "pct": 2.8,
+        "dasharray": 2.8,
+        "dashoffset": -72.4,
+        "stroke_css": "var(--mint)",
+        "gradient_id": "donut-grad-6",
+        "hex_start": "#63e6e2",
+        "hex_end": "#40c8e0"
       }
     ],
     "work_type_counts": {
@@ -255,7 +266,7 @@
       "New Request": 0,
       "Triage": 14,
       "IT Prioritization": 11,
-      "In Progress": 3,
+      "In Progress": 2,
       "UAT/Testing": 6,
       "Awaiting Next Sprint": 0,
       "On Hold": 0
@@ -320,8 +331,8 @@
       },
       {
         "name": "In Progress",
-        "count": 3,
-        "delta": -4,
+        "count": 2,
+        "delta": -5,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#e87a3a",
@@ -395,14 +406,14 @@
         ]
       }
     ],
-    "backlog_total": 34,
+    "backlog_total": 33,
     "backlog_prior": 34,
-    "backlog_delta": 0,
+    "backlog_delta": -1,
     "backlog_intakes_this_week": 0,
-    "backlog_completed_this_week": 2,
+    "backlog_completed_this_week": 3,
     "backlog_closed_this_week": 0,
     "intakes_last_week": 2,
-    "completed_last_week": 2,
+    "completed_last_week": 1,
     "closed_last_week": 0,
     "has_history": true,
     "outcome_closed_at_review": 0,
@@ -609,15 +620,15 @@
         "stuck": 8
       },
       "In Progress": {
-        "count": 3,
-        "oldest": 32,
-        "avg": 18.0,
-        "stuck": 1
+        "count": 2,
+        "oldest": 11,
+        "avg": 11.0,
+        "stuck": 0
       },
       "UAT/Testing": {
         "count": 6,
-        "oldest": 9,
-        "avg": 5.5,
+        "oldest": 8,
+        "avg": 4.0,
         "stuck": 0
       },
       "Awaiting Next Sprint": {
@@ -647,12 +658,12 @@
       {
         "period_start": "2026-05-11",
         "label": "W20\u2013W21",
-        "count": 5
+        "count": 4
       },
       {
         "period_start": "2026-05-25",
         "label": "W22\u2013W23",
-        "count": 2
+        "count": 3
       }
     ],
     "throughput_avg": 2.8,
@@ -668,20 +679,20 @@
     },
     "oldest_open_days": 39,
     "oldest_open_stage": "Triage",
-    "stuck_total": 20,
+    "stuck_total": 19,
     "it_cycle": {
       "build": {
-        "avg": 8.4,
-        "median": 6.5,
-        "count": 10,
+        "avg": 9.8,
+        "median": 8,
+        "count": 11,
         "min": 5,
-        "max": 18
+        "max": 24
       },
       "testing": {
-        "avg": 4.6,
-        "median": 4,
+        "avg": 6,
+        "median": 6,
         "count": 5,
-        "min": 0,
+        "min": 4,
         "max": 9
       },
       "closeout": {
