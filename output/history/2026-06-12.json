@@ -1,6 +1,6 @@
 {
   "date": "2026-06-12",
-  "generated_at": "2026-06-12T18:18:28",
+  "generated_at": "2026-06-12T22:43:47",
   "metrics": {
     "total": 48,
     "open_count": 39,
@@ -19,10 +19,10 @@
     "ba_avg": "5.7",
     "ba_count": 11,
     "ba_pending_total": "11 of 48",
-    "total_passed_to_it": 18,
-    "sprint_passed_count": 18,
+    "total_passed_to_it": 19,
+    "sprint_passed_count": 19,
     "admin_request_count": 0,
-    "passed_to_it_rate": "38%",
+    "passed_to_it_rate": "40%",
     "ba_to_it_cycle_avg": "6.3",
     "ba_to_it_dated_count": 3,
     "yield_substantive": 42,
@@ -77,9 +77,9 @@
       },
       {
         "name": "In Progress",
-        "count": 5,
-        "pct": 12.8,
-        "dasharray": 12.8,
+        "count": 6,
+        "pct": 15.4,
+        "dasharray": 15.4,
         "dashoffset": -34.0,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
@@ -91,7 +91,7 @@
         "count": 4,
         "pct": 10.3,
         "dasharray": 10.3,
-        "dashoffset": -46.8,
+        "dashoffset": -49.4,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
@@ -102,29 +102,29 @@
         "count": 2,
         "pct": 5.1,
         "dasharray": 5.1,
-        "dashoffset": -57.1,
+        "dashoffset": -59.7,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
         "hex_end": "#5e5ce6"
       },
       {
-        "name": "Deployed",
+        "name": "New Request",
         "count": 2,
         "pct": 5.1,
         "dasharray": 5.1,
-        "dashoffset": -62.2,
+        "dashoffset": -64.8,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
         "hex_end": "#ff9f0a"
       },
       {
-        "name": "New Request",
-        "count": 2,
-        "pct": 5.1,
-        "dasharray": 5.1,
-        "dashoffset": -67.3,
+        "name": "Deployed",
+        "count": 1,
+        "pct": 2.6,
+        "dasharray": 2.6,
+        "dashoffset": -69.9,
         "stroke_css": "var(--mint)",
         "gradient_id": "donut-grad-6",
         "hex_start": "#63e6e2",
@@ -135,7 +135,7 @@
         "count": 1,
         "pct": 2.6,
         "dasharray": 2.6,
-        "dashoffset": -72.4,
+        "dashoffset": -72.5,
         "stroke_css": "var(--pink)",
         "gradient_id": "donut-grad-7",
         "hex_start": "#ff375f",
@@ -262,8 +262,8 @@
     "w_minus2": 22,
     "w_minus3": 21,
     "rec_it_prio_count": 11,
-    "rec_status_color_blank": "10 of 48",
-    "rec_no_color_count": 10,
+    "rec_status_color_blank": "9 of 48",
+    "rec_no_color_count": 9,
     "rec_ba_count": 11,
     "tw_window_label": "Jun 8 \u2013 Today",
     "lw_window_label": "Jun 1 \u2013 Jun 7",
@@ -286,7 +286,7 @@
       "New Request": 2,
       "Triage": 12,
       "IT Prioritization": 11,
-      "In Progress": 5,
+      "In Progress": 6,
       "UAT/Testing": 2,
       "Awaiting Next Sprint": 0,
       "On Hold": 0
@@ -327,7 +327,7 @@
           12,
           14,
           17,
-          11
+          12
         ]
       },
       {
@@ -346,13 +346,13 @@
           11,
           11,
           0,
-          12
+          11
         ]
       },
       {
         "name": "In Progress",
-        "count": 5,
-        "delta": 0,
+        "count": 6,
+        "delta": 1,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#e87a3a",
@@ -426,11 +426,11 @@
         ]
       }
     ],
-    "backlog_total": 32,
+    "backlog_total": 33,
     "backlog_prior": 39,
-    "backlog_delta": -7,
+    "backlog_delta": -6,
     "backlog_intakes_this_week": 0,
-    "backlog_completed_this_week": 9,
+    "backlog_completed_this_week": 8,
     "backlog_closed_this_week": 0,
     "intakes_last_week": 6,
     "completed_last_week": 2,
@@ -479,7 +479,7 @@
             12,
             14,
             17,
-            11
+            12
           ]
         },
         {
@@ -493,7 +493,7 @@
             11,
             11,
             0,
-            12
+            11
           ]
         },
         {
@@ -555,8 +555,8 @@
       ],
       "polygons": [
         "40.0,244.0 134.3,226.9 228.6,232.6 322.9,238.3 417.1,232.6 511.4,244.0 605.7,232.6 700.0,232.6 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,244.0 134.3,181.3 228.6,141.4 322.9,164.2 417.1,164.2 511.4,164.2 605.7,135.7 700.0,169.9 700.0,232.6 605.7,232.6 511.4,244.0 417.1,232.6 322.9,238.3 228.6,232.6 134.3,226.9 40.0,244.0",
-        "40.0,244.0 134.3,135.7 228.6,95.8 322.9,118.6 417.1,101.5 511.4,101.5 605.7,135.7 700.0,101.5 700.0,169.9 605.7,135.7 511.4,164.2 417.1,164.2 322.9,164.2 228.6,141.4 134.3,181.3 40.0,244.0",
+        "40.0,244.0 134.3,181.3 228.6,141.4 322.9,164.2 417.1,164.2 511.4,164.2 605.7,135.7 700.0,164.2 700.0,232.6 605.7,232.6 511.4,244.0 417.1,232.6 322.9,238.3 228.6,232.6 134.3,226.9 40.0,244.0",
+        "40.0,244.0 134.3,135.7 228.6,95.8 322.9,118.6 417.1,101.5 511.4,101.5 605.7,135.7 700.0,101.5 700.0,164.2 605.7,135.7 511.4,164.2 417.1,164.2 322.9,164.2 228.6,141.4 134.3,181.3 40.0,244.0",
         "40.0,244.0 134.3,90.1 228.6,90.1 322.9,78.7 417.1,61.6 511.4,90.1 605.7,107.2 700.0,73.0 700.0,101.5 605.7,135.7 511.4,101.5 417.1,101.5 322.9,118.6 228.6,95.8 134.3,135.7 40.0,244.0",
         "40.0,244.0 134.3,90.1 228.6,50.2 322.9,67.3 417.1,50.2 511.4,55.9 605.7,61.6 700.0,61.6 700.0,73.0 605.7,107.2 511.4,90.1 417.1,61.6 322.9,78.7 228.6,90.1 134.3,90.1 40.0,244.0",
         "40.0,244.0 134.3,90.1 228.6,50.2 322.9,55.9 417.1,50.2 511.4,55.9 605.7,21.7 700.0,61.6 700.0,61.6 605.7,61.6 511.4,55.9 417.1,50.2 322.9,67.3 228.6,50.2 134.3,90.1 40.0,244.0",
@@ -640,9 +640,9 @@
         "stuck": 0
       },
       "In Progress": {
-        "count": 5,
+        "count": 6,
         "oldest": 7,
-        "avg": 6.2,
+        "avg": 5.2,
         "stuck": 0
       },
       "UAT/Testing": {
@@ -683,35 +683,35 @@
       {
         "period_start": "2026-06-08",
         "label": "W24\u2013W25",
-        "count": 9
+        "count": 8
       }
     ],
-    "throughput_avg": 4.5,
+    "throughput_avg": 4.2,
     "intake_avg_biweekly": 6.2,
     "pace": {
       "state": "off_pace",
       "label": "Off pace",
-      "ratio": 0.73,
-      "net_per_period": 1.7,
-      "net_per_month": 3.7,
+      "ratio": 0.68,
+      "net_per_period": 2.0,
+      "net_per_month": 4.3,
       "intake_avg": 6.2,
-      "throughput_avg": 4.5
+      "throughput_avg": 4.2
     },
     "oldest_open_days": 53,
     "oldest_open_stage": "Triage",
     "stuck_total": 11,
     "it_cycle": {
       "build": {
-        "avg": 10.1,
-        "median": 8,
-        "count": 13,
+        "avg": 8.9,
+        "median": 8.0,
+        "count": 12,
         "min": 5,
-        "max": 24
+        "max": 18
       },
       "testing": {
         "avg": 8.5,
-        "median": 8.0,
-        "count": 12,
+        "median": 8,
+        "count": 11,
         "min": 4,
         "max": 14
       },
