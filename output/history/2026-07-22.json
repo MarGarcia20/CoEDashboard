@@ -1,6 +1,6 @@
 {
   "date": "2026-07-22",
-  "generated_at": "2026-07-22T14:18:43",
+  "generated_at": "2026-07-22T18:19:02",
   "metrics": {
     "total": 62,
     "open_count": 38,
@@ -19,10 +19,10 @@
     "ba_avg": "10.4",
     "ba_count": 17,
     "ba_pending_total": "17 of 62",
-    "total_passed_to_it": 15,
-    "sprint_passed_count": 15,
+    "total_passed_to_it": 24,
+    "sprint_passed_count": 24,
     "admin_request_count": 0,
-    "passed_to_it_rate": "24%",
+    "passed_to_it_rate": "39%",
     "ba_to_it_cycle_avg": "11",
     "ba_to_it_dated_count": 5,
     "yield_substantive": 53,
@@ -54,10 +54,10 @@
     "donut_total_open": 38,
     "donut_segments": [
       {
-        "name": "Triage",
-        "count": 16,
-        "pct": 42.1,
-        "dasharray": 42.1,
+        "name": "In Progress",
+        "count": 10,
+        "pct": 26.3,
+        "dasharray": 26.3,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -65,15 +65,26 @@
         "hex_end": "#bf5af2"
       },
       {
-        "name": "In Progress",
-        "count": 10,
-        "pct": 26.3,
-        "dasharray": 26.3,
-        "dashoffset": -17.1,
+        "name": "IT Prioritization",
+        "count": 9,
+        "pct": 23.7,
+        "dasharray": 23.7,
+        "dashoffset": -1.3,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
         "hex_end": "#ff375f"
+      },
+      {
+        "name": "Triage",
+        "count": 7,
+        "pct": 18.4,
+        "dasharray": 18.4,
+        "dashoffset": -25.0,
+        "stroke_css": "var(--green)",
+        "gradient_id": "donut-grad-2",
+        "hex_start": "#30d158",
+        "hex_end": "#30d158"
       },
       {
         "name": "New Request",
@@ -81,10 +92,10 @@
         "pct": 13.2,
         "dasharray": 13.2,
         "dashoffset": -43.4,
-        "stroke_css": "var(--green)",
-        "gradient_id": "donut-grad-2",
-        "hex_start": "#30d158",
-        "hex_end": "#30d158"
+        "stroke_css": "var(--cyan)",
+        "gradient_id": "donut-grad-3",
+        "hex_start": "#64d2ff",
+        "hex_end": "#0a84ff"
       },
       {
         "name": "UAT/Testing",
@@ -92,10 +103,10 @@
         "pct": 5.3,
         "dasharray": 5.3,
         "dashoffset": -56.6,
-        "stroke_css": "var(--cyan)",
-        "gradient_id": "donut-grad-3",
-        "hex_start": "#64d2ff",
-        "hex_end": "#0a84ff"
+        "stroke_css": "var(--purple)",
+        "gradient_id": "donut-grad-4",
+        "hex_start": "#bf5af2",
+        "hex_end": "#5e5ce6"
       },
       {
         "name": "Awaiting Next Sprint",
@@ -103,10 +114,10 @@
         "pct": 5.3,
         "dasharray": 5.3,
         "dashoffset": -61.9,
-        "stroke_css": "var(--purple)",
-        "gradient_id": "donut-grad-4",
-        "hex_start": "#bf5af2",
-        "hex_end": "#5e5ce6"
+        "stroke_css": "var(--yellow)",
+        "gradient_id": "donut-grad-5",
+        "hex_start": "#ffd60a",
+        "hex_end": "#ff9f0a"
       },
       {
         "name": "Deployed",
@@ -114,10 +125,10 @@
         "pct": 2.6,
         "dasharray": 2.6,
         "dashoffset": -67.2,
-        "stroke_css": "var(--yellow)",
-        "gradient_id": "donut-grad-5",
-        "hex_start": "#ffd60a",
-        "hex_end": "#ff9f0a"
+        "stroke_css": "var(--mint)",
+        "gradient_id": "donut-grad-6",
+        "hex_start": "#63e6e2",
+        "hex_end": "#40c8e0"
       },
       {
         "name": "On Hold",
@@ -125,10 +136,10 @@
         "pct": 2.6,
         "dasharray": 2.6,
         "dashoffset": -69.8,
-        "stroke_css": "var(--mint)",
-        "gradient_id": "donut-grad-6",
-        "hex_start": "#63e6e2",
-        "hex_end": "#40c8e0"
+        "stroke_css": "var(--pink)",
+        "gradient_id": "donut-grad-7",
+        "hex_start": "#ff375f",
+        "hex_end": "#bf5af2"
       },
       {
         "name": "Rejected",
@@ -136,10 +147,10 @@
         "pct": 2.6,
         "dasharray": 2.6,
         "dashoffset": -72.4,
-        "stroke_css": "var(--pink)",
-        "gradient_id": "donut-grad-7",
-        "hex_start": "#ff375f",
-        "hex_end": "#bf5af2"
+        "stroke_css": "var(--red)",
+        "gradient_id": "donut-grad-8",
+        "hex_start": "#ff453a",
+        "hex_end": "#ff375f"
       }
     ],
     "work_type_counts": {
@@ -151,7 +162,7 @@
       "Stage changes": 2,
       "Object modifications": 1,
       "No action / Already done": 4,
-      "TBD": 0
+      "TBD": 5
     },
     "work_type_max": 18,
     "dept_counts": {
@@ -270,7 +281,7 @@
     "w_minus1": 29,
     "w_minus2": 28,
     "w_minus3": 27,
-    "rec_it_prio_count": 0,
+    "rec_it_prio_count": 9,
     "rec_status_color_blank": "6 of 62",
     "rec_no_color_count": 6,
     "rec_ba_count": 17,
@@ -293,8 +304,8 @@
     "coe_start_date": "2026-04-15",
     "stage_current": {
       "New Request": 5,
-      "Triage": 16,
-      "IT Prioritization": 0,
+      "Triage": 7,
+      "IT Prioritization": 9,
       "In Progress": 10,
       "UAT/Testing": 2,
       "Awaiting Next Sprint": 2,
@@ -322,8 +333,8 @@
       },
       {
         "name": "Triage",
-        "count": 16,
-        "delta": 1,
+        "count": 7,
+        "delta": -8,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#a463f5",
@@ -341,10 +352,10 @@
       },
       {
         "name": "IT Prioritization",
-        "count": 0,
-        "delta": -9,
+        "count": 9,
+        "delta": 0,
         "baseline_label": "from last week",
-        "empty_note": "all moved forward in the pipeline",
+        "empty_note": null,
         "color": "#e1417a",
         "slug": "it_prioritization",
         "sparkline": [
@@ -355,7 +366,7 @@
           9,
           9,
           9,
-          1
+          0
         ]
       },
       {
@@ -412,7 +423,7 @@
           0,
           0,
           0,
-          1
+          2
         ]
       },
       {
@@ -502,7 +513,7 @@
             9,
             9,
             9,
-            1
+            0
           ]
         },
         {
@@ -544,7 +555,7 @@
             0,
             0,
             0,
-            1
+            2
           ]
         },
         {
@@ -565,10 +576,10 @@
       "polygons": [
         "40.0,232.6 134.3,232.6 228.6,215.5 322.9,238.3 417.1,221.2 511.4,232.6 605.7,244.0 700.0,215.5 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,135.7 134.3,164.2 228.6,147.1 322.9,147.1 417.1,152.8 511.4,152.8 605.7,152.8 700.0,124.3 700.0,215.5 605.7,244.0 511.4,232.6 417.1,221.2 322.9,238.3 228.6,215.5 134.3,232.6 40.0,232.6",
-        "40.0,135.7 134.3,101.5 228.6,84.4 322.9,147.1 417.1,101.5 511.4,101.5 605.7,101.5 700.0,118.6 700.0,124.3 605.7,152.8 511.4,152.8 417.1,152.8 322.9,147.1 228.6,147.1 134.3,164.2 40.0,135.7",
-        "40.0,107.2 134.3,67.3 228.6,84.4 322.9,107.2 417.1,67.3 511.4,78.7 605.7,84.4 700.0,61.6 700.0,118.6 605.7,101.5 511.4,101.5 417.1,101.5 322.9,147.1 228.6,84.4 134.3,101.5 40.0,135.7",
-        "40.0,61.6 134.3,55.9 228.6,50.2 322.9,90.1 417.1,55.9 511.4,38.8 605.7,73.0 700.0,50.2 700.0,61.6 605.7,84.4 511.4,78.7 417.1,67.3 322.9,107.2 228.6,84.4 134.3,67.3 40.0,107.2",
-        "40.0,21.7 134.3,55.9 228.6,50.2 322.9,73.0 417.1,55.9 511.4,38.8 605.7,73.0 700.0,44.5 700.0,50.2 605.7,73.0 511.4,38.8 417.1,55.9 322.9,90.1 228.6,50.2 134.3,55.9 40.0,61.6",
+        "40.0,135.7 134.3,101.5 228.6,84.4 322.9,147.1 417.1,101.5 511.4,101.5 605.7,101.5 700.0,124.3 700.0,124.3 605.7,152.8 511.4,152.8 417.1,152.8 322.9,147.1 228.6,147.1 134.3,164.2 40.0,135.7",
+        "40.0,107.2 134.3,67.3 228.6,84.4 322.9,107.2 417.1,67.3 511.4,78.7 605.7,84.4 700.0,67.3 700.0,124.3 605.7,101.5 511.4,101.5 417.1,101.5 322.9,147.1 228.6,84.4 134.3,101.5 40.0,135.7",
+        "40.0,61.6 134.3,55.9 228.6,50.2 322.9,90.1 417.1,55.9 511.4,38.8 605.7,73.0 700.0,55.9 700.0,67.3 605.7,84.4 511.4,78.7 417.1,67.3 322.9,107.2 228.6,84.4 134.3,67.3 40.0,107.2",
+        "40.0,21.7 134.3,55.9 228.6,50.2 322.9,73.0 417.1,55.9 511.4,38.8 605.7,73.0 700.0,44.5 700.0,55.9 605.7,73.0 511.4,38.8 417.1,55.9 322.9,90.1 228.6,50.2 134.3,55.9 40.0,61.6",
         "40.0,21.7 134.3,55.9 228.6,50.2 322.9,67.3 417.1,50.2 511.4,33.1 605.7,67.3 700.0,38.8 700.0,44.5 605.7,73.0 511.4,38.8 417.1,55.9 322.9,73.0 228.6,50.2 134.3,55.9 40.0,21.7"
       ],
       "y_max": 40,
@@ -637,15 +648,15 @@
         "stuck": 0
       },
       "Triage": {
-        "count": 16,
-        "oldest": 77,
-        "avg": 31.9,
-        "stuck": 10
+        "count": 7,
+        "oldest": 61,
+        "avg": 27.1,
+        "stuck": 3
       },
       "IT Prioritization": {
-        "count": 0,
+        "count": 9,
         "oldest": 0,
-        "avg": 0,
+        "avg": 0.0,
         "stuck": 0
       },
       "In Progress": {
@@ -708,7 +719,7 @@
     },
     "oldest_open_days": 93,
     "oldest_open_stage": "On Hold",
-    "stuck_total": 18,
+    "stuck_total": 11,
     "it_cycle": {
       "build": {
         "avg": 10.2,
