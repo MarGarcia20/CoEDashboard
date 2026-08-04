@@ -1,6 +1,6 @@
 {
   "date": "2026-08-04",
-  "generated_at": "2026-08-04T14:36:06",
+  "generated_at": "2026-08-04T18:00:38",
   "metrics": {
     "total": 67,
     "open_count": 39,
@@ -98,10 +98,10 @@
         "hex_end": "#0a84ff"
       },
       {
-        "name": "Deployed",
-        "count": 2,
-        "pct": 5.1,
-        "dasharray": 5.1,
+        "name": "Scoping Call Scheduled",
+        "count": 3,
+        "pct": 7.7,
+        "dasharray": 7.7,
         "dashoffset": -52.0,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
@@ -109,22 +109,22 @@
         "hex_end": "#5e5ce6"
       },
       {
-        "name": "Rejected",
+        "name": "Deployed",
         "count": 2,
         "pct": 5.1,
         "dasharray": 5.1,
-        "dashoffset": -57.1,
+        "dashoffset": -59.7,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
         "hex_end": "#ff9f0a"
       },
       {
-        "name": "Scoping Call Scheduled",
+        "name": "Rejected",
         "count": 2,
         "pct": 5.1,
         "dasharray": 5.1,
-        "dashoffset": -62.2,
+        "dashoffset": -64.8,
         "stroke_css": "var(--mint)",
         "gradient_id": "donut-grad-6",
         "hex_start": "#63e6e2",
@@ -135,7 +135,7 @@
         "count": 1,
         "pct": 2.6,
         "dasharray": 2.6,
-        "dashoffset": -67.3,
+        "dashoffset": -69.9,
         "stroke_css": "var(--pink)",
         "gradient_id": "donut-grad-7",
         "hex_start": "#ff375f",
@@ -146,22 +146,11 @@
         "count": 1,
         "pct": 2.6,
         "dasharray": 2.6,
-        "dashoffset": -69.9,
+        "dashoffset": -72.5,
         "stroke_css": "var(--red)",
         "gradient_id": "donut-grad-8",
         "hex_start": "#ff453a",
         "hex_end": "#ff375f"
-      },
-      {
-        "name": "New Request",
-        "count": 1,
-        "pct": 2.6,
-        "dasharray": 2.6,
-        "dashoffset": -72.5,
-        "stroke_css": "var(--teal)",
-        "gradient_id": "donut-grad-9",
-        "hex_start": "#40c8e0",
-        "hex_end": "#63e6e2"
       }
     ],
     "work_type_counts": {
@@ -323,7 +312,7 @@
     "coe_start_display": "April 15, 2026",
     "coe_start_date": "2026-04-15",
     "stage_current": {
-      "New Request": 1,
+      "New Request": 0,
       "Triage": 12,
       "IT Prioritization": 10,
       "In Progress": 4,
@@ -334,10 +323,10 @@
     "stage_cards": [
       {
         "name": "New Request",
-        "count": 1,
-        "delta": -3,
+        "count": 0,
+        "delta": -4,
         "baseline_label": "from last week",
-        "empty_note": null,
+        "empty_note": "all picked up for triage",
         "color": "#4f7ef0",
         "slug": "new_request",
         "sparkline": [
@@ -466,9 +455,9 @@
         ]
       }
     ],
-    "backlog_total": 33,
+    "backlog_total": 32,
     "backlog_prior": 38,
-    "backlog_delta": -5,
+    "backlog_delta": -6,
     "backlog_intakes_this_week": 0,
     "backlog_completed_this_week": 3,
     "backlog_closed_this_week": 0,
@@ -662,9 +651,9 @@
     },
     "aging_by_stage": {
       "New Request": {
-        "count": 1,
-        "oldest": 5,
-        "avg": 5.0,
+        "count": 0,
+        "oldest": 0,
+        "avg": 0,
         "stuck": 0
       },
       "Triage": {
