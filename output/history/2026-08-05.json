@@ -1,9 +1,9 @@
 {
   "date": "2026-08-05",
-  "generated_at": "2026-08-05T18:44:52",
+  "generated_at": "2026-08-05T20:37:31",
   "metrics": {
-    "total": 71,
-    "open_count": 43,
+    "total": 72,
+    "open_count": 44,
     "delivered_count": 23,
     "escalated_count": 4,
     "escalated_pct": "6%",
@@ -12,13 +12,13 @@
     "review_min": "0",
     "review_max": "15",
     "review_substantive_count": 63,
-    "upstream_avg": "21.4",
-    "upstream_median": "9",
-    "priority_set_count": 61,
+    "upstream_avg": "20.2",
+    "upstream_median": "7.0",
+    "priority_set_count": 62,
     "priority_unset_count": 10,
     "ba_avg": "10.4",
     "ba_count": 17,
-    "ba_pending_total": "17 of 71",
+    "ba_pending_total": "17 of 72",
     "total_passed_to_it": 18,
     "sprint_passed_count": 18,
     "admin_request_count": 0,
@@ -26,17 +26,17 @@
     "ba_to_it_cycle_avg": "11",
     "ba_to_it_dated_count": 5,
     "yield_substantive": 63,
-    "yield_substantive_pct": "89%",
+    "yield_substantive_pct": "88%",
     "yield_gate": 4,
     "yield_gate_pct": "6%",
-    "yield_pending": 4,
-    "yield_pending_pct": "6%",
-    "yield_pending_names": "TRACE minor improvements + Update \"AOS - Hotline Cover Letter\" Taskset + Update \"AOS USCIS Hotline\" Taskset + CT - Bundle 1 - Court Objects: Fields, Statuses & Workflow Automation ",
+    "yield_pending": 5,
+    "yield_pending_pct": "7%",
+    "yield_pending_names": "TRACE minor improvements + Update \"AOS - Hotline Cover Letter\" Taskset + Update \"AOS USCIS Hotline\" Taskset + CT - Bundle 1 - Court Objects: Fields, Statuses & Workflow Automation  + Add \"AOS - Translation\" task subject as a picklist item in Litify",
     "flow_weeks": {
       "29": 0,
       "30": 5,
       "31": 5,
-      "32": 4
+      "32": 5
     },
     "flow_week_labels": [
       29,
@@ -48,16 +48,16 @@
       "0%",
       "100%",
       "100%",
-      "80%"
+      "100%"
     ],
     "flow_max": 5,
-    "donut_total_open": 43,
+    "donut_total_open": 44,
     "donut_segments": [
       {
         "name": "Triage",
         "count": 15,
-        "pct": 34.9,
-        "dasharray": 34.9,
+        "pct": 34.1,
+        "dasharray": 34.1,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -67,9 +67,9 @@
       {
         "name": "IT Prioritization",
         "count": 10,
-        "pct": 23.3,
-        "dasharray": 23.3,
-        "dashoffset": -9.9,
+        "pct": 22.7,
+        "dasharray": 22.7,
+        "dashoffset": -9.1,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
@@ -78,20 +78,20 @@
       {
         "name": "UAT/Testing",
         "count": 5,
-        "pct": 11.6,
-        "dasharray": 11.6,
-        "dashoffset": -33.2,
+        "pct": 11.4,
+        "dasharray": 11.4,
+        "dashoffset": -31.8,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
         "hex_end": "#30d158"
       },
       {
-        "name": "New Request",
+        "name": "Scoping Call Scheduled",
         "count": 4,
-        "pct": 9.3,
-        "dasharray": 9.3,
-        "dashoffset": -44.8,
+        "pct": 9.1,
+        "dasharray": 9.1,
+        "dashoffset": -43.2,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
@@ -100,9 +100,9 @@
       {
         "name": "Deployed",
         "count": 3,
-        "pct": 7.0,
-        "dasharray": 7.0,
-        "dashoffset": -54.1,
+        "pct": 6.8,
+        "dasharray": 6.8,
+        "dashoffset": -52.3,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
@@ -111,9 +111,9 @@
       {
         "name": "In Progress",
         "count": 2,
-        "pct": 4.7,
-        "dasharray": 4.7,
-        "dashoffset": -61.1,
+        "pct": 4.5,
+        "dasharray": 4.5,
+        "dashoffset": -59.1,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
@@ -122,9 +122,9 @@
       {
         "name": "Rejected",
         "count": 2,
-        "pct": 4.7,
-        "dasharray": 4.7,
-        "dashoffset": -65.8,
+        "pct": 4.5,
+        "dasharray": 4.5,
+        "dashoffset": -63.6,
         "stroke_css": "var(--mint)",
         "gradient_id": "donut-grad-6",
         "hex_start": "#63e6e2",
@@ -135,7 +135,7 @@
         "count": 1,
         "pct": 2.3,
         "dasharray": 2.3,
-        "dashoffset": -70.5,
+        "dashoffset": -68.1,
         "stroke_css": "var(--pink)",
         "gradient_id": "donut-grad-7",
         "hex_start": "#ff375f",
@@ -146,11 +146,22 @@
         "count": 1,
         "pct": 2.3,
         "dasharray": 2.3,
-        "dashoffset": -72.8,
+        "dashoffset": -70.4,
         "stroke_css": "var(--red)",
         "gradient_id": "donut-grad-8",
         "hex_start": "#ff453a",
         "hex_end": "#ff375f"
+      },
+      {
+        "name": "New Request",
+        "count": 1,
+        "pct": 2.3,
+        "dasharray": 2.3,
+        "dashoffset": -72.7,
+        "stroke_css": "var(--teal)",
+        "gradient_id": "donut-grad-9",
+        "hex_start": "#40c8e0",
+        "hex_end": "#63e6e2"
       }
     ],
     "work_type_counts": {
@@ -167,7 +178,7 @@
     "work_type_max": 21,
     "dept_counts": {
       "Business Development": 16,
-      "Phase 2": 38,
+      "Phase 2": 39,
       "Phase 1": 4,
       "CSC": 3,
       "Inventory Control": 1,
@@ -180,8 +191,8 @@
     "dept_cards": [
       {
         "name": "Phase 2",
-        "count": 38,
-        "pct": "53.5%",
+        "count": 39,
+        "pct": "54.2%",
         "bar_width": "100%",
         "css_color": "var(--indigo)",
         "hex": "#5e5ce6"
@@ -189,8 +200,8 @@
       {
         "name": "Business Development",
         "count": 16,
-        "pct": "22.5%",
-        "bar_width": "42%",
+        "pct": "22.2%",
+        "bar_width": "41%",
         "css_color": "var(--orange)",
         "hex": "#ff9f0a"
       },
@@ -198,7 +209,7 @@
         "name": "Phase 1",
         "count": 4,
         "pct": "5.6%",
-        "bar_width": "11%",
+        "bar_width": "10%",
         "css_color": "var(--green)",
         "hex": "#30d158"
       },
@@ -206,7 +217,7 @@
         "name": "Court",
         "count": 4,
         "pct": "5.6%",
-        "bar_width": "11%",
+        "bar_width": "10%",
         "css_color": "var(--purple)",
         "hex": "#bf5af2"
       },
@@ -261,15 +272,16 @@
     ],
     "top_dept_name": "Phase 2",
     "pm_counts": {
-      "David Molano": 17,
-      "Maria Garcia": 54
+      "David Molano": 18,
+      "Maria Garcia": 50,
+      "Astrid Ortega": 4
     },
-    "team_mar_count": 54,
-    "team_mar_pct": "76%",
-    "team_david_count": 17,
-    "team_david_pct": "24%",
-    "rec_workload_note": "54/17 \u2014 Mar is +218% this week",
-    "tw_intakes": 4,
+    "team_mar_count": 50,
+    "team_mar_pct": "69%",
+    "team_david_count": 18,
+    "team_david_pct": "25%",
+    "rec_workload_note": "50/18 \u2014 Mar is +178% this week",
+    "tw_intakes": 5,
     "tw_reviews": 3,
     "tw_avg_cycle": "3.7",
     "tw_gate": 0,
@@ -280,7 +292,7 @@
     "lw_gate": 0,
     "lw_escalated": 0,
     "lw_has_reviews": true,
-    "tm_intakes": 4,
+    "tm_intakes": 5,
     "tm_reviewed": 3,
     "tm_avg_cycle": "3.7",
     "tm_escalated": 0,
@@ -290,7 +302,7 @@
     "lm_avg_cycle": "5.5",
     "lm_escalated": 0,
     "lm_has_coe": true,
-    "six_mo_intakes": 71,
+    "six_mo_intakes": 72,
     "six_mo_reviews": 67,
     "six_mo_avg_cycle": "4.7",
     "days_coe_active": 112,
@@ -300,8 +312,8 @@
     "w_minus2": 30,
     "w_minus3": 29,
     "rec_it_prio_count": 10,
-    "rec_status_color_blank": "8 of 71",
-    "rec_no_color_count": 8,
+    "rec_status_color_blank": "9 of 72",
+    "rec_no_color_count": 9,
     "rec_ba_count": 17,
     "tw_window_label": "Aug 3 \u2013 Today",
     "lw_window_label": "Jul 27 \u2013 Aug 2",
@@ -321,7 +333,7 @@
     "coe_start_display": "April 15, 2026",
     "coe_start_date": "2026-04-15",
     "stage_current": {
-      "New Request": 4,
+      "New Request": 1,
       "Triage": 15,
       "IT Prioritization": 10,
       "In Progress": 2,
@@ -332,8 +344,8 @@
     "stage_cards": [
       {
         "name": "New Request",
-        "count": 4,
-        "delta": 4,
+        "count": 1,
+        "delta": 1,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#4f7ef0",
@@ -346,7 +358,7 @@
           0,
           2,
           3,
-          3
+          4
         ]
       },
       {
@@ -365,7 +377,7 @@
           16,
           8,
           12,
-          13
+          15
         ]
       },
       {
@@ -403,7 +415,7 @@
           3,
           9,
           5,
-          4
+          2
         ]
       },
       {
@@ -422,7 +434,7 @@
           2,
           3,
           3,
-          4
+          5
         ]
       },
       {
@@ -441,7 +453,7 @@
           0,
           2,
           1,
-          1
+          0
         ]
       },
       {
@@ -464,10 +476,10 @@
         ]
       }
     ],
-    "backlog_total": 37,
+    "backlog_total": 34,
     "backlog_prior": 31,
-    "backlog_delta": 6,
-    "backlog_intakes_this_week": 4,
+    "backlog_delta": 3,
+    "backlog_intakes_this_week": 5,
     "backlog_completed_this_week": 6,
     "backlog_closed_this_week": 0,
     "intakes_last_week": 5,
@@ -503,7 +515,7 @@
             0,
             2,
             3,
-            3
+            4
           ]
         },
         {
@@ -517,7 +529,7 @@
             16,
             8,
             12,
-            13
+            15
           ]
         },
         {
@@ -545,7 +557,7 @@
             3,
             9,
             5,
-            4
+            2
           ]
         },
         {
@@ -559,7 +571,7 @@
             2,
             3,
             3,
-            4
+            5
           ]
         },
         {
@@ -573,7 +585,7 @@
             0,
             2,
             1,
-            1
+            0
           ]
         },
         {
@@ -592,13 +604,13 @@
         }
       ],
       "polygons": [
-        "40.0,215.5 134.3,238.3 228.6,221.2 322.9,232.6 417.1,244.0 511.4,232.6 605.7,226.9 700.0,226.9 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
-        "40.0,147.1 134.3,147.1 228.6,152.8 322.9,152.8 417.1,152.8 511.4,187.0 605.7,158.5 700.0,152.8 700.0,226.9 605.7,226.9 511.4,232.6 417.1,244.0 322.9,232.6 228.6,221.2 134.3,238.3 40.0,215.5",
-        "40.0,84.4 134.3,147.1 228.6,101.5 322.9,101.5 417.1,101.5 511.4,124.3 605.7,101.5 700.0,95.8 700.0,152.8 605.7,158.5 511.4,187.0 417.1,152.8 322.9,152.8 228.6,152.8 134.3,147.1 40.0,147.1",
-        "40.0,84.4 134.3,107.2 228.6,67.3 322.9,78.7 417.1,84.4 511.4,73.0 605.7,73.0 700.0,73.0 700.0,95.8 605.7,101.5 511.4,124.3 417.1,101.5 322.9,101.5 228.6,101.5 134.3,147.1 40.0,84.4",
-        "40.0,50.2 134.3,90.1 228.6,55.9 322.9,38.8 417.1,73.0 511.4,55.9 605.7,55.9 700.0,50.2 700.0,73.0 605.7,73.0 511.4,73.0 417.1,84.4 322.9,78.7 228.6,67.3 134.3,107.2 40.0,84.4",
-        "40.0,50.2 134.3,73.0 228.6,55.9 322.9,38.8 417.1,73.0 511.4,44.5 605.7,50.2 700.0,44.5 700.0,50.2 605.7,55.9 511.4,55.9 417.1,73.0 322.9,38.8 228.6,55.9 134.3,90.1 40.0,50.2",
-        "40.0,50.2 134.3,67.3 228.6,50.2 322.9,33.1 417.1,67.3 511.4,38.8 605.7,44.5 700.0,38.8 700.0,44.5 605.7,50.2 511.4,44.5 417.1,73.0 322.9,38.8 228.6,55.9 134.3,73.0 40.0,50.2"
+        "40.0,215.5 134.3,238.3 228.6,221.2 322.9,232.6 417.1,244.0 511.4,232.6 605.7,226.9 700.0,221.2 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
+        "40.0,147.1 134.3,147.1 228.6,152.8 322.9,152.8 417.1,152.8 511.4,187.0 605.7,158.5 700.0,135.7 700.0,221.2 605.7,226.9 511.4,232.6 417.1,244.0 322.9,232.6 228.6,221.2 134.3,238.3 40.0,215.5",
+        "40.0,84.4 134.3,147.1 228.6,101.5 322.9,101.5 417.1,101.5 511.4,124.3 605.7,101.5 700.0,78.7 700.0,135.7 605.7,158.5 511.4,187.0 417.1,152.8 322.9,152.8 228.6,152.8 134.3,147.1 40.0,147.1",
+        "40.0,84.4 134.3,107.2 228.6,67.3 322.9,78.7 417.1,84.4 511.4,73.0 605.7,73.0 700.0,67.3 700.0,78.7 605.7,101.5 511.4,124.3 417.1,101.5 322.9,101.5 228.6,101.5 134.3,147.1 40.0,84.4",
+        "40.0,50.2 134.3,90.1 228.6,55.9 322.9,38.8 417.1,73.0 511.4,55.9 605.7,55.9 700.0,38.8 700.0,67.3 605.7,73.0 511.4,73.0 417.1,84.4 322.9,78.7 228.6,67.3 134.3,107.2 40.0,84.4",
+        "40.0,50.2 134.3,73.0 228.6,55.9 322.9,38.8 417.1,73.0 511.4,44.5 605.7,50.2 700.0,38.8 700.0,38.8 605.7,55.9 511.4,55.9 417.1,73.0 322.9,38.8 228.6,55.9 134.3,90.1 40.0,50.2",
+        "40.0,50.2 134.3,67.3 228.6,50.2 322.9,33.1 417.1,67.3 511.4,38.8 605.7,44.5 700.0,33.1 700.0,38.8 605.7,50.2 511.4,44.5 417.1,73.0 322.9,38.8 228.6,55.9 134.3,73.0 40.0,50.2"
       ],
       "y_max": 40,
       "x_labels": [
@@ -660,9 +672,9 @@
     },
     "aging_by_stage": {
       "New Request": {
-        "count": 4,
-        "oldest": 2,
-        "avg": 1.8,
+        "count": 1,
+        "oldest": 1,
+        "avg": 1.0,
         "stuck": 0
       },
       "Triage": {
@@ -725,14 +737,14 @@
       }
     ],
     "throughput_avg": 6.2,
-    "intake_avg_biweekly": 5.8,
+    "intake_avg_biweekly": 6.0,
     "pace": {
       "state": "on_pace",
       "label": "On pace",
-      "ratio": 1.07,
-      "net_per_period": -0.4,
-      "net_per_month": -0.9,
-      "intake_avg": 5.8,
+      "ratio": 1.03,
+      "net_per_period": -0.2,
+      "net_per_month": -0.4,
+      "intake_avg": 6.0,
       "throughput_avg": 6.2
     },
     "oldest_open_days": 107,
