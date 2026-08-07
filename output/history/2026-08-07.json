@@ -1,6 +1,6 @@
 {
   "date": "2026-08-07",
-  "generated_at": "2026-08-07T16:05:19",
+  "generated_at": "2026-08-07T20:54:29",
   "metrics": {
     "total": 73,
     "open_count": 44,
@@ -19,10 +19,10 @@
     "ba_avg": "10.4",
     "ba_count": 17,
     "ba_pending_total": "17 of 73",
-    "total_passed_to_it": 25,
-    "sprint_passed_count": 25,
+    "total_passed_to_it": 26,
+    "sprint_passed_count": 26,
     "admin_request_count": 0,
-    "passed_to_it_rate": "34%",
+    "passed_to_it_rate": "36%",
     "ba_to_it_cycle_avg": "11",
     "ba_to_it_dated_count": 5,
     "yield_substantive": 67,
@@ -273,14 +273,14 @@
     "top_dept_name": "Phase 2",
     "pm_counts": {
       "David Molano": 19,
-      "Maria Garcia": 53,
-      "Astrid Ortega": 1
+      "Maria Garcia": 52,
+      "Astrid Ortega": 2
     },
-    "team_mar_count": 53,
-    "team_mar_pct": "73%",
+    "team_mar_count": 52,
+    "team_mar_pct": "71%",
     "team_david_count": 19,
     "team_david_pct": "26%",
-    "rec_workload_note": "53/19 \u2014 Mar is +179% this week",
+    "rec_workload_note": "52/19 \u2014 Mar is +174% this week",
     "tw_intakes": 6,
     "tw_reviews": 7,
     "tw_avg_cycle": "3.1",
@@ -489,7 +489,7 @@
     "outcome_closed_at_review": 0,
     "outcome_rejected": 1,
     "outcome_pushed_to_epmo": 0,
-    "outcome_on_hold": 8,
+    "outcome_on_hold": 9,
     "outcome_delivered": 8,
     "outcome_admin_request": 0,
     "area_chart": {
@@ -708,7 +708,7 @@
         "stuck": 1
       },
       "On Hold": {
-        "count": 1,
+        "count": 2,
         "oldest": 1,
         "avg": 1.0,
         "stuck": 0
