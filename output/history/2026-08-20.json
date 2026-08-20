@@ -1,6 +1,6 @@
 {
   "date": "2026-08-20",
-  "generated_at": "2026-08-20T16:47:44",
+  "generated_at": "2026-08-20T18:55:36",
   "metrics": {
     "total": 80,
     "open_count": 47,
@@ -11,11 +11,11 @@
     "review_median": "4",
     "review_min": "0",
     "review_max": "15",
-    "review_substantive_count": 72,
-    "upstream_avg": "20.0",
+    "review_substantive_count": 74,
+    "upstream_avg": "18.2",
     "upstream_median": "7",
-    "priority_set_count": 71,
-    "priority_unset_count": 9,
+    "priority_set_count": 73,
+    "priority_unset_count": 7,
     "ba_avg": "10.4",
     "ba_count": 17,
     "ba_pending_total": "17 of 80",
@@ -25,13 +25,13 @@
     "passed_to_it_rate": "21%",
     "ba_to_it_cycle_avg": "11",
     "ba_to_it_dated_count": 5,
-    "yield_substantive": 72,
-    "yield_substantive_pct": "90%",
+    "yield_substantive": 74,
+    "yield_substantive_pct": "92%",
     "yield_gate": 4,
     "yield_gate_pct": "5%",
-    "yield_pending": 4,
-    "yield_pending_pct": "5%",
-    "yield_pending_names": "Task Set Improvement - Mental Health Evaluation 2.0 + New Package Types on List | CW + Create CT-AOS Submission and CT-AOS Preparation Litify tasksets + CSC/LC Green Approval ",
+    "yield_pending": 2,
+    "yield_pending_pct": "2%",
+    "yield_pending_names": "Task Set Improvement - Mental Health Evaluation 2.0 + New Package Types on List | CW",
     "flow_weeks": {
       "31": 5,
       "32": 6,
@@ -55,9 +55,9 @@
     "donut_segments": [
       {
         "name": "Triage",
-        "count": 17,
-        "pct": 36.2,
-        "dasharray": 36.2,
+        "count": 19,
+        "pct": 40.4,
+        "dasharray": 40.4,
         "dashoffset": 25.0,
         "stroke_css": "var(--indigo)",
         "gradient_id": "donut-grad-0",
@@ -69,7 +69,7 @@
         "count": 7,
         "pct": 14.9,
         "dasharray": 14.9,
-        "dashoffset": -11.2,
+        "dashoffset": -15.4,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
         "hex_start": "#ff9f0a",
@@ -80,7 +80,7 @@
         "count": 7,
         "pct": 14.9,
         "dasharray": 14.9,
-        "dashoffset": -26.1,
+        "dashoffset": -30.3,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
@@ -91,36 +91,36 @@
         "count": 4,
         "pct": 8.5,
         "dasharray": 8.5,
-        "dashoffset": -41.0,
+        "dashoffset": -45.2,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
         "hex_end": "#0a84ff"
       },
       {
-        "name": "Scoping Call Scheduled",
-        "count": 4,
-        "pct": 8.5,
-        "dasharray": 8.5,
-        "dashoffset": -49.5,
+        "name": "Deployed",
+        "count": 3,
+        "pct": 6.4,
+        "dasharray": 6.4,
+        "dashoffset": -53.7,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
         "hex_end": "#5e5ce6"
       },
       {
-        "name": "Deployed",
-        "count": 3,
-        "pct": 6.4,
-        "dasharray": 6.4,
-        "dashoffset": -58.0,
+        "name": "UAT/Testing",
+        "count": 2,
+        "pct": 4.3,
+        "dasharray": 4.3,
+        "dashoffset": -60.1,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
         "hex_end": "#ff9f0a"
       },
       {
-        "name": "UAT/Testing",
+        "name": "Rejected",
         "count": 2,
         "pct": 4.3,
         "dasharray": 4.3,
@@ -131,7 +131,7 @@
         "hex_end": "#40c8e0"
       },
       {
-        "name": "Rejected",
+        "name": "Scoping Call Scheduled",
         "count": 2,
         "pct": 4.3,
         "dasharray": 4.3,
@@ -154,8 +154,8 @@
       }
     ],
     "work_type_counts": {
-      "Task Set changes": 21,
-      "Automation changes": 24,
+      "Task Set changes": 23,
+      "Automation changes": 26,
       "Picklist changes": 13,
       "New / Modified Fields": 12,
       "Template changes": 2,
@@ -164,7 +164,7 @@
       "No action / Already done": 4,
       "TBD": 0
     },
-    "work_type_max": 24,
+    "work_type_max": 26,
     "dept_counts": {
       "Business Development": 16,
       "Phase 2": 40,
@@ -262,16 +262,17 @@
     "top_dept_name": "Phase 2",
     "pm_counts": {
       "David Molano": 19,
-      "Maria Garcia": 61
+      "Maria Garcia": 59,
+      "Astrid Ortega": 2
     },
-    "team_mar_count": 61,
-    "team_mar_pct": "76%",
+    "team_mar_count": 59,
+    "team_mar_pct": "74%",
     "team_david_count": 19,
     "team_david_pct": "24%",
-    "rec_workload_note": "61/19 \u2014 Mar is +221% this week",
+    "rec_workload_note": "59/19 \u2014 Mar is +211% this week",
     "tw_intakes": 0,
-    "tw_reviews": 3,
-    "tw_avg_cycle": "5",
+    "tw_reviews": 5,
+    "tw_avg_cycle": "4.2",
     "tw_gate": 0,
     "tw_escalated": 0,
     "lw_intakes": 7,
@@ -281,8 +282,8 @@
     "lw_escalated": 0,
     "lw_has_reviews": true,
     "tm_intakes": 13,
-    "tm_reviewed": 12,
-    "tm_avg_cycle": "3.9",
+    "tm_reviewed": 14,
+    "tm_avg_cycle": "3.8",
     "tm_escalated": 0,
     "tm_gate": 0,
     "lm_intakes": 15,
@@ -291,7 +292,7 @@
     "lm_escalated": 0,
     "lm_has_coe": true,
     "six_mo_intakes": 80,
-    "six_mo_reviews": 76,
+    "six_mo_reviews": 78,
     "six_mo_avg_cycle": "4.6",
     "days_coe_active": 127,
     "pre_coe_days": 174,
@@ -300,8 +301,8 @@
     "w_minus2": 32,
     "w_minus3": 31,
     "rec_it_prio_count": 0,
-    "rec_status_color_blank": "6 of 80",
-    "rec_no_color_count": 6,
+    "rec_status_color_blank": "4 of 80",
+    "rec_no_color_count": 4,
     "rec_ba_count": 17,
     "tw_window_label": "Aug 17 \u2013 Today",
     "lw_window_label": "Aug 10 \u2013 Aug 16",
@@ -317,12 +318,12 @@
     "flow_w_minus2_range": "Aug 3 \u2013 Aug 9",
     "flow_w_minus1_range": "Aug 10 \u2013 Aug 16",
     "flow_w_current_range": "Aug 17 \u2013 Now",
-    "pending_received_label": "Aug 16",
+    "pending_received_label": "Aug 13",
     "coe_start_display": "April 15, 2026",
     "coe_start_date": "2026-04-15",
     "stage_current": {
       "New Request": 0,
-      "Triage": 17,
+      "Triage": 19,
       "IT Prioritization": 0,
       "In Progress": 7,
       "UAT/Testing": 2,
@@ -351,8 +352,8 @@
       },
       {
         "name": "Triage",
-        "count": 17,
-        "delta": 3,
+        "count": 19,
+        "delta": 5,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#a463f5",
@@ -384,7 +385,7 @@
           10,
           6,
           6,
-          6
+          0
         ]
       },
       {
@@ -403,7 +404,7 @@
           5,
           7,
           2,
-          4
+          7
         ]
       },
       {
@@ -441,7 +442,7 @@
           1,
           6,
           6,
-          4
+          7
         ]
       },
       {
@@ -464,9 +465,9 @@
         ]
       }
     ],
-    "backlog_total": 34,
+    "backlog_total": 36,
     "backlog_prior": 37,
-    "backlog_delta": -3,
+    "backlog_delta": -1,
     "backlog_intakes_this_week": 0,
     "backlog_completed_this_week": 7,
     "backlog_closed_this_week": 0,
@@ -531,7 +532,7 @@
             10,
             6,
             6,
-            6
+            0
           ]
         },
         {
@@ -545,7 +546,7 @@
             5,
             7,
             2,
-            4
+            7
           ]
         },
         {
@@ -573,7 +574,7 @@
             1,
             6,
             6,
-            4
+            7
           ]
         },
         {
@@ -594,10 +595,10 @@
       "polygons": [
         "40.0,221.2 134.3,232.6 228.6,244.0 322.9,232.6 417.1,226.9 511.4,244.0 605.7,232.6 700.0,244.0 700.0,244.0 605.7,244.0 511.4,244.0 417.1,244.0 322.9,244.0 228.6,244.0 134.3,244.0 40.0,244.0",
         "40.0,152.8 134.3,152.8 228.6,152.8 322.9,187.0 417.1,158.5 511.4,175.6 605.7,152.8 700.0,147.1 700.0,244.0 605.7,232.6 511.4,244.0 417.1,226.9 322.9,232.6 228.6,244.0 134.3,232.6 40.0,221.2",
-        "40.0,101.5 134.3,101.5 228.6,101.5 322.9,124.3 417.1,101.5 511.4,141.4 605.7,118.6 700.0,112.9 700.0,147.1 605.7,152.8 511.4,175.6 417.1,158.5 322.9,187.0 228.6,152.8 134.3,152.8 40.0,152.8",
-        "40.0,67.3 134.3,78.7 228.6,84.4 322.9,73.0 417.1,73.0 511.4,101.5 605.7,107.2 700.0,90.1 700.0,112.9 605.7,118.6 511.4,141.4 417.1,101.5 322.9,124.3 228.6,101.5 134.3,101.5 40.0,101.5",
-        "40.0,55.9 134.3,38.8 228.6,73.0 322.9,55.9 417.1,55.9 511.4,73.0 605.7,90.1 700.0,78.7 700.0,90.1 605.7,107.2 511.4,101.5 417.1,73.0 322.9,73.0 228.6,84.4 134.3,78.7 40.0,67.3",
-        "40.0,55.9 134.3,38.8 228.6,73.0 322.9,44.5 417.1,50.2 511.4,38.8 605.7,55.9 700.0,55.9 700.0,78.7 605.7,90.1 511.4,73.0 417.1,55.9 322.9,55.9 228.6,73.0 134.3,38.8 40.0,55.9",
+        "40.0,101.5 134.3,101.5 228.6,101.5 322.9,124.3 417.1,101.5 511.4,141.4 605.7,118.6 700.0,147.1 700.0,147.1 605.7,152.8 511.4,175.6 417.1,158.5 322.9,187.0 228.6,152.8 134.3,152.8 40.0,152.8",
+        "40.0,67.3 134.3,78.7 228.6,84.4 322.9,73.0 417.1,73.0 511.4,101.5 605.7,107.2 700.0,107.2 700.0,147.1 605.7,118.6 511.4,141.4 417.1,101.5 322.9,124.3 228.6,101.5 134.3,101.5 40.0,101.5",
+        "40.0,55.9 134.3,38.8 228.6,73.0 322.9,55.9 417.1,55.9 511.4,73.0 605.7,90.1 700.0,95.8 700.0,107.2 605.7,107.2 511.4,101.5 417.1,73.0 322.9,73.0 228.6,84.4 134.3,78.7 40.0,67.3",
+        "40.0,55.9 134.3,38.8 228.6,73.0 322.9,44.5 417.1,50.2 511.4,38.8 605.7,55.9 700.0,55.9 700.0,95.8 605.7,90.1 511.4,73.0 417.1,55.9 322.9,55.9 228.6,73.0 134.3,38.8 40.0,55.9",
         "40.0,50.2 134.3,33.1 228.6,67.3 322.9,38.8 417.1,44.5 511.4,33.1 605.7,50.2 700.0,50.2 700.0,55.9 605.7,55.9 511.4,38.8 417.1,50.2 322.9,44.5 228.6,73.0 134.3,38.8 40.0,55.9"
       ],
       "y_max": 40,
@@ -666,9 +667,9 @@
         "stuck": 0
       },
       "Triage": {
-        "count": 17,
+        "count": 19,
         "oldest": 42,
-        "avg": 18.3,
+        "avg": 16.4,
         "stuck": 12
       },
       "IT Prioritization": {
