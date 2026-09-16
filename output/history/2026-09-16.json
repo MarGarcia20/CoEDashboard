@@ -1,6 +1,6 @@
 {
   "date": "2026-09-16",
-  "generated_at": "2026-09-16T16:47:35",
+  "generated_at": "2026-09-16T22:05:32",
   "metrics": {
     "total": 84,
     "open_count": 42,
@@ -239,14 +239,14 @@
     ],
     "top_dept_name": "Phase 2",
     "pm_counts": {
-      "David Molano": 19,
-      "Maria Garcia": 65
+      "David Molano": 18,
+      "Maria Garcia": 66
     },
-    "team_mar_count": 65,
-    "team_mar_pct": "77%",
-    "team_david_count": 19,
-    "team_david_pct": "23%",
-    "rec_workload_note": "65/19 \u2014 Mar is +242% this week",
+    "team_mar_count": 66,
+    "team_mar_pct": "79%",
+    "team_david_count": 18,
+    "team_david_pct": "21%",
+    "rec_workload_note": "66/18 \u2014 Mar is +267% this week",
     "tw_intakes": 0,
     "tw_reviews": 0,
     "tw_avg_cycle": "\u2014",
