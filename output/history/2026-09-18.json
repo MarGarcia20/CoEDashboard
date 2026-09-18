@@ -1,6 +1,6 @@
 {
   "date": "2026-09-18",
-  "generated_at": "2026-09-18T16:20:20",
+  "generated_at": "2026-09-18T20:50:55",
   "metrics": {
     "total": 84,
     "open_count": 42,
@@ -144,7 +144,7 @@
     },
     "work_type_max": 28,
     "dept_counts": {
-      "Business Development": 18,
+      "Business Development": 17,
       "Phase 2": 40,
       "Phase 1": 6,
       "CSC": 4,
@@ -153,6 +153,7 @@
       "Legal": 1,
       "Legal Clerks": 4,
       "Court": 7,
+      "Retention": 1,
       "Quality Assurance": 1
     },
     "dept_cards": [
@@ -166,9 +167,9 @@
       },
       {
         "name": "Business Development",
-        "count": 18,
-        "pct": "21.4%",
-        "bar_width": "45%",
+        "count": 17,
+        "pct": "20.2%",
+        "bar_width": "42%",
         "css_color": "var(--orange)",
         "hex": "#ff9f0a"
       },
@@ -222,6 +223,14 @@
       },
       {
         "name": "Legal",
+        "count": 1,
+        "pct": "1.2%",
+        "bar_width": "2%",
+        "css_color": "var(--purple)",
+        "hex": "#bf5af2"
+      },
+      {
+        "name": "Retention",
         "count": 1,
         "pct": "1.2%",
         "bar_width": "2%",
