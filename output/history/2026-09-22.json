@@ -1,6 +1,6 @@
 {
   "date": "2026-09-22",
-  "generated_at": "2026-09-22T16:51:52",
+  "generated_at": "2026-09-22T22:01:53",
   "metrics": {
     "total": 87,
     "open_count": 45,
@@ -19,10 +19,10 @@
     "ba_avg": "10.4",
     "ba_count": 17,
     "ba_pending_total": "17 of 87",
-    "total_passed_to_it": 24,
-    "sprint_passed_count": 24,
+    "total_passed_to_it": 19,
+    "sprint_passed_count": 19,
     "admin_request_count": 0,
-    "passed_to_it_rate": "28%",
+    "passed_to_it_rate": "22%",
     "ba_to_it_cycle_avg": "11",
     "ba_to_it_dated_count": 5,
     "yield_substantive": 80,
@@ -76,10 +76,10 @@
         "hex_end": "#ff375f"
       },
       {
-        "name": "UAT/Testing",
-        "count": 8,
-        "pct": 17.8,
-        "dasharray": 17.8,
+        "name": "Deployed",
+        "count": 5,
+        "pct": 11.1,
+        "dasharray": 11.1,
         "dashoffset": -37.3,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
@@ -87,44 +87,44 @@
         "hex_end": "#30d158"
       },
       {
-        "name": "On Hold",
-        "count": 3,
-        "pct": 6.7,
-        "dasharray": 6.7,
-        "dashoffset": -55.1,
+        "name": "UAT/Testing",
+        "count": 4,
+        "pct": 8.9,
+        "dasharray": 8.9,
+        "dashoffset": -48.4,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
         "hex_end": "#0a84ff"
       },
       {
-        "name": "New Request",
+        "name": "On Hold",
         "count": 3,
         "pct": 6.7,
         "dasharray": 6.7,
-        "dashoffset": -61.8,
+        "dashoffset": -57.3,
         "stroke_css": "var(--purple)",
         "gradient_id": "donut-grad-4",
         "hex_start": "#bf5af2",
         "hex_end": "#5e5ce6"
       },
       {
-        "name": "Rejected",
-        "count": 2,
-        "pct": 4.4,
-        "dasharray": 4.4,
-        "dashoffset": -68.5,
+        "name": "New Request",
+        "count": 3,
+        "pct": 6.7,
+        "dasharray": 6.7,
+        "dashoffset": -64.0,
         "stroke_css": "var(--yellow)",
         "gradient_id": "donut-grad-5",
         "hex_start": "#ffd60a",
         "hex_end": "#ff9f0a"
       },
       {
-        "name": "In Progress",
-        "count": 1,
-        "pct": 2.2,
-        "dasharray": 2.2,
-        "dashoffset": -72.9,
+        "name": "Rejected",
+        "count": 2,
+        "pct": 4.4,
+        "dasharray": 4.4,
+        "dashoffset": -70.7,
         "stroke_css": "var(--mint)",
         "gradient_id": "donut-grad-6",
         "hex_start": "#63e6e2",
@@ -311,8 +311,8 @@
       "New Request": 3,
       "Triage": 16,
       "IT Prioritization": 0,
-      "In Progress": 1,
-      "UAT/Testing": 8,
+      "In Progress": 0,
+      "UAT/Testing": 4,
       "Awaiting Next Sprint": 12,
       "On Hold": 3
     },
@@ -376,10 +376,10 @@
       },
       {
         "name": "In Progress",
-        "count": 1,
-        "delta": -3,
+        "count": 0,
+        "delta": -4,
         "baseline_label": "from last week",
-        "empty_note": null,
+        "empty_note": "all moved to next stage",
         "color": "#e87a3a",
         "slug": "in_progress",
         "sparkline": [
@@ -395,8 +395,8 @@
       },
       {
         "name": "UAT/Testing",
-        "count": 8,
-        "delta": 3,
+        "count": 4,
+        "delta": -1,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#30d158",
@@ -451,11 +451,11 @@
         ]
       }
     ],
-    "backlog_total": 43,
+    "backlog_total": 38,
     "backlog_prior": 40,
-    "backlog_delta": 3,
+    "backlog_delta": -2,
     "backlog_intakes_this_week": 0,
-    "backlog_completed_this_week": 0,
+    "backlog_completed_this_week": 5,
     "backlog_closed_this_week": 0,
     "intakes_last_week": 3,
     "completed_last_week": 0,
@@ -665,16 +665,16 @@
         "stuck": 0
       },
       "In Progress": {
-        "count": 1,
-        "oldest": 11,
-        "avg": 11.0,
+        "count": 0,
+        "oldest": 0,
+        "avg": 0,
         "stuck": 0
       },
       "UAT/Testing": {
-        "count": 8,
-        "oldest": 25,
-        "avg": 15.0,
-        "stuck": 5
+        "count": 4,
+        "oldest": 19,
+        "avg": 7.2,
+        "stuck": 1
       },
       "Awaiting Next Sprint": {
         "count": 12,
@@ -708,35 +708,35 @@
       {
         "period_start": "2026-09-21",
         "label": "W39\u2013W40",
-        "count": 0
+        "count": 5
       }
     ],
-    "throughput_avg": 5.5,
+    "throughput_avg": 6.8,
     "intake_avg_biweekly": 5.8,
     "pace": {
-      "state": "catching_up",
-      "label": "Catching up",
-      "ratio": 0.95,
-      "net_per_period": 0.3,
-      "net_per_month": 0.7,
+      "state": "on_pace",
+      "label": "On pace",
+      "ratio": 1.17,
+      "net_per_period": -1.0,
+      "net_per_month": -2.2,
       "intake_avg": 5.8,
-      "throughput_avg": 5.5
+      "throughput_avg": 6.8
     },
     "oldest_open_days": 155,
     "oldest_open_stage": "Triage",
-    "stuck_total": 32,
+    "stuck_total": 28,
     "it_cycle": {
       "build": {
-        "avg": 10.7,
-        "median": 8,
-        "count": 43,
+        "avg": 10.8,
+        "median": 8.0,
+        "count": 44,
         "min": 0,
         "max": 71
       },
       "testing": {
-        "avg": 8.4,
-        "median": 6,
-        "count": 35,
+        "avg": 8.9,
+        "median": 6.0,
+        "count": 40,
         "min": 0,
         "max": 51
       },
