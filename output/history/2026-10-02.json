@@ -1,6 +1,6 @@
 {
   "date": "2026-10-02",
-  "generated_at": "2026-10-02T18:21:39",
+  "generated_at": "2026-10-02T22:08:27",
   "metrics": {
     "total": 89,
     "open_count": 40,
@@ -66,9 +66,9 @@
       },
       {
         "name": "Awaiting Next Sprint",
-        "count": 12,
-        "pct": 30.0,
-        "dasharray": 30.0,
+        "count": 11,
+        "pct": 27.5,
+        "dasharray": 27.5,
         "dashoffset": -25.0,
         "stroke_css": "var(--orange)",
         "gradient_id": "donut-grad-1",
@@ -80,25 +80,25 @@
         "count": 3,
         "pct": 7.5,
         "dasharray": 7.5,
-        "dashoffset": -55.0,
+        "dashoffset": -52.5,
         "stroke_css": "var(--green)",
         "gradient_id": "donut-grad-2",
         "hex_start": "#30d158",
         "hex_end": "#30d158"
       },
       {
-        "name": "Rejected",
-        "count": 2,
-        "pct": 5.0,
-        "dasharray": 5.0,
-        "dashoffset": -62.5,
+        "name": "On Hold",
+        "count": 3,
+        "pct": 7.5,
+        "dasharray": 7.5,
+        "dashoffset": -60.0,
         "stroke_css": "var(--cyan)",
         "gradient_id": "donut-grad-3",
         "hex_start": "#64d2ff",
         "hex_end": "#0a84ff"
       },
       {
-        "name": "On Hold",
+        "name": "Rejected",
         "count": 2,
         "pct": 5.0,
         "dasharray": 5.0,
@@ -312,8 +312,8 @@
       "IT Prioritization": 0,
       "In Progress": 1,
       "UAT/Testing": 3,
-      "Awaiting Next Sprint": 12,
-      "On Hold": 2
+      "Awaiting Next Sprint": 11,
+      "On Hold": 3
     },
     "stage_cards": [
       {
@@ -413,8 +413,8 @@
       },
       {
         "name": "Awaiting Next Sprint",
-        "count": 12,
-        "delta": 5,
+        "count": 11,
+        "delta": 4,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#d4a23a",
@@ -432,8 +432,8 @@
       },
       {
         "name": "On Hold",
-        "count": 2,
-        "delta": 0,
+        "count": 3,
+        "delta": 1,
         "baseline_label": "from last week",
         "empty_note": null,
         "color": "#8e8e93",
@@ -463,7 +463,7 @@
     "outcome_closed_at_review": 0,
     "outcome_rejected": 1,
     "outcome_pushed_to_epmo": 0,
-    "outcome_on_hold": 8,
+    "outcome_on_hold": 9,
     "outcome_delivered": 7,
     "outcome_admin_request": 0,
     "area_chart": {
@@ -676,16 +676,16 @@
         "stuck": 2
       },
       "Awaiting Next Sprint": {
-        "count": 12,
+        "count": 11,
         "oldest": 57,
-        "avg": 25.4,
-        "stuck": 7
+        "avg": 25.0,
+        "stuck": 6
       },
       "On Hold": {
-        "count": 2,
-        "oldest": 21,
-        "avg": 11.0,
-        "stuck": 1
+        "count": 3,
+        "oldest": 30,
+        "avg": 17.3,
+        "stuck": 2
       }
     },
     "throughput_biweekly": [
